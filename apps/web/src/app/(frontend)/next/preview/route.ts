@@ -1,5 +1,6 @@
 import { isLocale } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 import type { PayloadRequest } from 'payload';
@@ -8,9 +9,7 @@ import type { CollectionSlug } from 'payload';
 export async function GET(
     req: Request & {
         cookies: {
-            get: (name: string) => {
-                value: string;
-            };
+           get: (name: string) => RequestCookie | undefined;
         };
     },
 ): Promise<Response> {
