@@ -1,0 +1,139 @@
+@use 'variables' as var;
+@use 'mixins' as mix;
+
+@layer base {
+
+    h1,
+    .heading-1,
+    h2,
+    .heading-2,
+    h3,
+    .heading-3,
+    h4,
+    .heading-4,
+    h5,
+    .heading-5 {
+        display: block;
+        font-family: var(--font-heading);
+        font-weight: 600;
+    }
+
+    h1,
+    .heading-1 {
+        // 37px
+        font-size: 2.3rem;
+        line-height: 111%;
+
+        @include mix.respond-to-min(var.$md) {
+            // 56px
+            font-size: 3.5rem;
+        }
+
+        @include mix.respond-to-min(var.$lg) {
+            // 74px
+            font-size: 4.625rem;
+        }
+    }
+
+    h2,
+    .heading-2 {
+        // 32px
+        font-size: 2rem;
+        line-height: 111%;
+
+        @include mix.respond-to-min(var.$md) {
+            // 48px
+            font-size: 3rem;
+        }
+
+        @include mix.respond-to-min(var.$lg) {
+            // 64px
+            font-size: 4rem;
+        }
+    }
+
+    h3,
+    .heading-3 {
+        // 28px
+        font-size: 1.75rem;
+        line-height: 112%;
+
+        @include mix.respond-to-min(var.$md) {
+            // 36px
+            font-size: 2.25rem;
+        }
+
+        @include mix.respond-to-min(var.$lg) {
+            // 44px
+            font-size: 2.75rem;
+        }
+    }
+
+    h4,
+    .heading-4 {
+        // 19px
+        font-size: 1.2rem;
+        line-height: 114%;
+
+        @include mix.respond-to-min(var.$md) {
+            // 24px
+            font-size: 1.5rem;
+        }
+
+        @include mix.respond-to-min(var.$lg) {
+            // 28px
+            font-size: 1.75rem;
+        }
+    }
+
+    h5,
+    .heading-5 {
+        // 17px
+        font-size: 1.0625rem;
+        line-height: 160%;
+
+        @include mix.respond-to-min(var.$md) {
+            // 20px
+            font-size: 1.25rem;
+        }
+    }
+
+    p {
+        // 16px
+        font-size: 1rem;
+        line-height: 133%;
+
+        @include mix.respond-to-min(var.$md) {
+            // 18px
+            font-size: 1.125rem;
+        }
+    }
+
+    .wysiwyg {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            margin-bottom: 1rem;
+
+            @include mix.respond-to-min(var.$md) {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+    }
+}

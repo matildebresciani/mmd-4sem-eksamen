@@ -1,0 +1,34 @@
+@use '../../lib/styles/tailwind';
+@use '../../lib/styles/variables.scss';
+@use '../../lib/styles/mixins.scss';
+@use '../../lib/styles/typography';
+@use '../../lib/styles/grid';
+@use '../../lib/styles/containers';
+@use '../../lib/styles/helpers';
+
+:root {
+    --beige: #f2f4f0;
+
+    --font-roboto: 'Roboto', sans-serif;
+
+    --font-heading: var(--font-roboto);
+    --font-body: var(--font-sofia);
+
+    --header-height: 104px;
+    --header-height-offset: calc(var(--header-height) + 1px);
+    --header-height-desktop: 128px;
+    --header-height-desktop-offset: calc(var(--header-height-desktop) + 1px);
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    background-color: var(--beige-light);
+    font-family: var(--font-body);
+}

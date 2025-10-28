@@ -1,0 +1,17 @@
+import { cn } from '@/lib/utilities/ui';
+import type { PropsWithChildren } from 'react';
+
+type Props = PropsWithChildren<{
+    className?: string;
+    classNameOuter?: string;
+}>;
+
+const BaseBlock = ({ className, classNameOuter, children }: Props) => {
+    return (
+        <section className={cn('base-block-outer pb-20 md:pb-36', classNameOuter)}>
+            <div className={cn('base-block', className)}>{children}</div>
+        </section>
+    );
+};
+
+export default BaseBlock;

@@ -1,0 +1,9 @@
+@use 'tailwindcss';
+
+@theme {
+    --font-roboto: var(--font-roboto);
+    --font-heading: var(--font-heading);
+    --font-body: var(--font-body);
+
+    --color-beige: var(--beige);
+}
