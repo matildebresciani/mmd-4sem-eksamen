@@ -15,7 +15,7 @@ type Props = {
 
 const BaseButton = ({ type, title, href, openNewTab, className, addArrow, onClick }: Props) => {
     const style = cn(
-        'flex items-center justify-center gap-6 w-max max-w-full py-4 px-7 font-medium text-lg leading-[178%] border border-white bg-oak-cta-bg rounded-2xl cursor-pointer md:px-23',
+        'flex items-center justify-center gap-6 w-max max-w-full py-4 px-8 font-medium text-lg leading-[178%] border border-white bg-oak-cta-bg rounded-2xl cursor-pointer md:px-23',
         className,
     );
 
