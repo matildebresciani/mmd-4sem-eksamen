@@ -120,6 +120,7 @@ export default buildConfig({
         allowLocalizedWithinLocalized: true,
     },
     email: resendAdapter({
+        //TODO: Lav egen resend bruger
         defaultFromAddress: 'no-reply@oaklab.cloud',
         defaultFromName: 'Oaklab Reset Password',
         apiKey: process.env.RESEND_API_KEY || '',
