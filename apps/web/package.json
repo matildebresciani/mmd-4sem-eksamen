@@ -14,7 +14,7 @@
         "ii": "cross-env NODE_OPTIONS=--no-deprecation yarn install",
         "lint": "cross-env NODE_OPTIONS=--no-deprecation biome check .",
         "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation biome check . --fix",
-        "format:check": "biome format",
+        "format:check": "biome format --check",
         "format:fix": "biome format --fix",
         "typecheck": "tsc --noEmit",
         "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",

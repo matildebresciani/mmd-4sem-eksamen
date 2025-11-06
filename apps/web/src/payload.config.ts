@@ -121,8 +121,8 @@ export default buildConfig({
     },
     email: resendAdapter({
         //TODO: Lav egen resend bruger
-        defaultFromAddress: 'no-reply@oaklab.cloud',
-        defaultFromName: 'Oaklab Reset Password',
+        defaultFromAddress: 'mabr0005@stud.kea.dk',
+        defaultFromName: 'Reset Password',
         apiKey: process.env.RESEND_API_KEY || '',
     }),
 });

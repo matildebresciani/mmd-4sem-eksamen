@@ -38,7 +38,7 @@ export const localizedPaths = {
     [path in Path]?: Record<Locale, string>;
 };
 
-export const defaultLocale = 'en';
+export const defaultLocale = 'da';
 export const locales = ['da', 'en'] as const;
 export const nonDefaultLocales = locales.filter((locale) => locale !== defaultLocale);
 /**
