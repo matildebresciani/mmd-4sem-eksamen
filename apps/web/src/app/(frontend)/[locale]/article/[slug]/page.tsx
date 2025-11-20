@@ -16,20 +16,22 @@ export default async function Page({ params: paramsPromise }: CollectionPostType
     const { slug = '', locale } = await paramsPromise;
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
 
-    const post = await getCachedEntryBySlug({ collection: 'posts', slug, locale: validatedLocale });
+    const article = await getCachedEntryBySlug({ collection: 'articles', slug, locale: validatedLocale });
 
-    if (!post) return notFound();
+    if (!article) return notFound();
 
     setRequestLocale(validatedLocale);
 
-    const { id, layout } = post;
+    const { id, layout } = article;
 
     return (
         <>
             {draft && <LivePreviewListener />}
 
             <article>
-                {layout && <RenderBlocks pageId={id} blocks={layout} locale={validatedLocale} collectionType="posts" />}
+                {layout && (
+                    <RenderBlocks pageId={id} blocks={layout} locale={validatedLocale} collectionType="articles" />
+                )}
             </article>
         </>
     );
@@ -43,5 +45,5 @@ export async function generateMetadata({ params: paramsPromise }: CollectionPost
 
     if (!slug) notFound();
 
-    return generateEntryMetadata(slug, 'posts', validatedLocale);
+    return generateEntryMetadata(slug, 'articles', validatedLocale);
 }

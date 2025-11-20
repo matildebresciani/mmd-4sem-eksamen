@@ -9,7 +9,7 @@ import { generatePreviewPath } from '../../../lib/utilities/generate-preview-pat
 
 const blocks: Block[] = [Paragraph];
 
-export const Posts: CollectionConfig<'posts'> = createRoutedCollection('posts', {
+export const Articles: CollectionConfig = createRoutedCollection('articles', {
     access: {
         create: authenticated,
         delete: authenticated,
@@ -24,11 +24,11 @@ export const Posts: CollectionConfig<'posts'> = createRoutedCollection('posts', 
     admin: {
         defaultColumns: ['title', 'slug', 'updatedAt', 'publishStatus'],
         group: 'Content',
-        livePreview: payloadLivePreview('posts'),
+        livePreview: payloadLivePreview('articles'),
         preview: (data, { req }) =>
             generatePreviewPath({
                 slug: typeof data?.slug === 'string' ? data.slug : '',
-                collection: 'posts',
+                collection: 'articles',
                 req,
             }),
     },
@@ -53,7 +53,7 @@ export const Posts: CollectionConfig<'posts'> = createRoutedCollection('posts', 
                 {
                     fields: [
                         {
-                            name: 'relatedPosts',
+                            name: 'relatedArticles',
                             type: 'relationship',
                             admin: {
                                 position: 'sidebar',
@@ -66,7 +66,7 @@ export const Posts: CollectionConfig<'posts'> = createRoutedCollection('posts', 
                                 };
                             },
                             hasMany: true,
-                            relationTo: 'posts',
+                            relationTo: 'articles',
                         },
                         {
                             name: 'categories',
@@ -75,7 +75,7 @@ export const Posts: CollectionConfig<'posts'> = createRoutedCollection('posts', 
                                 position: 'sidebar',
                             },
                             hasMany: true,
-                            relationTo: 'post-categories',
+                            relationTo: 'article-categories',
                         },
                     ],
                     label: 'Meta',

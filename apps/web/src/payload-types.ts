@@ -69,9 +69,9 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
+    articles: Article;
     products: Product;
-    'post-categories': PostCategory;
+    'article-categories': ArticleCategory;
     'product-categories': ProductCategory;
     media: Media;
     icons: Icon;
@@ -85,8 +85,8 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
-    'post-categories': {
-      viewPostsInCategory: 'posts';
+    'article-categories': {
+      viewArticlesInCategory: 'articles';
     };
     'product-categories': {
       viewProductsInCategory: 'products';
@@ -94,9 +94,9 @@ export interface Config {
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
-    'post-categories': PostCategoriesSelect<false> | PostCategoriesSelect<true>;
+    'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
@@ -234,16 +234,16 @@ export interface Hero {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'articles';
+          value: string | Article;
         } | null)
       | ({
           relationTo: 'products';
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'post-categories';
-          value: string | PostCategory;
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
         } | null)
       | ({
           relationTo: 'product-categories';
@@ -257,9 +257,9 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "articles".
  */
-export interface Post {
+export interface Article {
   id: string;
   /**
    * This is the name of the page, it will only be used in the admin panel. And is not localized.
@@ -270,8 +270,8 @@ export interface Post {
    */
   title: string;
   layout?: Paragraph[] | null;
-  relatedPosts?: (string | Post)[] | null;
-  categories?: (string | PostCategory)[] | null;
+  relatedArticles?: (string | Article)[] | null;
+  categories?: (string | ArticleCategory)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -318,9 +318,9 @@ export interface Paragraph {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "post-categories".
+ * via the `definition` "article-categories".
  */
-export interface PostCategory {
+export interface ArticleCategory {
   id: string;
   /**
    * This is the name of the page, it will only be used in the admin panel. And is not localized.
@@ -330,8 +330,8 @@ export interface PostCategory {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  viewPostsInCategory?: {
-    docs?: (string | Post)[];
+  viewArticlesInCategory?: {
+    docs?: (string | Article)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
@@ -351,10 +351,10 @@ export interface PostCategory {
     featuredImage?: (string | null) | Media;
     excerpt?: string | null;
   };
-  parent?: (string | null) | PostCategory;
+  parent?: (string | null) | ArticleCategory;
   breadcrumbs?:
     | {
-        doc?: (string | null) | PostCategory;
+        doc?: (string | null) | ArticleCategory;
         url?: string | null;
         label?: string | null;
         id?: string | null;
@@ -563,16 +563,16 @@ export interface TextImage {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'articles';
+          value: string | Article;
         } | null)
       | ({
           relationTo: 'products';
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'post-categories';
-          value: string | PostCategory;
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
         } | null)
       | ({
           relationTo: 'product-categories';
@@ -669,16 +669,16 @@ export interface Navigation {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'articles';
+                value: string | Article;
               } | null)
             | ({
                 relationTo: 'products';
                 value: string | Product;
               } | null)
             | ({
-                relationTo: 'post-categories';
-                value: string | PostCategory;
+                relationTo: 'article-categories';
+                value: string | ArticleCategory;
               } | null)
             | ({
                 relationTo: 'product-categories';
@@ -699,16 +699,16 @@ export interface Navigation {
                       value: string | Page;
                     } | null)
                   | ({
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'articles';
+                      value: string | Article;
                     } | null)
                   | ({
                       relationTo: 'products';
                       value: string | Product;
                     } | null)
                   | ({
-                      relationTo: 'post-categories';
-                      value: string | PostCategory;
+                      relationTo: 'article-categories';
+                      value: string | ArticleCategory;
                     } | null)
                   | ({
                       relationTo: 'product-categories';
@@ -802,16 +802,16 @@ export interface PayloadLockedDocument {
         value: string | Page;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: string | Post;
+        relationTo: 'articles';
+        value: string | Article;
       } | null)
     | ({
         relationTo: 'products';
         value: string | Product;
       } | null)
     | ({
-        relationTo: 'post-categories';
-        value: string | PostCategory;
+        relationTo: 'article-categories';
+        value: string | ArticleCategory;
       } | null)
     | ({
         relationTo: 'product-categories';
@@ -984,9 +984,9 @@ export interface TextImageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
+ * via the `definition` "articles_select".
  */
-export interface PostsSelect<T extends boolean = true> {
+export interface ArticlesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
   layout?:
@@ -994,7 +994,7 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         paragraph?: T | ParagraphSelect<T>;
       };
-  relatedPosts?: T;
+  relatedArticles?: T;
   categories?: T;
   meta?:
     | T
@@ -1047,12 +1047,12 @@ export interface ProductsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "post-categories_select".
+ * via the `definition` "article-categories_select".
  */
-export interface PostCategoriesSelect<T extends boolean = true> {
+export interface ArticleCategoriesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
-  viewPostsInCategory?: T;
+  viewArticlesInCategory?: T;
   layout?:
     | T
     | {
@@ -1479,16 +1479,16 @@ export interface Option {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'articles';
+          value: string | Article;
         } | null)
       | ({
           relationTo: 'products';
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'post-categories';
-          value: string | PostCategory;
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
         } | null)
       | ({
           relationTo: 'product-categories';

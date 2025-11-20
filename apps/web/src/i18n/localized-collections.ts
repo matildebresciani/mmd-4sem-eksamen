@@ -1,12 +1,12 @@
 import type { CollectionSlug } from 'payload';
 
 export const localizedCollections = {
-    'post-categories': {
-        en: 'posts',
+    'article-categories': {
+        en: 'articles',
         da: 'artikler',
     },
-    posts: {
-        en: 'post',
+    articles: {
+        en: 'article',
         da: 'artikel',
     },
     'product-categories': {
@@ -30,8 +30,8 @@ export const isLocalizableCollection = <const T extends CollectionSlug>(
  * @example { search: { en: 'search', da: 'sog' } }
  */
 export const localizedPaths = {
-    posts: {
-        en: 'posts',
+    articles: {
+        en: 'articles',
         da: 'artikler',
     },
 } satisfies {
@@ -46,16 +46,16 @@ export const nonDefaultLocales = locales.filter((locale) => locale !== defaultLo
  */
 export const routedCollections = [
     'pages',
-    'posts',
+    'articles',
     'products',
-    'post-categories',
+    'article-categories',
     'product-categories',
 ] as const satisfies readonly CollectionSlug[];
 /**
  * All paths that has to be localized but aren't created as collections in Payload
  * @example ['search']
  */
-export const paths = ['posts'] as const satisfies readonly string[];
+export const paths = ['articles'] as const satisfies readonly string[];
 
 /**
  * The slugs of collections that can have their own slug / their own URL.

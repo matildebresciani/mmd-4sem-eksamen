@@ -4,12 +4,12 @@ import {
     locales,
     routedCollections,
 } from '@/i18n/localized-collections';
-import type { Page, Post, Product } from '@/payload-types';
+import type { Article, Page, Product } from '@/payload-types';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import type { CollectionSlug } from 'payload';
 import { formatLinkByCollection } from './format-link';
 
-export const revalidateEntry = (doc: Page | Post | Product, collection: CollectionSlug) => {
+export const revalidateEntry = (doc: Page | Article | Product, collection: CollectionSlug) => {
     if (isRoutedCollection(collection)) {
         const localizedPaths = locales.map((locale) => formatLinkByCollection(doc.slug, collection, locale));
         console.log(`Revalidating ${collection} at path: ${doc.slug}`);

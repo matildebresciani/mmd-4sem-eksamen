@@ -10,7 +10,7 @@ import type { Config } from 'payload';
 
 export const lexicalLink = () =>
     LinkFeature({
-        enabledCollections: ['pages', 'posts'],
+        enabledCollections: ['pages', 'articles'],
         fields: ({ defaultFields }) => {
             const defaultFieldsWithoutUrl = defaultFields.filter((field) => {
                 if ('name' in field && field.name === 'url') return false;

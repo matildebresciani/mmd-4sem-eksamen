@@ -3,10 +3,9 @@ import path from 'node:path';
 import sharp from 'sharp'; // sharp-import
 
 import { Media } from './collections/assets/media/config';
-import { PostCategories } from './collections/categories/post-categories/config';
-import { ProductCategories } from './collections/categories/product-categories/config';
+import { ArticleCategories } from './collections/categories/article-categories/config';
+import { Articles } from './collections/content/articles/config';
 import { Pages } from './collections/content/pages/config';
-import { Posts } from './collections/content/posts/config';
 import { Products } from './collections/content/products/config';
 import { Faqs } from './collections/entries/faqs/config';
 import { ApiKeys } from './collections/tools-settings/api-keys/config';
@@ -25,6 +24,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { resendAdapter } from '@payloadcms/email-resend';
 import { type PayloadRequest, buildConfig } from 'payload';
 import { Icons } from './collections/assets/icons/config';
+import { ProductCategories } from './collections/categories/product-categories/config';
 import { plugins } from './lib/plugins';
 import { getServerSideURL } from './lib/utilities/get-url';
 
@@ -70,9 +70,9 @@ export default buildConfig({
     }),
     collections: [
         Pages,
-        Posts,
+        Articles,
         Products,
-        PostCategories,
+        ArticleCategories,
         ProductCategories,
         Media,
         Icons,
