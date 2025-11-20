@@ -73,6 +73,7 @@ export interface Config {
     products: Product;
     'article-categories': ArticleCategory;
     'product-categories': ProductCategory;
+    genres: Genre;
     media: Media;
     icons: Icon;
     faqs: Faq;
@@ -91,6 +92,9 @@ export interface Config {
     'product-categories': {
       viewProductsInCategory: 'products';
     };
+    genres: {
+      viewArticlesInGenre: 'articles';
+    };
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -98,6 +102,7 @@ export interface Config {
     products: ProductsSelect<false> | ProductsSelect<true>;
     'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
+    genres: GenresSelect<false> | GenresSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
@@ -270,8 +275,11 @@ export interface Article {
    */
   title: string;
   layout?: Paragraph[] | null;
-  relatedArticles?: (string | Article)[] | null;
+  articleType: 'review' | 'interview' | 'weekly-releases';
+  reviewType?: ('concert' | 'album') | null;
+  genres?: (string | Genre)[] | null;
   categories?: (string | ArticleCategory)[] | null;
+  relatedArticles?: (string | Article)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -315,6 +323,23 @@ export interface Paragraph {
   id?: string | null;
   blockName?: string | null;
   blockType: 'paragraph';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres".
+ */
+export interface Genre {
+  id: string;
+  name: string;
+  viewArticlesInGenre?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -818,6 +843,10 @@ export interface PayloadLockedDocument {
         value: string | ProductCategory;
       } | null)
     | ({
+        relationTo: 'genres';
+        value: string | Genre;
+      } | null)
+    | ({
         relationTo: 'media';
         value: string | Media;
       } | null)
@@ -994,8 +1023,11 @@ export interface ArticlesSelect<T extends boolean = true> {
     | {
         paragraph?: T | ParagraphSelect<T>;
       };
-  relatedArticles?: T;
+  articleType?: T;
+  reviewType?: T;
+  genres?: T;
   categories?: T;
+  relatedArticles?: T;
   meta?:
     | T
     | {
@@ -1128,6 +1160,18 @@ export interface ProductCategoriesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres_select".
+ */
+export interface GenresSelect<T extends boolean = true> {
+  name?: T;
+  viewArticlesInGenre?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -24,6 +24,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { resendAdapter } from '@payloadcms/email-resend';
 import { type PayloadRequest, buildConfig } from 'payload';
 import { Icons } from './collections/assets/icons/config';
+import { Genres } from './collections/categories/article-genres/config';
 import { ProductCategories } from './collections/categories/product-categories/config';
 import { plugins } from './lib/plugins';
 import { getServerSideURL } from './lib/utilities/get-url';
@@ -74,6 +75,7 @@ export default buildConfig({
         Products,
         ArticleCategories,
         ProductCategories,
+        Genres,
         Media,
         Icons,
         Faqs,

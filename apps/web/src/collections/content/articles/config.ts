@@ -52,8 +52,59 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                 },
                 {
                     fields: [
+                        // --- ARTICLE TYPE ---
+                        {
+                            name: 'articleType',
+                            label: 'Artiklens type',
+                            type: 'select',
+                            required: true,
+                            options: [
+                                { label: 'Anmeldelse', value: 'review' },
+                                { label: 'Interview', value: 'interview' },
+                                { label: 'Ugens udgivelser', value: 'weekly-releases' },
+                            ],
+                        },
+                        // --- REVIEW TYPE (only if review) ---
+                        {
+                            name: 'reviewType',
+                            label: 'Anmeldelsestype',
+                            type: 'select',
+                            options: [
+                                { label: 'Koncertanmeldelse', value: 'concert' },
+                                { label: 'Albumanmeldelse', value: 'album' },
+                            ],
+                            admin: {
+                                condition: (_, siblingData) => siblingData.articleType === 'review',
+                            },
+                        },
+                        // --- GENRE ---
+                        {
+                            name: 'genres',
+                            label: 'Genre',
+                            type: 'relationship',
+                            hasMany: true,
+                            relationTo: 'genres',
+                            admin: {
+                                position: 'sidebar',
+                            },
+                        },
+                        //TODO: Måske skal der tilføjes et felt til "artist" også?
+
+                        // --- CATEGORIES ---
+                        // Usikkert på om vi skal bruge denne endnu, og til hvad
+                        {
+                            name: 'categories',
+                            label: 'Kategorier',
+                            type: 'relationship',
+                            relationTo: 'article-categories',
+                            hasMany: true,
+                            admin: {
+                                position: 'sidebar',
+                            },
+                        },
                         {
                             name: 'relatedArticles',
+                            label: 'Relaterede artikler',
                             type: 'relationship',
                             admin: {
                                 position: 'sidebar',
@@ -67,15 +118,6 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             },
                             hasMany: true,
                             relationTo: 'articles',
-                        },
-                        {
-                            name: 'categories',
-                            type: 'relationship',
-                            admin: {
-                                position: 'sidebar',
-                            },
-                            hasMany: true,
-                            relationTo: 'article-categories',
                         },
                     ],
                     label: 'Meta',
