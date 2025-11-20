@@ -71,6 +71,7 @@ export interface Config {
     pages: Page;
     articles: Article;
     products: Product;
+    concerts: Concert;
     'article-categories': ArticleCategory;
     'product-categories': ProductCategory;
     genres: Genre;
@@ -101,6 +102,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     genres: GenresSelect<false> | GenresSelect<true>;
@@ -613,6 +615,22 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts".
+ */
+export interface Concert {
+  id: string;
+  featuredImage: string | Media;
+  artist: string;
+  support?: string | null;
+  venue: string;
+  city: string;
+  date: string;
+  ticketLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "volunteers".
  */
 export interface Volunteer {
@@ -851,6 +869,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'concerts';
+        value: string | Concert;
       } | null)
     | ({
         relationTo: 'article-categories';
@@ -1096,6 +1118,21 @@ export interface ProductsSelect<T extends boolean = true> {
       };
   slug?: T;
   slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts_select".
+ */
+export interface ConcertsSelect<T extends boolean = true> {
+  featuredImage?: T;
+  artist?: T;
+  support?: T;
+  venue?: T;
+  city?: T;
+  date?: T;
+  ticketLink?: T;
   updatedAt?: T;
   createdAt?: T;
 }
