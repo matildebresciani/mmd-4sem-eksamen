@@ -79,6 +79,7 @@ export interface Config {
     media: Media;
     icons: Icon;
     faqs: Faq;
+    quotes: Quote;
     navigation: Navigation;
     redirects: Redirect;
     users: User;
@@ -110,6 +111,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
+    quotes: QuotesSelect<false> | QuotesSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -710,6 +712,31 @@ export interface Faq {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote {
+  id: string;
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Setup menus and navigation globally across your site.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -901,6 +928,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'faqs';
         value: string | Faq;
+      } | null)
+    | ({
+        relationTo: 'quotes';
+        value: string | Quote;
       } | null)
     | ({
         relationTo: 'navigation';
@@ -1391,6 +1422,16 @@ export interface FaqsSelect<T extends boolean = true> {
   answer?: T;
   publishedAt?: T;
   publishStatus?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes_select".
+ */
+export interface QuotesSelect<T extends boolean = true> {
+  quote?: T;
+  author?: T;
   updatedAt?: T;
   createdAt?: T;
 }
