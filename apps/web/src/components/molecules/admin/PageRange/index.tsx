@@ -8,9 +8,9 @@ const defaultLabels = {
 };
 
 const defaultCollectionLabels = {
-    posts: {
-        plural: 'Posts',
-        singular: 'Post',
+    articles: {
+        plural: 'Articles',
+        singular: 'Article',
     },
 };
 

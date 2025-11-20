@@ -12,10 +12,10 @@ import {
 import type { Block, CollectionConfig } from 'payload';
 import { authenticated } from '../../../access/authenticated';
 
-const slug = 'post-categories';
+const slug = 'article-categories';
 const blocks: Block[] = [Paragraph];
 
-export const PostCategories: CollectionConfig = {
+export const ArticleCategories: CollectionConfig = {
     slug,
     access: {
         create: authenticated,
@@ -36,10 +36,10 @@ export const PostCategories: CollectionConfig = {
                     label: 'Category Details',
                     fields: [
                         {
-                            name: 'viewPostsInCategory',
-                            label: 'Posts in Category',
+                            name: 'viewArticlesInCategory',
+                            label: 'Articles in Category',
                             type: 'join',
-                            collection: 'posts',
+                            collection: 'articles',
                             on: 'categories',
                         },
                     ],

@@ -3,10 +3,10 @@ import { initPayload } from '../config';
 
 export const generateStaticParamsForCollection = async (collection: RoutedCollectionSlug, isCatchAll = false) => {
     const payload = await initPayload();
-    const posts = (
+    const articles = (
         await Promise.all(
             locales.map(async (locale) => {
-                const posts = await payload.find({
+                const articles = await payload.find({
                     collection,
                     draft: false,
                     limit: 1000,
@@ -15,7 +15,7 @@ export const generateStaticParamsForCollection = async (collection: RoutedCollec
                     locale,
                 });
 
-                return posts.docs.map((post) => ({
+                return articles.docs.map((post) => ({
                     post,
                     locale,
                 }));
@@ -24,13 +24,13 @@ export const generateStaticParamsForCollection = async (collection: RoutedCollec
     ).flat();
 
     if (isCatchAll) {
-        const params = posts.map(({ post, locale }) => {
+        const params = articles.map(({ post, locale }) => {
             return { locale, slug: [post.slug] };
         });
         return params;
     }
 
-    const params = posts.map(({ post, locale }) => {
+    const params = articles.map(({ post, locale }) => {
         return { locale, slug: post.slug };
     });
 

@@ -1,7 +1,7 @@
 import { getCachedSitemap } from '@/lib/data/payload/get-cached-sitemap';
 import { getServerSideSitemap } from 'next-sitemap';
 
-const collection = 'posts';
+const collection = 'articles';
 const locale = 'en';
 
 export async function GET() {

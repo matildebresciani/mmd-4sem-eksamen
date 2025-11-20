@@ -2,7 +2,7 @@ import { isLocale } from '@/i18n/localized-collections';
 import type { CollectionSlug, PayloadRequest } from 'payload';
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
-    posts: '/posts',
+    articles: '/articles',
     pages: '',
 };
 

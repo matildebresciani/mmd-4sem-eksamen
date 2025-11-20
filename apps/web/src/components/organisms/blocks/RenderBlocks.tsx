@@ -1,7 +1,7 @@
 import type React from 'react';
 import { Fragment } from 'react';
 
-import type { Page, Post, Product } from '@/payload-types';
+import type { Article, Page, Product } from '@/payload-types';
 
 import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections';
 import HeroBlock from './hero/Hero';

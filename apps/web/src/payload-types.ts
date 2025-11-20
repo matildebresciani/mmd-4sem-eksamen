@@ -69,13 +69,17 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
+    articles: Article;
     products: Product;
-    'post-categories': PostCategory;
+    concerts: Concert;
+    'article-categories': ArticleCategory;
     'product-categories': ProductCategory;
+    genres: Genre;
+    volunteers: Volunteer;
     media: Media;
     icons: Icon;
     faqs: Faq;
+    quotes: Quote;
     navigation: Navigation;
     redirects: Redirect;
     users: User;
@@ -85,22 +89,29 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
-    'post-categories': {
-      viewPostsInCategory: 'posts';
+    'article-categories': {
+      viewArticlesInCategory: 'articles';
     };
     'product-categories': {
       viewProductsInCategory: 'products';
     };
+    genres: {
+      viewArticlesInGenre: 'articles';
+    };
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
-    'post-categories': PostCategoriesSelect<false> | PostCategoriesSelect<true>;
+    concerts: ConcertsSelect<false> | ConcertsSelect<true>;
+    'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
+    genres: GenresSelect<false> | GenresSelect<true>;
+    volunteers: VolunteersSelect<false> | VolunteersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
+    quotes: QuotesSelect<false> | QuotesSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -234,16 +245,16 @@ export interface Hero {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'articles';
+          value: string | Article;
         } | null)
       | ({
           relationTo: 'products';
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'post-categories';
-          value: string | PostCategory;
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
         } | null)
       | ({
           relationTo: 'product-categories';
@@ -257,9 +268,9 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "articles".
  */
-export interface Post {
+export interface Article {
   id: string;
   /**
    * This is the name of the page, it will only be used in the admin panel. And is not localized.
@@ -270,8 +281,11 @@ export interface Post {
    */
   title: string;
   layout?: Paragraph[] | null;
-  relatedPosts?: (string | Post)[] | null;
-  categories?: (string | PostCategory)[] | null;
+  articleType: 'review' | 'interview' | 'weekly-releases';
+  reviewType?: ('concert' | 'album') | null;
+  genres?: (string | Genre)[] | null;
+  categories?: (string | ArticleCategory)[] | null;
+  relatedArticles?: (string | Article)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -318,9 +332,26 @@ export interface Paragraph {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "post-categories".
+ * via the `definition` "genres".
  */
-export interface PostCategory {
+export interface Genre {
+  id: string;
+  name: string;
+  viewArticlesInGenre?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories".
+ */
+export interface ArticleCategory {
   id: string;
   /**
    * This is the name of the page, it will only be used in the admin panel. And is not localized.
@@ -330,8 +361,8 @@ export interface PostCategory {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  viewPostsInCategory?: {
-    docs?: (string | Post)[];
+  viewArticlesInCategory?: {
+    docs?: (string | Article)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
@@ -351,10 +382,10 @@ export interface PostCategory {
     featuredImage?: (string | null) | Media;
     excerpt?: string | null;
   };
-  parent?: (string | null) | PostCategory;
+  parent?: (string | null) | ArticleCategory;
   breadcrumbs?:
     | {
-        doc?: (string | null) | PostCategory;
+        doc?: (string | null) | ArticleCategory;
         url?: string | null;
         label?: string | null;
         id?: string | null;
@@ -563,16 +594,16 @@ export interface TextImage {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'articles';
+          value: string | Article;
         } | null)
       | ({
           relationTo: 'products';
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'post-categories';
-          value: string | PostCategory;
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
         } | null)
       | ({
           relationTo: 'product-categories';
@@ -583,6 +614,38 @@ export interface TextImage {
   id?: string | null;
   blockName?: string | null;
   blockType: 'text-image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts".
+ */
+export interface Concert {
+  id: string;
+  featuredImage: string | Media;
+  artist: string;
+  support?: string | null;
+  venue: string;
+  city: string;
+  date: string;
+  ticketLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "volunteers".
+ */
+export interface Volunteer {
+  id: string;
+  name: string;
+  displayName?: string | null;
+  roleGroup: 'core' | 'regular';
+  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
+  customRole?: string | null;
+  email?: string | null;
+  profilePicture?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -649,6 +712,31 @@ export interface Faq {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote {
+  id: string;
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Setup menus and navigation globally across your site.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -669,16 +757,16 @@ export interface Navigation {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'articles';
+                value: string | Article;
               } | null)
             | ({
                 relationTo: 'products';
                 value: string | Product;
               } | null)
             | ({
-                relationTo: 'post-categories';
-                value: string | PostCategory;
+                relationTo: 'article-categories';
+                value: string | ArticleCategory;
               } | null)
             | ({
                 relationTo: 'product-categories';
@@ -699,16 +787,16 @@ export interface Navigation {
                       value: string | Page;
                     } | null)
                   | ({
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'articles';
+                      value: string | Article;
                     } | null)
                   | ({
                       relationTo: 'products';
                       value: string | Product;
                     } | null)
                   | ({
-                      relationTo: 'post-categories';
-                      value: string | PostCategory;
+                      relationTo: 'article-categories';
+                      value: string | ArticleCategory;
                     } | null)
                   | ({
                       relationTo: 'product-categories';
@@ -802,20 +890,32 @@ export interface PayloadLockedDocument {
         value: string | Page;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: string | Post;
+        relationTo: 'articles';
+        value: string | Article;
       } | null)
     | ({
         relationTo: 'products';
         value: string | Product;
       } | null)
     | ({
-        relationTo: 'post-categories';
-        value: string | PostCategory;
+        relationTo: 'concerts';
+        value: string | Concert;
+      } | null)
+    | ({
+        relationTo: 'article-categories';
+        value: string | ArticleCategory;
       } | null)
     | ({
         relationTo: 'product-categories';
         value: string | ProductCategory;
+      } | null)
+    | ({
+        relationTo: 'genres';
+        value: string | Genre;
+      } | null)
+    | ({
+        relationTo: 'volunteers';
+        value: string | Volunteer;
       } | null)
     | ({
         relationTo: 'media';
@@ -828,6 +928,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'faqs';
         value: string | Faq;
+      } | null)
+    | ({
+        relationTo: 'quotes';
+        value: string | Quote;
       } | null)
     | ({
         relationTo: 'navigation';
@@ -984,9 +1088,9 @@ export interface TextImageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
+ * via the `definition` "articles_select".
  */
-export interface PostsSelect<T extends boolean = true> {
+export interface ArticlesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
   layout?:
@@ -994,8 +1098,11 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         paragraph?: T | ParagraphSelect<T>;
       };
-  relatedPosts?: T;
+  articleType?: T;
+  reviewType?: T;
+  genres?: T;
   categories?: T;
+  relatedArticles?: T;
   meta?:
     | T
     | {
@@ -1047,12 +1154,27 @@ export interface ProductsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "post-categories_select".
+ * via the `definition` "concerts_select".
  */
-export interface PostCategoriesSelect<T extends boolean = true> {
+export interface ConcertsSelect<T extends boolean = true> {
+  featuredImage?: T;
+  artist?: T;
+  support?: T;
+  venue?: T;
+  city?: T;
+  date?: T;
+  ticketLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories_select".
+ */
+export interface ArticleCategoriesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
-  viewPostsInCategory?: T;
+  viewArticlesInCategory?: T;
   layout?:
     | T
     | {
@@ -1128,6 +1250,33 @@ export interface ProductCategoriesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres_select".
+ */
+export interface GenresSelect<T extends boolean = true> {
+  name?: T;
+  viewArticlesInGenre?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "volunteers_select".
+ */
+export interface VolunteersSelect<T extends boolean = true> {
+  name?: T;
+  displayName?: T;
+  roleGroup?: T;
+  volunteerRole?: T;
+  customRole?: T;
+  email?: T;
+  profilePicture?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1273,6 +1422,16 @@ export interface FaqsSelect<T extends boolean = true> {
   answer?: T;
   publishedAt?: T;
   publishStatus?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes_select".
+ */
+export interface QuotesSelect<T extends boolean = true> {
+  quote?: T;
+  author?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1479,16 +1638,16 @@ export interface Option {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'articles';
+          value: string | Article;
         } | null)
       | ({
           relationTo: 'products';
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'post-categories';
-          value: string | PostCategory;
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
         } | null)
       | ({
           relationTo: 'product-categories';

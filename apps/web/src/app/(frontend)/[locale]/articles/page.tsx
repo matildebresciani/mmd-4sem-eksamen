@@ -22,8 +22,8 @@ type Props = {
     }>;
 };
 
-const collection = 'post-categories';
-const collectionToShow = 'posts';
+const collection = 'article-categories';
+const collectionToShow = 'articles';
 
 export default async function PostsPage({ params }: Props) {
     const { locale, slug, pageNumber } = await params;
@@ -75,7 +75,7 @@ export default async function PostsPage({ params }: Props) {
         <article>
             <div className="base-block oakgrid mt-6 lg:mt-16">
                 <div className="col-span-12">
-                    <h1 className="text-2xl font-medium lg:text-4xl">Posts</h1>
+                    <h1 className="text-2xl font-medium lg:text-4xl">Articles</h1>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@ export async function generateMetadata({ params: paramsPromise }: Props): Promis
     // TODO: Handle root archives
     if (!slug) {
         return {
-            title: 'Posts',
+            title: 'Articles',
         };
     }
 

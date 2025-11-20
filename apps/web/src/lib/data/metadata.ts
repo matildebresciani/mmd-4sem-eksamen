@@ -81,7 +81,7 @@ export const getDefaultOgImage = async (locale: Locale) => {
     return null;
 };
 
-type CollectionSingleTypes = 'pages' | 'posts' | 'products';
+type CollectionSingleTypes = 'pages' | 'articles' | 'products';
 export const generateEntryMetadata = async (slug: string, collection: CollectionSingleTypes, locale: Locale) => {
     const meta: Metadata = {};
     const options = await getCachedOptions(locale);
@@ -125,7 +125,7 @@ export const generateEntryMetadata = async (slug: string, collection: Collection
 
 type ArchiveMetadataProps = {
     slug: string;
-    collection: 'post-categories' | 'product-categories';
+    collection: 'article-categories' | 'product-categories';
     locale: Locale;
     pageNumber: string | number | undefined;
 };

@@ -17,25 +17,25 @@ export const routing = defineRouting({
 
     pathnames: {
         '/': '/',
-        '/posts': {
-            en: `/${localizedCollections['post-categories'].en}/`,
-            da: `/${localizedCollections['post-categories'].da}/`,
+        '/articles': {
+            en: `/${localizedCollections['article-categories'].en}/`,
+            da: `/${localizedCollections['article-categories'].da}/`,
         },
-        '/posts/page/[pageNumber]': {
-            en: `/${localizedCollections['post-categories'].en}/${paginationTranslations.page.en}/[pageNumber]`,
-            da: `/${localizedCollections['post-categories'].da}/${paginationTranslations.page.da}/[pageNumber]`,
+        '/articles/page/[pageNumber]': {
+            en: `/${localizedCollections['article-categories'].en}/${paginationTranslations.page.en}/[pageNumber]`,
+            da: `/${localizedCollections['article-categories'].da}/${paginationTranslations.page.da}/[pageNumber]`,
         },
-        '/posts/[slug]': {
-            en: `/${localizedCollections['post-categories'].en}/[slug]`,
-            da: `/${localizedCollections['post-categories'].da}/[slug]`,
+        '/articles/[slug]': {
+            en: `/${localizedCollections['article-categories'].en}/[slug]`,
+            da: `/${localizedCollections['article-categories'].da}/[slug]`,
         },
-        '/posts/[slug]/page/[pageNumber]': {
-            en: `/${localizedCollections['post-categories'].en}/[slug]/${paginationTranslations.page.en}/[pageNumber]`,
-            da: `/${localizedCollections['post-categories'].da}/[slug]/${paginationTranslations.page.da}/[pageNumber]`,
+        '/articles/[slug]/page/[pageNumber]': {
+            en: `/${localizedCollections['article-categories'].en}/[slug]/${paginationTranslations.page.en}/[pageNumber]`,
+            da: `/${localizedCollections['article-categories'].da}/[slug]/${paginationTranslations.page.da}/[pageNumber]`,
         },
-        '/post/[slug]': {
-            en: `/${localizedCollections.posts.en}/[slug]`,
-            da: `/${localizedCollections.posts.da}/[slug]`,
+        '/article/[slug]': {
+            en: `/${localizedCollections.articles.en}/[slug]`,
+            da: `/${localizedCollections.articles.da}/[slug]`,
         },
     },
 });

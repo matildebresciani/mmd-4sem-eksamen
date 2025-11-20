@@ -21,7 +21,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
         sitemap: [
             ...locales.map((locale) => `${baseUrl}/sitemaps/${locale}/pages.xml`),
-            ...locales.map((locale) => `${baseUrl}/sitemaps/${locale}/posts.xml`),
+            ...locales.map((locale) => `${baseUrl}/sitemaps/${locale}/articles.xml`),
         ],
     };
 }

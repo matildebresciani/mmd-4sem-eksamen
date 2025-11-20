@@ -7,13 +7,13 @@ import type { Plugin } from 'payload';
 
 import { isLocale } from '@/i18n/localized-collections';
 import { getServerSideURL } from '@/lib/utilities/get-url';
-import type { Page, Post } from '@/payload-types';
+import type { Article, Page } from '@/payload-types';
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
+const generateTitle: GenerateTitle<Article | Page> = ({ doc }) => {
     return doc?.title ? `${doc.title} | Oak Boilerplate` : 'Oak Boilerplate';
 };
 
-const generateURL: GenerateURL<Post | Page> = ({ doc, locale }) => {
+const generateURL: GenerateURL<Article | Page> = ({ doc, locale }) => {
     const url = getServerSideURL();
     const validatedLocale = isLocale(locale) ? locale : undefined;
 
@@ -23,7 +23,7 @@ const generateURL: GenerateURL<Post | Page> = ({ doc, locale }) => {
 
 export const plugins: Plugin[] = [
     nestedDocsPlugin({
-        collections: ['product-categories', 'post-categories'],
+        collections: ['product-categories', 'article-categories'],
         generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
     }),
     seoPlugin({

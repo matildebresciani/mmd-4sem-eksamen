@@ -3,7 +3,7 @@ import {
     createAfterDeleteRevalidateHook,
 } from '@/lib/payload-hooks/revalidate-content';
 
-const slug = 'posts';
+const slug = 'articles';
 
-export const revalidatePost = createAfterChangeRevalidateHook(slug);
+export const revalidateArticle = createAfterChangeRevalidateHook(slug);
 export const revalidateDelete = createAfterDeleteRevalidateHook(slug);
