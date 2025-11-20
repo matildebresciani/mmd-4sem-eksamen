@@ -74,6 +74,7 @@ export interface Config {
     'article-categories': ArticleCategory;
     'product-categories': ProductCategory;
     genres: Genre;
+    volunteers: Volunteer;
     media: Media;
     icons: Icon;
     faqs: Faq;
@@ -103,6 +104,7 @@ export interface Config {
     'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     genres: GenresSelect<false> | GenresSelect<true>;
+    volunteers: VolunteersSelect<false> | VolunteersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
@@ -611,6 +613,22 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "volunteers".
+ */
+export interface Volunteer {
+  id: string;
+  name: string;
+  displayName?: string | null;
+  roleGroup: 'core' | 'regular';
+  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
+  customRole?: string | null;
+  email?: string | null;
+  profilePicture?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "icons".
  */
 export interface Icon {
@@ -845,6 +863,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'genres';
         value: string | Genre;
+      } | null)
+    | ({
+        relationTo: 'volunteers';
+        value: string | Volunteer;
       } | null)
     | ({
         relationTo: 'media';
@@ -1170,6 +1192,21 @@ export interface GenresSelect<T extends boolean = true> {
   viewArticlesInGenre?: T;
   slug?: T;
   slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "volunteers_select".
+ */
+export interface VolunteersSelect<T extends boolean = true> {
+  name?: T;
+  displayName?: T;
+  roleGroup?: T;
+  volunteerRole?: T;
+  customRole?: T;
+  email?: T;
+  profilePicture?: T;
   updatedAt?: T;
   createdAt?: T;
 }

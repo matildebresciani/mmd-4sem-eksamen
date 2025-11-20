@@ -26,6 +26,7 @@ import { type PayloadRequest, buildConfig } from 'payload';
 import { Icons } from './collections/assets/icons/config';
 import { Genres } from './collections/categories/article-genres/config';
 import { ProductCategories } from './collections/categories/product-categories/config';
+import { Volunteers } from './collections/team/volunteers/config';
 import { plugins } from './lib/plugins';
 import { getServerSideURL } from './lib/utilities/get-url';
 
@@ -76,6 +77,7 @@ export default buildConfig({
         ArticleCategories,
         ProductCategories,
         Genres,
+        Volunteers,
         Media,
         Icons,
         Faqs,
