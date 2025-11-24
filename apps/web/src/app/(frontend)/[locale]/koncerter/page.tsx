@@ -6,16 +6,16 @@ import { setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
 type Props = {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-    params: Promise<{
-        locale?: string;
-        slug?: string;
-        pageNumber?: string | number;
-    }>;
+    params: {
+        locale: string;
+    };
+    searchParams: {
+        [key: string]: string | string[] | undefined;
+    };
 };
 
 export default async function Page({ params }: Props) {
-    const { locale } = await params;
+    const { locale } = params;
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
 
     setRequestLocale(validatedLocale);
