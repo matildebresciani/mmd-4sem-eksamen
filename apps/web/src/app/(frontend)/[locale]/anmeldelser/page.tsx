@@ -8,11 +8,11 @@ import Link from 'next/link';
 import React from 'react';
 
 type Props = {
-    params: Promise<{ slug: string; locale: string }>;
+    params: Promise<{ locale: string }>;
 };
 
 export default async function Page({ params }: Props) {
-    const { slug = '', locale } = await params;
+    const { locale } = await params;
 
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
 

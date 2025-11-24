@@ -9,11 +9,11 @@ import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 type Props = {
-    params: { slug: string; locale: string };
+    params: Promise<{ slug: string; locale: string }>;
 };
 
 export default async function Page({ params }: Props) {
-    const { slug = '', locale } = params;
+    const { slug = '', locale } = await params;
     const { isEnabled: draft } = await draftMode();
 
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
@@ -51,8 +51,9 @@ export default async function Page({ params }: Props) {
 export const dynamic = 'force-dynamic';
 
 // SEO metadata
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug, locale } = params;
+export async function generateMetadata({ params }: Props) {
+    const { slug, locale } = await params;
+
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
 
     if (!slug) notFound();

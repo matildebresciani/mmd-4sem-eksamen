@@ -12,9 +12,13 @@ import { setRequestLocale } from 'next-intl/server';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import React from 'react';
-export default async function Page({ params: paramsPromise }: CollectionPostType) {
+type Props = {
+    params: Promise<{ slug: string; locale: string }>;
+};
+
+export default async function Page({ params }: Props) {
+    const { slug = '', locale } = await params;
     const { isEnabled: draft } = await draftMode();
-    const { slug = '', locale } = await paramsPromise;
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
     const article = await getCachedEntryBySlug({ collection: 'articles', slug, locale: validatedLocale });
     if (!article) return notFound();
@@ -32,8 +36,9 @@ export default async function Page({ params: paramsPromise }: CollectionPostType
     );
 }
 export const dynamic = 'force-static';
-export async function generateMetadata({ params: paramsPromise }: CollectionPostType): Promise<Metadata> {
-    const { slug, locale } = await paramsPromise;
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug, locale } = await params;
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
     if (!slug) notFound();
     return generateEntryMetadata(slug, 'articles', validatedLocale);
