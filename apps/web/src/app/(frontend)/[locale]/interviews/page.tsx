@@ -7,12 +7,12 @@ import Link from 'next/link';
 import React from 'react';
 
 type Props = {
-    params: { locale: string };
-    searchParams: { [key: string]: string | string[] | undefined };
+    params: Promise<{ slug: string; locale: string }>;
 };
 
 export default async function Page({ params }: Props) {
-    const { locale } = params;
+    const { slug = '', locale } = await params;
+
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
 
     setRequestLocale(validatedLocale);
