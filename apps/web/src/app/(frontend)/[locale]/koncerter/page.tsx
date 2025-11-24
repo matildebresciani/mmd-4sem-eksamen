@@ -6,12 +6,8 @@ import { setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
 type Props = {
-    params: {
-        locale: string;
-    };
-    searchParams: {
-        [key: string]: string | string[] | undefined;
-    };
+    params: { locale: string };
+    searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export default async function Page({ params }: Props) {

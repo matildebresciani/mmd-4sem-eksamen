@@ -24,6 +24,7 @@ export const generatePreviewPath = ({ collection, slug, req, locale, articleType
     const validatedLocale = isLocale(locale) ? locale : 'da';
 
     // ⭐ USE articleTypePrefix WHEN collection === "articles"
+
     const prefix =
         collection === 'articles'
             ? (articleTypePrefix[articleType as keyof typeof articleTypePrefix] ?? '/artikel')

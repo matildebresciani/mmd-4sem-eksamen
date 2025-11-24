@@ -12,8 +12,8 @@ export const createRoutedCollection = <Slug extends CollectionSlug>(
     return createCollection(slug, {
         ...config,
         admin: {
-            useAsTitle: 'name',
             ...config.admin,
+            useAsTitle: 'name',
         },
         fields: [
             ...payloadTitleCollection,

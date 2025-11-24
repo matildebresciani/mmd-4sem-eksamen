@@ -20,6 +20,7 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
         title: true,
         slug: true,
         categories: true,
+        articleType: true,
     },
     admin: {
         defaultColumns: ['title', 'slug', 'updatedAt', 'publishStatus'],

@@ -48,7 +48,7 @@ export default async function Page({ params }: Props) {
 }
 
 // gør siden statisk i production
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 // SEO metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
