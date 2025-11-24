@@ -10,7 +10,7 @@ import {
     formatPaginationPrevLink,
 } from '@/lib/utilities/get-page-number';
 import { cn } from '@/lib/utilities/ui';
-import type { Article, Product } from '@/payload-types';
+import type { Article } from '@/payload-types';
 import Link from 'next/link';
 import type { PaginatedDocs } from 'payload';
 import { type FC, Fragment } from 'react';
@@ -26,14 +26,7 @@ type Props<T> = {
 
 const NUMBERS_AROUND_CURRENT_PAGE = 2;
 
-const Pagination: FC<Props<Article | Product>> = ({
-    totalPages,
-    pageNumber,
-    locale,
-    searchParams,
-    routeDetails,
-    className,
-}) => {
+const Pagination: FC<Props<Article>> = ({ totalPages, pageNumber, locale, searchParams, routeDetails, className }) => {
     let pages = Array.from({ length: totalPages }, (_, i) => i + 1);
     const formattedSearchParams = buildQueryString(searchParams);
 

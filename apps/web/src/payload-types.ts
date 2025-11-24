@@ -70,10 +70,8 @@ export interface Config {
   collections: {
     pages: Page;
     articles: Article;
-    products: Product;
     concerts: Concert;
     'article-categories': ArticleCategory;
-    'product-categories': ProductCategory;
     genres: Genre;
     volunteers: Volunteer;
     media: Media;
@@ -92,9 +90,6 @@ export interface Config {
     'article-categories': {
       viewArticlesInCategory: 'articles';
     };
-    'product-categories': {
-      viewProductsInCategory: 'products';
-    };
     genres: {
       viewArticlesInGenre: 'articles';
     };
@@ -102,10 +97,8 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
-    products: ProductsSelect<false> | ProductsSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
-    'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     genres: GenresSelect<false> | GenresSelect<true>;
     volunteers: VolunteersSelect<false> | VolunteersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -249,16 +242,8 @@ export interface Hero {
           value: string | Article;
         } | null)
       | ({
-          relationTo: 'products';
-          value: string | Product;
-        } | null)
-      | ({
           relationTo: 'article-categories';
           value: string | ArticleCategory;
-        } | null)
-      | ({
-          relationTo: 'product-categories';
-          value: string | ProductCategory;
         } | null);
     label: string;
   };
@@ -489,80 +474,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: string;
-  title?: string | null;
-  subtitle?: string | null;
-  description?: string | null;
-  categories?: (string | ProductCategory)[] | null;
-  alternativeProducts?: (string | Product)[] | null;
-  upsellProducts?: (string | Product)[] | null;
-  layout?: Paragraph[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-categories".
- */
-export interface ProductCategory {
-  id: string;
-  /**
-   * This is the name of the page, it will only be used in the admin panel. And is not localized.
-   */
-  name: string;
-  /**
-   * This title will be used in references and will set the slug.
-   */
-  title: string;
-  viewProductsInCategory?: {
-    docs?: (string | Product)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  layout?: Paragraph[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  slug?: string | null;
-  slugLock?: boolean | null;
-  contentMeta?: {
-    featuredImage?: (string | null) | Media;
-    excerpt?: string | null;
-  };
-  parent?: (string | null) | ProductCategory;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | ProductCategory;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TextImage".
  */
 export interface TextImage {
@@ -598,16 +509,8 @@ export interface TextImage {
           value: string | Article;
         } | null)
       | ({
-          relationTo: 'products';
-          value: string | Product;
-        } | null)
-      | ({
           relationTo: 'article-categories';
           value: string | ArticleCategory;
-        } | null)
-      | ({
-          relationTo: 'product-categories';
-          value: string | ProductCategory;
         } | null);
     label: string;
   };
@@ -761,16 +664,8 @@ export interface Navigation {
                 value: string | Article;
               } | null)
             | ({
-                relationTo: 'products';
-                value: string | Product;
-              } | null)
-            | ({
                 relationTo: 'article-categories';
                 value: string | ArticleCategory;
-              } | null)
-            | ({
-                relationTo: 'product-categories';
-                value: string | ProductCategory;
               } | null);
           label: string;
         };
@@ -791,16 +686,8 @@ export interface Navigation {
                       value: string | Article;
                     } | null)
                   | ({
-                      relationTo: 'products';
-                      value: string | Product;
-                    } | null)
-                  | ({
                       relationTo: 'article-categories';
                       value: string | ArticleCategory;
-                    } | null)
-                  | ({
-                      relationTo: 'product-categories';
-                      value: string | ProductCategory;
                     } | null);
                 label: string;
               };
@@ -894,20 +781,12 @@ export interface PayloadLockedDocument {
         value: string | Article;
       } | null)
     | ({
-        relationTo: 'products';
-        value: string | Product;
-      } | null)
-    | ({
         relationTo: 'concerts';
         value: string | Concert;
       } | null)
     | ({
         relationTo: 'article-categories';
         value: string | ArticleCategory;
-      } | null)
-    | ({
-        relationTo: 'product-categories';
-        value: string | ProductCategory;
       } | null)
     | ({
         relationTo: 'genres';
@@ -1126,34 +1005,6 @@ export interface ArticlesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products_select".
- */
-export interface ProductsSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  description?: T;
-  categories?: T;
-  alternativeProducts?: T;
-  upsellProducts?: T;
-  layout?:
-    | T
-    | {
-        paragraph?: T | ParagraphSelect<T>;
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts_select".
  */
 export interface ConcertsSelect<T extends boolean = true> {
@@ -1175,48 +1026,6 @@ export interface ArticleCategoriesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
   viewArticlesInCategory?: T;
-  layout?:
-    | T
-    | {
-        paragraph?: T | ParagraphSelect<T>;
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishStatus?: T;
-  slug?: T;
-  slugLock?: T;
-  contentMeta?:
-    | T
-    | {
-        featuredImage?: T;
-        excerpt?: T;
-      };
-  parent?: T;
-  breadcrumbs?:
-    | T
-    | {
-        doc?: T;
-        url?: T;
-        label?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-categories_select".
- */
-export interface ProductCategoriesSelect<T extends boolean = true> {
-  name?: T;
-  title?: T;
-  viewProductsInCategory?: T;
   layout?:
     | T
     | {
@@ -1642,16 +1451,8 @@ export interface Option {
           value: string | Article;
         } | null)
       | ({
-          relationTo: 'products';
-          value: string | Product;
-        } | null)
-      | ({
           relationTo: 'article-categories';
           value: string | ArticleCategory;
-        } | null)
-      | ({
-          relationTo: 'product-categories';
-          value: string | ProductCategory;
         } | null);
     label: string;
   };

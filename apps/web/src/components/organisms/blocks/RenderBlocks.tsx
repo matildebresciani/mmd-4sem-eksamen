@@ -1,7 +1,7 @@
 import type React from 'react';
 import { Fragment } from 'react';
 
-import type { Article, Page, Product } from '@/payload-types';
+import type { Article, Page } from '@/payload-types';
 
 import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections';
 import HeroBlock from './hero/Hero';
@@ -16,7 +16,7 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
     pageId: string;
-    blocks: NonNullable<Page['layout'] | Product['layout']>[0][];
+    blocks: NonNullable<Page['layout']>[0][];
     locale?: Locale;
     collectionType?: RoutedCollectionSlug;
 }> = (props) => {

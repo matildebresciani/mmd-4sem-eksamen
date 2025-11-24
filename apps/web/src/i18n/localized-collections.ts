@@ -9,14 +9,6 @@ export const localizedCollections = {
         en: 'article',
         da: 'artikel',
     },
-    'product-categories': {
-        en: 'products',
-        da: 'produkter',
-    },
-    products: {
-        en: 'product',
-        da: 'produkt',
-    },
 } as const;
 
 export const isLocalizableCollection = <const T extends CollectionSlug>(
@@ -47,9 +39,7 @@ export const nonDefaultLocales = locales.filter((locale) => locale !== defaultLo
 export const routedCollections = [
     'pages',
     'articles',
-    'products',
     'article-categories',
-    'product-categories',
 ] as const satisfies readonly CollectionSlug[];
 /**
  * All paths that has to be localized but aren't created as collections in Payload

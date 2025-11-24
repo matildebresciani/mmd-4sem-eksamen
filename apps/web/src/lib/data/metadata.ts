@@ -5,7 +5,6 @@ import {
     paginationTranslations,
 } from '@/i18n/localized-collections';
 import type { Metadata } from 'next';
-import type { Where } from 'payload';
 import { initPayload } from '../config';
 import { pageNumberSchema } from '../schemas/pages';
 import { trimTrailingSlash } from '../utilities/composables';
@@ -81,7 +80,7 @@ export const getDefaultOgImage = async (locale: Locale) => {
     return null;
 };
 
-type CollectionSingleTypes = 'pages' | 'articles' | 'products';
+type CollectionSingleTypes = 'pages' | 'articles';
 export const generateEntryMetadata = async (slug: string, collection: CollectionSingleTypes, locale: Locale) => {
     const meta: Metadata = {};
     const options = await getCachedOptions(locale);
@@ -125,7 +124,7 @@ export const generateEntryMetadata = async (slug: string, collection: Collection
 
 type ArchiveMetadataProps = {
     slug: string;
-    collection: 'article-categories' | 'product-categories';
+    collection: 'article-categories';
     locale: Locale;
     pageNumber: string | number | undefined;
 };
