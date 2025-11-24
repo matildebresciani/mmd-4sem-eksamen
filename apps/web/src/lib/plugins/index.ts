@@ -23,7 +23,7 @@ const generateURL: GenerateURL<Article | Page> = ({ doc, locale }) => {
 
 export const plugins: Plugin[] = [
     nestedDocsPlugin({
-        collections: ['product-categories', 'article-categories'],
+        collections: ['article-categories'],
         generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
     }),
     seoPlugin({
