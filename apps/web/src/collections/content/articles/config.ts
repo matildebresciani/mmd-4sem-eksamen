@@ -30,6 +30,11 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                 slug: typeof data?.slug === 'string' ? data.slug : '',
                 collection: 'articles',
                 req,
+                articleType:
+                    typeof data?.articleType === 'string' &&
+                    ['review', 'interview', 'weekly-releases'].includes(data.articleType as string)
+                        ? (data.articleType as 'review' | 'interview' | 'weekly-releases')
+                        : undefined,
             }),
     },
     fields: [

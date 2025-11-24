@@ -1,34 +1,29 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defaultLexical } from '@/components/molecules/admin/fields/defaultLexical';
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { resendAdapter } from '@payloadcms/email-resend';
+import { da } from '@payloadcms/translations/languages/da';
+import { en } from '@payloadcms/translations/languages/en';
+import { type PayloadRequest, buildConfig } from 'payload';
 // storage-adapter-import-placeholder
 import sharp from 'sharp'; // sharp-import
-
+import { Icons } from './collections/assets/icons/config';
 import { Media } from './collections/assets/media/config';
 import { ArticleCategories } from './collections/categories/article-categories/config';
+import { Genres } from './collections/categories/article-genres/config';
 import { Articles } from './collections/content/articles/config';
+import { Concerts } from './collections/content/concerts/config';
 import { Pages } from './collections/content/pages/config';
-import { Products } from './collections/content/products/config';
 import { Faqs } from './collections/entries/faqs/config';
+import { Quotes } from './collections/entries/quotes/config';
+import { Volunteers } from './collections/team/volunteers/config';
 import { ApiKeys } from './collections/tools-settings/api-keys/config';
 import { Navigation } from './collections/tools-settings/navigation/config';
 import { Options } from './collections/tools-settings/options/config';
 import { Redirects } from './collections/tools-settings/redirects/config';
 import { Users } from './collections/tools-settings/users/config';
-
-import { da } from '@payloadcms/translations/languages/da';
-import { en } from '@payloadcms/translations/languages/en';
 import { defaultLocale, locales } from './i18n/localized-collections';
-
-import { fileURLToPath } from 'node:url';
-import { defaultLexical } from '@/components/molecules/admin/fields/defaultLexical';
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { resendAdapter } from '@payloadcms/email-resend';
-import { type PayloadRequest, buildConfig } from 'payload';
-import { Icons } from './collections/assets/icons/config';
-import { Genres } from './collections/categories/article-genres/config';
-import { ProductCategories } from './collections/categories/product-categories/config';
-import { Concerts } from './collections/content/concerts/config';
-import { Quotes } from './collections/entries/quotes/config';
-import { Volunteers } from './collections/team/volunteers/config';
 import { plugins } from './lib/plugins';
 import { getServerSideURL } from './lib/utilities/get-url';
 
@@ -75,10 +70,8 @@ export default buildConfig({
     collections: [
         Pages,
         Articles,
-        Products,
         Concerts,
         ArticleCategories,
-        ProductCategories,
         Genres,
         Volunteers,
         Media,

@@ -1,3 +1,5 @@
+//TODO: Slet denne side hvis den ikke skal bruges
+
 import { LivePreviewListener } from '@/components/molecules/admin/LivePreviewListener';
 import { RenderBlocks } from '@/components/organisms/blocks/RenderBlocks';
 import { Footer } from '@/components/organisms/global/footer/Footer';
