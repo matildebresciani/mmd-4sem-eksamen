@@ -1,6 +1,9 @@
 @use 'variables' as var;
 @use 'mixins' as mix;
 
+/* text-flow https://fluidtypography.com */
+/* Font-size & line-height viewport width range 375-1920px */
+
 @layer base {
 
     h1,
@@ -20,93 +23,88 @@
 
     h1,
     .heading-1 {
-        // 37px
         font-size: 2.3rem;
         line-height: 111%;
-
         @include mix.respond-to-min(var.$md) {
-            // 56px
             font-size: 3.5rem;
         }
-
         @include mix.respond-to-min(var.$lg) {
-            // 74px
             font-size: 4.625rem;
         }
+        //Usikker på hvad som er vores H1!?
+        /*font-size range 36-64px, line-height range 1.0-1.0*/
+        // font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+        // line-height: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
     }
 
     h2,
     .heading-2 {
-        // 32px
         font-size: 2rem;
         line-height: 111%;
-
         @include mix.respond-to-min(var.$md) {
-            // 48px
             font-size: 3rem;
         }
-
         @include mix.respond-to-min(var.$lg) {
-            // 64px
             font-size: 4rem;
         }
+        /*font-size range 36-64px, line-height range 1.0-1.0*/
+        font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+        line-height: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+
     }
 
     h3,
     .heading-3 {
-        // 28px
         font-size: 1.75rem;
         line-height: 112%;
-
         @include mix.respond-to-min(var.$md) {
-            // 36px
             font-size: 2.25rem;
         }
-
         @include mix.respond-to-min(var.$lg) {
-            // 44px
             font-size: 2.75rem;
         }
+        /*font-size range 20-42px, line-height range 1.25-1.25*/
+        font-size: clamp(1.25rem, 1.424vw + 0.916rem, 2.625rem);
+        line-height: clamp(1.563rem, 1.78vw + 1.145rem, 3.281rem);
     }
 
     h4,
     .heading-4 {
-        // 19px
         font-size: 1.2rem;
         line-height: 114%;
-
         @include mix.respond-to-min(var.$md) {
-            // 24px
             font-size: 1.5rem;
         }
-
         @include mix.respond-to-min(var.$lg) {
-            // 28px
             font-size: 1.75rem;
         }
+        /*font-size range 20-36px, line-height range 1.25-1.00*/
+        font-size: clamp(1.25rem, 1.036vw + 1.007rem, 2.25rem);
+        line-height: clamp(1.563rem, 0.712vw + 1.396rem, 2.25rem);
     }
 
     h5,
     .heading-5 {
-        // 17px
-        font-size: 1.0625rem;
+       font-size: 1.0625rem;
         line-height: 160%;
-
         @include mix.respond-to-min(var.$md) {
-            // 20px
             font-size: 1.25rem;
         }
+        /*font-size range 16-20px, line-height range 1.1-1.25*/
+        font-size: clamp(1rem, 0.259vw + 0.939rem, 1.25rem);
+        line-height: clamp(1.1rem, 0.479vw + 0.988rem, 1.563rem);
     }
 
-    p {
-        // 16px
-        font-size: 1rem;
-        line-height: 133%;
+    p, li, a {
+        // font-size: 1rem;
+        // line-height: 133%;
+        // @include mix.respond-to-min(var.$md) {
+        //     font-size: 1.125rem;
+        // }
 
-        @include mix.respond-to-min(var.$md) {
-            // 18px
-            font-size: 1.125rem;
-        }
+    /*font-size range 16-24px, line-height range 1.3-1.3*/
+        font-size: clamp(1rem, 0.518vw + 0.879rem, 1.5rem);
+        line-height: clamp(1.3rem, 0.673vw + 1.142rem, 1.95rem);
     }
 
     .wysiwyg {

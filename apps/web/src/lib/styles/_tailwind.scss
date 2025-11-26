@@ -1,9 +1,60 @@
 @use 'tailwindcss';
 
 @theme {
-    --font-roboto: var(--font-roboto);
     --font-heading: var(--font-heading);
     --font-body: var(--font-body);
 
-    --color-beige: var(--beige);
+    //Tailwind color variables fra designsystemet i Figma
+    --color-bg-base: var(--bg-base);
+    --color-bg-highlight: var(--bg-highlight);
+    --color-bg-subtle: var(--bg-subtle);
+    --color-bg-section-1: var(--bg-section-1);
+    --color-bg-section-2: var(--bg-section-2);
+
+    --color-fg-base: var(--fg-base);
+    --color-fg-on-color: var(--fg-on-color);
+    --color-fg-subtle: var(--fg-subtle);
+    --color-fg-faded: var(--fg-faded);
+    --color-fg-highlight: var(--fg-highlight);
+    --color-fg-highlight-2: var(--fg-highlight-2);
+
+    --color-button-base: var(--button-base);
+    --color-button-base-2: var(--button-base-2);
+    --color-button-hover: var(--button-hover);
+    --color-button-hover-2: var(--button-hover-2);
+    --color-button-subtle: var(--button-subtle);
+
+    --color-button-text: var(--button-text);
+    --color-button-text-on-subtle: var(--button-text-on-subtle);
+
+    --color-border-base: var(--border-base);
+    --color-border-subtle: var(--border-subtle);
+
+    --color-input-bg: var(--input-bg);
+    --color-input-subtle: var(--input-subtle);
+    --color-input-border: var(--input-border);
+
+    --color-logo-blue: var(--logo-blue);
+    --color-logo-brown: var(--logo-brown);
+    --color-logo-red: var(--logo-red);
+
+     //Padding variables fra designsystemet i Figma
+    --padding-general: var(--p-general);
+    --padding-xs: var(--p-xs);
+    --padding-s: var(--p-s);
+    --padding-base: var(--p-base);
+    --padding-m: var(--p-m);
+    --padding-l: var(--p-l);
+    --padding-xl: var(--p-xl);
+    --padding-xxl: var(--p-xxl);
+
+    //Spacing variables fra designsystemet i Figma
+    --margin-general: var(--space-general);
+    --margin-xxs: var(--space-xxs);
+    --margin-xs: var(--space-xs);
+    --margin-sm: var(--space-sm);
+    --margin-m: var(--space-m);
+    --margin-l: var(--space-l);
+    --margin-xl: var(--space-xl);
+    --margin-xxl: var(--space-xxl);   
 }
