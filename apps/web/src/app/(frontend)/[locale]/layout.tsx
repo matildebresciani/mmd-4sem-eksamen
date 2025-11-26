@@ -20,12 +20,6 @@ type Props = {
     params: Promise<{ locale: string }>;
 };
 
-const roboto = Roboto({
-    weight: ['400', '700'],
-    variable: '--font-roboto',
-    style: ['normal'],
-    subsets: ['latin'],
-});
 
 const delaGothicOne = Dela_Gothic_One({
     weight: ['400'],
@@ -52,7 +46,7 @@ export default async function RootLayout({ children, params }: Props) {
     setRequestLocale(locale);
 
     return (
-        <html className={cn(roboto.variable, delaGothicOne.variable, inclusiveSans.variable)} lang={locale} suppressHydrationWarning>
+        <html className={cn(delaGothicOne.variable, inclusiveSans.variable)} lang={locale} suppressHydrationWarning>
             <head>
                 <HeadScripts />
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />

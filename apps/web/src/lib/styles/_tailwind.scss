@@ -1,11 +1,8 @@
 @use 'tailwindcss';
 
 @theme {
-    --font-roboto: var(--font-roboto);
     --font-heading: var(--font-heading);
     --font-body: var(--font-body);
-
-    --color-beige: var(--beige);
 
     //Tailwind color variables fra designsystemet i Figma
     --color-bg-base: var(--bg-base);
@@ -40,4 +37,24 @@
     --color-logo-blue: var(--logo-blue);
     --color-logo-brown: var(--logo-brown);
     --color-logo-red: var(--logo-red);
+
+     //Padding variables fra designsystemet i Figma
+    --padding-general: var(--p-general);
+    --padding-xs: var(--p-xs);
+    --padding-s: var(--p-s);
+    --padding-base: var(--p-base);
+    --padding-m: var(--p-m);
+    --padding-l: var(--p-l);
+    --padding-xl: var(--p-xl);
+    --padding-xxl: var(--p-xxl);
+
+    //Spacing variables fra designsystemet i Figma
+    --margin-general: var(--space-general);
+    --margin-xxs: var(--space-xxs);
+    --margin-xs: var(--space-xs);
+    --margin-sm: var(--space-sm);
+    --margin-m: var(--space-m);
+    --margin-l: var(--space-l);
+    --margin-xl: var(--space-xl);
+    --margin-xxl: var(--space-xxl);   
 }

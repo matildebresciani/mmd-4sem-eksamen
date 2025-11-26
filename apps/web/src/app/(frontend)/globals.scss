@@ -7,12 +7,9 @@
 @use '../../lib/styles/helpers';
 
 :root {
-    --beige: #ffffff;
 
-    --font-roboto: 'Roboto', sans-serif;
-
-    --font-heading: var(--font-roboto);
-    --font-body: var(--font-sofia);
+    --font-heading: var(--font-dela-gothic-one);
+    --font-body: var(--font-inclusive-sans);
 
     --header-height: 104px;
     --header-height-offset: calc(var(--header-height) + 1px);
@@ -55,24 +52,25 @@
     --logo-red: #DF4739;
 
      //Padding variables fra designsystemet i Figma
-    --padding-general: 0;
-    --padding-xs: 8px;
-    --padding-s: 12px;
-    --padding-base: 16px;
-    --padding-m: 20px;
-    --padding-l: 32px;
-    --padding-xl: 100px;
-    --padding-xxl: 265px;
+    --p-general: 0;
+    --p-xs: 8px;
+    --p-s: 12px;
+    --p-base: 16px;
+    --p-m: 20px;
+    --p-l: 32px;
+    --p-xl: 100px;
+    --p-xxl: 265px;
 
     //Spacing variables fra designsystemet i Figma
-    --spacing-general: 0;
-    --spacing-xxs: 48px;
-    --spacing-xs: 64px;
-    --spacing-sm: 80px;
-    --spacing-m: 96px;
-    --spacing-l: 128px;
-    --spacing-xl: 160px;
-    --spacing-xxl: 320px;
+    --space-general: 0;
+    --space-xxs: 48px;
+    --space-xs: 64px;
+    --space-sm: 80px;
+    --space-m: 96px;
+    --space-l: 128px;
+    --space-xl: 160px;
+    --space-xxl: 320px;
+
 }
 
 * {
