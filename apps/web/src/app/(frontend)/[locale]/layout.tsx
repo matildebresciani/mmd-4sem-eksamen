@@ -20,7 +20,6 @@ type Props = {
     params: Promise<{ locale: string }>;
 };
 
-
 const delaGothicOne = Dela_Gothic_One({
     weight: ['400'],
     variable: '--font-dela-gothic-one',

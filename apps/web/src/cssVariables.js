@@ -10,4 +10,3 @@ export const cssVariables = {
         sm: 640,
     },
 };
-
