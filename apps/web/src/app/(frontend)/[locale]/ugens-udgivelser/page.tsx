@@ -1,3 +1,5 @@
+import ArticlesArchive from '@/components/organisms/articles-archive/ArticlesArchive';
+import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
@@ -17,7 +19,7 @@ export default async function Page({ params }: Props) {
 
     setRequestLocale(validatedLocale);
 
-    const reviews = await getCachedCollection({
+    const weeklyReleases = await getCachedCollection({
         collection: 'articles',
         whereFields: {
             articleType: { equals: 'weekly-releases' },
@@ -27,19 +29,14 @@ export default async function Page({ params }: Props) {
 
     return (
         <article className="pt-4 pb-20">
-            <section className="base-block-outer">
-                <div className="base-block oakgrid mt-6 lg:mt-10">
-                    <div className="col-span-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20">
+            <BaseBlock>
+                <div className="oakgrid">
+                    <div className="col-span-12">
                         <h1>Ugens udgivelser</h1>
-                        {reviews.docs.map((article) => (
-                            // <Card key={article.id} article={article} />
-                            <Link key={article.id} href={getArticleUrl(article)}>
-                                {article.title}
-                            </Link>
-                        ))}
+                        <ArticlesArchive articles={weeklyReleases.docs} />
                     </div>
                 </div>
-            </section>
+            </BaseBlock>
         </article>
     );
 }

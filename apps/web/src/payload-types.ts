@@ -269,6 +269,7 @@ export interface Article {
   articleType: 'review' | 'interview' | 'weekly-releases';
   reviewType?: ('concert' | 'album') | null;
   genres?: (string | Genre)[] | null;
+  artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
   meta?: {
@@ -980,6 +981,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   articleType?: T;
   reviewType?: T;
   genres?: T;
+  artistName?: T;
   categories?: T;
   relatedArticles?: T;
   meta?:
