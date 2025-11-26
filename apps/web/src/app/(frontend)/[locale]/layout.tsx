@@ -8,7 +8,7 @@ import { getServerSideURL } from '@/lib/utilities/get-url';
 import { cn } from '@/lib/utilities/ui';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import { Roboto } from 'next/font/google';
+import { Dela_Gothic_One, Inclusive_Sans, Roboto } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import React, { type ReactNode } from 'react';
@@ -27,6 +27,20 @@ const roboto = Roboto({
     subsets: ['latin'],
 });
 
+const delaGothicOne = Dela_Gothic_One({
+    weight: ['400'],
+    variable: '--font-dela-gothic-one',
+    style: ['normal'],
+    subsets: ['latin'],
+});
+
+const inclusiveSans = Inclusive_Sans({
+    weight: ['400', '700'],
+    variable: '--font-inclusive-sans',
+    style: ['normal'],
+    subsets: ['latin'],
+});
+
 export default async function RootLayout({ children, params }: Props) {
     const { isEnabled } = await draftMode();
     const { locale } = await params;
@@ -38,7 +52,7 @@ export default async function RootLayout({ children, params }: Props) {
     setRequestLocale(locale);
 
     return (
-        <html className={cn(roboto.variable)} lang={locale} suppressHydrationWarning>
+        <html className={cn(roboto.variable, delaGothicOne.variable, inclusiveSans.variable)} lang={locale} suppressHydrationWarning>
             <head>
                 <HeadScripts />
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
