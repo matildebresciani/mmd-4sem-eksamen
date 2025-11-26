@@ -103,16 +103,16 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
 
                         // --- CATEGORIES ---
                         // Usikkert på om vi skal bruge denne endnu, og til hvad
-                        // {
-                        //     name: 'categories',
-                        //     label: 'Kategorier',
-                        //     type: 'relationship',
-                        //     relationTo: 'article-categories',
-                        //     hasMany: true,
-                        //     admin: {
-                        //         position: 'sidebar',
-                        //     },
-                        // },
+                        {
+                            name: 'categories',
+                            label: 'Kategorier',
+                            type: 'relationship',
+                            relationTo: 'article-categories',
+                            hasMany: true,
+                            admin: {
+                                position: 'sidebar',
+                            },
+                        },
                         {
                             name: 'relatedArticles',
                             label: 'Relaterede artikler',

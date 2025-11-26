@@ -9,11 +9,12 @@ import Link from 'next/link';
 type Props = {
     article: Article;
     showLabel?: boolean;
+    className?: string;
 };
 
-const FeaturedCard = ({ article, showLabel }: Props) => {
+const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
-        <Link className="oakgrid border" href={getArticleUrl(article)}>
+        <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
             <div className="col-span-12 md:col-span-5 order-2 md:order-1 ">
                 <div className="flex justify-between">
                     <div className="flex gap-3">

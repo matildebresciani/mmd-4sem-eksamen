@@ -1,9 +1,8 @@
+import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections';
+import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
-
-import type { Article, Page } from '@/payload-types';
-
-import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections';
+import CardSliderBlock from './card-slider/CardSlider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import TextImageBlock from './text-image/TextImage';
@@ -12,6 +11,7 @@ const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
+    'card-slider': CardSliderBlock,
 };
 
 export const RenderBlocks: React.FC<{
