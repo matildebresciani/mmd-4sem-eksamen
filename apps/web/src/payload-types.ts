@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage)[] | null;
+  layout?: (Hero | Paragraph | TextImage | Divider)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -518,6 +518,15 @@ export interface TextImage {
   id?: string | null;
   blockName?: string | null;
   blockType: 'text-image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Divider".
+ */
+export interface Divider {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'divider';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -894,6 +903,7 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
+        divider?: T | DividerSelect<T>;
       };
   meta?:
     | T
@@ -963,6 +973,14 @@ export interface TextImageSelect<T extends boolean = true> {
         relation?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Divider_select".
+ */
+export interface DividerSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }
