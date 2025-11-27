@@ -16,14 +16,12 @@ const CardSliderClient = ({ articles }: Props) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
-        <div className="relative max-w-full h-full">
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
-                <PaginationButton action="prev" onClick={() => swiperRef.current?.slidePrev()} />
-            </div>
-
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
-                <PaginationButton action="next" onClick={() => swiperRef.current?.slideNext()} />
-            </div>
+        <div>
+            {articles.length > 2 && (
+                <div className="hidden md:block absolute left-0 top-1/3 transform -translate-x-1/2 z-10">
+                    <PaginationButton action="prev" onClick={() => swiperRef.current?.slidePrev()} />
+                </div>
+            )}
 
             <Swiper
                 spaceBetween={16}
@@ -32,7 +30,7 @@ const CardSliderClient = ({ articles }: Props) => {
                 }}
                 breakpoints={{
                     0: {
-                        slidesPerView: 2.05,
+                        slidesPerView: 1.3,
                     },
                     768: {
                         slidesPerView: 3,
@@ -41,6 +39,7 @@ const CardSliderClient = ({ articles }: Props) => {
                         slidesPerView: 4,
                     },
                 }}
+                className="!overflow-visible md:!overflow-hidden"
             >
                 {articles.map((article) => (
                     <SwiperSlide key={article.id} className="w-full !h-auto">
@@ -48,6 +47,11 @@ const CardSliderClient = ({ articles }: Props) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
+            {articles.length > 2 && (
+                <div className="hidden md:block absolute right-0 top-1/3 transform translate-x-1 lg:translate-x-1/2 z-10">
+                    <PaginationButton action="next" onClick={() => swiperRef.current?.slideNext()} />
+                </div>
+            )}
         </div>
     );
 };

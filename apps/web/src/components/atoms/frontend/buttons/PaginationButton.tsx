@@ -9,7 +9,10 @@ type Props = {
 };
 
 const PaginationButton = ({ action, className, onClick }: Props) => {
-    const style = cn('size-[50px] flex justify-center items-center', className);
+    const style = cn(
+        'size-[50px] flex justify-center items-center bg-button-base text-fg-on-color border border-bg-base',
+        className,
+    );
 
     return (
         <button type="button" className={style} onClick={() => onClick?.()}>

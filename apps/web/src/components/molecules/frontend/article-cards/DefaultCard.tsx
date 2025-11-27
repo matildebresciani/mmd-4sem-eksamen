@@ -43,7 +43,7 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                     </div>
                     <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                 </div>
-                <h3 className="text-sm">{article.title}</h3>
+                <h3>{article.title}</h3>
             </div>
         </Link>
     );
