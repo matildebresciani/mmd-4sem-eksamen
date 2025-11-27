@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage)[] | null;
+  layout?: (Hero | Paragraph | TextImage | CardSlider)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -518,6 +518,37 @@ export interface TextImage {
   id?: string | null;
   blockName?: string | null;
   blockType: 'text-image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider".
+ */
+export interface CardSlider {
+  heading: string;
+  cardType?: ('review' | 'interview') | null;
+  addLink?: boolean | null;
+  link: {
+    type: 'reference' | 'custom';
+    openNewTab?: boolean | null;
+    url?: string | null;
+    relation?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
+        } | null);
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'card-slider';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -894,6 +925,7 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
+        'card-slider'?: T | CardSliderSelect<T>;
       };
   meta?:
     | T
@@ -953,6 +985,26 @@ export interface TextImageSelect<T extends boolean = true> {
   order?: T;
   image?: T;
   richText?: T;
+  addLink?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        openNewTab?: T;
+        url?: T;
+        relation?: T;
+        label?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider_select".
+ */
+export interface CardSliderSelect<T extends boolean = true> {
+  heading?: T;
+  cardType?: T;
   addLink?: T;
   link?:
     | T

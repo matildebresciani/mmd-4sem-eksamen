@@ -8,17 +8,18 @@ type Props = {
     article: Article;
     variant?: 'default' | 'featured' | 'latest-big' | 'latest-small';
     showLabel?: boolean;
+    className?: string;
 };
 
-export default function ArticleCard({ article, variant = 'default', showLabel = true }: Props) {
+export default function ArticleCard({ article, variant = 'default', showLabel = true, className }: Props) {
     switch (variant) {
         case 'featured':
-            return <FeaturedCard article={article} showLabel={showLabel} />;
+            return <FeaturedCard article={article} showLabel={showLabel} className={className} />;
         case 'latest-big':
-            return <LatestBigCard article={article} />;
+            return <LatestBigCard article={article} className={className} />;
         case 'latest-small':
-            return <LatestSmallCard article={article} />;
+            return <LatestSmallCard article={article} className={className} />;
         default:
-            return <DefaultCard article={article} showLabel={showLabel} />;
+            return <DefaultCard article={article} showLabel={showLabel} className={className} />;
     }
 }

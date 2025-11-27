@@ -2,9 +2,10 @@ import type { Article } from '@/payload-types';
 
 type Props = {
     article: Article;
+    className?: string;
 };
 
-const LatestBigCard = ({ article }: Props) => {
+const LatestBigCard = ({ article, className }: Props) => {
     return <></>;
 };
 
