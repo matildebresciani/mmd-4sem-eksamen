@@ -479,6 +479,7 @@ export interface Media {
  */
 export interface TextImage {
   order: 'image-left' | 'image-right';
+  addBgColor?: boolean | null;
   image: string | Media;
   richText?: {
     root: {
@@ -951,6 +952,7 @@ export interface ParagraphSelect<T extends boolean = true> {
  */
 export interface TextImageSelect<T extends boolean = true> {
   order?: T;
+  addBgColor?: T;
   image?: T;
   richText?: T;
   addLink?: T;

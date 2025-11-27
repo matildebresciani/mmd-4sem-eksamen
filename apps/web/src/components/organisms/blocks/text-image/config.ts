@@ -29,6 +29,11 @@ export const TextImage: Block = {
             ],
         },
         {
+          type: 'checkbox',
+          name: 'addBgColor',
+          label: 'Add Background Color',
+        },
+        {
             type: 'upload',
             name: 'image',
             label: 'Image',

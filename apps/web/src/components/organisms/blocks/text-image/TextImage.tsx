@@ -7,10 +7,10 @@ import type { TextImage as TextImageProps } from '@/payload-types';
 import BaseBlock from '../base-block/BaseBlock';
 
 const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
-    const { order, image, richText, addLink, link } = block;
+    const { order, image, richText, addLink, link, addBgColor } = block;
 
     return (
-        <BaseBlock>
+        <BaseBlock className={cn(addBgColor && 'bg-bg-highlight')}>
             <div className="oakgrid">
                 <div
                     className={cn(
@@ -18,7 +18,7 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
                         order === 'image-right' && 'xl:col-start-8',
                     )}
                 >
-                    <ImageMedia resource={image} imgClassName="object-cover absolute h-full w-full rounded-2xl" />
+                    <ImageMedia resource={image} imgClassName="object-cover absolute h-full w-full" />
                 </div>
                 <div
                     className={cn(
@@ -26,7 +26,8 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
                         order === 'image-right' && 'lg:order-first',
                         order === 'image-left' && 'xl:col-start-7 xl:col-span-5',
                     )}
-                >
+                > 
+                  
                     {richText && <RichText data={richText} />}
                     {addLink && <DynamicButton link={link} locale={locale} className="md:mt-10" />}
                 </div>
