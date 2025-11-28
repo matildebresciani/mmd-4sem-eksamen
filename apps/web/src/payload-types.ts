@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | CardSlider)[] | null;
+  layout?: (Hero | Paragraph | TextImage | CardSlider | Gallery)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -265,7 +265,7 @@ export interface Article {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: Paragraph[] | null;
+  layout?: (Paragraph | Gallery)[] | null;
   articleType: 'review' | 'interview' | 'weekly-releases';
   reviewType?: ('concert' | 'album') | null;
   genres?: (string | Genre)[] | null;
@@ -318,68 +318,29 @@ export interface Paragraph {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "genres".
+ * via the `definition` "Gallery".
  */
-export interface Genre {
-  id: string;
-  name: string;
-  viewArticlesInGenre?: {
-    docs?: (string | Article)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "article-categories".
- */
-export interface ArticleCategory {
-  id: string;
-  /**
-   * This is the name of the page, it will only be used in the admin panel. And is not localized.
-   */
-  name: string;
-  /**
-   * This title will be used in references and will set the slug.
-   */
-  title: string;
-  viewArticlesInCategory?: {
-    docs?: (string | Article)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  layout?: Paragraph[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  slug?: string | null;
-  slugLock?: boolean | null;
-  contentMeta?: {
-    featuredImage?: (string | null) | Media;
-    excerpt?: string | null;
-  };
-  parent?: (string | null) | ArticleCategory;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | ArticleCategory;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+export interface Gallery {
+  layout: 'fullWidth' | 'twoColumn' | 'mosaic3' | 'bigTopTwoUnder' | 'threeColumn' | 'threeTopOneUnder';
+  slot_fullWidth?: (string | null) | Media;
+  slot_left?: (string | null) | Media;
+  slot_right?: (string | null) | Media;
+  slot_big?: (string | null) | Media;
+  slot_wideTop?: (string | null) | Media;
+  slot_wideBottom?: (string | null) | Media;
+  slot_top?: (string | null) | Media;
+  slot_bottomLeft?: (string | null) | Media;
+  slot_bottomRight?: (string | null) | Media;
+  slot_a?: (string | null) | Media;
+  slot_b?: (string | null) | Media;
+  slot_c?: (string | null) | Media;
+  slot_topLeft?: (string | null) | Media;
+  slot_topCenter?: (string | null) | Media;
+  slot_topRight?: (string | null) | Media;
+  slot_bottom?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -472,6 +433,71 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres".
+ */
+export interface Genre {
+  id: string;
+  name: string;
+  viewArticlesInGenre?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories".
+ */
+export interface ArticleCategory {
+  id: string;
+  /**
+   * This is the name of the page, it will only be used in the admin panel. And is not localized.
+   */
+  name: string;
+  /**
+   * This title will be used in references and will set the slug.
+   */
+  title: string;
+  viewArticlesInCategory?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  layout?: Paragraph[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  slug?: string | null;
+  slugLock?: boolean | null;
+  contentMeta?: {
+    featuredImage?: (string | null) | Media;
+    excerpt?: string | null;
+  };
+  parent?: (string | null) | ArticleCategory;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | ArticleCategory;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -926,6 +952,7 @@ export interface PagesSelect<T extends boolean = true> {
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
         'card-slider'?: T | CardSliderSelect<T>;
+        gallery?: T | GallerySelect<T>;
       };
   meta?:
     | T
@@ -1020,6 +1047,31 @@ export interface CardSliderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  layout?: T;
+  slot_fullWidth?: T;
+  slot_left?: T;
+  slot_right?: T;
+  slot_big?: T;
+  slot_wideTop?: T;
+  slot_wideBottom?: T;
+  slot_top?: T;
+  slot_bottomLeft?: T;
+  slot_bottomRight?: T;
+  slot_a?: T;
+  slot_b?: T;
+  slot_c?: T;
+  slot_topLeft?: T;
+  slot_topCenter?: T;
+  slot_topRight?: T;
+  slot_bottom?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
@@ -1029,6 +1081,7 @@ export interface ArticlesSelect<T extends boolean = true> {
     | T
     | {
         paragraph?: T | ParagraphSelect<T>;
+        gallery?: T | GallerySelect<T>;
       };
   articleType?: T;
   reviewType?: T;

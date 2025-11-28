@@ -3,6 +3,7 @@ import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
 import CardSliderBlock from './card-slider/CardSlider';
+import GalleryBlock from './gallery/Gallery';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import TextImageBlock from './text-image/TextImage';
@@ -12,6 +13,7 @@ const blockComponents = {
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
     'card-slider': CardSliderBlock,
+    gallery: GalleryBlock,
 };
 
 export const RenderBlocks: React.FC<{

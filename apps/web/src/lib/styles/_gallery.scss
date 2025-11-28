@@ -1,0 +1,107 @@
+.gallery {
+    display: grid;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+/* Universal crop */
+.gallery__item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.gallery__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Full width */
+.gallery--fullWidth {
+    grid-template-areas: "slot_fullWidth";
+}
+.slot_fullWidth {
+    grid-area: slot_fullWidth;
+    max-height: 900px;
+ }
+
+/* Two column */
+.gallery--twoColumn {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "slot_left slot_right";
+}
+.slot_left { grid-area: slot_left; max-height: 600px; }
+.slot_right { grid-area: slot_right; max-height: 600px; }
+
+/* Mosaic 3 */
+.gallery--mosaic3 {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "slot_big slot_wideTop"
+        "slot_big slot_wideBottom";
+}
+.slot_big { grid-area: slot_big; max-height: 700px;}
+.slot_wideTop { grid-area: slot_wideTop; }
+.slot_wideBottom { grid-area: slot_wideBottom; }
+
+/* Big top + two under */
+.gallery--bigTopTwoUnder {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "slot_top slot_top"
+        "slot_bottomLeft slot_bottomRight";
+}
+.slot_top { grid-area: slot_top; max-height: 600px; }
+.slot_bottomLeft { grid-area: slot_bottomLeft; max-height: 350px;}
+.slot_bottomRight { grid-area: slot_bottomRight; max-height: 350px;}
+
+/* Three in a row */
+.gallery--threeColumn {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "slot_a slot_b slot_c";
+}
+.slot_a { grid-area: slot_a; }
+.slot_b { grid-area: slot_b; }
+.slot_c { grid-area: slot_c; }
+
+.slot_a, .slot_b, .slot_c {
+    max-height: 700px;
+}
+
+/* Three top + one under */
+.gallery--threeTopOneUnder {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "slot_topLeft slot_topCenter slot_topRight"
+        "slot_bottom slot_bottom slot_bottom";
+}
+.slot_topLeft { grid-area: slot_topLeft; }
+.slot_topCenter { grid-area: slot_topCenter; }
+.slot_topRight { grid-area: slot_topRight; }
+.slot_bottom { grid-area: slot_bottom; max-height: 500px; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr !important;
+    }
+
+    .gallery__item {
+        aspect-ratio: auto !important;
+        height: auto;
+    }
+
+    .gallery__img {
+        position: relative;
+        height: auto;
+    }
+}
+
