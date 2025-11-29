@@ -13,7 +13,7 @@ const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
-    divider: DividerBlock
+    divider: DividerBlock,
 };
 
 export const RenderBlocks: React.FC<{
