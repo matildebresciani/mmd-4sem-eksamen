@@ -9,8 +9,9 @@ import type { Block, CollectionConfig } from 'payload';
 import { populatePublishedAt } from '../../../lib/hooks/populate-published-at';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 import { enforceHomepage } from './hooks/enforce-homepage';
+import { Quote } from '@/components/organisms/blocks/quote/config';
 
-const blocks: Block[] = [Hero, Paragraph, TextImage];
+const blocks: Block[] = [Hero, Paragraph, TextImage, Quote];
 
 export const Pages = createRoutedCollection('pages', {
     // This config controls what's populated by default when a page is referenced

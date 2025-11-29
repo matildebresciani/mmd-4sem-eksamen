@@ -77,7 +77,7 @@ export interface Config {
     media: Media;
     icons: Icon;
     faqs: Faq;
-    quotes: Quote;
+    quotes: Quote1;
     navigation: Navigation;
     redirects: Redirect;
     users: User;
@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage)[] | null;
+  layout?: (Hero | Paragraph | TextImage | Quote)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -521,6 +521,30 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote".
+ */
+export interface Quote {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -619,7 +643,7 @@ export interface Faq {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "quotes".
  */
-export interface Quote {
+export interface Quote1 {
   id: string;
   quote: {
     root: {
@@ -811,7 +835,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'quotes';
-        value: string | Quote;
+        value: string | Quote1;
       } | null)
     | ({
         relationTo: 'navigation';
@@ -894,6 +918,7 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
+        quote?: T | QuoteSelect<T>;
       };
   meta?:
     | T
@@ -963,6 +988,15 @@ export interface TextImageSelect<T extends boolean = true> {
         relation?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote_select".
+ */
+export interface QuoteSelect<T extends boolean = true> {
+  richText?: T;
   id?: T;
   blockName?: T;
 }

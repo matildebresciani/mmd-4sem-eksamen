@@ -7,11 +7,13 @@ import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections'
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import TextImageBlock from './text-image/TextImage';
+import QuoteBlock from './quote/Quote';
 
 const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
+    'quote': QuoteBlock,
 };
 
 export const RenderBlocks: React.FC<{
