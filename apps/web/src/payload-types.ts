@@ -478,9 +478,11 @@ export interface Media {
  * via the `definition` "TextImage".
  */
 export interface TextImage {
+  heading?: string | null;
   order: 'image-left' | 'image-right';
   addBgColor?: boolean | null;
   image: string | Media;
+  mode: 'addImageSingle' | 'addImageDuplication' | 'addCard';
   richText?: {
     root: {
       type: string;
@@ -951,9 +953,11 @@ export interface ParagraphSelect<T extends boolean = true> {
  * via the `definition` "TextImage_select".
  */
 export interface TextImageSelect<T extends boolean = true> {
+  heading?: T;
   order?: T;
   addBgColor?: T;
   image?: T;
+  mode?: T;
   richText?: T;
   addLink?: T;
   link?:
