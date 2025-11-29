@@ -101,18 +101,33 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             label: 'Artist Navn',
                         },
 
+                        // --- QUOTE ---
+                        {
+                        name: 'showName',
+                        type: 'checkbox',
+                        label: 'Vis navn på quote',
+                        },
+                        {
+                        name: 'name',
+                        type: 'text',
+                        label: 'Navn',
+                        admin: {
+                          condition: (data) => data.showName === true,
+                        }
+                        },
+
                         // --- CATEGORIES ---
                         // Usikkert på om vi skal bruge denne endnu, og til hvad
-                        // {
-                        //     name: 'categories',
-                        //     label: 'Kategorier',
-                        //     type: 'relationship',
-                        //     relationTo: 'article-categories',
-                        //     hasMany: true,
-                        //     admin: {
-                        //         position: 'sidebar',
-                        //     },
-                        // },
+                        {
+                            name: 'categories',
+                            label: 'Kategorier',
+                            type: 'relationship',
+                            relationTo: 'article-categories',
+                            hasMany: true,
+                            admin: {
+                                position: 'sidebar',
+                            },
+                        },
                         {
                             name: 'relatedArticles',
                             label: 'Relaterede artikler',
