@@ -42,36 +42,12 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
     },
     fields: [
         {
-            type: 'tabs',
-            tabs: [
+            type: 'group',
+            label: 'Article Details',
+            fields: [
                 {
-                    fields: [
-                        {
-                            name: 'layout',
-                            type: 'blocks',
-                            localized: true,
-                            blocks,
-                            admin: {
-                                initCollapsed: false,
-                            },
-                            defaultValue: () => [
-                                //TODO: Indsæt ArticleHero her når den er lavet
-                                {
-                                    blockType: 'article-author',
-                                    heading: 'Skribent',
-                                },
-                                //TODO: Spotify felt kun for ugens udgivelser
-                                //TODO: Formular block kun for ugens udgivelser
-                                {
-                                    blockType: 'related-articles',
-                                    heading: 'Relaterede artikler',
-                                },
-                            ],
-                        },
-                    ],
-                    label: 'Content',
-                },
-                {
+                    type: 'collapsible',
+                    label: 'Article Details',
                     fields: [
                         // --- ARTICLE TYPE ---
                         {
@@ -128,26 +104,58 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                                 position: 'sidebar',
                             },
                         },
+                    ],
+                },
+                {
+                    name: 'relatedArticles',
+                    label: 'Relaterede artikler',
+                    type: 'relationship',
+                    admin: {
+                        position: 'sidebar',
+                    },
+                    filterOptions: ({ id }) => {
+                        return {
+                            id: {
+                                not_in: [id],
+                            },
+                        };
+                    },
+                    hasMany: true,
+                    relationTo: 'articles',
+                },
+            ],
+        },
+        {
+            type: 'tabs',
+            tabs: [
+                {
+                    fields: [
                         {
-                            name: 'relatedArticles',
-                            label: 'Relaterede artikler',
-                            type: 'relationship',
+                            name: 'layout',
+                            type: 'blocks',
+                            localized: true,
+                            blocks,
                             admin: {
-                                position: 'sidebar',
+                                initCollapsed: false,
                             },
-                            filterOptions: ({ id }) => {
-                                return {
-                                    id: {
-                                        not_in: [id],
-                                    },
-                                };
-                            },
-                            hasMany: true,
-                            relationTo: 'articles',
+                            defaultValue: () => [
+                                //TODO: Indsæt ArticleHero her når den er lavet
+                                {
+                                    blockType: 'article-author',
+                                    heading: 'Skribent',
+                                },
+                                //TODO: Spotify felt kun for ugens udgivelser
+                                //TODO: Formular block kun for ugens udgivelser
+                                {
+                                    blockType: 'related-articles',
+                                    heading: 'Relaterede artikler',
+                                },
+                            ],
                         },
                     ],
-                    label: 'Meta',
+                    label: 'Content',
                 },
+
                 payloadSEO,
             ],
         },
