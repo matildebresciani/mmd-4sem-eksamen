@@ -6,6 +6,7 @@ export type BlockProps<T> = {
     block: T;
     locale?: Locale;
     translations?: Option['translations'];
+    pageId: string;
 };
 
 export type BC<T> = FC<BlockProps<T>>;
