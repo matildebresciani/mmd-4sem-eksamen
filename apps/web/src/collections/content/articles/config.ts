@@ -104,24 +104,24 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                                 position: 'sidebar',
                             },
                         },
-                        {
-                            name: 'relatedArticles',
-                            label: 'Relaterede artikler',
-                            type: 'relationship',
-                            admin: {
-                                position: 'sidebar',
-                            },
-                            filterOptions: ({ id }) => {
-                                return {
-                                    id: {
-                                        not_in: [id],
-                                    },
-                                };
-                            },
-                            hasMany: true,
-                            relationTo: 'articles',
-                        },
                     ],
+                },
+                {
+                    name: 'relatedArticles',
+                    label: 'Relaterede artikler',
+                    type: 'relationship',
+                    admin: {
+                        position: 'sidebar',
+                    },
+                    filterOptions: ({ id }) => {
+                        return {
+                            id: {
+                                not_in: [id],
+                            },
+                        };
+                    },
+                    hasMany: true,
+                    relationTo: 'articles',
                 },
             ],
         },
