@@ -42,36 +42,12 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
     },
     fields: [
         {
-            type: 'tabs',
-            tabs: [
+            type: 'group',
+            label: 'Article Details',
+            fields: [
                 {
-                    fields: [
-                        {
-                            name: 'layout',
-                            type: 'blocks',
-                            localized: true,
-                            blocks,
-                            admin: {
-                                initCollapsed: false,
-                            },
-                            defaultValue: () => [
-                                //TODO: Indsæt ArticleHero her når den er lavet
-                                {
-                                    blockType: 'article-author',
-                                    heading: 'Skribent',
-                                },
-                                //TODO: Spotify felt kun for ugens udgivelser
-                                //TODO: Formular block kun for ugens udgivelser
-                                {
-                                    blockType: 'related-articles',
-                                    heading: 'Relaterede artikler',
-                                },
-                            ],
-                        },
-                    ],
-                    label: 'Content',
-                },
-                {
+                    type: 'collapsible',
+                    label: 'Article Details',
                     fields: [
                         // --- ARTICLE TYPE ---
                         {
@@ -146,8 +122,40 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             relationTo: 'articles',
                         },
                     ],
-                    label: 'Meta',
                 },
+            ],
+        },
+        {
+            type: 'tabs',
+            tabs: [
+                {
+                    fields: [
+                        {
+                            name: 'layout',
+                            type: 'blocks',
+                            localized: true,
+                            blocks,
+                            admin: {
+                                initCollapsed: false,
+                            },
+                            defaultValue: () => [
+                                //TODO: Indsæt ArticleHero her når den er lavet
+                                {
+                                    blockType: 'article-author',
+                                    heading: 'Skribent',
+                                },
+                                //TODO: Spotify felt kun for ugens udgivelser
+                                //TODO: Formular block kun for ugens udgivelser
+                                {
+                                    blockType: 'related-articles',
+                                    heading: 'Relaterede artikler',
+                                },
+                            ],
+                        },
+                    ],
+                    label: 'Content',
+                },
+
                 payloadSEO,
             ],
         },
