@@ -2,13 +2,13 @@ import { payloadHeading } from '@/lib/field-templates/headings';
 import { payloadConditionalLinkCollection } from '@/lib/field-templates/links';
 import type { Block } from 'payload';
 
-export const CardSlider: Block = {
-    slug: 'card-slider',
-    interfaceName: 'CardSlider',
+export const ArticleSlider: Block = {
+    slug: 'article-slider',
+    interfaceName: 'ArticleSlider',
     imageURL: '/images/block-thumbnails/card-slider-block.png',
     labels: {
-        singular: 'CardSlider',
-        plural: 'CardSliders',
+        singular: 'ArticleSlider',
+        plural: 'ArticleSliders',
     },
     fields: [
         payloadHeading({ localized: false }),

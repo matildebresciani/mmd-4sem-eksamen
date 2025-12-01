@@ -1,11 +1,11 @@
 import DynamicButton from '@/components/atoms/frontend/buttons/DynamicButton';
+import CardSlider from '@/components/molecules/frontend/CardSlider';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
 import type { BC } from '@/lib/types/block-props';
-import type { CardSlider as CardSliderProps } from '@/payload-types';
+import type { ArticleSlider as ArticleSliderProps } from '@/payload-types';
 import BaseBlock from '../base-block/BaseBlock';
-import CardSliderClient from './CardSlider.client';
 
-const CardSliderBlock: BC<CardSliderProps> = async ({ block }) => {
+const ArticleSliderBlock: BC<ArticleSliderProps> = async ({ block }) => {
     const { heading, addLink, link, cardType } = block;
 
     const articleType = cardType === 'review' ? 'review' : cardType === 'interview' ? 'interview' : null;
@@ -26,7 +26,7 @@ const CardSliderBlock: BC<CardSliderProps> = async ({ block }) => {
                 <div className="col-span-12">
                     <h2 className="mb-section-xxs text-center">{heading}</h2>
                     <div className="relative max-w-full">
-                        <CardSliderClient articles={articles} />
+                        <CardSlider articles={articles} />
                     </div>
                     {addLink && link && (
                         <div className="mt-l flex justify-center">
@@ -39,4 +39,4 @@ const CardSliderBlock: BC<CardSliderProps> = async ({ block }) => {
     );
 };
 
-export default CardSliderBlock;
+export default ArticleSliderBlock;

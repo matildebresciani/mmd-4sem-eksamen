@@ -3,19 +3,21 @@ import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
 import ArticleAuthorBlock from './article-author/ArticleAuthor';
-import CardSliderBlock from './card-slider/CardSlider';
+import ArticleSliderBlock from './article-slider/ArticleSlider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import RecentArticlesBlock from './recent-articles/RecentArticles';
+import RelatedArticlesBlock from './related-articles/RelatedArticles';
 import TextImageBlock from './text-image/TextImage';
 
 const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
-    'card-slider': CardSliderBlock,
+    'article-slider': ArticleSliderBlock,
     'recent-articles': RecentArticlesBlock,
     'article-author': ArticleAuthorBlock,
+    'related-articles': RelatedArticlesBlock,
 };
 
 export const RenderBlocks: React.FC<{

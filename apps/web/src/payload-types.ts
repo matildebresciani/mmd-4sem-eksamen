@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | CardSlider | RecentArticles)[] | null;
+  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -233,7 +233,7 @@ export interface Article {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Paragraph | ArticleAuthor)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles)[] | null;
   articleType: 'review' | 'interview' | 'weekly-releases';
   reviewType?: ('concert' | 'album') | null;
   genres?: (string | Genre)[] | null;
@@ -404,6 +404,16 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedArticles".
+ */
+export interface RelatedArticles {
+  heading?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'related-articles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "genres".
  */
 export interface Genre {
@@ -515,9 +525,9 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardSlider".
+ * via the `definition` "ArticleSlider".
  */
-export interface CardSlider {
+export interface ArticleSlider {
   heading: string;
   cardType?: ('review' | 'interview') | null;
   addLink?: boolean | null;
@@ -542,7 +552,7 @@ export interface CardSlider {
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'card-slider';
+  blockType: 'article-slider';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -913,7 +923,7 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
-        'card-slider'?: T | CardSliderSelect<T>;
+        'article-slider'?: T | ArticleSliderSelect<T>;
         'recent-articles'?: T | RecentArticlesSelect<T>;
       };
   meta?:
@@ -978,9 +988,9 @@ export interface TextImageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardSlider_select".
+ * via the `definition` "ArticleSlider_select".
  */
-export interface CardSliderSelect<T extends boolean = true> {
+export interface ArticleSliderSelect<T extends boolean = true> {
   heading?: T;
   cardType?: T;
   addLink?: T;
@@ -1017,6 +1027,7 @@ export interface ArticlesSelect<T extends boolean = true> {
     | {
         paragraph?: T | ParagraphSelect<T>;
         'article-author'?: T | ArticleAuthorSelect<T>;
+        'related-articles'?: T | RelatedArticlesSelect<T>;
       };
   articleType?: T;
   reviewType?: T;
@@ -1051,6 +1062,15 @@ export interface ArticlesSelect<T extends boolean = true> {
  */
 export interface ArticleAuthorSelect<T extends boolean = true> {
   author?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedArticles_select".
+ */
+export interface RelatedArticlesSelect<T extends boolean = true> {
+  heading?: T;
   id?: T;
   blockName?: T;
 }
