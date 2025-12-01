@@ -1,6 +1,7 @@
 import CardLabel from '@/components/atoms/frontend/labels/CardLabel';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
+import { formatArticleLabel } from '@/lib/utilities/format-label';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Article } from '@/payload-types';
 import Link from 'next/link';
@@ -23,8 +24,8 @@ const LatestSmallCard = ({ article }: Props) => {
                             size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
                         />
                     )}
-                    <div className="absolute bottom-0 transform translate-x-1/2 z-10">
-                        <CardLabel label={article.articleType} />
+                    <div className="absolute bottom-0 left-0 z-10 w-full">
+                        <CardLabel label={formatArticleLabel(article)} />
                     </div>
                 </div>
 

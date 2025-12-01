@@ -1,6 +1,7 @@
 import CardLabel from '@/components/atoms/frontend/labels/CardLabel';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
+import { formatArticleLabel } from '@/lib/utilities/format-label';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Article } from '@/payload-types';
 import Link from 'next/link';
@@ -26,7 +27,7 @@ const LatestBigCard = ({ article }: Props) => {
                 </div>
                 <div className="relative">
                     <div className="absolute left-l -top-4 z-10">
-                        <CardLabel label={article.articleType} />
+                        <CardLabel label={formatArticleLabel(article)} />
                     </div>
                 </div>
                 <div className="p-l">
