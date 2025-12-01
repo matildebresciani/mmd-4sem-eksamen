@@ -54,6 +54,19 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             admin: {
                                 initCollapsed: false,
                             },
+                            defaultValue: () => [
+                                //TODO: Indsæt ArticleHero her når den er lavet
+                                {
+                                    blockType: 'article-author',
+                                    heading: 'Skribent',
+                                },
+                                //TODO: Spotify felt kun for ugens udgivelser
+                                //TODO: Formular block kun for ugens udgivelser
+                                {
+                                    blockType: 'related-articles',
+                                    heading: 'Relaterede artikler',
+                                },
+                            ],
                         },
                     ],
                     label: 'Content',
