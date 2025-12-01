@@ -1,3 +1,4 @@
+import { ArticleAuthor } from '@/components/organisms/blocks/article-author/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
 import { createRoutedCollection } from '@/lib/collection-templates/routed-collection';
 import { payloadLivePreview } from '@/lib/field-templates/live-preview';
@@ -7,7 +8,7 @@ import { authenticated } from '../../../access/authenticated';
 import { authenticatedOrPublished } from '../../../access/authenticatedOrPublished';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 
-const blocks: Block[] = [Paragraph];
+const blocks: Block[] = [Paragraph, ArticleAuthor];
 
 export const Articles: CollectionConfig = createRoutedCollection('articles', {
     access: {

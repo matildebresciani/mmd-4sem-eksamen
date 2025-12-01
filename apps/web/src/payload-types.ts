@@ -233,7 +233,7 @@ export interface Article {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: Paragraph[] | null;
+  layout?: (Paragraph | ArticleAuthor)[] | null;
   articleType: 'review' | 'interview' | 'weekly-releases';
   reviewType?: ('concert' | 'album') | null;
   genres?: (string | Genre)[] | null;
@@ -286,68 +286,29 @@ export interface Paragraph {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "genres".
+ * via the `definition` "ArticleAuthor".
  */
-export interface Genre {
-  id: string;
-  name: string;
-  viewArticlesInGenre?: {
-    docs?: (string | Article)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
+export interface ArticleAuthor {
+  author?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-author';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "article-categories".
+ * via the `definition` "volunteers".
  */
-export interface ArticleCategory {
+export interface Volunteer {
   id: string;
-  /**
-   * This is the name of the page, it will only be used in the admin panel. And is not localized.
-   */
   name: string;
-  /**
-   * This title will be used in references and will set the slug.
-   */
-  title: string;
-  viewArticlesInCategory?: {
-    docs?: (string | Article)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  layout?: Paragraph[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  slug?: string | null;
-  slugLock?: boolean | null;
-  contentMeta?: {
-    featuredImage?: (string | null) | Media;
-    excerpt?: string | null;
-  };
-  parent?: (string | null) | ArticleCategory;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | ArticleCategory;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  displayName?: string | null;
+  roleGroup: 'core' | 'regular';
+  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
+  customRole?: string | null;
+  email?: string | null;
+  profilePicture?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -440,6 +401,71 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres".
+ */
+export interface Genre {
+  id: string;
+  name: string;
+  viewArticlesInGenre?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories".
+ */
+export interface ArticleCategory {
+  id: string;
+  /**
+   * This is the name of the page, it will only be used in the admin panel. And is not localized.
+   */
+  name: string;
+  /**
+   * This title will be used in references and will set the slug.
+   */
+  title: string;
+  viewArticlesInCategory?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  layout?: Paragraph[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  slug?: string | null;
+  slugLock?: boolean | null;
+  contentMeta?: {
+    featuredImage?: (string | null) | Media;
+    excerpt?: string | null;
+  };
+  parent?: (string | null) | ArticleCategory;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | ArticleCategory;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -541,22 +567,6 @@ export interface Concert {
   city: string;
   date: string;
   ticketLink?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "volunteers".
- */
-export interface Volunteer {
-  id: string;
-  name: string;
-  displayName?: string | null;
-  roleGroup: 'core' | 'regular';
-  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
-  customRole?: string | null;
-  email?: string | null;
-  profilePicture?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -1006,6 +1016,7 @@ export interface ArticlesSelect<T extends boolean = true> {
     | T
     | {
         paragraph?: T | ParagraphSelect<T>;
+        'article-author'?: T | ArticleAuthorSelect<T>;
       };
   articleType?: T;
   reviewType?: T;
@@ -1033,6 +1044,15 @@ export interface ArticlesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleAuthor_select".
+ */
+export interface ArticleAuthorSelect<T extends boolean = true> {
+  author?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
