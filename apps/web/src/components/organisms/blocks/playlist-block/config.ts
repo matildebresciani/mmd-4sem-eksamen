@@ -3,7 +3,7 @@ import type { Block } from 'payload';
 export const Playlist: Block = {
     slug: 'playlist',
     interfaceName: 'Playlist',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/playlist.png',
     labels: {
         singular: 'Playlist',
         plural: 'Playlists',
