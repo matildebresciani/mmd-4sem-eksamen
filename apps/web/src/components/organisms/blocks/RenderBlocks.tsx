@@ -2,6 +2,7 @@ import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections'
 import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
+import ArticleAuthorBlock from './article-author/ArticleAuthor';
 import CardSliderBlock from './card-slider/CardSlider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
@@ -14,6 +15,7 @@ const blockComponents = {
     'text-image': TextImageBlock,
     'card-slider': CardSliderBlock,
     'recent-articles': RecentArticlesBlock,
+    'article-author': ArticleAuthorBlock,
 };
 
 export const RenderBlocks: React.FC<{
