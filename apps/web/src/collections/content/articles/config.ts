@@ -1,5 +1,6 @@
 import { ArticleAuthor } from '@/components/organisms/blocks/article-author/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
+import { Playlist } from '@/components/organisms/blocks/playlist-block/config';
 import { RelatedArticles } from '@/components/organisms/blocks/related-articles/config';
 import { createRoutedCollection } from '@/lib/collection-templates/routed-collection';
 import { payloadLivePreview } from '@/lib/field-templates/live-preview';
@@ -9,7 +10,7 @@ import { authenticated } from '../../../access/authenticated';
 import { authenticatedOrPublished } from '../../../access/authenticatedOrPublished';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 
-const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles];
+const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles, Playlist];
 
 export const Articles: CollectionConfig = createRoutedCollection('articles', {
     access: {

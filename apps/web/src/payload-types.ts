@@ -239,7 +239,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -476,6 +476,20 @@ export interface RelatedArticles {
   id?: string | null;
   blockName?: string | null;
   blockType: 'related-articles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Playlist".
+ */
+export interface Playlist {
+  title?: string | null;
+  /**
+   * Indsæt embed iframe fra Spotify.
+   */
+  playlistScript?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'playlist';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1034,6 +1048,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         paragraph?: T | ParagraphSelect<T>;
         'article-author'?: T | ArticleAuthorSelect<T>;
         'related-articles'?: T | RelatedArticlesSelect<T>;
+        playlist?: T | PlaylistSelect<T>;
       };
   meta?:
     | T
@@ -1071,6 +1086,16 @@ export interface ArticleAuthorSelect<T extends boolean = true> {
  */
 export interface RelatedArticlesSelect<T extends boolean = true> {
   heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Playlist_select".
+ */
+export interface PlaylistSelect<T extends boolean = true> {
+  title?: T;
+  playlistScript?: T;
   id?: T;
   blockName?: T;
 }
