@@ -211,42 +211,10 @@ export interface Page {
  * via the `definition` "Hero".
  */
 export interface Hero {
-  label?: string | null;
-  heading: string;
-  manchet?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  link: {
-    type: 'reference' | 'custom';
-    openNewTab?: boolean | null;
-    url?: string | null;
-    relation?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'articles';
-          value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'article-categories';
-          value: string | ArticleCategory;
-        } | null);
-    label: string;
-  };
+  /**
+   * Select up to 5 articles to feature in the hero block.
+   */
+  featuredArticles?: (string | Article)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -964,18 +932,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "Hero_select".
  */
 export interface HeroSelect<T extends boolean = true> {
-  label?: T;
-  heading?: T;
-  manchet?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        openNewTab?: T;
-        url?: T;
-        relation?: T;
-        label?: T;
-      };
+  featuredArticles?: T;
   id?: T;
   blockName?: T;
 }
