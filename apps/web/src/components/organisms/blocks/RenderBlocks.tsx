@@ -6,6 +6,7 @@ import ArticleAuthorBlock from './article-author/ArticleAuthor';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
+import PlaylistBlock from './playlist-block/PlaylistBlock';
 import RecentArticlesBlock from './recent-articles/RecentArticles';
 import RelatedArticlesBlock from './related-articles/RelatedArticles';
 import TextImageBlock from './text-image/TextImage';
@@ -18,6 +19,7 @@ const blockComponents = {
     'recent-articles': RecentArticlesBlock,
     'article-author': ArticleAuthorBlock,
     'related-articles': RelatedArticlesBlock,
+    playlist: PlaylistBlock,
 };
 
 export const RenderBlocks: React.FC<{
