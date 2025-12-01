@@ -20,7 +20,7 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
     pageId: string;
-    blocks: NonNullable<Page['layout']>[0][];
+    blocks: NonNullable<Page['layout'] | Article['layout']>[0][];
     locale?: Locale;
     collectionType?: RoutedCollectionSlug;
 }> = (props) => {
