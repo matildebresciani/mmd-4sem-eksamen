@@ -2,6 +2,7 @@ import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import CardLabel from '@/components/atoms/frontend/labels/CardLabel';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
+import { formatArticleLabel } from '@/lib/utilities/format-label';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Article } from '@/payload-types';
 import Link from 'next/link';
@@ -45,7 +46,7 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                 )}
                 {showLabel && (
                     <div className="absolute top-4 left-4 z-10">
-                        <CardLabel label={article.articleType} />
+                        <CardLabel label={formatArticleLabel(article)} />
                     </div>
                 )}
             </div>
