@@ -13,7 +13,7 @@ const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
-    'quote': QuoteBlock,
+    quote: QuoteBlock,
 };
 
 export const RenderBlocks: React.FC<{
