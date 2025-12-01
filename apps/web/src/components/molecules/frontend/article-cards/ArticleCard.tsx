@@ -16,9 +16,9 @@ export default function ArticleCard({ article, variant = 'default', showLabel = 
         case 'featured':
             return <FeaturedCard article={article} showLabel={showLabel} className={className} />;
         case 'latest-big':
-            return <LatestBigCard article={article} className={className} />;
+            return <LatestBigCard article={article} />;
         case 'latest-small':
-            return <LatestSmallCard article={article} className={className} />;
+            return <LatestSmallCard article={article} />;
         default:
             return <DefaultCard article={article} showLabel={showLabel} className={className} />;
     }

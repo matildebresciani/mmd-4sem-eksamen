@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import CardSliderBlock from './card-slider/CardSlider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
+import RecentArticlesBlock from './recent-articles/RecentArticles';
 import TextImageBlock from './text-image/TextImage';
 
 const blockComponents = {
@@ -12,6 +13,7 @@ const blockComponents = {
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
     'card-slider': CardSliderBlock,
+    'recent-articles': RecentArticlesBlock,
 };
 
 export const RenderBlocks: React.FC<{
