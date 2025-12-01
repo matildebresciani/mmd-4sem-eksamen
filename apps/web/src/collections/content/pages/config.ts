@@ -1,6 +1,7 @@
 import { CardSlider } from '@/components/organisms/blocks/card-slider/config';
 import { Hero } from '@/components/organisms/blocks/hero/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
+import { RecentArticles } from '@/components/organisms/blocks/recent-articles/config';
 import { TextImage } from '@/components/organisms/blocks/text-image/config';
 import { createRoutedCollection } from '@/lib/collection-templates/routed-collection';
 import { payloadLivePreview } from '@/lib/field-templates/live-preview';
@@ -10,7 +11,7 @@ import { populatePublishedAt } from '../../../lib/hooks/populate-published-at';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 import { enforceHomepage } from './hooks/enforce-homepage';
 
-const blocks: Block[] = [Hero, Paragraph, TextImage, CardSlider];
+const blocks: Block[] = [Hero, Paragraph, TextImage, CardSlider, RecentArticles];
 
 export const Pages = createRoutedCollection('pages', {
     // This config controls what's populated by default when a page is referenced

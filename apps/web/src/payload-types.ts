@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | CardSlider)[] | null;
+  layout?: (Hero | Paragraph | TextImage | CardSlider | RecentArticles)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -549,6 +549,16 @@ export interface CardSlider {
   id?: string | null;
   blockName?: string | null;
   blockType: 'card-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentArticles".
+ */
+export interface RecentArticles {
+  heading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'recent-articles';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -926,6 +936,7 @@ export interface PagesSelect<T extends boolean = true> {
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
         'card-slider'?: T | CardSliderSelect<T>;
+        'recent-articles'?: T | RecentArticlesSelect<T>;
       };
   meta?:
     | T
@@ -1015,6 +1026,15 @@ export interface CardSliderSelect<T extends boolean = true> {
         relation?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentArticles_select".
+ */
+export interface RecentArticlesSelect<T extends boolean = true> {
+  heading?: T;
   id?: T;
   blockName?: T;
 }
