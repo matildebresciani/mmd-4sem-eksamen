@@ -239,7 +239,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -516,6 +516,17 @@ export interface Quote {
   id?: string | null;
   blockName?: string | null;
   blockType: 'quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleHero".
+ */
+export interface ArticleHero {
+  order: 'image-full-width' | 'image-split';
+  author?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-hero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1112,6 +1123,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         'related-articles'?: T | RelatedArticlesSelect<T>;
         playlist?: T | PlaylistSelect<T>;
         quote?: T | QuoteSelect<T>;
+        'article-hero'?: T | ArticleHeroSelect<T>;
       };
   meta?:
     | T
@@ -1159,6 +1171,16 @@ export interface RelatedArticlesSelect<T extends boolean = true> {
 export interface PlaylistSelect<T extends boolean = true> {
   title?: T;
   playlistScript?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleHero_select".
+ */
+export interface ArticleHeroSelect<T extends boolean = true> {
+  order?: T;
+  author?: T;
   id?: T;
   blockName?: T;
 }
