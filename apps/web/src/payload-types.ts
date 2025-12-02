@@ -77,7 +77,7 @@ export interface Config {
     media: Media;
     icons: Icon;
     faqs: Faq;
-    quotes: Quote;
+    quotes: Quote1;
     navigation: Navigation;
     redirects: Redirect;
     users: User;
@@ -542,8 +542,28 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArticleSlider".
+ * via the `definition` "Quote".
  */
+export interface Quote {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote';
+}
 export interface ArticleSlider {
   heading: string;
   cardType?: ('review' | 'interview') | null;
@@ -674,7 +694,7 @@ export interface Faq {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "quotes".
  */
-export interface Quote {
+export interface Quote1 {
   id: string;
   quote: {
     root: {
@@ -866,7 +886,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'quotes';
-        value: string | Quote;
+        value: string | Quote1;
       } | null)
     | ({
         relationTo: 'navigation';

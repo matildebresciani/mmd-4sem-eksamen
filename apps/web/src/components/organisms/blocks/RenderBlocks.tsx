@@ -8,6 +8,7 @@ import DividerBlock from './divider/Divider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
+import QuoteBlock from './quote/QuoteBlock';
 import RecentArticlesBlock from './recent-articles/RecentArticles';
 import RelatedArticlesBlock from './related-articles/RelatedArticles';
 import TextImageBlock from './text-image/TextImage';
@@ -16,6 +17,7 @@ const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
+    quote: QuoteBlock,
     divider: DividerBlock,
     'article-slider': ArticleSliderBlock,
     'recent-articles': RecentArticlesBlock,
