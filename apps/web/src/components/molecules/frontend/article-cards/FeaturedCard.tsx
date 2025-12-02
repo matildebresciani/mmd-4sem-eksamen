@@ -16,8 +16,8 @@ type Props = {
 const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
         <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
-            <div className="col-span-12 md:col-span-5 order-2 md:order-1 ">
-                <div className="flex justify-between">
+            <div className="col-span-12 p-[var(--p-m)] md:col-span-5 order-2 md:order-1 ">
+                <div className="flex justify-between pb-[var(--p-s)] items-center">
                     <div className="flex gap-3">
                         {article.genres && (
                             <span>
@@ -25,13 +25,13 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                             </span>
                         )}
                         {article.genres && article.artistName && <span>|</span>}
-                        {article.artistName && <span>{article.artistName}</span>}
+                        {article.artistName && <span className="font-bold">{article.artistName}</span>}
                     </div>
                     <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                 </div>
                 <div>
-                    <h2>{article.title}</h2>
-                    <p>{article.contentMeta?.excerpt}</p>
+                    <h3 className="uppercase pb-[var(--p-m)]">{article.title}</h3>
+                    <p className="pb-[var(--p-base)]">{article.contentMeta?.excerpt}</p>
                     <BaseButton title="Læs artikel" />
                 </div>
             </div>
