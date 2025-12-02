@@ -4,6 +4,7 @@ import type React from 'react';
 import { Fragment } from 'react';
 import ArticleAuthorBlock from './article-author/ArticleAuthor';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
+import DividerBlock from './divider/Divider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
@@ -15,6 +16,7 @@ const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
+    divider: DividerBlock,
     'article-slider': ArticleSliderBlock,
     'recent-articles': RecentArticlesBlock,
     'article-author': ArticleAuthorBlock,

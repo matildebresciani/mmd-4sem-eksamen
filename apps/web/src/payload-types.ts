@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles)[] | null;
+  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -580,6 +580,15 @@ export interface RecentArticles {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Divider".
+ */
+export interface Divider {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'divider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -939,6 +948,7 @@ export interface PagesSelect<T extends boolean = true> {
         'text-image'?: T | TextImageSelect<T>;
         'article-slider'?: T | ArticleSliderSelect<T>;
         'recent-articles'?: T | RecentArticlesSelect<T>;
+        divider?: T | DividerSelect<T>;
       };
   meta?:
     | T
@@ -1026,6 +1036,14 @@ export interface ArticleSliderSelect<T extends boolean = true> {
  */
 export interface RecentArticlesSelect<T extends boolean = true> {
   heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Divider_select".
+ */
+export interface DividerSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }
