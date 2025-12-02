@@ -2,6 +2,7 @@ import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import CardLabel from '@/components/atoms/frontend/labels/CardLabel';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
+import { formatArticleLabel } from '@/lib/utilities/format-label';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Article } from '@/payload-types';
 import Link from 'next/link';
@@ -9,11 +10,12 @@ import Link from 'next/link';
 type Props = {
     article: Article;
     showLabel?: boolean;
+    className?: string;
 };
 
-const FeaturedCard = ({ article, showLabel }: Props) => {
+const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
-        <Link className="oakgrid border" href={getArticleUrl(article)}>
+        <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
             <div className="col-span-12 md:col-span-5 order-2 md:order-1 ">
                 <div className="flex justify-between">
                     <div className="flex gap-3">
@@ -44,7 +46,7 @@ const FeaturedCard = ({ article, showLabel }: Props) => {
                 )}
                 {showLabel && (
                     <div className="absolute top-4 left-4 z-10">
-                        <CardLabel label={article.articleType} />
+                        <CardLabel label={formatArticleLabel(article)} />
                     </div>
                 )}
             </div>
