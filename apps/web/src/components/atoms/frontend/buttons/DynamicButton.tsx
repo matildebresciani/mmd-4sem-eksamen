@@ -23,12 +23,11 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow,
     // TODO Hover states
     const buttonStyle = cn(
         'inline-flex cursor-pointer w-auto font-bold',
-        variant === 'primary' &&
-            'bg-fg-base text-text-on-color px-8 py-4 md:px-16 md:py-6 rounded-2xl mt-6 justify-center',
+        variant === 'primary' && 'bg-fg-base text-text-on-color px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
         variant === 'highlight' &&
-            'bg-fg-highlight text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl mt-6 justify-center',
+            'bg-fg-highlight text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
         variant === 'secondary' &&
-            'bg-transparent border border-border-base text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl mt-6 justify-center',
+            'bg-transparent border border-border-base text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
         variant === 'tertiary' && 'underline',
         className,
     );
