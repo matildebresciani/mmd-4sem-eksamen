@@ -23,6 +23,7 @@ export const getCachedEntryBySlug = cache(
                 overrideAccess: draft,
                 locale: locale,
                 pagination: false,
+                depth: 2,
                 where: {
                     slug: {
                         equals: slug,
@@ -45,6 +46,7 @@ export const getCachedEntryBySlug = cache(
                     overrideAccess: false,
                     locale: locale,
                     pagination: false,
+                    depth: 2,
                     where: {
                         slug: {
                             equals: slug,

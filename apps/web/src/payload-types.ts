@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | Divider)[] | null;
+  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -211,42 +211,10 @@ export interface Page {
  * via the `definition` "Hero".
  */
 export interface Hero {
-  label?: string | null;
-  heading: string;
-  manchet?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  link: {
-    type: 'reference' | 'custom';
-    openNewTab?: boolean | null;
-    url?: string | null;
-    relation?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'articles';
-          value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'article-categories';
-          value: string | ArticleCategory;
-        } | null);
-    label: string;
-  };
+  /**
+   * Select up to 5 articles to feature in the hero block.
+   */
+  featuredArticles?: (string | Article)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -265,13 +233,13 @@ export interface Article {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: Paragraph[] | null;
   articleType: 'review' | 'interview' | 'weekly-releases';
   reviewType?: ('concert' | 'album') | null;
   genres?: (string | Genre)[] | null;
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -291,30 +259,6 @@ export interface Article {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Paragraph".
- */
-export interface Paragraph {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'paragraph';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -380,6 +324,30 @@ export interface ArticleCategory {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Paragraph".
+ */
+export interface Paragraph {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'paragraph';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -475,6 +443,56 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleAuthor".
+ */
+export interface ArticleAuthor {
+  author?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-author';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "volunteers".
+ */
+export interface Volunteer {
+  id: string;
+  name: string;
+  displayName?: string | null;
+  roleGroup: 'core' | 'regular';
+  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
+  customRole?: string | null;
+  email?: string | null;
+  profilePicture?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedArticles".
+ */
+export interface RelatedArticles {
+  heading?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'related-articles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Playlist".
+ */
+export interface Playlist {
+  title?: string | null;
+  /**
+   * Indsæt embed iframe fra Spotify.
+   */
+  playlistScript?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'playlist';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TextImage".
  */
 export interface TextImage {
@@ -521,6 +539,47 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleSlider".
+ */
+export interface ArticleSlider {
+  heading: string;
+  cardType?: ('review' | 'interview') | null;
+  addLink?: boolean | null;
+  link: {
+    type: 'reference' | 'custom';
+    openNewTab?: boolean | null;
+    url?: string | null;
+    relation?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
+        } | null);
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentArticles".
+ */
+export interface RecentArticles {
+  heading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'recent-articles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Divider".
  */
 export interface Divider {
@@ -541,22 +600,6 @@ export interface Concert {
   city: string;
   date: string;
   ticketLink?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "volunteers".
- */
-export interface Volunteer {
-  id: string;
-  name: string;
-  displayName?: string | null;
-  roleGroup: 'core' | 'regular';
-  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
-  customRole?: string | null;
-  email?: string | null;
-  profilePicture?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -903,6 +946,8 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
+        'article-slider'?: T | ArticleSliderSelect<T>;
+        'recent-articles'?: T | RecentArticlesSelect<T>;
         divider?: T | DividerSelect<T>;
       };
   meta?:
@@ -931,18 +976,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "Hero_select".
  */
 export interface HeroSelect<T extends boolean = true> {
-  label?: T;
-  heading?: T;
-  manchet?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        openNewTab?: T;
-        url?: T;
-        relation?: T;
-        label?: T;
-      };
+  featuredArticles?: T;
   id?: T;
   blockName?: T;
 }
@@ -978,6 +1012,35 @@ export interface TextImageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleSlider_select".
+ */
+export interface ArticleSliderSelect<T extends boolean = true> {
+  heading?: T;
+  cardType?: T;
+  addLink?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        openNewTab?: T;
+        url?: T;
+        relation?: T;
+        label?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentArticles_select".
+ */
+export interface RecentArticlesSelect<T extends boolean = true> {
+  heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Divider_select".
  */
 export interface DividerSelect<T extends boolean = true> {
@@ -991,17 +1054,20 @@ export interface DividerSelect<T extends boolean = true> {
 export interface ArticlesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
-  layout?:
-    | T
-    | {
-        paragraph?: T | ParagraphSelect<T>;
-      };
   articleType?: T;
   reviewType?: T;
   genres?: T;
   artistName?: T;
   categories?: T;
   relatedArticles?: T;
+  layout?:
+    | T
+    | {
+        paragraph?: T | ParagraphSelect<T>;
+        'article-author'?: T | ArticleAuthorSelect<T>;
+        'related-articles'?: T | RelatedArticlesSelect<T>;
+        playlist?: T | PlaylistSelect<T>;
+      };
   meta?:
     | T
     | {
@@ -1022,6 +1088,34 @@ export interface ArticlesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleAuthor_select".
+ */
+export interface ArticleAuthorSelect<T extends boolean = true> {
+  author?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedArticles_select".
+ */
+export interface RelatedArticlesSelect<T extends boolean = true> {
+  heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Playlist_select".
+ */
+export interface PlaylistSelect<T extends boolean = true> {
+  title?: T;
+  playlistScript?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
