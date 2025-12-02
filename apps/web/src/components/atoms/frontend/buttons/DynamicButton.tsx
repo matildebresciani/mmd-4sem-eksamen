@@ -11,7 +11,7 @@ import Arrow from '../icons/Arrow';
 type Props = {
     link: Option['linkTypeTemplate'];
     className?: string;
-    variant?: 'highlight' | 'primary' | 'secondary' | 'tertiary';
+    variant?: 'primary' | 'secondary' | 'tertiary';
     locale?: Locale;
     addArrow?: boolean;
     onClick?: () => void;
@@ -20,15 +20,13 @@ type Props = {
 const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow, onClick }: Props) => {
     const { type, label, url, openNewTab } = link;
 
-    // TODO Hover states
+    
     const buttonStyle = cn(
         'inline-flex cursor-pointer w-auto font-bold',
-        variant === 'primary' && 'bg-fg-base text-text-on-color px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
-        variant === 'highlight' &&
-            'bg-fg-highlight text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
+        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover px-8 py-4 md:px-16 md:py-6 justify-center',
         variant === 'secondary' &&
-            'bg-transparent border border-border-base text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
-        variant === 'tertiary' && 'underline',
+            'bg-button-secondary text-button-text hover:bg-button-secondary-hover px-8 py-4 md:px-16 md:py-6  justify-center',
+        variant === 'tertiary' && 'underline text-fg-highlight-2 transition-transform duration-300 hover:scale-120',
         className,
     );
 
