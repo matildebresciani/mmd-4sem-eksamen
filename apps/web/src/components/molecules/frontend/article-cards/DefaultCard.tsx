@@ -32,7 +32,7 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                         </div>
                     )}
                 </div>
-                <div className="p-[var(--p-s)] pb-[var(--p-m)] flex flex-col gap-[var(--p-s)]">
+                <div className="p-s pb-m flex flex-col gap-s">
                     <div className="flex justify-between flex-wrap gap-1">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                         <div className="flex gap-3">

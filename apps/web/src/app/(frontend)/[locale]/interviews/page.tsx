@@ -31,8 +31,8 @@ export default async function Page({ params }: Props) {
         <article className="pt-4 pb-20">
             <BaseBlock>
                 <div className="oakgrid">
-                    <div className="col-span-12">
-                        <h1>Interviews</h1>
+                    <div className="col-span-12 space-y-section-xxs">
+                        <h1 className="text-center">Interviews</h1>
                         <ArticlesArchive articles={interviews.docs} />
                     </div>
                 </div>
