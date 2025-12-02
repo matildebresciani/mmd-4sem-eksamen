@@ -12,8 +12,7 @@ export const TextImage: Block = {
         plural: 'TextImages',
     },
     fields: [
-
-        payloadHeading({required: false}),
+        payloadHeading({ required: false }),
 
         {
             type: 'radio',
@@ -33,9 +32,9 @@ export const TextImage: Block = {
             ],
         },
         {
-          type: 'checkbox',
-          name: 'addBgColor',
-          label: 'Add Background Color',
+            type: 'checkbox',
+            name: 'addBgColor',
+            label: 'Add Background Color',
         },
         {
             type: 'upload',
@@ -66,7 +65,6 @@ export const TextImage: Block = {
             ],
         },
 
-        
         payloadRichText(),
         ...payloadConditionalLinkCollection,
     ],
