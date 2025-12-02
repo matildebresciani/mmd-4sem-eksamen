@@ -141,7 +141,10 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                                 initCollapsed: false,
                             },
                             defaultValue: () => [
-                                //TODO: Indsæt ArticleHero her når den er lavet
+                                {
+                                    blockType: 'article-hero',
+                                    heading: 'Hero',
+                                },
                                 {
                                     blockType: 'article-author',
                                     heading: 'Skribent',
