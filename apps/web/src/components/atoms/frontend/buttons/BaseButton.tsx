@@ -2,7 +2,6 @@
 import { cn } from '@/lib/utilities/ui';
 import Link from 'next/link';
 
-
 type Props = {
     type?: 'button' | 'submit' | 'link';
     title: string;
@@ -15,19 +14,18 @@ type Props = {
 
 const BaseButton = ({ type, title, href, openNewTab, className, onClick, variant = 'primary' }: Props) => {
     const style = cn(
-         'inline-flex cursor-pointer w-auto font-bold',
-         variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover px-8 py-4 md:px-16 md:py-6 justify-center',
-            variant === 'secondary' &&
+        'inline-flex cursor-pointer w-auto font-bold',
+        variant === 'primary' &&
+            'bg-button-primary text-button-text hover:bg-button-primary-hover px-8 py-4 md:px-16 md:py-6 justify-center',
+        variant === 'secondary' &&
             'bg-button-secondary text-button-text hover:bg-button-secondary-hover px-8 py-4 md:px-16 md:py-6  justify-center',
-         className,
-      
+        className,
     );
 
     if (type === 'link' && href) {
         return (
             <Link href={href} className={style} target={openNewTab ? '_blank' : '_self'} onClick={() => onClick?.()}>
                 {title}
-             
             </Link>
         );
     }
@@ -35,7 +33,6 @@ const BaseButton = ({ type, title, href, openNewTab, className, onClick, variant
     return (
         <button type={type && type !== 'link' ? type : 'button'} className={style} onClick={() => onClick?.()}>
             {title}
-           
         </button>
     );
 };
