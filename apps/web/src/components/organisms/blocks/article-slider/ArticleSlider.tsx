@@ -30,7 +30,7 @@ const ArticleSliderBlock: BC<ArticleSliderProps> = async ({ block }) => {
                     </div>
                     {addLink && link && (
                         <div className="mt-l flex justify-center">
-                            <DynamicButton variant='tertiary' link={link} />
+                            <DynamicButton variant="tertiary" link={link} />
                         </div>
                     )}
                 </div>

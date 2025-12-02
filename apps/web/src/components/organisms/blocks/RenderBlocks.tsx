@@ -3,6 +3,7 @@ import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
 import ArticleAuthorBlock from './article-author/ArticleAuthor';
+import ArticleHeroBlock from './article-hero/ArticleHero';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
 import DividerBlock from './divider/Divider';
 import HeroBlock from './hero/Hero';
@@ -24,6 +25,7 @@ const blockComponents = {
     'article-author': ArticleAuthorBlock,
     'related-articles': RelatedArticlesBlock,
     playlist: PlaylistBlock,
+    'article-hero': ArticleHeroBlock,
 };
 
 export const RenderBlocks: React.FC<{
