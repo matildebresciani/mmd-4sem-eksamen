@@ -1,22 +1,32 @@
+import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections';
+import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
-
-import type { Article, Page } from '@/payload-types';
-
-import type { Locale, RoutedCollectionSlug } from '@/i18n/localized-collections';
+import ArticleAuthorBlock from './article-author/ArticleAuthor';
+import ArticleSliderBlock from './article-slider/ArticleSlider';
+import DividerBlock from './divider/Divider';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
+import PlaylistBlock from './playlist-block/PlaylistBlock';
+import RecentArticlesBlock from './recent-articles/RecentArticles';
+import RelatedArticlesBlock from './related-articles/RelatedArticles';
 import TextImageBlock from './text-image/TextImage';
 
 const blockComponents = {
     hero: HeroBlock,
     paragraph: ParagraphBlock,
     'text-image': TextImageBlock,
+    divider: DividerBlock,
+    'article-slider': ArticleSliderBlock,
+    'recent-articles': RecentArticlesBlock,
+    'article-author': ArticleAuthorBlock,
+    'related-articles': RelatedArticlesBlock,
+    playlist: PlaylistBlock,
 };
 
 export const RenderBlocks: React.FC<{
     pageId: string;
-    blocks: NonNullable<Page['layout']>[0][];
+    blocks: NonNullable<Page['layout'] | Article['layout']>[0][];
     locale?: Locale;
     collectionType?: RoutedCollectionSlug;
 }> = (props) => {

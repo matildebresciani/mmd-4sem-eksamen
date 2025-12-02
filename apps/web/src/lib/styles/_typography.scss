@@ -24,77 +24,76 @@
 
     h1,
     .heading-1 {
-        font-size: 2.3rem;
-        line-height: 111%;
-        @include mix.respond-to-min(var.$md) {
-            font-size: 3.5rem;
-        }
-        @include mix.respond-to-min(var.$lg) {
-            font-size: 4.625rem;
-        }
-        //Usikker på hvad som er vores H1!?
+        // font-size: 2.3rem;
+        // line-height: 111%;
+        // @include mix.respond-to-min(var.$md) {
+        //     font-size: 3.5rem;
+        // }
+        // @include mix.respond-to-min(var.$lg) {
+        //     font-size: 4.625rem;
+        // }
         /*font-size range 36-64px, line-height range 1.0-1.0*/
-        // font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
-        // line-height: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+        font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+        line-height: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
     }
 
     h2,
     .heading-2 {
-        font-size: 2rem;
-        line-height: 111%;
-        @include mix.respond-to-min(var.$md) {
-            font-size: 3rem;
-        }
-        @include mix.respond-to-min(var.$lg) {
-            font-size: 4rem;
-        }
-        /*font-size range 36-64px, line-height range 1.0-1.0*/
-        font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
-        line-height: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+        // font-size: 2rem;
+        // line-height: 111%;
+        // @include mix.respond-to-min(var.$md) {
+        //     font-size: 3rem;
+        // }
+        // @include mix.respond-to-min(var.$lg) {
+        //     font-size: 4rem;
+        // }
+        /*font-size range 20-42px, line-height range 1.25-1.25*/
+        font-size: clamp(1.25rem, 1.424vw + 0.916rem, 2.625rem);
+        line-height: clamp(1.563rem, 1.78vw + 1.145rem, 3.281rem);
 
     }
 
     h3,
     .heading-3 {
-        font-size: 1.75rem;
-        line-height: 112%;
-        @include mix.respond-to-min(var.$md) {
-            font-size: 2.25rem;
-        }
-        @include mix.respond-to-min(var.$lg) {
-            font-size: 2.75rem;
-        }
-        /*font-size range 20-42px, line-height range 1.25-1.25*/
-        font-size: clamp(1.25rem, 1.424vw + 0.916rem, 2.625rem);
-        line-height: clamp(1.563rem, 1.78vw + 1.145rem, 3.281rem);
-    }
-
-    h4,
-    .heading-4 {
-        font-size: 1.2rem;
-        line-height: 114%;
-        @include mix.respond-to-min(var.$md) {
-            font-size: 1.5rem;
-        }
-        @include mix.respond-to-min(var.$lg) {
-            font-size: 1.75rem;
-        }
+        // font-size: 1.75rem;
+        // line-height: 112%;
+        // @include mix.respond-to-min(var.$md) {
+        //     font-size: 2.25rem;
+        // }
+        // @include mix.respond-to-min(var.$lg) {
+        //     font-size: 2.75rem;
+        // }
         /*font-size range 20-36px, line-height range 1.25-1.00*/
         font-size: clamp(1.25rem, 1.036vw + 1.007rem, 2.25rem);
         line-height: clamp(1.563rem, 0.712vw + 1.396rem, 2.25rem);
     }
 
-    h5,
-    .heading-5 {
-       font-size: 1.0625rem;
-        line-height: 160%;
-        @include mix.respond-to-min(var.$md) {
-            font-size: 1.25rem;
-        }
+    h4,
+    .heading-4 {
+        // font-size: 1.2rem;
+        // line-height: 114%;
+        // @include mix.respond-to-min(var.$md) {
+        //     font-size: 1.5rem;
+        // }
+        // @include mix.respond-to-min(var.$lg) {
+        //     font-size: 1.75rem;
+        // }
         /*font-size range 16-20px, line-height range 1.1-1.25*/
         font-size: clamp(1rem, 0.259vw + 0.939rem, 1.25rem);
         line-height: clamp(1.1rem, 0.479vw + 0.988rem, 1.563rem);
     }
+
+    //h5,
+    //.heading-5 {
+    //    font-size: 1.0625rem;
+    //     line-height: 160%;
+    //     @include mix.respond-to-min(var.$md) {
+    //         font-size: 1.25rem;
+    //     }
+        /*font-size range 16-20px, line-height range 1.1-1.25*/
+        // font-size: clamp(1rem, 0.259vw + 0.939rem, 1.25rem);
+        // line-height: clamp(1.1rem, 0.479vw + 0.988rem, 1.563rem);
+    //}
 
     p, li, a {
         // font-size: 1rem;
@@ -134,5 +133,76 @@
         ol {
             list-style-type: decimal;
         }
+    }
+
+    //Classes baseret på text styles i Figma
+    .body-xl {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    .body-lg {
+        font-size: 1.25rem;
+        line-height: 1.3;
+    }
+    .body-md {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    .body-sm {
+        font-size: 0.875rem;
+        line-height: 1.3;
+    }
+    .body-xs {
+        font-size: 0.6875rem;
+        line-height: 1;
+    }
+
+    //Classes baseret på text styles i Figma
+    .heading-4xl {
+        font-size: 4rem;
+        line-height: 1;
+    }
+    .heading-3xl {
+        font-size: 4rem;
+        line-height: 1.2;
+    }
+    .heading-2xl {
+        font-size: 2.625rem;
+        line-height: 1;
+    }
+    .heading-xl {
+        font-size: 2.25rem;
+        line-height: 1;
+    }
+    .heading-lg {
+        font-size: 1.25rem;
+        line-height: 1.25;
+    }
+    .heading-sm {
+        font-size: 1rem;
+        line-height: 1.1;
+    }
+
+    .button-text {
+        font-size: 1.25rem;
+        line-height: 1;
+    }
+    .label-text {
+        font-size: 0.6875rem;
+        line-height: 1;
+        font-family: var(--font-heading);
+    }
+    .link-text {
+        font-size: 1.25rem;
+        line-height: 1;
+        text-decoration: underline;
+
+        &:hover {
+        font-size: 1.5rem;
+        }
+    }
+    .nav-text {
+        font-size: 1rem;
+        line-height: 1;
     }
 }
