@@ -1,7 +1,7 @@
-import type { Divider as DividerProps } from '@/payload-types';
-import BaseBlock from '../base-block/BaseBlock';
 import type { BC } from '@/lib/types/block-props';
+import type { Divider as DividerProps } from '@/payload-types';
 import Image from 'next/image';
+import BaseBlock from '../base-block/BaseBlock';
 
 const DividerBlock: BC<DividerProps> = () => {
     return (
