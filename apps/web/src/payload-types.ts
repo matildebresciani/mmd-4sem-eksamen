@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider)[] | null;
+  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -239,7 +239,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -493,6 +493,32 @@ export interface Playlist {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote".
+ */
+export interface Quote {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  showName?: boolean | null;
+  name?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TextImage".
  */
 export interface TextImage {
@@ -542,28 +568,8 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Quote".
+ * via the `definition` "ArticleSlider".
  */
-export interface Quote {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'quote';
-}
 export interface ArticleSlider {
   heading: string;
   cardType?: ('review' | 'interview') | null;
@@ -972,6 +978,7 @@ export interface PagesSelect<T extends boolean = true> {
         'article-slider'?: T | ArticleSliderSelect<T>;
         'recent-articles'?: T | RecentArticlesSelect<T>;
         divider?: T | DividerSelect<T>;
+        quote?: T | QuoteSelect<T>;
       };
   meta?:
     | T
@@ -1075,6 +1082,17 @@ export interface DividerSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote_select".
+ */
+export interface QuoteSelect<T extends boolean = true> {
+  richText?: T;
+  showName?: T;
+  name?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
@@ -1093,6 +1111,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         'article-author'?: T | ArticleAuthorSelect<T>;
         'related-articles'?: T | RelatedArticlesSelect<T>;
         playlist?: T | PlaylistSelect<T>;
+        quote?: T | QuoteSelect<T>;
       };
   meta?:
     | T

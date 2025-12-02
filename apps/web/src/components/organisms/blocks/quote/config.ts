@@ -4,10 +4,24 @@ import type { Block } from 'payload';
 export const Quote: Block = {
     slug: 'quote',
     interfaceName: 'Quote',
-    imageURL: '/images/block-thumbnails/.jpg',
     labels: {
         singular: 'Quote',
         plural: 'Quotes',
     },
-    fields: [payloadRichText()],
+    fields: [
+        payloadRichText(),
+        {
+            name: 'showName',
+            type: 'checkbox',
+            label: 'Vis navn på quote',
+        },
+        {
+            name: 'name',
+            type: 'text',
+            label: 'Navn',
+            admin: {
+                condition: (data, siblingData) => siblingData.showName === true,
+            },
+        },
+    ],
 };

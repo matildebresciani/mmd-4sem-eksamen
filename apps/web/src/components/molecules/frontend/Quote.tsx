@@ -8,8 +8,8 @@ import type React from 'react';
 
 interface QuoteProps {
     richText?: SerializedEditorState | null;
-    showName?: boolean;
-    name?: string;
+    showName?: boolean | null;
+    name?: string | null;
 }
 
 const Quote: React.FC<QuoteProps> = ({ richText, showName, name }) => {
