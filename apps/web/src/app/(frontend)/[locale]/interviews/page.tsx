@@ -24,6 +24,7 @@ export default async function Page({ params }: Props) {
         whereFields: {
             articleType: { equals: 'interview' },
         },
+        sort: '-publishedAt',
         limit: 50,
     });
 

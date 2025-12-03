@@ -25,6 +25,7 @@ export default async function Page({ params }: Props) {
         whereFields: {
             articleType: { equals: 'review' },
         },
+        sort: '-publishedAt',
         limit: 50,
     });
 
