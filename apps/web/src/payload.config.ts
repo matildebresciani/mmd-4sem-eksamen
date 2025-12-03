@@ -16,6 +16,7 @@ import { Articles } from './collections/content/articles/config';
 import { Concerts } from './collections/content/concerts/config';
 import { Pages } from './collections/content/pages/config';
 import { Faqs } from './collections/entries/faqs/config';
+import { Forms } from './collections/entries/forms/config';
 import { Quotes } from './collections/entries/quotes/config';
 import { Volunteers } from './collections/team/volunteers/config';
 import { ApiKeys } from './collections/tools-settings/api-keys/config';
@@ -82,6 +83,7 @@ export default buildConfig({
         Redirects,
         Users,
         ApiKeys,
+        Forms,
     ],
     cors: [getServerSideURL()].filter(Boolean),
     globals: [Options],
