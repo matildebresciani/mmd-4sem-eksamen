@@ -239,7 +239,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -527,6 +527,32 @@ export interface ArticleHero {
   id?: string | null;
   blockName?: string | null;
   blockType: 'article-hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery".
+ */
+export interface Gallery {
+  layout: 'fullWidth' | 'twoColumn' | 'mosaic3' | 'bigTopTwoUnder' | 'threeColumn' | 'threeTopOneUnder';
+  slot_fullWidth?: (string | null) | Media;
+  slot_left?: (string | null) | Media;
+  slot_right?: (string | null) | Media;
+  slot_big?: (string | null) | Media;
+  slot_wideTop?: (string | null) | Media;
+  slot_wideBottom?: (string | null) | Media;
+  slot_top?: (string | null) | Media;
+  slot_bottomLeft?: (string | null) | Media;
+  slot_bottomRight?: (string | null) | Media;
+  slot_a?: (string | null) | Media;
+  slot_b?: (string | null) | Media;
+  slot_c?: (string | null) | Media;
+  slot_topLeft?: (string | null) | Media;
+  slot_topCenter?: (string | null) | Media;
+  slot_topRight?: (string | null) | Media;
+  slot_bottom?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1148,6 +1174,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         playlist?: T | PlaylistSelect<T>;
         quote?: T | QuoteSelect<T>;
         'article-hero'?: T | ArticleHeroSelect<T>;
+        gallery?: T | GallerySelect<T>;
       };
   meta?:
     | T
@@ -1205,6 +1232,31 @@ export interface PlaylistSelect<T extends boolean = true> {
 export interface ArticleHeroSelect<T extends boolean = true> {
   order?: T;
   author?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  layout?: T;
+  slot_fullWidth?: T;
+  slot_left?: T;
+  slot_right?: T;
+  slot_big?: T;
+  slot_wideTop?: T;
+  slot_wideBottom?: T;
+  slot_top?: T;
+  slot_bottomLeft?: T;
+  slot_bottomRight?: T;
+  slot_a?: T;
+  slot_b?: T;
+  slot_c?: T;
+  slot_topLeft?: T;
+  slot_topCenter?: T;
+  slot_topRight?: T;
+  slot_bottom?: T;
   id?: T;
   blockName?: T;
 }

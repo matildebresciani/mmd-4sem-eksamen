@@ -7,6 +7,7 @@ import ArticleHeroBlock from './article-hero/ArticleHero';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
 import DividerBlock from './divider/Divider';
 import FeaturedArticleBlock from './featured-article/FeaturedArticle';
+import GalleryBlock from './gallery/Gallery';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
@@ -28,6 +29,7 @@ const blockComponents = {
     playlist: PlaylistBlock,
     'article-hero': ArticleHeroBlock,
     'featured-article': FeaturedArticleBlock,
+    gallery: GalleryBlock,
 };
 
 export const RenderBlocks: React.FC<{
