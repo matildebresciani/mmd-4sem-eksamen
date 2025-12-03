@@ -2,10 +2,8 @@ import ArticlesArchive from '@/components/organisms/articles-archive/ArticlesArc
 import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
-import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
 import React from 'react';
 
 type Props = {
