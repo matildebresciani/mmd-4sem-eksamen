@@ -1,5 +1,10 @@
+import { ArticleAuthor } from '@/components/organisms/blocks/article-author/config';
+import { ArticleHero } from '@/components/organisms/blocks/article-hero/config';
 import { Gallery } from '@/components/organisms/blocks/gallery/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
+import { Playlist } from '@/components/organisms/blocks/playlist-block/config';
+import { Quote } from '@/components/organisms/blocks/quote/config';
+import { RelatedArticles } from '@/components/organisms/blocks/related-articles/config';
 import { createRoutedCollection } from '@/lib/collection-templates/routed-collection';
 import { payloadLivePreview } from '@/lib/field-templates/live-preview';
 import { payloadSEO } from '@/lib/field-templates/seo';
@@ -8,7 +13,7 @@ import { authenticated } from '../../../access/authenticated';
 import { authenticatedOrPublished } from '../../../access/authenticatedOrPublished';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 
-const blocks: Block[] = [Paragraph, Gallery];
+const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles, Playlist, Quote, ArticleHero, Gallery];
 
 export const Articles: CollectionConfig = createRoutedCollection('articles', {
     access: {
@@ -41,23 +46,12 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
     },
     fields: [
         {
-            type: 'tabs',
-            tabs: [
+            type: 'group',
+            label: 'Article Details',
+            fields: [
                 {
-                    fields: [
-                        {
-                            name: 'layout',
-                            type: 'blocks',
-                            localized: true,
-                            blocks,
-                            admin: {
-                                initCollapsed: false,
-                            },
-                        },
-                    ],
-                    label: 'Content',
-                },
-                {
+                    type: 'collapsible',
+                    label: 'Article Details',
                     fields: [
                         // --- ARTICLE TYPE ---
                         {
@@ -101,7 +95,6 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             name: 'artistName',
                             label: 'Artist Navn',
                         },
-
                         // --- CATEGORIES ---
                         // Usikkert på om vi skal bruge denne endnu, og til hvad
                         {
@@ -114,26 +107,61 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                                 position: 'sidebar',
                             },
                         },
+                    ],
+                },
+                {
+                    name: 'relatedArticles',
+                    label: 'Relaterede artikler',
+                    type: 'relationship',
+                    admin: {
+                        position: 'sidebar',
+                    },
+                    filterOptions: ({ id }) => {
+                        return {
+                            id: {
+                                not_in: [id],
+                            },
+                        };
+                    },
+                    hasMany: true,
+                    relationTo: 'articles',
+                },
+            ],
+        },
+        {
+            type: 'tabs',
+            tabs: [
+                {
+                    fields: [
                         {
-                            name: 'relatedArticles',
-                            label: 'Relaterede artikler',
-                            type: 'relationship',
+                            name: 'layout',
+                            type: 'blocks',
+                            localized: true,
+                            blocks,
                             admin: {
-                                position: 'sidebar',
+                                initCollapsed: false,
                             },
-                            filterOptions: ({ id }) => {
-                                return {
-                                    id: {
-                                        not_in: [id],
-                                    },
-                                };
-                            },
-                            hasMany: true,
-                            relationTo: 'articles',
+                            defaultValue: () => [
+                                {
+                                    blockType: 'article-hero',
+                                    heading: 'Hero',
+                                },
+                                {
+                                    blockType: 'article-author',
+                                    heading: 'Skribent',
+                                },
+                                //TODO: Spotify felt kun for ugens udgivelser
+                                //TODO: Formular block kun for ugens udgivelser
+                                {
+                                    blockType: 'related-articles',
+                                    heading: 'Relaterede artikler',
+                                },
+                            ],
                         },
                     ],
-                    label: 'Meta',
+                    label: 'Content',
                 },
+
                 payloadSEO,
             ],
         },
