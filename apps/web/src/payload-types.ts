@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote)[] | null;
+  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote | FeaturedArticle)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -629,6 +629,18 @@ export interface Divider {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedArticle".
+ */
+export interface FeaturedArticle {
+  articleType: 'weekly-releases' | 'review' | 'interview';
+  addBanner?: boolean | null;
+  bannerText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-article';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -990,6 +1002,7 @@ export interface PagesSelect<T extends boolean = true> {
         'recent-articles'?: T | RecentArticlesSelect<T>;
         divider?: T | DividerSelect<T>;
         quote?: T | QuoteSelect<T>;
+        'featured-article'?: T | FeaturedArticleSelect<T>;
       };
   meta?:
     | T
@@ -1099,6 +1112,17 @@ export interface QuoteSelect<T extends boolean = true> {
   richText?: T;
   showName?: T;
   name?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedArticle_select".
+ */
+export interface FeaturedArticleSelect<T extends boolean = true> {
+  articleType?: T;
+  addBanner?: T;
+  bannerText?: T;
   id?: T;
   blockName?: T;
 }
