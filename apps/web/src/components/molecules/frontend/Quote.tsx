@@ -24,14 +24,11 @@ const Quote: React.FC<QuoteProps> = ({ richText, showName, name }) => {
                         height={88}
                         className="absolute top-0 left-0"
                     />
-                    {richText && (
-                        <RichText
-                            data={richText}
-                            className="italic absolute left-5 top-5 w-[90%] lg:left-20 lg:top-10 lg:w-[80%]"
-                        />
-                    )}
-                    {/* Navn vises kun hvis showName er true */}
-                    {showName && name && <p className="font-bold">{name}</p>}
+                    <div className="absolute left-5 top-5 w-[90%] lg:left-20 lg:top-10 lg:w-[80%]">
+                        {richText && <RichText data={richText} className="italic" />}
+                        {/* Navn vises kun hvis showName er true */}
+                        {showName && name && <p className="font-bold">-{name}</p>}
+                    </div>
                 </div>
             </div>
         </BaseBlock>
