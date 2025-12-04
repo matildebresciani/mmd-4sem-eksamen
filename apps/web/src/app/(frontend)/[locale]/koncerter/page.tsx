@@ -18,11 +18,17 @@ export default async function Page({ params }: Props) {
 
     const payload = await initPayload();
 
+    const concerts = await payload.find({
+        collection: 'concerts',
+        // sort: '-date',
+        limit: 50,
+    });
+
     // const concerts = await payload.find({
     //     collection: 'concerts',
-    //     // sort: '-date',
-    //     limit: 50,
-    //     overrideAccess: false,
+    //     limit: 1,
+    //     page: 1,
+    //     depth: 0,
     // });
 
     return (

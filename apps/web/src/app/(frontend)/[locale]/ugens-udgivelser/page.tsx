@@ -22,7 +22,7 @@ export default async function Page({ params }: Props) {
         whereFields: {
             articleType: { equals: 'weekly-releases' },
         },
-        // sort: '-publishedAt',
+        sort: '-publishedAt',
         limit: 50,
     });
 
