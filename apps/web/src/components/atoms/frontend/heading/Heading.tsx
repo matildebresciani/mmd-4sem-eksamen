@@ -19,7 +19,7 @@ const headingStyles = cva('', {
             '4xl': 'heading-4xl',
             '3xl': 'heading-3xl',
             '2xl': 'heading-2xl',
-            xl: 'heading-xl',
+            xl: 'text-heading-xl md:text-heading-4xl',
             lg: 'heading-lg',
             sm: 'heading-sm',
         },
@@ -39,10 +39,28 @@ export const Heading: FC<HeadingProps> = ({ level = 1, size = 'xl', className, c
     });
 
     return (
-        <Tag className={cn(styles, className)}>
-            <span className={cn(styles, className, 'text-sm')}>{children}</span>
-            <span className={cn(styles, className)}>{children}</span>
-            <span className={cn(styles, className)}>{children}</span>
+        <Tag
+            className={cn(styles, className, 'relative flex z-0 tracking-wider justify-center text-wrap hyphens-auto')}
+        >
+            <span
+                className={cn(
+                    styles,
+                    className,
+                    'text-fg-highlight absolute z-1 translate-x-[-.4%] md:translate-x-[-.5%]',
+                )}
+            >
+                {children}
+            </span>
+            <span className={cn(styles, className, 'text-fg-base z-3')}>{children}</span>
+            <span
+                className={cn(
+                    styles,
+                    className,
+                    'text-fg-highlight-2 absolute z-1 translate-x-[.4%] md:translate-x-[.5%]',
+                )}
+            >
+                {children}
+            </span>
         </Tag>
     );
 };
