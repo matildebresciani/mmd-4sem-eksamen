@@ -50,7 +50,8 @@ export const getCachedCollection = cache(async <C extends RoutedCollectionSlug>(
                 page,
                 sort,
                 draft: false,
-                overrideAccess: false,
+                //TODO: change back to false when finished testing
+                overrideAccess: true,
                 locale,
                 where,
             });
