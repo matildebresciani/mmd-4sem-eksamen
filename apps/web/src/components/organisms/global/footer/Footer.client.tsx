@@ -16,7 +16,7 @@ interface FooterClientProps {
 export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, footer3 }) => {
     return (
         <footer className="relative mt-auto z-20">
-            <BaseBlock className="flex flex-col gap-10 py-8 md:py-8 bg-[var(--bg-base)] items-center z-21">
+            <BaseBlock className="flex flex-col gap-10 py-8 md:py-8 bg-bg-base items-center z-21">
                 <Link href="/" className="z-23">
                     <Image alt={'logo'} src={'/images/logo_bot.svg'} width={1620} height={242} />
                 </Link>
