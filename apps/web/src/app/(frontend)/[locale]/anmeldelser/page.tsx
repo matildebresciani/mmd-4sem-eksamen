@@ -25,9 +25,16 @@ export default async function Page({ params }: Props) {
         whereFields: {
             articleType: { equals: 'review' },
         },
-        sort: '-publishedAt',
+        // sort: '-publishedAt.da',
         limit: 50,
     });
+
+    console.log(
+        reviews.docs.map((d) => ({
+            slug: d.slug,
+            publishedAt: d.publishedAt,
+        })),
+    );
 
     return (
         <article className="pt-4 pb-20">
