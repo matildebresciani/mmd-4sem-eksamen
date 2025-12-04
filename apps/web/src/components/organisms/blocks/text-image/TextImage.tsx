@@ -86,14 +86,14 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
 
                 <div
                     className={cn(
-                        'col-span-12 lg:col-span-6',
+                        'col-span-12 lg:col-span-6 flex flex-col gap-(--spacing-s)',
                         order === 'image-right' && 'lg:order-first',
                         order === 'image-left' && 'xl:col-start-7 xl:col-span-5',
                     )}
                 >
                     {heading && <h3 className="uppercase">{heading}</h3>}
                     {richText && <RichText data={richText} className="mx-0" />}
-                    {addLink && <DynamicButton link={link} locale={locale} className="md:mt-10" />}
+                    {addLink && <DynamicButton link={link} locale={locale} className="w-fit" />}
                 </div>
             </div>
         </BaseBlock>

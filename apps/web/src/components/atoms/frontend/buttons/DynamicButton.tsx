@@ -13,19 +13,17 @@ type Props = {
     className?: string;
     variant?: 'primary' | 'secondary' | 'tertiary';
     locale?: Locale;
-    addArrow?: boolean;
     onClick?: () => void;
 };
 
-const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow, onClick }: Props) => {
+const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }: Props) => {
     const { type, label, url, openNewTab } = link;
 
-    
     const buttonStyle = cn(
-        'inline-flex cursor-pointer w-auto font-bold',
-        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover px-8 py-4 md:px-16 md:py-6 justify-center',
+        'inline-flex cursor-pointer w-auto button-text',
+        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover p-s justify-center',
         variant === 'secondary' &&
-            'bg-button-secondary text-button-text hover:bg-button-secondary-hover px-8 py-4 md:px-16 md:py-6  justify-center',
+            'bg-button-secondary text-button-text hover:bg-button-secondary-hover p-s justify-center',
         variant === 'tertiary' && 'underline text-fg-highlight-2 transition-transform duration-300 hover:scale-120',
         className,
     );
@@ -39,7 +37,6 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow,
                 onClick={() => onClick?.()}
             >
                 {label}
-                {addArrow && <Arrow className="h-5 w-5 min-w-5" />}
             </Link>
         );
     }
@@ -53,7 +50,6 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow,
                 onClick={() => onClick?.()}
             >
                 {label}
-                {addArrow && <Arrow className="h-5 w-5 min-w-5" />}
             </Link>
         );
     }

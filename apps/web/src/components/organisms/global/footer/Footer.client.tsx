@@ -1,5 +1,6 @@
 'use client';
 import type { Navigation as NavigationProps } from '@/payload-types';
+import Image from 'next/image';
 import Link from 'next/link';
 import type React from 'react';
 import BaseBlock from '../../blocks/base-block/BaseBlock';
@@ -13,15 +14,23 @@ interface FooterClientProps {
 
 export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, footer3 }) => {
     return (
-        <footer className="relative mt-auto z-20 bg-gray-200">
-            <BaseBlock className="grid gap-5 py-8 md:grid-cols-[1fr_2fr] md:py-8">
+        <footer className="relative mt-auto z-20">
+            <BaseBlock className="flex flex-col gap-5 py-8 md:py-8 bg-[var(--bg-highlight)] items-center">
                 <Link href="/">
-                    <span className="heading-4">Logo</span>
+                    <Image alt={'logo'} src={'/images/logo_bot.svg'} width={200} height={40} />
                 </Link>
-                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <div className="flex flex-col gap-5">
                     {footer1 && <Navigation data={footer1} />}
                     {footer2 && <Navigation data={footer2} />}
                     {footer3 && <Navigation data={footer3} />}
+                </div>
+                <div className="flex gap-5">
+                    <Link href="/">
+                        <Image alt={'logo'} src={'/images/instagram_bot.svg'} width={40} height={40} />
+                    </Link>
+                    <Link href="/">
+                        <Image alt={'logo'} src={'/images/facebook_bot.svg'} width={40} height={40} />
+                    </Link>
                 </div>
             </BaseBlock>
         </footer>

@@ -3,8 +3,11 @@ import type { Article, Page } from '@/payload-types';
 import type React from 'react';
 import { Fragment } from 'react';
 import ArticleAuthorBlock from './article-author/ArticleAuthor';
+import ArticleHeroBlock from './article-hero/ArticleHero';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
 import DividerBlock from './divider/Divider';
+import FeaturedArticleBlock from './featured-article/FeaturedArticle';
+import GalleryBlock from './gallery/Gallery';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
@@ -26,6 +29,9 @@ const blockComponents = {
     'related-articles': RelatedArticlesBlock,
     playlist: PlaylistBlock,
     'quote-slider': QuoteSliderBlock,
+    'article-hero': ArticleHeroBlock,
+    'featured-article': FeaturedArticleBlock,
+    gallery: GalleryBlock,
 };
 
 export const RenderBlocks: React.FC<{

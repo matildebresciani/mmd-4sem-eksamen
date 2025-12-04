@@ -32,19 +32,23 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                         </div>
                     )}
                 </div>
-                <div className="flex justify-between">
-                    <div className="flex gap-3">
-                        {article.genres && (
-                            <span>
-                                {typeof article.genres[0] === 'string' ? article.genres[0] : article.genres[0]?.name}
-                            </span>
-                        )}
-                        {article.genres && article.artistName && <span>|</span>}
-                        {article.artistName && <span>{article.artistName}</span>}
+                <div className="p-s pb-m flex flex-col gap-s">
+                    <div className="flex justify-between flex-wrap gap-1">
+                        <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
+                        <div className="flex gap-3">
+                            {article.genres && (
+                                <span>
+                                    {typeof article.genres[0] === 'string'
+                                        ? article.genres[0]
+                                        : article.genres[0]?.name}
+                                </span>
+                            )}
+                            {article.genres && article.artistName && <span>|</span>}
+                            {article.artistName && <span className="font-bold">{article.artistName}</span>}
+                        </div>
                     </div>
-                    <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
+                    <h4 className="heading-sm">{article.title}</h4>
                 </div>
-                <h3>{article.title}</h3>
             </div>
         </Link>
     );

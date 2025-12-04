@@ -185,7 +185,19 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote | QuoteSlider)[] | null;
+  layout?:
+    | (
+        | Hero
+        | Paragraph
+        | TextImage
+        | ArticleSlider
+        | RecentArticles
+        | Divider
+        | Quote
+        | FeaturedArticle
+        | QuoteSlider
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -239,7 +251,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -519,6 +531,43 @@ export interface Quote {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleHero".
+ */
+export interface ArticleHero {
+  order: 'image-full-width' | 'image-split';
+  author?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery".
+ */
+export interface Gallery {
+  layout: 'fullWidth' | 'twoColumn' | 'mosaic3' | 'bigTopTwoUnder' | 'threeColumn' | 'threeTopOneUnder';
+  slot_fullWidth?: (string | null) | Media;
+  slot_left?: (string | null) | Media;
+  slot_right?: (string | null) | Media;
+  slot_big?: (string | null) | Media;
+  slot_wideTop?: (string | null) | Media;
+  slot_wideBottom?: (string | null) | Media;
+  slot_top?: (string | null) | Media;
+  slot_bottomLeft?: (string | null) | Media;
+  slot_bottomRight?: (string | null) | Media;
+  slot_a?: (string | null) | Media;
+  slot_b?: (string | null) | Media;
+  slot_c?: (string | null) | Media;
+  slot_topLeft?: (string | null) | Media;
+  slot_topCenter?: (string | null) | Media;
+  slot_topRight?: (string | null) | Media;
+  slot_bottom?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TextImage".
  */
 export interface TextImage {
@@ -615,6 +664,18 @@ export interface Divider {
   id?: string | null;
   blockName?: string | null;
   blockType: 'divider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedArticle".
+ */
+export interface FeaturedArticle {
+  articleType: 'weekly-releases' | 'review' | 'interview';
+  addBanner?: boolean | null;
+  bannerText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-article';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -989,6 +1050,7 @@ export interface PagesSelect<T extends boolean = true> {
         'recent-articles'?: T | RecentArticlesSelect<T>;
         divider?: T | DividerSelect<T>;
         quote?: T | QuoteSelect<T>;
+        'featured-article'?: T | FeaturedArticleSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
       };
   meta?:
@@ -1104,6 +1166,17 @@ export interface QuoteSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedArticle_select".
+ */
+export interface FeaturedArticleSelect<T extends boolean = true> {
+  articleType?: T;
+  addBanner?: T;
+  bannerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "QuoteSlider_select".
  */
 export interface QuoteSliderSelect<T extends boolean = true> {
@@ -1132,6 +1205,8 @@ export interface ArticlesSelect<T extends boolean = true> {
         'related-articles'?: T | RelatedArticlesSelect<T>;
         playlist?: T | PlaylistSelect<T>;
         quote?: T | QuoteSelect<T>;
+        'article-hero'?: T | ArticleHeroSelect<T>;
+        gallery?: T | GallerySelect<T>;
       };
   meta?:
     | T
@@ -1179,6 +1254,41 @@ export interface RelatedArticlesSelect<T extends boolean = true> {
 export interface PlaylistSelect<T extends boolean = true> {
   title?: T;
   playlistScript?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleHero_select".
+ */
+export interface ArticleHeroSelect<T extends boolean = true> {
+  order?: T;
+  author?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  layout?: T;
+  slot_fullWidth?: T;
+  slot_left?: T;
+  slot_right?: T;
+  slot_big?: T;
+  slot_wideTop?: T;
+  slot_wideBottom?: T;
+  slot_top?: T;
+  slot_bottomLeft?: T;
+  slot_bottomRight?: T;
+  slot_a?: T;
+  slot_b?: T;
+  slot_c?: T;
+  slot_topLeft?: T;
+  slot_topCenter?: T;
+  slot_topRight?: T;
+  slot_bottom?: T;
   id?: T;
   blockName?: T;
 }

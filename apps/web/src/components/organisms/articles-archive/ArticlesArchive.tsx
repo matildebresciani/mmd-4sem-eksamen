@@ -11,9 +11,9 @@ const ArticlesArchive = ({ articles }: Props) => {
     if (!articles?.length) return null;
 
     return (
-        <section>
+        <section className="space-y-section-sm">
             <div>{articles[0] && <ArticleCard article={articles[0]} variant="featured" />}</div>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-4 space-y-section-xs">
                 {articles.slice(1).map((article) => (
                     <ArticleCard key={article.id} article={article} />
                 ))}
