@@ -11,6 +11,7 @@ import GalleryBlock from './gallery/Gallery';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
+import QuoteSliderBlock from './quote-slider-block/QuoteSlider';
 import QuoteBlock from './quote/QuoteBlock';
 import RecentArticlesBlock from './recent-articles/RecentArticles';
 import RelatedArticlesBlock from './related-articles/RelatedArticles';
@@ -27,6 +28,7 @@ const blockComponents = {
     'article-author': ArticleAuthorBlock,
     'related-articles': RelatedArticlesBlock,
     playlist: PlaylistBlock,
+    'quote-slider': QuoteSliderBlock,
     'article-hero': ArticleHeroBlock,
     'featured-article': FeaturedArticleBlock,
     gallery: GalleryBlock,
