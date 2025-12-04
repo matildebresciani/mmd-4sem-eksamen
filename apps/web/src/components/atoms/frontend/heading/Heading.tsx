@@ -40,9 +40,9 @@ export const Heading: FC<HeadingProps> = ({ level = 1, size = 'xl', className, c
 
     return (
         <Tag className={cn(styles, className)}>
-            <span className="">{children}</span>
-            <span className="">{children}</span>
-            <span className="">{children}</span>
+            <span className={cn(styles, className, 'text-sm')}>{children}</span>
+            <span className={cn(styles, className)}>{children}</span>
+            <span className={cn(styles, className)}>{children}</span>
         </Tag>
     );
 };
