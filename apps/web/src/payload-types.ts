@@ -185,7 +185,19 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote | FeaturedArticle)[] | null;
+  layout?:
+    | (
+        | Hero
+        | Paragraph
+        | TextImage
+        | ArticleSlider
+        | RecentArticles
+        | Divider
+        | Quote
+        | FeaturedArticle
+        | VolunteerRoles
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -667,6 +679,22 @@ export interface FeaturedArticle {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteerRoles".
+ */
+export interface VolunteerRoles {
+  roles?:
+    | {
+        volunteerRole?: string | null;
+        roleDescription?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'volunteer-roles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -1029,6 +1057,7 @@ export interface PagesSelect<T extends boolean = true> {
         divider?: T | DividerSelect<T>;
         quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
+        'volunteer-roles'?: T | VolunteerRolesSelect<T>;
       };
   meta?:
     | T
@@ -1149,6 +1178,21 @@ export interface FeaturedArticleSelect<T extends boolean = true> {
   articleType?: T;
   addBanner?: T;
   bannerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteerRoles_select".
+ */
+export interface VolunteerRolesSelect<T extends boolean = true> {
+  roles?:
+    | T
+    | {
+        volunteerRole?: T;
+        roleDescription?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
