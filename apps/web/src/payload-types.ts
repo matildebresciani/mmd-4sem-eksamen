@@ -185,7 +185,7 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote)[] | null;
+  layout?: (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote | QuoteSlider)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -618,6 +618,41 @@ export interface Divider {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider".
+ */
+export interface QuoteSlider {
+  quotes: (string | Quote1)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote1 {
+  id: string;
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -693,31 +728,6 @@ export interface Faq {
   } | null;
   publishedAt?: string | null;
   publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "quotes".
- */
-export interface Quote1 {
-  id: string;
-  quote: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  author?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -979,6 +989,7 @@ export interface PagesSelect<T extends boolean = true> {
         'recent-articles'?: T | RecentArticlesSelect<T>;
         divider?: T | DividerSelect<T>;
         quote?: T | QuoteSelect<T>;
+        'quote-slider'?: T | QuoteSliderSelect<T>;
       };
   meta?:
     | T
@@ -1088,6 +1099,15 @@ export interface QuoteSelect<T extends boolean = true> {
   richText?: T;
   showName?: T;
   name?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider_select".
+ */
+export interface QuoteSliderSelect<T extends boolean = true> {
+  quotes?: T;
   id?: T;
   blockName?: T;
 }
