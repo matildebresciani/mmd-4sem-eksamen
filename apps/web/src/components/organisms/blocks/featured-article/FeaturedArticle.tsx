@@ -60,7 +60,7 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
             <div className="oakgrid">
                 <div className="col-span-12 lg:col-span-6 relative">
                     <div className="">
-                        <div className="absolute top-0 left-0 w-[90%] h-[85%] bg-bg-section-2" />
+                        <div className="absolute top-0 left-0 w-[90%] aspect-[4/3] bg-bg-section-2" />
                     </div>
 
                     <div className="relative z-10 p-m">

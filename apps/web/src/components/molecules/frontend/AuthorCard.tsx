@@ -18,7 +18,7 @@ const AuthorCard = ({ author }: Props) => {
                         alt={author?.name || 'Author Image'}
                         imgClassName="object-cover w-full h-full"
                         resource={author.profilePicture}
-                        size="100px"
+                        size="75px"
                     />
                 </div>
             )}
