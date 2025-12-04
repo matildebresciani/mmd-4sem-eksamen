@@ -1,6 +1,4 @@
-import { defaultLocale } from '@/i18n/localized-collections';
 import { getCachedEntryById } from '@/lib/data/payload/get-cached-entry-by-id';
-import { getCachedTranslations } from '@/lib/data/payload/get-cached-translations';
 import type { BC } from '@/lib/types/block-props';
 import { cn } from '@/lib/utilities/ui';
 import type { Form as FormProps } from '@/payload-types';
