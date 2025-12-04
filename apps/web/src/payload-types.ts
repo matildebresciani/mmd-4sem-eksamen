@@ -674,7 +674,7 @@ export interface FeaturedArticle {
  * via the `definition` "Form".
  */
 export interface Form {
-  layout: 'standard' | 'two-columns';
+  layout: 'one-column' | 'two-columns';
   heading?: string | null;
   description?: string | null;
   /**
