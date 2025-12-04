@@ -20,8 +20,8 @@ export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, fo
                 <Link href="/" className="z-23">
                     <Image alt={'logo'} src={'/images/logo_bot.svg'} width={1620} height={242} />
                 </Link>
-                <div className="absolute bottom-0 bg-[var(--bg-highlight)] w-full h-[75%] z-22" />
-                <div className="flex flex-col gap-5 text-[var(--color-button-text)] text-center z-23">
+                <div className="absolute bottom-0 bg-bg-highlight w-full h-[75%] z-22" />
+                <div className="flex flex-col gap-5 text-button-text text-center z-23">
                     {footer1 && <Navigation data={footer1} />}
                     {footer2 && <Navigation data={footer2} />}
                     {footer3 && <Navigation data={footer3} />}
