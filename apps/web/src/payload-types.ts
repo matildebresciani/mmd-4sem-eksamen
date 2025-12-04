@@ -682,13 +682,13 @@ export interface FeaturedArticle {
  * via the `definition` "VolunteerRoles".
  */
 export interface VolunteerRoles {
-  roles?:
-    | {
-        volunteerRole?: string | null;
-        roleDescription?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  heading?: string | null;
+  roles: {
+    roleThumbnail?: (string | null) | Media;
+    volunteerRole?: string | null;
+    roleDescription?: string | null;
+    id?: string | null;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'volunteer-roles';
@@ -1186,9 +1186,11 @@ export interface FeaturedArticleSelect<T extends boolean = true> {
  * via the `definition` "VolunteerRoles_select".
  */
 export interface VolunteerRolesSelect<T extends boolean = true> {
+  heading?: T;
   roles?:
     | T
     | {
+        roleThumbnail?: T;
         volunteerRole?: T;
         roleDescription?: T;
         id?: T;

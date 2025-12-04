@@ -10,10 +10,23 @@ export const VolunteerRoles: Block = {
     },
     fields: [
         {
+            type: 'text',
+            name: 'heading',
+            label: 'Heading',
+        },
+        {
             type: 'array',
             name: 'roles',
             label: 'Volunteer Roles',
+            required: true,
+            minRows: 1,
             fields: [
+                {
+                    type: 'upload',
+                    name: 'roleThumbnail',
+                    label: 'Thumbnail',
+                    relationTo: 'media',
+                },
                 {
                     type: 'text',
                     name: 'volunteerRole',
