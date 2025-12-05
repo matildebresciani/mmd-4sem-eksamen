@@ -16,12 +16,12 @@ interface FooterClientProps {
 export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, footer3 }) => {
     return (
         <footer className="relative mt-auto z-20">
-            <BaseBlock className="flex flex-col gap-10 py-8 md:py-8 bg-[var(--bg-base)] items-center z-21">
+            <BaseBlock className="flex flex-col gap-10 py-8 md:py-8 bg-bg-base items-center z-21">
                 <Link href="/" className="z-23">
                     <Image alt={'logo'} src={'/images/logo_bot.svg'} width={1620} height={242} />
                 </Link>
-                <div className="absolute bottom-0 bg-[var(--bg-highlight)] w-full h-[80%] lg:h-[75%] z-22" />
-                <div className="flex flex-col gap-5 text-[var(--color-button-text)] text-center z-23">
+                <div className="absolute bottom-0 bg-bg-highlight w-full h-[80%] lg:h-[75%] z-22" />
+                <div className="flex flex-col gap-5 text-button-text text-center z-23">
                     {footer1 && <Navigation data={footer1} />}
                     {footer2 && <Navigation data={footer2} />}
                     {footer3 && <Navigation data={footer3} />}
