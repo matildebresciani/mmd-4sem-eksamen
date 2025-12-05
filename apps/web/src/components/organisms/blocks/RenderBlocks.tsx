@@ -16,6 +16,7 @@ import QuoteBlock from './quote/QuoteBlock';
 import RecentArticlesBlock from './recent-articles/RecentArticles';
 import RelatedArticlesBlock from './related-articles/RelatedArticles';
 import TextImageBlock from './text-image/TextImage';
+import VolunteerRolesBlock from './volunteer-roles/VolunteerRoles';
 
 const blockComponents = {
     hero: HeroBlock,
@@ -32,6 +33,7 @@ const blockComponents = {
     'article-hero': ArticleHeroBlock,
     'featured-article': FeaturedArticleBlock,
     gallery: GalleryBlock,
+    'volunteer-roles': VolunteerRolesBlock,
 };
 
 export const RenderBlocks: React.FC<{
