@@ -20,7 +20,7 @@ const Navigation = ({ data }: Props) => {
                 {data?.map((item, i) => {
                     const itemLink = formatLink(item.link, locale);
                     return (
-                        <motion.li key={item.id ?? i} whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}>
+                        <motion.li key={item.id ?? i} whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}>
                             <Link
                                 href={itemLink}
                                 className={cn('hover:underline link-text', itemLink === pathname && 'underline')}
