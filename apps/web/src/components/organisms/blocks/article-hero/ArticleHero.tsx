@@ -54,7 +54,9 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                             {author && (
                                 <span>
                                     Af{' '}
-                                    <span className="italic">{typeof author === 'string' ? author : author.name}</span>
+                                    <span className="italic">
+                                        {typeof author === 'string' ? author : author.volunteerName}
+                                    </span>
                                 </span>
                             )}
                         </div>
