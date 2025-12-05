@@ -694,8 +694,10 @@ export interface VolunteerRoles {
   blockName?: string | null;
   blockType: 'volunteer-roles';
 }
-//  via the `definition` "QuoteSlider".
- 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider".
+ */
 export interface QuoteSlider {
   quotes: (string | Quote1)[];
   id?: string | null;
@@ -1205,9 +1207,13 @@ export interface VolunteerRolesSelect<T extends boolean = true> {
         roleDescription?: T;
         id?: T;
       };
-    }
-// via the `definition` "QuoteSlider_select".
- 
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider_select".
+ */
 export interface QuoteSliderSelect<T extends boolean = true> {
   quotes?: T;
   id?: T;

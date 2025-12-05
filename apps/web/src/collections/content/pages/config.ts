@@ -25,11 +25,8 @@ const blocks: Block[] = [
     Divider,
     Quote,
     FeaturedArticle,
-<<<<<<< HEAD
     VolunteerRoles,
-=======
     QuoteSlider,
->>>>>>> dc13f9242aa6a6e807eb66dbd756790d1d85d291
 ];
 
 export const Pages = createRoutedCollection('pages', {

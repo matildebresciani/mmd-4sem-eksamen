@@ -9,16 +9,18 @@ const VolunteerRolesBlock: BC<VolunteerRolesProps> = ({ block }) => {
     return (
         <BaseBlock>
             <div className="oakgrid">
-                <div className="col-span-12">
+                <div className="grid col-span-12 justify-items-center gap-section-xxs">
                     <h2>{heading}</h2>
-                    {roles.map((role) => (
-                        <VolunteerRoleCard
-                            key={role.id}
-                            thumbnail={typeof role.roleThumbnail === 'string' ? undefined : role.roleThumbnail}
-                            title={role?.volunteerRole}
-                            description={role?.roleDescription}
-                        />
-                    ))}
+                    <div className="grid lg:grid-cols-2 gap-5">
+                        {roles.map((role) => (
+                            <VolunteerRoleCard
+                                key={role.id}
+                                thumbnail={typeof role.roleThumbnail === 'string' ? undefined : role.roleThumbnail}
+                                title={role?.volunteerRole}
+                                description={role?.roleDescription}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </BaseBlock>
