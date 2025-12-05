@@ -469,7 +469,7 @@ export interface ArticleAuthor {
  */
 export interface Volunteer {
   id: string;
-  name: string;
+  volunteerName: string;
   displayName?: string | null;
   roleGroup: 'core' | 'regular';
   volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
@@ -1366,7 +1366,7 @@ export interface GenresSelect<T extends boolean = true> {
  * via the `definition` "volunteers_select".
  */
 export interface VolunteersSelect<T extends boolean = true> {
-  name?: T;
+  volunteerName?: T;
   displayName?: T;
   roleGroup?: T;
   volunteerRole?: T;

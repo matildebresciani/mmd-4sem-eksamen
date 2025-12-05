@@ -1,14 +1,18 @@
+import { anyone } from '@/access/anyone';
 import { createCollection } from '@/lib/collection-templates/collection';
 
 export const Volunteers = createCollection('volunteers', {
     admin: {
-        useAsTitle: 'name',
+        useAsTitle: 'volunteerName',
         group: 'Team',
+    },
+    access: {
+        read: anyone,
     },
     fields: [
         // --- NAME FIELDS (ROW) ---
         {
-            name: 'name',
+            name: 'volunteerName',
             label: 'Navn',
             type: 'text',
             required: true,
@@ -20,6 +24,7 @@ export const Volunteers = createCollection('volunteers', {
             name: 'displayName',
             label: 'Visningsnavn (optional)',
             type: 'text',
+            required: false,
             admin: {
                 width: '50%',
             },
@@ -62,6 +67,7 @@ export const Volunteers = createCollection('volunteers', {
             name: 'customRole',
             label: 'Custom rolle',
             type: 'text',
+            required: false,
             admin: {
                 width: '100%',
                 condition: (_, siblingData) => siblingData.volunteerRole === 'other',
@@ -84,6 +90,7 @@ export const Volunteers = createCollection('volunteers', {
             name: 'profilePicture',
             relationTo: 'media',
             label: 'Profilbillede',
+            required: false,
         },
     ],
 });

@@ -36,6 +36,7 @@ export const getCachedCollection = cache(async <C extends RoutedCollectionSlug>(
             overrideAccess: draft,
             locale,
             where,
+            depth: 2,
         });
 
         return result || null;
@@ -50,10 +51,10 @@ export const getCachedCollection = cache(async <C extends RoutedCollectionSlug>(
                 page,
                 sort,
                 draft: false,
-                //TODO: change back to false when finished testing
-                overrideAccess: true,
+                overrideAccess: false,
                 locale,
                 where,
+                // depth: 2,
             });
 
             return result || null;
