@@ -10,15 +10,17 @@ const AuthorCard = ({ author }: Props) => {
         return null;
     }
     return (
-        <div className="p-m flex gap-s border w-full md:w-fit">
+        <div className="p-m flex gap-s border w-full md:w-fit md:py-spacing-m md:px-section-xs justify-center">
             {author.profilePicture && (
-                <div className="relative overflow-hidden w-full h-full aspect-square">
+                <div
+                    style={{ width: '112px', height: '95px', position: 'relative' }}
+                    className="overflow-hidden aspect-square"
+                >
                     <ImageMedia
                         fill
                         alt={author?.name || 'Author Image'}
-                        imgClassName="object-cover w-full h-full"
+                        imgClassName="object-cover"
                         resource={author.profilePicture}
-                        size="100px"
                     />
                 </div>
             )}
