@@ -44,7 +44,7 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                 <div
                     className={cn(
                         'col-span-12',
-                        order === 'image-split' && 'lg:col-span-6 lg:col-start-7 flex items-center',
+                        order === 'image-split' && 'lg:col-span-6 lg:col-start-7 flex h-[100%]',
                     )}
                 >
                     <div className="border border-border-base space-y-s p-m">
