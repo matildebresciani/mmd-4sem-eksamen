@@ -196,6 +196,7 @@ export interface Page {
         | Quote
         | FeaturedArticle
         | VolunteerRoles
+        | QuoteSlider
       )[]
     | null;
   meta?: {
@@ -469,7 +470,7 @@ export interface ArticleAuthor {
  */
 export interface Volunteer {
   id: string;
-  name: string;
+  volunteerName: string;
   displayName?: string | null;
   roleGroup: 'core' | 'regular';
   volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
@@ -693,6 +694,39 @@ export interface VolunteerRoles {
   blockName?: string | null;
   blockType: 'volunteer-roles';
 }
+//  via the `definition` "QuoteSlider".
+ 
+export interface QuoteSlider {
+  quotes: (string | Quote1)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote1 {
+  id: string;
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
@@ -770,31 +804,6 @@ export interface Faq {
   } | null;
   publishedAt?: string | null;
   publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "quotes".
- */
-export interface Quote1 {
-  id: string;
-  quote: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  author?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1058,6 +1067,7 @@ export interface PagesSelect<T extends boolean = true> {
         quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
         'volunteer-roles'?: T | VolunteerRolesSelect<T>;
+        'quote-slider'?: T | QuoteSliderSelect<T>;
       };
   meta?:
     | T
@@ -1195,6 +1205,11 @@ export interface VolunteerRolesSelect<T extends boolean = true> {
         roleDescription?: T;
         id?: T;
       };
+    }
+// via the `definition` "QuoteSlider_select".
+ 
+export interface QuoteSliderSelect<T extends boolean = true> {
+  quotes?: T;
   id?: T;
   blockName?: T;
 }
@@ -1380,7 +1395,7 @@ export interface GenresSelect<T extends boolean = true> {
  * via the `definition` "volunteers_select".
  */
 export interface VolunteersSelect<T extends boolean = true> {
-  name?: T;
+  volunteerName?: T;
   displayName?: T;
   roleGroup?: T;
   volunteerRole?: T;

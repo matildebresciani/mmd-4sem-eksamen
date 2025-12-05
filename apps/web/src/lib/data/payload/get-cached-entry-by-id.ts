@@ -28,7 +28,7 @@ export const getCachedEntryById = cache(
                 overrideAccess: draft,
                 locale: locale,
                 pagination: false,
-                depth: 2,
+                // depth: 2,
                 where: {
                     id: {
                         equals: id,
@@ -52,7 +52,7 @@ export const getCachedEntryById = cache(
                     overrideAccess: false,
                     locale: locale,
                     pagination: false,
-                    depth: 2,
+                    // depth: 2,
                     where: {
                         id: {
                             equals: id,
