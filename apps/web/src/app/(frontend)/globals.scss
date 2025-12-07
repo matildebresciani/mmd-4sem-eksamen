@@ -6,6 +6,7 @@
 @use '../../lib/styles/containers';
 @use '../../lib/styles/helpers';
 @use '../../lib/styles/overlays';
+@use '../../lib/styles/gallery';
 
 :root {
   
@@ -18,7 +19,7 @@
 
     //Color variables fra designsystemet i Figma
     --bg-base: #FBF8F1; 
-    --bg-highlight: #3D59B0;
+    --bg-highlight: #3D59B0; 
     --bg-subtle: #D8D5CD;
     --bg-red: #DF4739;
     --bg-section-2: #BDC9E7;
@@ -87,5 +88,8 @@ body {
 
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> main
