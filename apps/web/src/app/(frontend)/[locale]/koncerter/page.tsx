@@ -20,10 +20,16 @@ export default async function Page({ params }: Props) {
 
     const concerts = await payload.find({
         collection: 'concerts',
-        sort: '-date',
+        // sort: '-date',
         limit: 50,
-        overrideAccess: false,
     });
+
+    // const concerts = await payload.find({
+    //     collection: 'concerts',
+    //     limit: 1,
+    //     page: 1,
+    //     depth: 0,
+    // });
 
     return (
         <article className="pt-4 pb-20">
@@ -31,10 +37,10 @@ export default async function Page({ params }: Props) {
                 <div className="base-block oakgrid mt-6 lg:mt-10">
                     <div className="col-span-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20">
                         <h1>Koncerter</h1>
-                        {concerts.docs.map((concert) => (
+                        {/* {concerts.docs.map((concert) => (
                             // <Card key={concert.id} concert={concert} />
                             <div key={concert.id}>{concert.artist}</div>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             </section>
