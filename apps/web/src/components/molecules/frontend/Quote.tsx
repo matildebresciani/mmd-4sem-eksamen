@@ -12,7 +12,7 @@ type Props = {
 const Quote = ({ quoteText, showName, name }: Props) => {
     return (
         <div className="oakgrid">
-            <div className="col-span-12 relative min-h-[200px]">
+            <div className="col-span-10 col-start-2 relative min-h-[200px]">
                 <Image
                     alt="quoteicon"
                     src="/images/quote.svg"
@@ -21,7 +21,7 @@ const Quote = ({ quoteText, showName, name }: Props) => {
                     className="absolute top-0 left-0"
                 />
 
-                <div className="flex flex-col gap-3 absolute left-5 top-5 w-[90%] lg:left-20 lg:top-10 lg:w-[80%]">
+                <div className="flex flex-col gap-3 absolute left-5 top-5 lg:left-20 lg:top-10 lg:w-[80%]">
                     {quoteText && <RichText data={quoteText} className="italic" />}
                     {/* Navn vises kun hvis showName er true */}
                     {showName && name && <p className="font-bold">-{name}</p>}
