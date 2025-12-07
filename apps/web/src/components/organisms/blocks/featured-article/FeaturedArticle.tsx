@@ -1,6 +1,7 @@
 import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
-import NewsBannerClient from '@/components/atoms/frontend/labels/NewsBannerClient';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
+import NewsBannerClient from '@/components/molecules/frontend/BannerSlider';
+import BannerSlider from '@/components/molecules/frontend/BannerSlider';
 import type { RoutedCollectionSlug } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
 import type { BC } from '@/lib/types/block-props';
@@ -47,7 +48,7 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
 
     return (
         <BaseBlock classNameOuter="bg-bg-highlight py-xl relative overflow-hidden">
-            {addBanner && bannerText && <NewsBannerClient bannerText={bannerText} />}
+            {addBanner && bannerText && <BannerSlider bannerText={bannerText} />}
             <div className="oakgrid">
                 <div className="col-span-12 mb-10 lg:col-span-6 relative">
                     <div className="">
