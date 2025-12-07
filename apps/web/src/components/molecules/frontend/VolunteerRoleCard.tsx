@@ -18,7 +18,7 @@ const VolunteerRoleCard = ({ thumbnail, title, description }: Props) => {
                     imgClassName="w-full h-full object-cover md:max-w-[285px] lg:w-[50%]"
                 />
             )}
-            <div className="flex flex-col p-[var(--spacing-s)] gap-[var(--spacing-s)] border-l border-solid border-base md:max-w-[305px]">
+            <div className="flex flex-col p-s gap-s border-l border-solid border-base md:max-w-[305px]">
                 <h4>{title}</h4>
                 <p>{description}</p>
             </div>
