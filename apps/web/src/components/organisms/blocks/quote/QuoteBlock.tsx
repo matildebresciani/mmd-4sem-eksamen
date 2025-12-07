@@ -7,7 +7,7 @@ const QuoteBlock: BC<QuoteProps> = ({ block }) => {
     const { richText, name, showName } = block;
     return (
         <BaseBlock>
-            <Quote richText={richText} name={name} showName={showName} />
+            <Quote quoteText={richText} name={name} showName={showName} />
         </BaseBlock>
     );
 };

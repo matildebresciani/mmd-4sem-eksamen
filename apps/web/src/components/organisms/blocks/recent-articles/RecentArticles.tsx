@@ -10,6 +10,7 @@ const RecentArticlesBlock: BC<RecentArticlesProps> = async ({ block }) => {
     const payload = await initPayload();
     const { docs: articles } = await payload.find({
         collection: 'articles',
+        sort: '-publishedAt',
         limit: 5,
     });
 

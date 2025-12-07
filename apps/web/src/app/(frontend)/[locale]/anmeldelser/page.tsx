@@ -1,12 +1,10 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import ArticlesArchive from '@/components/organisms/articles-archive/ArticlesArchive';
 import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
-import type { CollectionPageType } from '@/lib/types/collection-page';
-import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
 import React from 'react';
 
 type Props = {
@@ -34,7 +32,7 @@ export default async function Page({ params }: Props) {
             <BaseBlock>
                 <div className="oakgrid">
                     <div className="col-span-12 space-y-section-xxs">
-                        <h1 className="text-center">Anmeldelser</h1>
+                        <Heading>Anmeldelser</Heading>
                         {/* TODO: Filtrering */}
                         <ArticlesArchive articles={reviews.docs} />
                     </div>

@@ -15,7 +15,7 @@
     h4,
     .heading-4,
     h5,
-    .heading-5 {
+    .heading-5, footer {
         display: block;
         font-family: var(--font-heading);
         font-weight: 600;
@@ -205,14 +205,16 @@
     .link-text {
         font-size: 1.25rem;
         line-height: 1;
-        text-decoration: underline;
-
+        
         &:hover {
-        font-size: 1.5rem;
+        text-decoration: underline;
         }
     }
     .nav-text {
         font-size: 1rem;
         line-height: 1;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        text-align: center;
     }
 }
