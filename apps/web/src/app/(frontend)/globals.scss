@@ -6,7 +6,7 @@
 @use '../../lib/styles/containers';
 @use '../../lib/styles/helpers';
 @use '../../lib/styles/overlays';
-@use '../../lib/styles/slider';
+@use '../../lib/styles/gallery';
 
 :root {
   
@@ -14,13 +14,12 @@
     --font-body: var(--font-inclusive-sans); 
     --header-height: 104px;
     --header-height-offset: calc(var(--header-height) + 1px);
-    --header-height-desktop: 128px;
+    --header-height-desktop: 303px;
     --header-height-desktop-offset: calc(var(--header-height-desktop) + 1px);
 
- 
     //Color variables fra designsystemet i Figma
     --bg-base: #FBF8F1; 
-    --bg-highlight: #3D59B0;
+    --bg-highlight: #3D59B0; 
     --bg-subtle: #D8D5CD;
     --bg-red: #DF4739;
     --bg-section-2: #BDC9E7;
@@ -50,7 +49,7 @@
     --logo-blue: rgba(61, 89, 176, 0.77);
     --logo-brown: rgba(60, 30, 5, 0.73);    
     --logo-red: #DF4739;
-    
+ 
      //Padding variables fra designsystemet i Figma
     --p-general: 0;
     --p-xs: 8px;
@@ -60,7 +59,7 @@
     --p-l: 32px;
     --p-xl: 100px;
     --p-xxl: 265px;
- 
+
     //Spacing variables fra designsystemet i Figma
     --space-general: 0;
     --space-xxs: 48px;
@@ -71,12 +70,12 @@
     --space-xl: 160px;
     --space-xxl: 320px;
 }
-
+ 
 * {
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
 }
-
+ 
 body {
     display: flex;
     flex-direction: column;

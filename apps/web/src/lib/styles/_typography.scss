@@ -212,5 +212,8 @@
     .nav-text {
         font-size: 1rem;
         line-height: 1;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        text-align: center;
     }
 }

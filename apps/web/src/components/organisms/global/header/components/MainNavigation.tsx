@@ -16,14 +16,17 @@ const MainNavigation = ({ data, locale }: Props) => {
     const pathname = usePathname();
 
     return (
-        <nav className="flex gap-5">
+        <nav className="flex gap-5 items-center">
             {data?.map((item, i) => {
                 const itemLink = formatLink(item.link, locale);
                 return (
                     <Link
                         key={item.id ?? i}
                         href={itemLink}
-                        className={cn('hover:underline', itemLink === pathname && 'underline')}
+                        className={cn(
+                            'hover:text-bg-highlight nav-text p-1',
+                            itemLink === pathname && 'bg-bg-highlight h-fit text-button-text hover:text-button-text',
+                        )}
                         target={item.link.openNewTab ? '_blank' : '_self'}
                     >
                         {item.link.label}
