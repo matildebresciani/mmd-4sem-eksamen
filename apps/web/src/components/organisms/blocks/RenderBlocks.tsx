@@ -6,6 +6,7 @@ import ArticleAuthorBlock from './article-author/ArticleAuthor';
 import ArticleHeroBlock from './article-hero/ArticleHero';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
 import DividerBlock from './divider/Divider';
+import FaqBlock from './faq/Faq';
 import FeaturedArticleBlock from './featured-article/FeaturedArticle';
 import GalleryBlock from './gallery/Gallery';
 import HeadingBlock from './heading/HeadingBlock';
@@ -34,6 +35,7 @@ const blockComponents = {
     'featured-article': FeaturedArticleBlock,
     gallery: GalleryBlock,
     'heading-block': HeadingBlock,
+    faq: FaqBlock,
 };
 
 export const RenderBlocks: React.FC<{

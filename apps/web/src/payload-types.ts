@@ -197,6 +197,7 @@ export interface Page {
         | FeaturedArticle
         | QuoteSlider
         | HeadingBlock
+        | FAQ
       )[]
     | null;
   meta?: {
@@ -726,6 +727,44 @@ export interface HeadingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ".
+ */
+export interface FAQ {
+  heading: string;
+  faqs?: (string | Faq)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -776,33 +815,6 @@ export interface Icon {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  publishedAt?: string | null;
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * Setup menus and navigation globally across your site.
@@ -1065,6 +1077,7 @@ export interface PagesSelect<T extends boolean = true> {
         'featured-article'?: T | FeaturedArticleSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
+        faq?: T | FAQSelect<T>;
       };
   meta?:
     | T
@@ -1204,6 +1217,16 @@ export interface QuoteSliderSelect<T extends boolean = true> {
 export interface HeadingBlockSelect<T extends boolean = true> {
   headingType?: T;
   heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ_select".
+ */
+export interface FAQSelect<T extends boolean = true> {
+  heading?: T;
+  faqs?: T;
   id?: T;
   blockName?: T;
 }
