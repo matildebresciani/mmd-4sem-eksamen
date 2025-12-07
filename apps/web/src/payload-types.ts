@@ -196,6 +196,7 @@ export interface Page {
         | Quote
         | FeaturedArticle
         | QuoteSlider
+        | HeadingBlock
       )[]
     | null;
   meta?: {
@@ -714,6 +715,17 @@ export interface Quote1 {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingBlock".
+ */
+export interface HeadingBlock {
+  headingType: '1' | '2';
+  heading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heading-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -1052,6 +1064,7 @@ export interface PagesSelect<T extends boolean = true> {
         quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
+        'heading-block'?: T | HeadingBlockSelect<T>;
       };
   meta?:
     | T
@@ -1181,6 +1194,16 @@ export interface FeaturedArticleSelect<T extends boolean = true> {
  */
 export interface QuoteSliderSelect<T extends boolean = true> {
   quotes?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingBlock_select".
+ */
+export interface HeadingBlockSelect<T extends boolean = true> {
+  headingType?: T;
+  heading?: T;
   id?: T;
   blockName?: T;
 }
