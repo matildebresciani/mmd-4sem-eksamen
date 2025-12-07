@@ -1,5 +1,7 @@
 import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
+import NewsBannerClient from '@/components/molecules/frontend/BannerSlider';
+import BannerSlider from '@/components/molecules/frontend/BannerSlider';
 import type { RoutedCollectionSlug } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
 import type { BC } from '@/lib/types/block-props';
@@ -46,25 +48,15 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
 
     return (
         <BaseBlock classNameOuter="bg-bg-highlight py-xl relative overflow-hidden">
-            {addBanner && bannerText && (
-                <div className="absolute top-s left-0 w-full overflow-visible">
-                    <div className="w-screen relative left-1/2 right-1/2 -translate-x-1/2">
-                        {Array.from({ length: 30 }).map((_, i) => (
-                            <span key={i} className="ml-s text-fg-subtle button-text">
-                                {bannerText}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            )}
+            {addBanner && bannerText && <BannerSlider bannerText={bannerText} />}
             <div className="oakgrid">
-                <div className="col-span-12 lg:col-span-6 relative">
+                <div className="col-span-12 mb-10 lg:col-span-6 relative">
                     <div className="">
-                        <div className="absolute top-0 left-0 w-[90%] aspect-[4/3] bg-bg-section-2" />
+                        <div className="absolute top-0 left-0 w-[90%] h-auto aspect-[4/3] bg-bg-section-2" />
                     </div>
 
                     <div className="relative z-10 p-m">
-                        <h2 className="text-fg-highlight heading-lg">{label}</h2>
+                        <h3 className="text-fg-highlight uppercase">{label}</h3>
                     </div>
 
                     {article.contentMeta?.featuredImage && (
@@ -87,7 +79,7 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
                             {formatDateTime(article.publishedAt, 'long')}
                         </span>
                     )}
-                    <h3 className="text-fg-on-color">{article.title}</h3>
+                    <h3 className="text-fg-on-color uppercase">{article.title}</h3>
                     {article.contentMeta?.excerpt && <p className="text-fg-on-color">{article.contentMeta.excerpt}</p>}
                     <BaseButton
                         type="link"
