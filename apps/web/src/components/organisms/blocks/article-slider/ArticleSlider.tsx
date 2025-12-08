@@ -25,7 +25,7 @@ const ArticleSliderBlock: BC<ArticleSliderProps> = async ({ block }) => {
         <BaseBlock classNameOuter="overflow-hidden">
             <div className="oakgrid">
                 <div className="col-span-12">
-                    <Heading level={2} className="mb-section-m">
+                    <Heading level={2} className="mb-section-xxs">
                         {heading}
                     </Heading>
                     <div className="relative max-w-full">
