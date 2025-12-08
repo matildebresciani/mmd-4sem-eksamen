@@ -59,10 +59,9 @@ const FormClient = ({ form }: Props) => {
                 console.error('Form definition mangler');
                 return;
             }
-            console.log('CALLING SERVER ACTION submitForm:', submitForm);
             try {
                 await submitForm(formData, form.id);
-                toast.success('');
+                toast.success('Din formular er blevet sendt!');
                 methods.reset();
                 console.log('Formen blev sendt!');
             } catch (error) {

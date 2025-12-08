@@ -110,7 +110,8 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                                     inputRef.current?.click();
                                 }}
                                 className={cn(
-                                    'flex items-center justify-center border transition-colors duration-200 cursor-pointer',
+                                    'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer',
+                                    'border-border-base bg-border-subtle',
                                 )}
                             >
                                 {buttonLabel || 'Tilføj flere'}

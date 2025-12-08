@@ -7,12 +7,12 @@ import { initPayload } from '../config';
 import { getCachedEntryById } from '../data/payload/get-cached-entry-by-id';
 import { getCachedOptions } from '../data/payload/get-cached-options';
 
-const getHtmlEntriesAndAttachments = async (formData: FormData) => {
+const getHtmlEntriesAndAttachments = async (formData: FormData, labelMap: Map<string, string>) => {
     const htmlEntries = new Map<string, string[]>();
     const attachments: { filename: string; content: Buffer }[] = [];
 
     for (const [key, value] of formData.entries()) {
-        const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
+        const formattedKey = labelMap.get(key) || key;
 
         let entryArr = htmlEntries.get(formattedKey);
         if (!entryArr) {
@@ -28,7 +28,8 @@ const getHtmlEntriesAndAttachments = async (formData: FormData) => {
             });
             entryArr.push(value.name);
         } else {
-            entryArr.push(String(value));
+            const strValue = String(value).trim();
+            if (strValue) entryArr.push(strValue);
         }
     }
 
@@ -55,6 +56,16 @@ export async function submitForm(formData: FormData, formId: DynamicForm['id']) 
         throw new Error('Form config mangler');
     }
 
+    // Lav et map fra inputName → label
+    const labelMap = new Map<string, string>();
+    formConfig.sections?.forEach((section) => {
+        section.inputs?.forEach((input) => {
+            if (input?.inputName) {
+                labelMap.set(input.inputName, input.inputLabel || input.inputName);
+            }
+        });
+    });
+
     const recipientEmail = formConfig.recipientEmail || companyEmail;
     const emailSubject = formConfig.emailSubject || 'Ny henvendelse fra kontaktformular';
 
@@ -79,23 +90,34 @@ export async function submitForm(formData: FormData, formId: DynamicForm['id']) 
         }
     }
 
-    const { htmlEntries, attachments } = await getHtmlEntriesAndAttachments(formData);
+    const { htmlEntries, attachments } = await getHtmlEntriesAndAttachments(formData, labelMap);
 
     const messageBodyHtml = Array.from(htmlEntries.entries())
         .map(([key, values]) => {
             return `
-                <tr>
-                    <td>${key}</td>
-                    <td>${values.join('<br>')}</td>
-                </tr>
-            `;
+            <tr>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; background: #fafafa; width: 200px;">
+                    ${key}
+                </td>
+                <td style="padding: 10px; border: 1px solid #eee;">
+                    ${values.join('<br>')}
+                </td>
+            </tr>
+        `;
         })
         .join('');
 
     const htmlContent = `
-        <h1>${emailSubject}</h1>
-        <table>${messageBodyHtml}</table>
-    `;
+    <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+        <h1 style="font-size: 24px; margin-bottom: 20px;">${emailSubject}</h1>
+
+        <table style="width: 100%; border-collapse: collapse; font-size: 16px;">
+            <tbody>
+                ${messageBodyHtml}
+            </tbody>
+        </table>
+    </div>
+`;
 
     try {
         console.log('Sending email via payload...');
