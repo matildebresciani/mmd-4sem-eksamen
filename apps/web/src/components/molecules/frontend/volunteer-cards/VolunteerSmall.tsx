@@ -1,3 +1,4 @@
+import { formatVolunteerRole } from '@/lib/utilities/format-volunteer-role';
 import type { Volunteer } from '@/payload-types';
 
 type Props = {
@@ -5,10 +6,12 @@ type Props = {
 };
 
 const VolunteerSmall = ({ volunteer }: Props) => {
+    const role = formatVolunteerRole(volunteer);
+
     return (
         <div>
             <p>{volunteer?.displayName || volunteer?.volunteerName}</p>
-            {volunteer?.volunteerRole && <span>{volunteer?.volunteerRole}</span>}
+            {role && <span>{role}</span>}
         </div>
     );
 };

@@ -198,6 +198,7 @@ export interface Page {
         | QuoteSlider
         | HeadingBlock
         | MainTeam
+        | VolunteersTeam
       )[]
     | null;
   meta?: {
@@ -738,6 +739,37 @@ export interface MainTeam {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteersTeam".
+ */
+export interface VolunteersTeam {
+  volunteersTeam: (string | Volunteer)[];
+  addLink?: boolean | null;
+  footerText?: string | null;
+  link: {
+    type: 'reference' | 'custom';
+    openNewTab?: boolean | null;
+    url?: string | null;
+    relation?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
+        } | null);
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'volunteers-team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -1078,6 +1110,7 @@ export interface PagesSelect<T extends boolean = true> {
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
         'main-team'?: T | MainTeamSelect<T>;
+        'volunteers-team'?: T | VolunteersTeamSelect<T>;
       };
   meta?:
     | T
@@ -1227,6 +1260,26 @@ export interface HeadingBlockSelect<T extends boolean = true> {
 export interface MainTeamSelect<T extends boolean = true> {
   heading?: T;
   mainVolunteers?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteersTeam_select".
+ */
+export interface VolunteersTeamSelect<T extends boolean = true> {
+  volunteersTeam?: T;
+  addLink?: T;
+  footerText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        openNewTab?: T;
+        url?: T;
+        relation?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }

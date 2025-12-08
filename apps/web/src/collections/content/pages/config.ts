@@ -9,6 +9,7 @@ import { QuoteSlider } from '@/components/organisms/blocks/quote-slider-block/co
 import { Quote } from '@/components/organisms/blocks/quote/config';
 import { RecentArticles } from '@/components/organisms/blocks/recent-articles/config';
 import { TextImage } from '@/components/organisms/blocks/text-image/config';
+import { VolunteersTeam } from '@/components/organisms/blocks/volunteers-team/config';
 import { createRoutedCollection } from '@/lib/collection-templates/routed-collection';
 import { payloadLivePreview } from '@/lib/field-templates/live-preview';
 import { payloadMeta } from '@/lib/field-templates/meta';
@@ -29,6 +30,7 @@ const blocks: Block[] = [
     QuoteSlider,
     HeadingBlock,
     MainTeam,
+    VolunteersTeam,
 ];
 
 export const Pages = createRoutedCollection('pages', {
