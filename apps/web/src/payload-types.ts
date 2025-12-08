@@ -699,8 +699,10 @@ export interface VolunteerRoles {
   blockName?: string | null;
   blockType: 'volunteer-roles';
 }
-//  via the `definition` "Form".
- 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form".
+ */
 export interface Form {
   layout: 'one-column' | 'two-columns';
   heading?: string | null;
@@ -1349,9 +1351,13 @@ export interface VolunteerRolesSelect<T extends boolean = true> {
         roleDescription?: T;
         id?: T;
       };
-    }
-// via the `definition` "Form_select".
-
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form_select".
+ */
 export interface FormSelect<T extends boolean = true> {
   layout?: T;
   heading?: T;
