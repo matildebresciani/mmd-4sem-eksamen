@@ -78,15 +78,11 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                     handleFileChange(e.dataTransfer.files);
                 }}
                 className={cn(
-                    'flex flex-col items-center justify-center space-y-4 w-full min-h-[200px]',
-                    'px-4 md:px-30 text-center',
-                    'border-2 border-dashed rounded-theme-button transition-colors',
-                    error
-                        ? 'border-red-500'
-                        : isDragActive
-                          ? 'border-theme-border-strong bg-theme-border-subtle'
-                          : 'border-theme-border-base',
-                    hasFiles && !error ? 'bg-theme-border-subtle' : '',
+                    'flex flex-col items-center justify-center space-y-s w-full min-h-[200px]',
+                    'py-m px-s text-center',
+                    'border border-dashed transition-colors',
+                    error ? 'border-red-500' : isDragActive ? 'bg-red-500' : 'border-input-border',
+                    hasFiles && !error ? 'bg-input-bg' : '',
                 )}
             >
                 {hasFiles ? (
@@ -132,7 +128,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                     </div>
                 ) : (
                     <>
-                        <p className="">
+                        <p className="text-body-sm text-center italic font-light">
                             {placeholder || 'Upload filer ved at hive dem ind i dette vindue eller tryk på knappen'}
                         </p>
                         <button

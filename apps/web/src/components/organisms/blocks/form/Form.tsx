@@ -14,13 +14,12 @@ const FormBlock: BC<FormProps> = async ({ block, locale }) => {
         locale,
     });
 
-    //TODO: Style variabler på form fields skal nok opdateres (farver, padding, border-radius etc.)
-
     return (
         <BaseBlock>
             <div className="oakgrid">
                 <div
                     className={cn(
+                        'space-y-l',
                         layout === 'one-column' && 'col-span-12 mb-4',
                         layout === 'two-columns' && 'col-span-12 md:col-span-5',
                     )}
@@ -28,7 +27,7 @@ const FormBlock: BC<FormProps> = async ({ block, locale }) => {
                     {heading && <h2>{heading}</h2>}
                     {description && <p>{description}</p>}
                 </div>
-                {dynamicForm && <FormClient form={dynamicForm} />}
+                {dynamicForm && <FormClient form={dynamicForm} layout={layout} />}
             </div>
         </BaseBlock>
     );

@@ -3,6 +3,7 @@
 import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import { generateZodFromForm } from '@/lib/schemas/forms';
 import { submitForm } from '@/lib/server/dynamic-form-submit';
+import { cn } from '@/lib/utilities/ui';
 import type { DynamicForm } from '@/payload-types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo, useTransition } from 'react';
@@ -16,9 +17,10 @@ type FormValues = {
 
 type Props = {
     form: DynamicForm;
+    layout: 'one-column' | 'two-columns';
 };
 
-const FormClient = ({ form }: Props) => {
+const FormClient = ({ form, layout }: Props) => {
     const [isPending, startTransition] = useTransition();
 
     const dynamicSchema = useMemo(() => generateZodFromForm(form?.sections), [form]);
@@ -74,20 +76,30 @@ const FormClient = ({ form }: Props) => {
         <FormProvider {...methods}>
             <form
                 onSubmit={methods.handleSubmit(onSubmit)}
-                className="col-span-12 md:col-span-6 md:col-start-7 grid grid-cols-1 md:grid-cols-subgrid"
+                className={cn(
+                    'grid grid-cols-1 md:grid-cols-subgrid col-span-12',
+                    layout === 'two-columns' && 'md:col-span-6 md:col-start-7',
+                    layout === 'one-column' && 'md:col-span-6 md:col-start-4',
+                )}
             >
                 {form.sections?.map((section, idx) => (
                     <div
                         key={section.sectionTitle || idx}
-                        className="col-span-1 md:col-span-6 mb-16 grid grid-cols-subgrid space-y-l"
+                        className="col-span-1 md:col-span-6 grid grid-cols-subgrid space-y-l"
                     >
-                        {section.sectionTitle && <h5 className="col-span-6 mb-4">{section.sectionTitle}</h5>}
+                        {/* {section.sectionTitle && <h5 className="col-span-6 mb-4">{section.sectionTitle}</h5>} */}
                         {section.inputs?.map((field) => {
                             return <DynamicFormField key={field.id} field={field} />;
                         })}
                     </div>
                 ))}
-                <div className="col-span-1 md:col-span-6 flex justify-end">
+                <div
+                    className={cn(
+                        'flex col-span-12 md:col-span-6 mt-l',
+                        layout === 'two-columns' && 'justify-center md:justify-end',
+                        layout === 'one-column' && 'justify-center',
+                    )}
+                >
                     <BaseButton
                         type="submit"
                         variant="secondary"

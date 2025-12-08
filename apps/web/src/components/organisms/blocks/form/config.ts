@@ -33,6 +33,7 @@ export const Form: Block = {
             type: 'text',
             name: 'heading',
             label: 'Heading',
+            defaultValue: 'Send musik ind',
         },
         {
             type: 'textarea',
