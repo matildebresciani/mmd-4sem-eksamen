@@ -1,3 +1,4 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import ArticleCard from '@/components/molecules/frontend/article-cards/ArticleCard';
 import { initPayload } from '@/lib/config';
 import type { BC } from '@/lib/types/block-props';
@@ -17,7 +18,11 @@ const RecentArticlesBlock: BC<RecentArticlesProps> = async ({ block }) => {
     return (
         <BaseBlock>
             <div className="oakgrid gap-0">
-                {heading && <h2 className="col-span-12 text-center mb-section-xxs">{heading}</h2>}
+                {heading && (
+                    <Heading level={2} className="col-span-12 text-center mb-section-xxs">
+                        {heading}
+                    </Heading>
+                )}
                 <div className="col-span-12 lg:col-span-7 h-full">
                     {articles[0] && <ArticleCard variant="latest-big" article={articles[0]} />}
                 </div>
