@@ -47,7 +47,7 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
     }
 
     return (
-        <BaseBlock classNameOuter="bg-bg-highlight py-xl relative overflow-hidden">
+        <BaseBlock classNameOuter="bg-bg-highlight py-xl relative overflow-hidden mb-section-xs md:mb-section-m">
             {addBanner && bannerText && <BannerSlider bannerText={bannerText} />}
             <div className="oakgrid">
                 <div className="col-span-12 mb-10 lg:col-span-6 relative">
