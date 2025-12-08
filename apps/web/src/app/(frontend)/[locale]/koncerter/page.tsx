@@ -1,8 +1,8 @@
 import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
+import ConcertsList from '@/components/organisms/concerts-list/ConcertsList';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
-import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import React from 'react';
@@ -22,16 +22,9 @@ export default async function Page({ params }: Props) {
 
     const concerts = await payload.find({
         collection: 'concerts',
-        // sort: '-date',
+        sort: 'date',
         limit: 50,
     });
-
-    // const concerts = await payload.find({
-    //     collection: 'concerts',
-    //     limit: 1,
-    //     page: 1,
-    //     depth: 0,
-    // });
 
     return (
         <article className="pt-4 pb-20">
@@ -39,6 +32,12 @@ export default async function Page({ params }: Props) {
                 <div className="oakgrid">
                     <div className="col-span-12 space-y-section-xxs">
                         <Heading>Koncertkalender</Heading>
+                        <p>
+                            Udvalgte koncerter anbefalet af Band of Tomorrows skribenter og redaktion. Opdateres
+                            løbende. Vær opmærksom på at titlen på arrangementerne ikke nødvendigvis opdateres efter, at
+                            der er sket eventuelle ændringer ifm. lineups eller venues.
+                        </p>
+                        <ConcertsList concerts={concerts.docs} />
                     </div>
                 </div>
             </BaseBlock>
