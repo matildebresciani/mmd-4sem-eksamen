@@ -123,7 +123,7 @@ export default buildConfig({
         allowLocalizedWithinLocalized: true,
     },
     email: resendAdapter({
-        defaultFromAddress: 'onboarding@resend.dev',
+        defaultFromAddress: 'delivered@resend.dev',
         defaultFromName: 'Bands of Tomorrow',
         apiKey: process.env.RESEND_API_KEY || '',
     }),

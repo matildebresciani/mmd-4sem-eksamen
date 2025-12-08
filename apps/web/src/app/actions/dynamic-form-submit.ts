@@ -74,6 +74,7 @@ export async function submitForm(formData: FormData, formId: DynamicForm['id']) 
 
         const parsed = serverSchema.safeParse(obj);
         if (!parsed.success) {
+            console.error('SERVER ZOD ERROR:', parsed.error.errors);
             throw new Error(parsed.error.errors[0]?.message || 'Validering fejlede');
         }
     }
