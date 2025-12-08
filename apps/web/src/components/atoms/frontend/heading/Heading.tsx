@@ -42,23 +42,11 @@ export const Heading: FC<HeadingProps> = ({ level = 1, size = 'xl', className, c
         <Tag
             className={cn(styles, className, 'relative flex z-0 tracking-wider justify-center text-wrap hyphens-auto')}
         >
-            <span
-                className={cn(
-                    styles,
-                    className,
-                    'text-fg-highlight absolute z-1 translate-x-[-.4%] md:translate-x-[-.5%]',
-                )}
-            >
+            <span className={cn(styles, 'text-fg-highlight absolute z-1 translate-x-[-.4%] md:translate-x-[-.5%]')}>
                 {children}
             </span>
-            <span className={cn(styles, className, 'text-fg-base z-3')}>{children}</span>
-            <span
-                className={cn(
-                    styles,
-                    className,
-                    'text-fg-highlight-2 absolute z-1 translate-x-[.4%] md:translate-x-[.5%]',
-                )}
-            >
+            <span className={cn(styles, 'text-fg-base z-3')}>{children}</span>
+            <span className={cn(styles, 'text-fg-highlight-2 absolute z-1 translate-x-[.4%] md:translate-x-[.5%]')}>
                 {children}
             </span>
         </Tag>

@@ -1,3 +1,5 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
+import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
@@ -33,17 +35,13 @@ export default async function Page({ params }: Props) {
 
     return (
         <article className="pt-4 pb-20">
-            <section className="base-block-outer">
-                <div className="base-block oakgrid mt-6 lg:mt-10">
-                    <div className="col-span-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20">
-                        <h1>Koncerter</h1>
-                        {/* {concerts.docs.map((concert) => (
-                            // <Card key={concert.id} concert={concert} />
-                            <div key={concert.id}>{concert.artist}</div>
-                        ))} */}
+            <BaseBlock>
+                <div className="oakgrid">
+                    <div className="col-span-12 space-y-section-xxs">
+                        <Heading>Koncertkalender</Heading>
                     </div>
                 </div>
-            </section>
+            </BaseBlock>
         </article>
     );
 }
