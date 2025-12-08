@@ -22,6 +22,7 @@
         "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
     },
     "dependencies": {
+        "@hookform/resolvers": "^5.2.2",
         "@lexical/react": "^0.24.0",
         "@next/third-parties": "^15.5.4",
         "@payloadcms/db-mongodb": "3.58.0",

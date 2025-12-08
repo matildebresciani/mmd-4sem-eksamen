@@ -79,7 +79,7 @@ const FormClient = ({ form }: Props) => {
                 {form.sections?.map((section, idx) => (
                     <div
                         key={section.sectionTitle || idx}
-                        className="col-span-1 md:col-span-6 mb-16 grid grid-cols-subgrid space-y-8"
+                        className="col-span-1 md:col-span-6 mb-16 grid grid-cols-subgrid space-y-l"
                     >
                         {section.sectionTitle && <h5 className="col-span-6 mb-4">{section.sectionTitle}</h5>}
                         {section.inputs?.map((field) => {
@@ -88,7 +88,11 @@ const FormClient = ({ form }: Props) => {
                     </div>
                 ))}
                 <div className="col-span-1 md:col-span-6 flex justify-end">
-                    <BaseButton type="submit" title={form.submitButtonLabel || 'Indsend formular'} />
+                    <BaseButton
+                        type="submit"
+                        variant="secondary"
+                        title={form.submitButtonLabel || 'Indsend formular'}
+                    />
                 </div>
             </form>
         </FormProvider>

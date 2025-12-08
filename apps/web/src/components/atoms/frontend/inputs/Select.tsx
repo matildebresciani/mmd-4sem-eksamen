@@ -29,7 +29,7 @@ const Select = ({ label, name, options, placeholder, isRequired }: Props) => {
                 <select
                     id={id}
                     {...register(name, { required: isRequired })}
-                    className="appearance-none p-theme-md border border-theme-border-base bg-theme-border-subtle rounded-theme-button focus:border-theme-border-strong w-full pr-10"
+                    className="appearance-none py-m px-s border border-border-base bg-input-bg w-full pr-10"
                     defaultValue=""
                     aria-invalid={!!error}
                     aria-errormessage={error ? errorId : undefined}

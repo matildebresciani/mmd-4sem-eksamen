@@ -11,10 +11,6 @@ interface Props {
     placeholder?: string;
     maxFiles?: string | null;
 }
-
-//TODO: Button variables
-//TODO: translations
-
 const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFiles }: Props) => {
     const { register, formState, watch, setValue } = useFormContext();
     const error = formState.errors[name];
@@ -99,7 +95,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                             {Array.from(files).map((file) => (
                                 <li
                                     key={file.name + file.size}
-                                    className="text-sm text-theme-fg-subtle flex items-center justify-center gap-2"
+                                    className="text-sm flex items-center justify-center gap-2"
                                 >
                                     <span className="truncate">{file.name}</span>
                                 </li>
@@ -114,8 +110,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                                     inputRef.current?.click();
                                 }}
                                 className={cn(
-                                    'flex items-center justify-center border rounded-theme-button py-theme-sm px-theme-lg text-theme-fg-on-color transition-colors duration-200 cursor-pointer',
-                                    'border-theme-border-base bg-theme-bg-highlight hover:bg-theme-bg-invert-brand',
+                                    'flex items-center justify-center border transition-colors duration-200 cursor-pointer',
                                 )}
                             >
                                 {buttonLabel || 'Tilføj flere'}
@@ -136,7 +131,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                     </div>
                 ) : (
                     <>
-                        <p className="text-theme-fg-subtle">
+                        <p className="">
                             {placeholder || 'Upload filer ved at hive dem ind i dette vindue eller tryk på knappen'}
                         </p>
                         <button
@@ -147,8 +142,8 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                                 inputRef.current?.click();
                             }}
                             className={cn(
-                                'flex items-center justify-center gap-4 border rounded-theme-button py-theme-sm px-theme-lg text-theme-fg-on-color transition-colors duration-200 cursor-pointer',
-                                'border-theme-border-base bg-theme-bg-highlight hover:bg-theme-bg-invert-brand',
+                                'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer',
+                                'border-border-base bg-border-subtle',
                             )}
                         >
                             {buttonLabel || 'Upload filer'}

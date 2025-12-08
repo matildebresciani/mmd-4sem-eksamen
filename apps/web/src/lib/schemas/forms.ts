@@ -1,12 +1,11 @@
 import type { DynamicForm } from '@/payload-types';
-import { isServer } from '@tanstack/react-query';
-import { hasMinLength, isNonEmpty } from 'ts-array-length';
 import z from 'zod';
+import type { ZodTypeAny } from 'zod';
 
 type Section = NonNullable<DynamicForm['sections']>[number];
 type FormInput = NonNullable<Section['inputs']>[number];
 
-import type { ZodTypeAny } from 'zod';
+const isNonEmpty = <T>(arr: T[] | null | undefined): arr is [T, ...T[]] => Array.isArray(arr) && arr.length > 0;
 
 export function getFileFieldSchema(input: FormInput): ZodTypeAny {
     const errorMsg = input.inputErrorMessage || 'Dette felt er påkrævet';

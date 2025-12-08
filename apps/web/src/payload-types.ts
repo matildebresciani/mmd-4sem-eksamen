@@ -188,7 +188,19 @@ export interface Page {
    */
   title: string;
   layout?:
-    | (Hero | Paragraph | TextImage | ArticleSlider | RecentArticles | Divider | Quote | FeaturedArticle | Form)[]
+    | (
+        | Hero
+        | Paragraph
+        | TextImage
+        | ArticleSlider
+        | RecentArticles
+        | Divider
+        | Quote
+        | FeaturedArticle
+        | Form
+        | QuoteSlider
+        | HeadingBlock
+      )[]
     | null;
   meta?: {
     title?: string | null;
@@ -461,7 +473,7 @@ export interface ArticleAuthor {
  */
 export interface Volunteer {
   id: string;
-  name: string;
+  volunteerName: string;
   displayName?: string | null;
   roleGroup: 'core' | 'regular';
   volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
@@ -762,6 +774,52 @@ export interface DynamicForm {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider".
+ */
+export interface QuoteSlider {
+  quotes: (string | Quote1)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote1 {
+  id: string;
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingBlock".
+ */
+export interface HeadingBlock {
+  headingType: '1' | '2';
+  heading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heading-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -837,31 +895,6 @@ export interface Faq {
   } | null;
   publishedAt?: string | null;
   publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "quotes".
- */
-export interface Quote1 {
-  id: string;
-  quote: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  author?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1129,6 +1162,8 @@ export interface PagesSelect<T extends boolean = true> {
         quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
         form?: T | FormSelect<T>;
+        'quote-slider'?: T | QuoteSliderSelect<T>;
+        'heading-block'?: T | HeadingBlockSelect<T>;
       };
   meta?:
     | T
@@ -1261,6 +1296,25 @@ export interface FormSelect<T extends boolean = true> {
   heading?: T;
   description?: T;
   form?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider_select".
+ */
+export interface QuoteSliderSelect<T extends boolean = true> {
+  quotes?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingBlock_select".
+ */
+export interface HeadingBlockSelect<T extends boolean = true> {
+  headingType?: T;
+  heading?: T;
   id?: T;
   blockName?: T;
 }
@@ -1446,7 +1500,7 @@ export interface GenresSelect<T extends boolean = true> {
  * via the `definition` "volunteers_select".
  */
 export interface VolunteersSelect<T extends boolean = true> {
-  name?: T;
+  volunteerName?: T;
   displayName?: T;
   roleGroup?: T;
   volunteerRole?: T;

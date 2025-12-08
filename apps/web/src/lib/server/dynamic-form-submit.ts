@@ -116,6 +116,9 @@ export async function submitForm(
     `;
 
     try {
+        console.log('RESEND API KEY EXISTS:', !!process.env.RESEND_API_KEY);
+        console.log('Recipient:', recipientEmail);
+
         const email = await payload.sendEmail({
             to: recipientEmail,
             subject: emailSubject,

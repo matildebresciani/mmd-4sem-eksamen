@@ -22,7 +22,7 @@ const Textarea = ({ label, name, placeholder, isRequired }: Props) => {
                 {...register(name, { required: isRequired })}
                 placeholder={placeholder}
                 id={id}
-                className="p-theme-md border border-theme-border-base bg-theme-border-subtle rounded-theme-button focus:border-theme-border-strong"
+                className="py-m px-s border border-border-base bg-input-bg"
                 aria-invalid={!!error}
                 aria-errormessage={error ? errorId : undefined}
             />

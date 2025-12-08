@@ -123,9 +123,8 @@ export default buildConfig({
         allowLocalizedWithinLocalized: true,
     },
     email: resendAdapter({
-        //TODO: Lav egen resend bruger
-        defaultFromAddress: 'mabr0005@stud.kea.dk',
-        defaultFromName: 'Reset Password',
+        defaultFromAddress: 'onboarding@resend.dev',
+        defaultFromName: 'Bands of Tomorrow',
         apiKey: process.env.RESEND_API_KEY || '',
     }),
 });
