@@ -15,16 +15,19 @@ export function getFileFieldSchema(input: FormInput): ZodTypeAny {
             : input.fileType
         : null;
     const maxSizeMB = 5;
+
     const getFileError = (files: FileList | File[] | null | undefined, isRequired: boolean): string | null => {
-        //FileList is not available on server side
         const arr =
             global.FileList && files instanceof FileList ? Array.from(files) : Array.isArray(files) ? files : [];
+
         if (isRequired && arr.length === 0) {
             return errorMsg;
         }
+
         if (!isRequired && arr.length === 0) {
-            return null;
+            return null; // <-- IMPORTANT
         }
+
         for (const file of arr) {
             if (allowedTypes) {
                 const typeMap: Record<string, string[]> = {
@@ -45,53 +48,42 @@ export function getFileFieldSchema(input: FormInput): ZodTypeAny {
                     txt: ['text/plain'],
                     zip: ['application/zip', 'application/x-zip-compressed'],
                 };
+
                 let valid = false;
+
                 for (const t of allowedTypes) {
-                    if (t === 'all') {
-                        valid = true;
-                    }
-                    if (typeMap?.[t]?.some((mime) => file.type === mime)) {
-                        valid = true;
-                    }
-                    if (t === 'image' && /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)) valid = true;
-                    if (t === 'pdf' && /\.pdf$/i.test(file.name)) valid = true;
-                    if (t === 'word' && /\.docx?$/i.test(file.name)) valid = true;
-                    if (t === 'excel' && /\.xlsx?$/i.test(file.name)) valid = true;
-                    if (t === 'ppt' && /\.pptx?$/i.test(file.name)) valid = true;
-                    if (t === 'txt' && /\.txt$/i.test(file.name)) valid = true;
-                    if (t === 'zip' && /\.zip$/i.test(file.name)) valid = true;
+                    if (typeMap?.[t]?.some((mime) => file.type === mime)) valid = true;
                 }
+
                 if (!valid) {
                     return `Filtypen for "${file.name}" er ikke tilladt.`;
                 }
             }
+
             if (file.size > maxSizeMB * 1024 * 1024) {
                 return `Filen "${file.name}" overstiger den maksimale størrelse på ${maxSizeMB} MB.`;
             }
         }
         return null;
     };
+
     const SafeFileList =
         typeof FileList !== 'undefined'
             ? z.instanceof(FileList).refine(
-                  (files) => {
-                      const err = getFileError(files, !!input.isRequired);
-                      return !err;
-                  },
+                  (files) => !getFileError(files, !!input.isRequired),
                   (files) => ({
                       message: getFileError(files, !!input.isRequired) || errorMsg,
                   }),
               )
             : z.array(z.instanceof(File)).refine(
-                  (files) => {
-                      const err = getFileError(files, !!input.isRequired);
-                      return !err;
-                  },
+                  (files) => !getFileError(files, !!input.isRequired),
                   (files) => ({
                       message: getFileError(files, !!input.isRequired) || errorMsg,
                   }),
               );
-    return SafeFileList;
+
+    // 🟢 FIX: GØR FELTET OPTIONAL HVIS IKKE REQUIRED
+    return input.isRequired ? SafeFileList : SafeFileList.optional();
 }
 
 export const getFieldSchemaBase = ((input: FormInput) => {
