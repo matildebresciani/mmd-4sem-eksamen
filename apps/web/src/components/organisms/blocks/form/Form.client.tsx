@@ -1,8 +1,8 @@
 'use client';
 
-import { submitForm } from '@/app/actions/dynamic-form-submit';
 import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import { generateZodFromForm } from '@/lib/schemas/forms';
+import { submitForm } from '@/lib/server/dynamic-form-submit';
 import type { DynamicForm } from '@/payload-types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo, useTransition } from 'react';
