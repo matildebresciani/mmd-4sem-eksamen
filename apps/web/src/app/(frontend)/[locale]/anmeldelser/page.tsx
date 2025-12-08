@@ -1,6 +1,9 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import ArticlesArchive from '@/components/organisms/articles-archive/ArticlesArchive';
+import FilterBar from '@/components/organisms/articles-archive/FilterBar';
 import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
+import { initPayload } from '@/lib/config';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
@@ -26,14 +29,23 @@ export default async function Page({ params }: Props) {
         limit: 50,
     });
 
+    const payload = await initPayload();
+    const genresRes = await payload.find({
+        collection: 'genres',
+        sort: 'name',
+    });
+
+    const genres = genresRes.docs;
+
     return (
         <article className="pt-4 pb-20">
             <BaseBlock>
                 <div className="oakgrid">
                     <div className="col-span-12 space-y-section-xxs">
-                        <h1 className="text-center">Anmeldelser</h1>
+                        <Heading>Anmeldelser</Heading>
                         {/* TODO: Filtrering */}
-                        <ArticlesArchive articles={reviews.docs} />
+                        <FilterBar articles={reviews.docs} genres={genres} />
+                        {/* <ArticlesArchive articles={reviews.docs} /> */}
                     </div>
                 </div>
             </BaseBlock>

@@ -1,38 +1,58 @@
-// import React from 'react';
+import { cn } from '@/lib/utilities/ui';
+import { cva } from 'class-variance-authority';
+import type { FC, JSX } from 'react';
 
-// export type HeadingType = 'h1' | 'h2';
-// export type HeadingSize = 'sm' | 'base' | 'lg' | 'xl';
+type HeadingProps = {
+    level?: 1 | 2;
+    size?: '4xl' | '3xl' | '2xl' | 'xl' | 'lg' | 'sm';
+    className?: string;
+    children: React.ReactNode;
+};
 
-// export interface HeadingProps {
-//     text: string;
-//     type?: HeadingType; // h1 or h2
-//     size?: HeadingSize;
-//     align?: 'left' | 'center' | 'right';
-//     id?: string;
-//     className?: string;
-// }
+const headingStyles = cva('', {
+    variants: {
+        type: {
+            h1: 'heading-1',
+            h2: 'heading-2',
+        },
+        size: {
+            '4xl': 'heading-4xl',
+            '3xl': 'heading-3xl',
+            '2xl': 'heading-2xl',
+            xl: 'text-heading-xl md:text-heading-4xl',
+            lg: 'heading-lg',
+            sm: 'heading-sm',
+        },
+    },
+    defaultVariants: {
+        type: 'h1',
+        size: 'xl',
+    },
+});
 
-// const sizeMap: Record<HeadingSize, string> = {
-//     sm: 'text-xl',
-//     base: 'text-2xl',
-//     lg: 'text-3xl',
-//     xl: 'text-4xl',
-// };
+export const Heading: FC<HeadingProps> = ({ level = 1, size = 'xl', className, children }) => {
+    const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
-// export default function Heading({
-//     text,
-//     type = 'h2',
-//     size = 'base',
-//     align = 'left',
-//     id,
-//     className = '',
-// }: HeadingProps) {
-//     const alignClass = align === 'center' ? 'text-center' : align === 'right' ? 'text-right' : 'text-left';
-//     const Tag = type;
+    const styles = headingStyles({
+        type: `h${level}`,
+        size,
+    });
 
-//     return (
-//         <Tag id={id} className={`${sizeMap[size]} ${alignClass} font-semibold leading-tight ${className}`}>
-//             {text}
-//         </Tag>
-//     );
-// }
+    return (
+        <Tag
+            className={cn(
+                styles,
+                className,
+                'relative flex z-0 tracking-wider justify-center text-wrap hyphens-auto uppercase',
+            )}
+        >
+            <span className={cn(styles, 'text-fg-highlight absolute z-1 translate-x-[-.4%] md:translate-x-[-.5%]')}>
+                {children}
+            </span>
+            <span className={cn(styles, 'text-fg-base z-3')}>{children}</span>
+            <span className={cn(styles, 'text-fg-highlight-2 absolute z-1 translate-x-[.4%] md:translate-x-[.5%]')}>
+                {children}
+            </span>
+        </Tag>
+    );
+};

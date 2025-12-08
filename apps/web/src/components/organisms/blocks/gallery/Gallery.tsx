@@ -26,9 +26,9 @@ const GalleryBlock: BC<GalleryProps> = ({ block }) => {
     };
 
     return (
-        <BaseBlock>
+        <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid">
-                <div className={cn('col-span-12 gallery', `gallery--${layout}`)}>
+                <div className={cn('col-span-12 md:col-start-2 md:col-span-10 gallery', `gallery--${layout}`)}>
                     {Object.entries(images).map(([slot, img]) => {
                         if (!img) return null;
 

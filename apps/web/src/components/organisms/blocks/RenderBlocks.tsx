@@ -7,7 +7,10 @@ import ArticleHeroBlock from './article-hero/ArticleHero';
 import ArticleSliderBlock from './article-slider/ArticleSlider';
 import DividerBlock from './divider/Divider';
 import FeaturedArticleBlock from './featured-article/FeaturedArticle';
+import FeaturedConcertsBlock from './featured-concerts/FeaturedConcerts';
+import FormBlock from './form/Form';
 import GalleryBlock from './gallery/Gallery';
+import HeadingBlock from './heading/HeadingBlock';
 import HeroBlock from './hero/Hero';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
@@ -34,6 +37,9 @@ const blockComponents = {
     'featured-article': FeaturedArticleBlock,
     gallery: GalleryBlock,
     'volunteer-roles': VolunteerRolesBlock,
+    form: FormBlock,
+    'heading-block': HeadingBlock,
+    'featured-concerts': FeaturedConcertsBlock,
 };
 
 export const RenderBlocks: React.FC<{
