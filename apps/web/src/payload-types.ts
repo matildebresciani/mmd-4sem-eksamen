@@ -82,6 +82,7 @@ export interface Config {
     redirects: Redirect;
     users: User;
     apiKeys: ApiKey;
+    'dynamic-forms': DynamicForm;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -109,6 +110,7 @@ export interface Config {
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     apiKeys: ApiKeysSelect<false> | ApiKeysSelect<true>;
+    'dynamic-forms': DynamicFormsSelect<false> | DynamicFormsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -195,6 +197,7 @@ export interface Page {
         | Divider
         | Quote
         | FeaturedArticle
+        | Form
         | QuoteSlider
         | HeadingBlock
       )[]
@@ -680,6 +683,97 @@ export interface FeaturedArticle {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form".
+ */
+export interface Form {
+  layout: 'one-column' | 'two-columns';
+  heading?: string | null;
+  description?: string | null;
+  /**
+   * Select the form to display on this page.
+   */
+  form: string | DynamicForm;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dynamic-forms".
+ */
+export interface DynamicForm {
+  id: string;
+  title: string;
+  /**
+   * Add sections to your form. Each section can have a title and multiple input fields.
+   */
+  sections?:
+    | {
+        /**
+         * Optional title for this section
+         */
+        sectionTitle?: string | null;
+        inputs?:
+          | {
+              inputType: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file';
+              /**
+               * Must be lowercase and contain no spaces e.g: firstname. Use only letters, numbers, and underscores, and do not start with a number.
+               */
+              inputName: string;
+              inputLabel: string;
+              inputPlaceholder: string;
+              inputWidth: 'full' | 'half';
+              isRequired?: boolean | null;
+              /**
+               * Custom error message to display if validation fails.
+               */
+              inputErrorMessage?: string | null;
+              /**
+               * Options for dropdown/select field
+               */
+              selectOptions?:
+                | {
+                    label: string;
+                    /**
+                     * Must be lowercase and contain no spaces e.g: option_1. Use only letters, numbers, and underscores, and do not start with a number.
+                     */
+                    value: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              /**
+               * Vælg hvilke filtyper der må uploades
+               */
+              fileType?: ('all' | 'image' | 'pdf' | 'word' | 'excel' | 'ppt' | 'txt' | 'zip')[] | null;
+              /**
+               * Optional label for the upload button
+               */
+              uploadButtonLabel?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Label for the form submit button
+   */
+  submitButtonLabel?: string | null;
+  /**
+   * The form will be sent to this email if provided. Otherwise, the company email will be used.
+   */
+  recipientEmail?: string | null;
+  /**
+   * Subject line for the form submission email
+   */
+  emailSubject?: string | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "QuoteSlider".
  */
 export interface QuoteSlider {
@@ -992,6 +1086,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'apiKeys';
         value: string | ApiKey;
+      } | null)
+    | ({
+        relationTo: 'dynamic-forms';
+        value: string | DynamicForm;
       } | null);
   globalSlug?: string | null;
   user:
@@ -1063,6 +1161,7 @@ export interface PagesSelect<T extends boolean = true> {
         divider?: T | DividerSelect<T>;
         quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
+        form?: T | FormSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
       };
@@ -1185,6 +1284,18 @@ export interface FeaturedArticleSelect<T extends boolean = true> {
   articleType?: T;
   addBanner?: T;
   bannerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form_select".
+ */
+export interface FormSelect<T extends boolean = true> {
+  layout?: T;
+  heading?: T;
+  description?: T;
+  form?: T;
   id?: T;
   blockName?: T;
 }
@@ -1650,6 +1761,47 @@ export interface ApiKeysSelect<T extends boolean = true> {
   enableAPIKey?: T;
   apiKey?: T;
   apiKeyIndex?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dynamic-forms_select".
+ */
+export interface DynamicFormsSelect<T extends boolean = true> {
+  title?: T;
+  sections?:
+    | T
+    | {
+        sectionTitle?: T;
+        inputs?:
+          | T
+          | {
+              inputType?: T;
+              inputName?: T;
+              inputLabel?: T;
+              inputPlaceholder?: T;
+              inputWidth?: T;
+              isRequired?: T;
+              inputErrorMessage?: T;
+              selectOptions?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              fileType?: T;
+              uploadButtonLabel?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  submitButtonLabel?: T;
+  recipientEmail?: T;
+  emailSubject?: T;
+  publishedAt?: T;
+  publishStatus?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

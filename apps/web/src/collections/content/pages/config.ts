@@ -1,6 +1,7 @@
 import { ArticleSlider } from '@/components/organisms/blocks/article-slider/config';
 import { Divider } from '@/components/organisms/blocks/divider/config';
 import { FeaturedArticle } from '@/components/organisms/blocks/featured-article/config';
+import { Form } from '@/components/organisms/blocks/form/config';
 import { HeadingBlock } from '@/components/organisms/blocks/heading/config';
 import { Hero } from '@/components/organisms/blocks/hero/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
@@ -25,6 +26,7 @@ const blocks: Block[] = [
     Divider,
     Quote,
     FeaturedArticle,
+    Form,
     QuoteSlider,
     HeadingBlock,
 ];
