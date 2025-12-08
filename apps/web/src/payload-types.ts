@@ -197,6 +197,7 @@ export interface Page {
         | FeaturedArticle
         | QuoteSlider
         | HeadingBlock
+        | MainTeam
       )[]
     | null;
   meta?: {
@@ -726,6 +727,17 @@ export interface HeadingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MainTeam".
+ */
+export interface MainTeam {
+  heading: string;
+  mainVolunteers: (string | Volunteer)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'main-team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -1065,6 +1077,7 @@ export interface PagesSelect<T extends boolean = true> {
         'featured-article'?: T | FeaturedArticleSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
+        'main-team'?: T | MainTeamSelect<T>;
       };
   meta?:
     | T
@@ -1204,6 +1217,16 @@ export interface QuoteSliderSelect<T extends boolean = true> {
 export interface HeadingBlockSelect<T extends boolean = true> {
   headingType?: T;
   heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MainTeam_select".
+ */
+export interface MainTeamSelect<T extends boolean = true> {
+  heading?: T;
+  mainVolunteers?: T;
   id?: T;
   blockName?: T;
 }

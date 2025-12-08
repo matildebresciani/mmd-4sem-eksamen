@@ -10,6 +10,7 @@ import FeaturedArticleBlock from './featured-article/FeaturedArticle';
 import GalleryBlock from './gallery/Gallery';
 import HeadingBlock from './heading/HeadingBlock';
 import HeroBlock from './hero/Hero';
+import MainTeamBlock from './main-team/MainTeam';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
 import QuoteSliderBlock from './quote-slider-block/QuoteSlider';
@@ -34,6 +35,7 @@ const blockComponents = {
     'featured-article': FeaturedArticleBlock,
     gallery: GalleryBlock,
     'heading-block': HeadingBlock,
+    'main-team': MainTeamBlock,
 };
 
 export const RenderBlocks: React.FC<{

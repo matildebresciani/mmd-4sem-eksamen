@@ -3,6 +3,7 @@ import { Divider } from '@/components/organisms/blocks/divider/config';
 import { FeaturedArticle } from '@/components/organisms/blocks/featured-article/config';
 import { HeadingBlock } from '@/components/organisms/blocks/heading/config';
 import { Hero } from '@/components/organisms/blocks/hero/config';
+import { MainTeam } from '@/components/organisms/blocks/main-team/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
 import { QuoteSlider } from '@/components/organisms/blocks/quote-slider-block/config';
 import { Quote } from '@/components/organisms/blocks/quote/config';
@@ -27,6 +28,7 @@ const blocks: Block[] = [
     FeaturedArticle,
     QuoteSlider,
     HeadingBlock,
+    MainTeam,
 ];
 
 export const Pages = createRoutedCollection('pages', {
