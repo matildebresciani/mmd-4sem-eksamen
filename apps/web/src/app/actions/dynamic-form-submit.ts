@@ -4,9 +4,9 @@ import { defaultLocale } from '@/i18n/localized-collections';
 import { generateZodFromForm } from '@/lib/schemas/forms';
 import type { DynamicForm } from '@/payload-types';
 import { type Result, err, ok } from 'neverthrow';
-import { initPayload } from '../config';
-import { getCachedEntryById } from '../data/payload/get-cached-entry-by-id';
-import { getCachedOptions } from '../data/payload/get-cached-options';
+import { initPayload } from '../../lib/config';
+import { getCachedEntryById } from '../../lib/data/payload/get-cached-entry-by-id';
+import { getCachedOptions } from '../../lib/data/payload/get-cached-options';
 
 const getHtmlEntriesAndAttachments = async (formData: FormData) => {
     const htmlEntries = new Map<string, string[]>();
