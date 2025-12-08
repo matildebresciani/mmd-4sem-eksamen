@@ -200,6 +200,7 @@ export interface Page {
         | Form
         | QuoteSlider
         | HeadingBlock
+        | FeaturedConcerts
       )[]
     | null;
   meta?: {
@@ -820,6 +821,36 @@ export interface HeadingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedConcerts".
+ */
+export interface FeaturedConcerts {
+  heading: string;
+  addLink?: boolean | null;
+  link: {
+    type: 'reference' | 'custom';
+    openNewTab?: boolean | null;
+    url?: string | null;
+    relation?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
+        } | null);
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-concerts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -1164,6 +1195,7 @@ export interface PagesSelect<T extends boolean = true> {
         form?: T | FormSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
+        'featured-concerts'?: T | FeaturedConcertsSelect<T>;
       };
   meta?:
     | T
@@ -1315,6 +1347,25 @@ export interface QuoteSliderSelect<T extends boolean = true> {
 export interface HeadingBlockSelect<T extends boolean = true> {
   headingType?: T;
   heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedConcerts_select".
+ */
+export interface FeaturedConcertsSelect<T extends boolean = true> {
+  heading?: T;
+  addLink?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        openNewTab?: T;
+        url?: T;
+        relation?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }
