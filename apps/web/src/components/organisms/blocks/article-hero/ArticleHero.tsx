@@ -20,7 +20,7 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
     console.log('Article Data in Hero Block:', articleData);
 
     return (
-        <BaseBlock>
+        <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid gap-0">
                 <div
                     className={cn(
