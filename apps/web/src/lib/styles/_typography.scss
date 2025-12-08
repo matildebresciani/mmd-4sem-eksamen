@@ -176,10 +176,6 @@
 
     //Ændrer padding-bottom på payload-richtext i articles
     article {
-        > .base-block-outer:has(.payload-richtext) {
-            padding-bottom: var(--space-xxs) !important;
-        }
-
         //Styling til articles generelt
         .payload-richtext {
         p {
@@ -209,8 +205,5 @@
         //     }
         // }
         //}
-
-
-    
     }
 }

@@ -7,7 +7,7 @@ const ParagraphBlock: BC<ParagraphProps> = ({ block }) => {
     const { richText } = block;
 
     return (
-        <BaseBlock>
+        <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid">
                 <div className="col-span-10 col-start-2">{richText && <RichText data={richText} />}</div>
             </div>
