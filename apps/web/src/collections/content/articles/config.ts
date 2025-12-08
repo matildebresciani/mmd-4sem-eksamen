@@ -64,6 +64,7 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                                 { label: 'Interview', value: 'interview' },
                                 { label: 'Ugens udgivelser', value: 'weekly-releases' },
                             ],
+                            defaultValue: 'review',
                         },
                         // --- REVIEW TYPE (only if review) ---
                         {
@@ -144,11 +145,11 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             defaultValue: () => [
                                 {
                                     blockType: 'article-hero',
-                                    heading: 'Hero',
+                                    // heading: 'Hero',
                                 },
                                 {
                                     blockType: 'article-author',
-                                    heading: 'Skribent',
+                                    // heading: 'Skribent',
                                 },
                                 //TODO: Spotify felt kun for ugens udgivelser
                                 //TODO: Formular block kun for ugens udgivelser
@@ -161,7 +162,6 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                     ],
                     label: 'Content',
                 },
-
                 payloadSEO,
             ],
         },

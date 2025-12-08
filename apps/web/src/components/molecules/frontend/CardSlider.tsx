@@ -12,7 +12,7 @@ type Props = {
     articles: Article[];
 };
 
-const CardSliderClient = ({ articles }: Props) => {
+const CardSlider = ({ articles }: Props) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
@@ -56,4 +56,4 @@ const CardSliderClient = ({ articles }: Props) => {
     );
 };
 
-export default CardSliderClient;
+export default CardSlider;

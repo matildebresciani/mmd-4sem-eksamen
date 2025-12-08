@@ -2,8 +2,10 @@ import { ArticleSlider } from '@/components/organisms/blocks/article-slider/conf
 import { Divider } from '@/components/organisms/blocks/divider/config';
 import { FeaturedArticle } from '@/components/organisms/blocks/featured-article/config';
 import { Form } from '@/components/organisms/blocks/form/config';
+import { HeadingBlock } from '@/components/organisms/blocks/heading/config';
 import { Hero } from '@/components/organisms/blocks/hero/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
+import { QuoteSlider } from '@/components/organisms/blocks/quote-slider-block/config';
 import { Quote } from '@/components/organisms/blocks/quote/config';
 import { RecentArticles } from '@/components/organisms/blocks/recent-articles/config';
 import { TextImage } from '@/components/organisms/blocks/text-image/config';
@@ -25,6 +27,8 @@ const blocks: Block[] = [
     Quote,
     FeaturedArticle,
     Form,
+    QuoteSlider,
+    HeadingBlock,
 ];
 
 export const Pages = createRoutedCollection('pages', {

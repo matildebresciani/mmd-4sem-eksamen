@@ -15,11 +15,10 @@
     h4,
     .heading-4,
     h5,
-    .heading-5 {
+    .heading-5, footer {
         display: block;
         font-family: var(--font-heading);
         font-weight: 600;
-        text-transform: uppercase;
     }
 
     h1,
@@ -32,9 +31,9 @@
         // @include mix.respond-to-min(var.$lg) {
         //     font-size: 4.625rem;
         // }
-        /*font-size range 36-64px, line-height range 1.0-1.0*/
+        /*font-size range 36-64px, line-height range 1.25-1.3*/
         font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
-        line-height: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
+        line-height: clamp(2.813rem, 2.472vw + 2.233rem, 5.2rem);
     }
 
     h2,
@@ -52,7 +51,7 @@
         line-height: clamp(1.563rem, 1.78vw + 1.145rem, 3.281rem);
 
     }
-
+ 
     h3,
     .heading-3 {
         // font-size: 1.75rem;
@@ -63,9 +62,9 @@
         // @include mix.respond-to-min(var.$lg) {
         //     font-size: 2.75rem;
         // }
-        /*font-size range 20-36px, line-height range 1.25-1.00*/
+        /*font-size range 20-36px, line-height range 1.25-1.25*/
         font-size: clamp(1.25rem, 1.036vw + 1.007rem, 2.25rem);
-        line-height: clamp(1.563rem, 0.712vw + 1.396rem, 2.25rem);
+        line-height: clamp(1.563rem, 1.294vw + 1.259rem, 2.813rem);
     }
 
     h4,
@@ -78,9 +77,9 @@
         // @include mix.respond-to-min(var.$lg) {
         //     font-size: 1.75rem;
         // }
-        /*font-size range 16-20px, line-height range 1.1-1.25*/
+        /*font-size range 16-20px, line-height range 1.25-1.25*/
         font-size: clamp(1rem, 0.259vw + 0.939rem, 1.25rem);
-        line-height: clamp(1.1rem, 0.479vw + 0.988rem, 1.563rem);
+        line-height: clamp(1.25rem, 0.324vw + 1.174rem, 1.563rem);
     }
 
     h5,
@@ -205,14 +204,16 @@
     .link-text {
         font-size: 1.25rem;
         line-height: 1;
-        text-decoration: underline;
-
+        
         &:hover {
-        font-size: 1.5rem;
+        text-decoration: underline;
         }
     }
     .nav-text {
         font-size: 1rem;
         line-height: 1;
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        text-align: center;
     }
 }
