@@ -197,6 +197,7 @@ export interface Page {
         | Divider
         | Quote
         | FeaturedArticle
+        | VolunteerRoles
         | Form
         | QuoteSlider
         | HeadingBlock
@@ -681,6 +682,22 @@ export interface FeaturedArticle {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featured-article';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteerRoles".
+ */
+export interface VolunteerRoles {
+  heading?: string | null;
+  roles: {
+    roleThumbnail?: (string | null) | Media;
+    volunteerRole?: string | null;
+    roleDescription?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'volunteer-roles';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1192,6 +1209,7 @@ export interface PagesSelect<T extends boolean = true> {
         divider?: T | DividerSelect<T>;
         quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
+        'volunteer-roles'?: T | VolunteerRolesSelect<T>;
         form?: T | FormSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
@@ -1316,6 +1334,23 @@ export interface FeaturedArticleSelect<T extends boolean = true> {
   articleType?: T;
   addBanner?: T;
   bannerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteerRoles_select".
+ */
+export interface VolunteerRolesSelect<T extends boolean = true> {
+  heading?: T;
+  roles?:
+    | T
+    | {
+        roleThumbnail?: T;
+        volunteerRole?: T;
+        roleDescription?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
