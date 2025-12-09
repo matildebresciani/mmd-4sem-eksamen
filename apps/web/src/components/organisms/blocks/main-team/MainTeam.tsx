@@ -11,7 +11,11 @@ const MainTeamBlock: BC<MainTeamProps> = ({ block, locale }) => {
         <BaseBlock>
             <div className="oakgrid">
                 <div className="col-span-8 col-start-3">
-                    {heading && <Heading className="uppercase mb-m text-center">{heading}</Heading>}
+                    {heading && (
+                        <Heading level={2} className="uppercase mb-m text-center">
+                            {heading}
+                        </Heading>
+                    )}
                     <div className="grid md:grid-cols-2 gap-m">
                         {mainVolunteers?.map((volunteer) => {
                             if (typeof volunteer === 'string') return null;
