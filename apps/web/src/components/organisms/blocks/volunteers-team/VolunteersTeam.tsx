@@ -12,16 +12,16 @@ const VolunteersTeamBlock: BC<VolunteersTeamProps> = ({ block, locale }) => {
         <BaseBlock>
             <div className="oakgrid">
                 <div className="col-span-12">
-                    <div>
+                    <div className="p-l">
                         {volunteersTeam?.map((volunteer) => {
                             if (typeof volunteer === 'string') return null;
                             return <VolunteerCard key={volunteer.id} volunteer={volunteer} variant="small" />;
                         })}
                     </div>
                     {addLink && link && (
-                        <div>
-                            {footerText && <p>{footerText}</p>}
-                            <DynamicButton link={link} />
+                        <div className="flex flex-col text-center">
+                            {footerText && <h3 className="uppercase">{footerText}</h3>}
+                            <DynamicButton className="w-fit self-center m-section-xxs" link={link} />
                         </div>
                     )}
                 </div>
