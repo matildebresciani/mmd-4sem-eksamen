@@ -45,7 +45,7 @@ const LatestBigCard = ({ article }: Props) => {
                             {article.artistName && <span>{article.artistName}</span>}
                         </div>
                     </div>
-                    <h3 className="line-clamp-4">{article.title}</h3>
+                    <h4 className="line-clamp-4 uppercase">{article.title}</h4>
                 </div>
             </div>
         </Link>

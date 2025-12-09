@@ -1,3 +1,4 @@
+import { anyone } from '@/access/anyone';
 import { createCollection } from '@/lib/collection-templates/collection';
 
 export const Concerts = createCollection('concerts', {
@@ -5,6 +6,9 @@ export const Concerts = createCollection('concerts', {
         useAsTitle: 'artist',
         defaultColumns: ['artist', 'date', 'venue', 'city'],
         group: 'Content',
+    },
+    access: {
+        read: anyone,
     },
     fields: [
         // --- FEATURED IMAGE ---

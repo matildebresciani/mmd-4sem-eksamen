@@ -1,10 +1,15 @@
 import { Link } from '@/i18n/routing';
 import Logo from './Logo';
 
-const LogoLink = () => {
+type Props = {
+    variant?: 'full' | 'icon';
+    className?: string;
+};
+
+const LogoLink = ({ variant = 'icon', className }: Props) => {
     return (
         <Link href="/">
-            <Logo />
+            <Logo variant={variant} className={className} />
         </Link>
     );
 };

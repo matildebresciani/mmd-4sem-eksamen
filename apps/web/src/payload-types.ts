@@ -77,11 +77,12 @@ export interface Config {
     media: Media;
     icons: Icon;
     faqs: Faq;
-    quotes: Quote;
+    quotes: Quote1;
     navigation: Navigation;
     redirects: Redirect;
     users: User;
     apiKeys: ApiKey;
+    'dynamic-forms': DynamicForm;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -109,6 +110,7 @@ export interface Config {
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     apiKeys: ApiKeysSelect<false> | ApiKeysSelect<true>;
+    'dynamic-forms': DynamicFormsSelect<false> | DynamicFormsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -185,7 +187,25 @@ export interface Page {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Hero | Paragraph | TextImage | CardSlider | RecentArticles)[] | null;
+  layout?:
+    | (
+        | Hero
+        | Paragraph
+        | TextImage
+        | ArticleSlider
+        | RecentArticles
+        | Divider
+        | Quote
+        | FeaturedArticle
+        | VolunteerRoles
+        | Form
+        | QuoteSlider
+        | HeadingBlock
+        | MainTeam
+        | VolunteersTeam
+        | FeaturedConcerts
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -233,13 +253,13 @@ export interface Article {
    * This title will be used in references and will set the slug.
    */
   title: string;
-  layout?: (Paragraph | ArticleAuthor)[] | null;
   articleType: 'review' | 'interview' | 'weekly-releases';
   reviewType?: ('concert' | 'album') | null;
   genres?: (string | Genre)[] | null;
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -256,6 +276,71 @@ export interface Article {
     featuredImage?: (string | null) | Media;
     excerpt?: string | null;
   };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres".
+ */
+export interface Genre {
+  id: string;
+  name: string;
+  viewArticlesInGenre?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories".
+ */
+export interface ArticleCategory {
+  id: string;
+  /**
+   * This is the name of the page, it will only be used in the admin panel. And is not localized.
+   */
+  name: string;
+  /**
+   * This title will be used in references and will set the slug.
+   */
+  title: string;
+  viewArticlesInCategory?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  layout?: Paragraph[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  slug?: string | null;
+  slugLock?: boolean | null;
+  contentMeta?: {
+    featuredImage?: (string | null) | Media;
+    excerpt?: string | null;
+  };
+  parent?: (string | null) | ArticleCategory;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | ArticleCategory;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -283,32 +368,6 @@ export interface Paragraph {
   id?: string | null;
   blockName?: string | null;
   blockType: 'paragraph';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArticleAuthor".
- */
-export interface ArticleAuthor {
-  author?: (string | null) | Volunteer;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'article-author';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "volunteers".
- */
-export interface Volunteer {
-  id: string;
-  name: string;
-  displayName?: string | null;
-  roleGroup: 'core' | 'regular';
-  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
-  customRole?: string | null;
-  email?: string | null;
-  profilePicture?: (string | null) | Media;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -404,76 +463,127 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "genres".
+ * via the `definition` "ArticleAuthor".
  */
-export interface Genre {
+export interface ArticleAuthor {
+  author?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-author';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "volunteers".
+ */
+export interface Volunteer {
   id: string;
-  name: string;
-  viewArticlesInGenre?: {
-    docs?: (string | Article)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  slug?: string | null;
-  slugLock?: boolean | null;
+  volunteerName: string;
+  displayName?: string | null;
+  roleGroup: 'core' | 'regular';
+  volunteerRole: 'writer' | 'photographer' | 'social' | 'other';
+  customRole?: string | null;
+  email?: string | null;
+  profilePicture?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "article-categories".
+ * via the `definition` "RelatedArticles".
  */
-export interface ArticleCategory {
-  id: string;
+export interface RelatedArticles {
+  heading?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'related-articles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Playlist".
+ */
+export interface Playlist {
+  title?: string | null;
   /**
-   * This is the name of the page, it will only be used in the admin panel. And is not localized.
+   * Indsæt embed iframe fra Spotify.
    */
-  name: string;
-  /**
-   * This title will be used in references and will set the slug.
-   */
-  title: string;
-  viewArticlesInCategory?: {
-    docs?: (string | Article)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  layout?: Paragraph[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  slug?: string | null;
-  slugLock?: boolean | null;
-  contentMeta?: {
-    featuredImage?: (string | null) | Media;
-    excerpt?: string | null;
-  };
-  parent?: (string | null) | ArticleCategory;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | ArticleCategory;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+  playlistScript?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'playlist';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote".
+ */
+export interface Quote {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  showName?: boolean | null;
+  name?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleHero".
+ */
+export interface ArticleHero {
+  order: 'image-full-width' | 'image-split';
+  author?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'article-hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery".
+ */
+export interface Gallery {
+  layout: 'fullWidth' | 'twoColumn' | 'mosaic3' | 'bigTopTwoUnder' | 'threeColumn' | 'threeTopOneUnder';
+  slot_fullWidth?: (string | null) | Media;
+  slot_left?: (string | null) | Media;
+  slot_right?: (string | null) | Media;
+  slot_big?: (string | null) | Media;
+  slot_wideTop?: (string | null) | Media;
+  slot_wideBottom?: (string | null) | Media;
+  slot_top?: (string | null) | Media;
+  slot_bottomLeft?: (string | null) | Media;
+  slot_bottomRight?: (string | null) | Media;
+  slot_a?: (string | null) | Media;
+  slot_b?: (string | null) | Media;
+  slot_c?: (string | null) | Media;
+  slot_topLeft?: (string | null) | Media;
+  slot_topCenter?: (string | null) | Media;
+  slot_topRight?: (string | null) | Media;
+  slot_bottom?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TextImage".
  */
 export interface TextImage {
+  heading?: string | null;
   order: 'image-left' | 'image-right';
+  addBgColor?: boolean | null;
   image: string | Media;
+  mode: 'addImageSingle' | 'addImageDuplication' | 'addCard';
   richText?: {
     root: {
       type: string;
@@ -515,9 +625,9 @@ export interface TextImage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardSlider".
+ * via the `definition` "ArticleSlider".
  */
-export interface CardSlider {
+export interface ArticleSlider {
   heading: string;
   cardType?: ('review' | 'interview') | null;
   addLink?: boolean | null;
@@ -542,7 +652,7 @@ export interface CardSlider {
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'card-slider';
+  blockType: 'article-slider';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -553,6 +663,252 @@ export interface RecentArticles {
   id?: string | null;
   blockName?: string | null;
   blockType: 'recent-articles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Divider".
+ */
+export interface Divider {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'divider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedArticle".
+ */
+export interface FeaturedArticle {
+  articleType: 'weekly-releases' | 'review' | 'interview';
+  addBanner?: boolean | null;
+  bannerText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-article';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteerRoles".
+ */
+export interface VolunteerRoles {
+  heading?: string | null;
+  roles: {
+    roleThumbnail?: (string | null) | Media;
+    volunteerRole?: string | null;
+    roleDescription?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'volunteer-roles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form".
+ */
+export interface Form {
+  layout: 'one-column' | 'two-columns';
+  heading?: string | null;
+  description?: string | null;
+  /**
+   * Select the form to display on this page.
+   */
+  form: string | DynamicForm;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dynamic-forms".
+ */
+export interface DynamicForm {
+  id: string;
+  title: string;
+  /**
+   * Add sections to your form. Each section can have a title and multiple input fields.
+   */
+  sections?:
+    | {
+        /**
+         * Optional title for this section
+         */
+        sectionTitle?: string | null;
+        inputs?:
+          | {
+              inputType: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file';
+              /**
+               * Must be lowercase and contain no spaces e.g: firstname. Use only letters, numbers, and underscores, and do not start with a number.
+               */
+              inputName: string;
+              inputLabel: string;
+              inputPlaceholder: string;
+              inputWidth: 'full' | 'half';
+              isRequired?: boolean | null;
+              /**
+               * Custom error message to display if validation fails.
+               */
+              inputErrorMessage?: string | null;
+              /**
+               * Options for dropdown/select field
+               */
+              selectOptions?:
+                | {
+                    label: string;
+                    /**
+                     * Must be lowercase and contain no spaces e.g: option_1. Use only letters, numbers, and underscores, and do not start with a number.
+                     */
+                    value: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              /**
+               * Vælg hvilke filtyper der må uploades
+               */
+              fileType?: ('all' | 'image' | 'pdf' | 'word' | 'excel' | 'ppt' | 'txt' | 'zip')[] | null;
+              /**
+               * Optional label for the upload button
+               */
+              uploadButtonLabel?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Label for the form submit button
+   */
+  submitButtonLabel?: string | null;
+  /**
+   * The form will be sent to this email if provided. Otherwise, the company email will be used.
+   */
+  recipientEmail?: string | null;
+  /**
+   * Subject line for the form submission email
+   */
+  emailSubject?: string | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider".
+ */
+export interface QuoteSlider {
+  quotes: (string | Quote1)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote1 {
+  id: string;
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingBlock".
+ */
+export interface HeadingBlock {
+  headingType: '1' | '2';
+  heading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heading-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MainTeam".
+ */
+export interface MainTeam {
+  heading: string;
+  mainVolunteers: (string | Volunteer)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'main-team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteersTeam".
+ */
+export interface VolunteersTeam {
+  volunteersTeam: (string | Volunteer)[];
+  addLink?: boolean | null;
+  footerText?: string | null;
+  link: {
+    type: 'reference' | 'custom';
+    openNewTab?: boolean | null;
+    url?: string | null;
+    relation?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
+        } | null);
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'volunteers-team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedConcerts".
+ */
+export interface FeaturedConcerts {
+  heading: string;
+  addLink?: boolean | null;
+  link: {
+    type: 'reference' | 'custom';
+    openNewTab?: boolean | null;
+    url?: string | null;
+    relation?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'article-categories';
+          value: string | ArticleCategory;
+        } | null);
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-concerts';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -631,31 +987,6 @@ export interface Faq {
   } | null;
   publishedAt?: string | null;
   publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "quotes".
- */
-export interface Quote {
-  id: string;
-  quote: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  author?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -830,7 +1161,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'quotes';
-        value: string | Quote;
+        value: string | Quote1;
       } | null)
     | ({
         relationTo: 'navigation';
@@ -847,6 +1178,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'apiKeys';
         value: string | ApiKey;
+      } | null)
+    | ({
+        relationTo: 'dynamic-forms';
+        value: string | DynamicForm;
       } | null);
   globalSlug?: string | null;
   user:
@@ -913,8 +1248,18 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         'text-image'?: T | TextImageSelect<T>;
-        'card-slider'?: T | CardSliderSelect<T>;
+        'article-slider'?: T | ArticleSliderSelect<T>;
         'recent-articles'?: T | RecentArticlesSelect<T>;
+        divider?: T | DividerSelect<T>;
+        quote?: T | QuoteSelect<T>;
+        'featured-article'?: T | FeaturedArticleSelect<T>;
+        'volunteer-roles'?: T | VolunteerRolesSelect<T>;
+        form?: T | FormSelect<T>;
+        'quote-slider'?: T | QuoteSliderSelect<T>;
+        'heading-block'?: T | HeadingBlockSelect<T>;
+        'main-team'?: T | MainTeamSelect<T>;
+        'volunteers-team'?: T | VolunteersTeamSelect<T>;
+        'featured-concerts'?: T | FeaturedConcertsSelect<T>;
       };
   meta?:
     | T
@@ -960,8 +1305,11 @@ export interface ParagraphSelect<T extends boolean = true> {
  * via the `definition` "TextImage_select".
  */
 export interface TextImageSelect<T extends boolean = true> {
+  heading?: T;
   order?: T;
+  addBgColor?: T;
   image?: T;
+  mode?: T;
   richText?: T;
   addLink?: T;
   link?:
@@ -978,9 +1326,9 @@ export interface TextImageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardSlider_select".
+ * via the `definition` "ArticleSlider_select".
  */
-export interface CardSliderSelect<T extends boolean = true> {
+export interface ArticleSliderSelect<T extends boolean = true> {
   heading?: T;
   cardType?: T;
   addLink?: T;
@@ -1007,23 +1355,155 @@ export interface RecentArticlesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Divider_select".
+ */
+export interface DividerSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote_select".
+ */
+export interface QuoteSelect<T extends boolean = true> {
+  richText?: T;
+  showName?: T;
+  name?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedArticle_select".
+ */
+export interface FeaturedArticleSelect<T extends boolean = true> {
+  articleType?: T;
+  addBanner?: T;
+  bannerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteerRoles_select".
+ */
+export interface VolunteerRolesSelect<T extends boolean = true> {
+  heading?: T;
+  roles?:
+    | T
+    | {
+        roleThumbnail?: T;
+        volunteerRole?: T;
+        roleDescription?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form_select".
+ */
+export interface FormSelect<T extends boolean = true> {
+  layout?: T;
+  heading?: T;
+  description?: T;
+  form?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteSlider_select".
+ */
+export interface QuoteSliderSelect<T extends boolean = true> {
+  quotes?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeadingBlock_select".
+ */
+export interface HeadingBlockSelect<T extends boolean = true> {
+  headingType?: T;
+  heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MainTeam_select".
+ */
+export interface MainTeamSelect<T extends boolean = true> {
+  heading?: T;
+  mainVolunteers?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VolunteersTeam_select".
+ */
+export interface VolunteersTeamSelect<T extends boolean = true> {
+  volunteersTeam?: T;
+  addLink?: T;
+  footerText?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        openNewTab?: T;
+        url?: T;
+        relation?: T;
+        label?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedConcerts_select".
+ */
+export interface FeaturedConcertsSelect<T extends boolean = true> {
+  heading?: T;
+  addLink?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        openNewTab?: T;
+        url?: T;
+        relation?: T;
+        label?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
   name?: T;
   title?: T;
-  layout?:
-    | T
-    | {
-        paragraph?: T | ParagraphSelect<T>;
-        'article-author'?: T | ArticleAuthorSelect<T>;
-      };
   articleType?: T;
   reviewType?: T;
   genres?: T;
   artistName?: T;
   categories?: T;
   relatedArticles?: T;
+  layout?:
+    | T
+    | {
+        paragraph?: T | ParagraphSelect<T>;
+        'article-author'?: T | ArticleAuthorSelect<T>;
+        'related-articles'?: T | RelatedArticlesSelect<T>;
+        playlist?: T | PlaylistSelect<T>;
+        quote?: T | QuoteSelect<T>;
+        'article-hero'?: T | ArticleHeroSelect<T>;
+        gallery?: T | GallerySelect<T>;
+      };
   meta?:
     | T
     | {
@@ -1051,6 +1531,60 @@ export interface ArticlesSelect<T extends boolean = true> {
  */
 export interface ArticleAuthorSelect<T extends boolean = true> {
   author?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedArticles_select".
+ */
+export interface RelatedArticlesSelect<T extends boolean = true> {
+  heading?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Playlist_select".
+ */
+export interface PlaylistSelect<T extends boolean = true> {
+  title?: T;
+  playlistScript?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleHero_select".
+ */
+export interface ArticleHeroSelect<T extends boolean = true> {
+  order?: T;
+  author?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  layout?: T;
+  slot_fullWidth?: T;
+  slot_left?: T;
+  slot_right?: T;
+  slot_big?: T;
+  slot_wideTop?: T;
+  slot_wideBottom?: T;
+  slot_top?: T;
+  slot_bottomLeft?: T;
+  slot_bottomRight?: T;
+  slot_a?: T;
+  slot_b?: T;
+  slot_c?: T;
+  slot_topLeft?: T;
+  slot_topCenter?: T;
+  slot_topRight?: T;
+  slot_bottom?: T;
   id?: T;
   blockName?: T;
 }
@@ -1128,7 +1662,7 @@ export interface GenresSelect<T extends boolean = true> {
  * via the `definition` "volunteers_select".
  */
 export interface VolunteersSelect<T extends boolean = true> {
-  name?: T;
+  volunteerName?: T;
   displayName?: T;
   roleGroup?: T;
   volunteerRole?: T;
@@ -1389,6 +1923,47 @@ export interface ApiKeysSelect<T extends boolean = true> {
   enableAPIKey?: T;
   apiKey?: T;
   apiKeyIndex?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dynamic-forms_select".
+ */
+export interface DynamicFormsSelect<T extends boolean = true> {
+  title?: T;
+  sections?:
+    | T
+    | {
+        sectionTitle?: T;
+        inputs?:
+          | T
+          | {
+              inputType?: T;
+              inputName?: T;
+              inputLabel?: T;
+              inputPlaceholder?: T;
+              inputWidth?: T;
+              isRequired?: T;
+              inputErrorMessage?: T;
+              selectOptions?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              fileType?: T;
+              uploadButtonLabel?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  submitButtonLabel?: T;
+  recipientEmail?: T;
+  emailSubject?: T;
+  publishedAt?: T;
+  publishStatus?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

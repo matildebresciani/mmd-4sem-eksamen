@@ -16,22 +16,26 @@ type Props = {
 const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
         <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
-            <div className="col-span-12 md:col-span-5 order-2 md:order-1 ">
-                <div className="flex justify-between">
-                    <div className="flex gap-3">
-                        {article.genres && (
-                            <span>
-                                {typeof article.genres[0] === 'string' ? article.genres[0] : article.genres[0]?.name}
-                            </span>
-                        )}
-                        {article.genres && article.artistName && <span>|</span>}
-                        {article.artistName && <span>{article.artistName}</span>}
-                    </div>
+            <div className="col-span-12 p-m md:col-span-5 order-2 md:order-1 ">
+                <div className="flex justify-between pb-s items-center">
+                    {article.genres || article.artistName ? (
+                        <div className="flex gap-3">
+                            {article.genres && (
+                                <span>
+                                    {typeof article.genres[0] === 'string'
+                                        ? article.genres[0]
+                                        : article.genres[0]?.name}
+                                </span>
+                            )}
+                            {article.genres && article.artistName && <span>|</span>}
+                            {article.artistName && <span className="font-bold">{article.artistName}</span>}
+                        </div>
+                    ) : null}
                     <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                 </div>
                 <div>
-                    <h2>{article.title}</h2>
-                    <p>{article.contentMeta?.excerpt}</p>
+                    <h3 className="uppercase pb-m">{article.title}</h3>
+                    <p className="pb-base">{article.contentMeta?.excerpt}</p>
                     <BaseButton title="Læs artikel" />
                 </div>
             </div>
