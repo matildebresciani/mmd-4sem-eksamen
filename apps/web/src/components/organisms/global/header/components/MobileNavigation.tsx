@@ -38,10 +38,10 @@ const MobileNavigation = ({ data, locale }: Props) => {
                         isMenuOpen ? 'translate-x-0' : 'translate-x-full',
                     )}
                 >
-                    <div className="flex justify-end">
+                    {/* <div className="flex justify-end">
                         <Close onClick={() => setIsMenuOpen(false)} />
-                    </div>
-                    <div className="flex flex-col gap-5 items-end ">
+                    </div> */}
+                    <div className="flex flex-col gap-5 items-start mt-[var(--header-height)]">
                         {data?.map((item, i) => {
                             const itemLink = formatLink(item.link, locale);
                             return (
