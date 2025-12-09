@@ -8,7 +8,7 @@
 @use '../../lib/styles/overlays';
 
 :root {
-  
+
     --font-heading: var(--font-dela-gothic-one);
     --font-body: var(--font-inclusive-sans); 
     --header-height: 104px;
@@ -58,7 +58,7 @@
     --p-l: 32px;
     --p-xl: 100px;
     --p-xxl: 265px;
-
+    
     //Spacing variables fra designsystemet i Figma
     --space-general: 0;
     --space-xxs: 48px;
@@ -69,7 +69,7 @@
     --space-xl: 160px;
     --space-xxl: 320px;
 }
- 
+
 * {
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;

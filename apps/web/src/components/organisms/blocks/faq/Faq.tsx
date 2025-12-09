@@ -25,10 +25,8 @@ const FaqBlock: BC<FaqBlockProps> = async ({ block, locale }) => {
         <BaseBlock>
             <div className="oakgrid">
                 <div className="col-span-12 lg:col-span-8 lg:col-start-3">
-                    <h1 className="heading-3">{heading}</h1>
-                </div>
+                    <h3 className="text-center uppercase">{heading}</h3>
 
-                <div className="col-span-12 lg:col-span-8 lg:col-start-3">
                     {fetchedFaqs?.docs.map((faq) => (
                         <Accordion title={faq.question} key={faq.id}>
                             {faq.answer && <RichText data={faq.answer} />}
