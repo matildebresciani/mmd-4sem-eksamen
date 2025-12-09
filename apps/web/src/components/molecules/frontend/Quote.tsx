@@ -1,3 +1,4 @@
+import Quotation from '@/components/atoms/frontend/icons/Quotation';
 import RichText from '@/components/molecules/admin/RichText';
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import Image from 'next/image';
@@ -13,13 +14,7 @@ const Quote = ({ quoteText, showName, name }: Props) => {
     return (
         <div className="oakgrid">
             <div className="col-span-10 col-start-2 relative min-h-[200px]">
-                <Image
-                    alt="quoteicon"
-                    src="/images/quote.svg"
-                    width={134}
-                    height={88}
-                    className="absolute top-0 left-0"
-                />
+                <Quotation className="absolute top-0 left-0" />
 
                 <div className="flex flex-col gap-3 absolute left-5 top-5 lg:left-20 lg:top-10 lg:w-[80%]">
                     {quoteText && <RichText data={quoteText} className="italic" />}
