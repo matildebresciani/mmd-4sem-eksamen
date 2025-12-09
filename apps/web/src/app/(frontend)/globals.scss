@@ -7,7 +7,7 @@
 @use '../../lib/styles/helpers';
 @use '../../lib/styles/overlays';
 @use '../../lib/styles/gallery';
- 
+
 :root {
 
     --font-heading: var(--font-dela-gothic-one);
@@ -61,7 +61,7 @@
     --p-l: 32px;
     --p-xl: 100px;
     --p-xxl: 265px;
- 
+
     //Spacing variables fra designsystemet i Figma
     --space-general: 0;
     --space-xxs: 48px;

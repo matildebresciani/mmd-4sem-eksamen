@@ -35,7 +35,7 @@ const ConcertsList = ({ concerts }: Props) => {
                 <div key={month} className="oakgrid">
                     <h2 className="col-span-3">{month}</h2>
 
-                    <div className="col-start-4 col-span-9">
+                    <div className="col-span-12 md:col-start-4 md:col-span-9">
                         {concerts.map((concert) => (
                             <ConcertCard key={concert.id} concert={concert} />
                         ))}
