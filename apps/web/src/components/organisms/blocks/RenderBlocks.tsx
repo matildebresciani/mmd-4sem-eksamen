@@ -21,6 +21,7 @@ import RecentArticlesBlock from './recent-articles/RecentArticles';
 import RelatedArticlesBlock from './related-articles/RelatedArticles';
 import TextImageBlock from './text-image/TextImage';
 import VolunteerRolesBlock from './volunteer-roles/VolunteerRoles';
+import VolunteersTeamBlock from './volunteers-team/VolunteersTeam';
 
 const blockComponents = {
     hero: HeroBlock,
@@ -41,6 +42,7 @@ const blockComponents = {
     form: FormBlock,
     'heading-block': HeadingBlock,
     'main-team': MainTeamBlock,
+    'volunteers-team': VolunteersTeamBlock,
     'featured-concerts': FeaturedConcertsBlock,
 };
 
