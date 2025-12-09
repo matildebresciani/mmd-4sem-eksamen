@@ -28,17 +28,21 @@ const ConcertsList = ({ concerts }: Props) => {
         return acc;
     }, {});
 
+    // Global tæller på tværs af grupper
+    let globalIndex = 0;
+
     // 3) Render gruppe for gruppe
     return (
         <div className="">
             {Object.entries(groupedByMonth).map(([month, concerts]) => (
-                <div key={month} className="oakgrid">
-                    <h2 className="col-span-3">{month}</h2>
+                <div key={month} className="oakgrid gap-l pb-section-xxs w-full justify-content-center">
+                    <h3 className="col-span-12 md:col-span-3 text-center uppercase md:text-start">{month}</h3>
 
-                    <div className="col-span-12 md:col-start-4 md:col-span-9">
-                        {concerts.map((concert) => (
-                            <ConcertCard key={concert.id} concert={concert} />
-                        ))}
+                    <div className="col-span-12 md:col-start-4 md:col-span-9 w-full">
+                        {concerts.map((concert) => {
+                            const idx = globalIndex++;
+                            return <ConcertCard key={concert.id} concert={concert} index={idx} />;
+                        })}
                     </div>
                 </div>
             ))}

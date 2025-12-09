@@ -1,5 +1,5 @@
 @use 'tailwindcss';
-
+ 
 @theme {
     --font-heading: var(--font-heading);
     --font-body: var(--font-body);
@@ -45,7 +45,7 @@
     --spacing-l: var(--p-l);
     --spacing-xl: var(--p-xl);
     --spacing-xxl: var(--p-xxl);
- 
+
     //Spacing variables fra designsystemet i Figma
     --spacing-section-general: var(--space-general);
     --spacing-section-xxs: var(--space-xxs);
