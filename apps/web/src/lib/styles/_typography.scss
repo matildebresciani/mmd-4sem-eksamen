@@ -23,6 +23,9 @@
 
     h1,
     .heading-1 {
+<<<<<<< HEAD
+        /*font-size range 36-64px, line-height range 1.0-1.0*/
+=======
         // font-size: 2.3rem;
         // line-height: 111%;
         // @include mix.respond-to-min(var.$md) {
@@ -32,20 +35,13 @@
         //     font-size: 4.625rem;
         // }
         /*font-size range 36-64px, line-height range 1.25-1.3*/
+>>>>>>> main
         font-size: clamp(2.25rem, 1.812vw + 1.825rem, 4rem);
         line-height: clamp(2.813rem, 2.472vw + 2.233rem, 5.2rem);
     }
 
     h2,
     .heading-2 {
-        // font-size: 2rem;
-        // line-height: 111%;
-        // @include mix.respond-to-min(var.$md) {
-        //     font-size: 3rem;
-        // }
-        // @include mix.respond-to-min(var.$lg) {
-        //     font-size: 4rem;
-        // }
         /*font-size range 20-42px, line-height range 1.25-1.25*/
         font-size: clamp(1.25rem, 1.424vw + 0.916rem, 2.625rem);
         line-height: clamp(1.563rem, 1.78vw + 1.145rem, 3.281rem);
@@ -54,6 +50,9 @@
  
     h3,
     .heading-3 {
+<<<<<<< HEAD
+        /*font-size range 20-36px, line-height range 1.25-1.00*/
+=======
         // font-size: 1.75rem;
         // line-height: 112%;
         // @include mix.respond-to-min(var.$md) {
@@ -63,12 +62,16 @@
         //     font-size: 2.75rem;
         // }
         /*font-size range 20-36px, line-height range 1.25-1.25*/
+>>>>>>> main
         font-size: clamp(1.25rem, 1.036vw + 1.007rem, 2.25rem);
         line-height: clamp(1.563rem, 1.294vw + 1.259rem, 2.813rem);
     }
 
     h4,
     .heading-4 {
+<<<<<<< HEAD
+        /*font-size range 16-20px, line-height range 1.1-1.25*/
+=======
         // font-size: 1.2rem;
         // line-height: 114%;
         // @include mix.respond-to-min(var.$md) {
@@ -78,17 +81,13 @@
         //     font-size: 1.75rem;
         // }
         /*font-size range 16-20px, line-height range 1.25-1.25*/
+>>>>>>> main
         font-size: clamp(1rem, 0.259vw + 0.939rem, 1.25rem);
         line-height: clamp(1.25rem, 0.324vw + 1.174rem, 1.563rem);
     }
 
     h5,
     .heading-5 {
-    //    font-size: 1.0625rem;
-    //     line-height: 160%;
-    //     @include mix.respond-to-min(var.$md) {
-    //         font-size: 1.25rem;
-    //     }
         /*font-size range 16-20px, line-height range 1.1-1.25*/
         // font-size: clamp(1rem, 0.259vw + 0.939rem, 1.25rem);
         // line-height: clamp(1.1rem, 0.479vw + 0.988rem, 1.563rem);
@@ -97,17 +96,11 @@
     }
 
     p, li, a {
-        // font-size: 1rem;
-        // line-height: 133%;
-        // @include mix.respond-to-min(var.$md) {
-        //     font-size: 1.125rem;
-        // }
-
     /*font-size range 16-24px, line-height range 1.3-1.3*/
         font-size: clamp(1rem, 0.518vw + 0.879rem, 1.5rem);
         line-height: clamp(1.3rem, 0.673vw + 1.142rem, 1.95rem);
     }
-
+    
     span {
         font-size: 1rem;
         line-height: 1.3;
@@ -191,19 +184,19 @@
 
     .button-text {
         font-size: 1.25rem;
-        line-height: 1;
+        line-height: 1.25;
         font-family: var(--font-heading);
         text-transform: uppercase;
         font-weight: 400;
     }
     .label-text {
         font-size: 0.6875rem;
-        line-height: 1;
+        line-height: 1.25;
         font-family: var(--font-heading);
     }
     .link-text {
         font-size: 1.25rem;
-        line-height: 1;
+        line-height: 1.25;
         
         &:hover {
         text-decoration: underline;
@@ -211,9 +204,48 @@
     }
     .nav-text {
         font-size: 1rem;
+<<<<<<< HEAD
+        line-height: 1.25;
+    }
+
+    
+
+    //Ændrer padding-bottom på payload-richtext i articles
+    article {
+        //Styling til articles generelt
+        .payload-richtext {
+        p {
+            margin-bottom: var(--p-m);
+        }
+        }
+        //Styling af ugens udgivelser article (Kræver opsætning så man kan ramme en bestemt kategori)
+        //.article--ugens-udgivelser {
+        // .payload-richtext {
+        //     :nth-child(odd) {
+        //     margin-bottom: var(--p-xs);
+        //     }
+        //     :nth-child(even) {
+        //     margin-bottom: var(--p-l);
+        //     }
+        //     a {
+        //         font-size: 1.25rem;
+        //         line-height: 1.25;
+        //         font-family: var(--font-heading);
+        //         text-transform: uppercase;
+        //         color: var(--button-primary);
+        
+        //         &:hover {
+        //         text-decoration: underline;
+        //         }
+        //         //Samme som .link-text
+        //     }
+        // }
+        //}
+=======
         line-height: 1;
         font-family: var(--font-heading);
         text-transform: uppercase;
         text-align: center;
+>>>>>>> main
     }
 }
