@@ -1,4 +1,7 @@
 'use client';
+import Facebook from '@/components/atoms/frontend/icons/Facebook';
+import Instagram from '@/components/atoms/frontend/icons/Instagram';
+import LogoLink from '@/components/atoms/frontend/logo/Link';
 import type { Navigation as NavigationProps } from '@/payload-types';
 import { motion } from 'motion/react';
 import Image from 'next/image';
@@ -17,9 +20,7 @@ export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, fo
     return (
         <footer className="relative mt-auto z-20">
             <BaseBlock className="flex flex-col gap-10 py-8 md:py-8 bg-bg-base items-center z-21">
-                <Link href="/" className="z-23">
-                    <Image alt={'logo'} src={'/images/logo_bot.svg'} width={1620} height={242} />
-                </Link>
+                <LogoLink variant="full" className="relative z-50" />
                 <div className="absolute bottom-0 bg-bg-highlight w-full h-[80%] lg:h-[75%] z-22" />
                 <div className="flex flex-col gap-5 text-button-text text-center z-23">
                     {footer1 && <Navigation data={footer1} />}
@@ -29,12 +30,12 @@ export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, fo
                 <div className="flex gap-5 z-23">
                     <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
                         <Link href="/">
-                            <Image alt={'logo'} src={'/images/instagram_bot.svg'} width={47} height={47} />
+                            <Instagram />
                         </Link>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
                         <Link href="/">
-                            <Image alt={'logo'} src={'/images/facebook_bot.svg'} width={47} height={47} />
+                            <Facebook />
                         </Link>
                     </motion.div>
                 </div>

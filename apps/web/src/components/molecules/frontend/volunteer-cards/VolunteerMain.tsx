@@ -13,9 +13,9 @@ const VolunteerMain = ({ volunteer }: Props) => {
     const role = formatVolunteerRole(volunteer);
 
     return (
-        <div>
+        <div className="flex flex-col border border-solid border-base">
             {populatedPicture && (
-                <div className="relative overflow-hidden w-full h-full aspect-square">
+                <div className="relative overflow-hidden w-full h-full aspect-square max-h-[304px]">
                     <ImageMedia
                         fill
                         alt={volunteer?.volunteerName || 'Author Image'}
@@ -25,9 +25,11 @@ const VolunteerMain = ({ volunteer }: Props) => {
                     />
                 </div>
             )}
-            <p>{volunteer?.displayName || volunteer?.volunteerName}</p>
-            {role && <span>{role}</span>}
-            {volunteer?.email && <span>{volunteer?.email}</span>}
+            <div className="p-s flex flex-col hyphens-auto">
+                <h5 className="heading-l uppercase">{volunteer?.displayName || volunteer?.volunteerName}</h5>
+                {role && <span className="italic pt-xs">{role}</span>}
+                {volunteer?.email && <span className="pt-s">{volunteer?.email}</span>}
+            </div>
         </div>
     );
 };

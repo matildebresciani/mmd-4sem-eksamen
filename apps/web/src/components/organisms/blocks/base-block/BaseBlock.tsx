@@ -8,7 +8,7 @@ type Props = PropsWithChildren<{
 
 const BaseBlock = ({ className, classNameOuter, children }: Props) => {
     return (
-        <section className={cn('base-block-outer pb-20 md:pb-36 bg-bg-base', classNameOuter)}>
+        <section className={cn('base-block-outer pb-section-xs md:pb-section-m bg-bg-base', classNameOuter)}>
             <div className={cn('base-block', className)}>{children}</div>
         </section>
     );

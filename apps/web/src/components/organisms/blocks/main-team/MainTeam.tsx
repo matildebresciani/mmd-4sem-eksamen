@@ -1,3 +1,4 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import VolunteerCard from '@/components/molecules/frontend/volunteer-cards/VolunteerCard';
 import type { BC } from '@/lib/types/block-props';
 import type { MainTeam as MainTeamProps } from '@/payload-types';
@@ -9,9 +10,13 @@ const MainTeamBlock: BC<MainTeamProps> = ({ block, locale }) => {
     return (
         <BaseBlock>
             <div className="oakgrid">
-                <div className="col-span-12">
-                    {heading && <h2 className="">{heading}</h2>}
-                    <div>
+                <div className="col-span-8 col-start-3">
+                    {heading && (
+                        <Heading level={2} className="uppercase mb-m text-center">
+                            {heading}
+                        </Heading>
+                    )}
+                    <div className="grid md:grid-cols-2 gap-m">
                         {mainVolunteers?.map((volunteer) => {
                             if (typeof volunteer === 'string') return null;
                             return <VolunteerCard key={volunteer.id} volunteer={volunteer} />;

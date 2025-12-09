@@ -1,6 +1,8 @@
 import { ArticleSlider } from '@/components/organisms/blocks/article-slider/config';
 import { Divider } from '@/components/organisms/blocks/divider/config';
 import { FeaturedArticle } from '@/components/organisms/blocks/featured-article/config';
+import { FeaturedConcerts } from '@/components/organisms/blocks/featured-concerts/config';
+import { Form } from '@/components/organisms/blocks/form/config';
 import { HeadingBlock } from '@/components/organisms/blocks/heading/config';
 import { Hero } from '@/components/organisms/blocks/hero/config';
 import { MainTeam } from '@/components/organisms/blocks/main-team/config';
@@ -9,6 +11,7 @@ import { QuoteSlider } from '@/components/organisms/blocks/quote-slider-block/co
 import { Quote } from '@/components/organisms/blocks/quote/config';
 import { RecentArticles } from '@/components/organisms/blocks/recent-articles/config';
 import { TextImage } from '@/components/organisms/blocks/text-image/config';
+import { VolunteerRoles } from '@/components/organisms/blocks/volunteer-roles/config';
 import { VolunteersTeam } from '@/components/organisms/blocks/volunteers-team/config';
 import { createRoutedCollection } from '@/lib/collection-templates/routed-collection';
 import { payloadLivePreview } from '@/lib/field-templates/live-preview';
@@ -27,10 +30,13 @@ const blocks: Block[] = [
     Divider,
     Quote,
     FeaturedArticle,
+    VolunteerRoles,
+    Form,
     QuoteSlider,
     HeadingBlock,
     MainTeam,
     VolunteersTeam,
+    FeaturedConcerts,
 ];
 
 export const Pages = createRoutedCollection('pages', {
