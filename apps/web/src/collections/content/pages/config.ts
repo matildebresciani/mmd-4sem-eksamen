@@ -5,6 +5,7 @@ import { FeaturedConcerts } from '@/components/organisms/blocks/featured-concert
 import { Form } from '@/components/organisms/blocks/form/config';
 import { HeadingBlock } from '@/components/organisms/blocks/heading/config';
 import { Hero } from '@/components/organisms/blocks/hero/config';
+import { MainTeam } from '@/components/organisms/blocks/main-team/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
 import { QuoteSlider } from '@/components/organisms/blocks/quote-slider-block/config';
 import { Quote } from '@/components/organisms/blocks/quote/config';
@@ -32,6 +33,7 @@ const blocks: Block[] = [
     Form,
     QuoteSlider,
     HeadingBlock,
+    MainTeam,
     FeaturedConcerts,
 ];
 

@@ -12,6 +12,7 @@ import FormBlock from './form/Form';
 import GalleryBlock from './gallery/Gallery';
 import HeadingBlock from './heading/HeadingBlock';
 import HeroBlock from './hero/Hero';
+import MainTeamBlock from './main-team/MainTeam';
 import ParagraphBlock from './paragraph/Paragraph';
 import PlaylistBlock from './playlist-block/PlaylistBlock';
 import QuoteSliderBlock from './quote-slider-block/QuoteSlider';
@@ -39,6 +40,7 @@ const blockComponents = {
     'volunteer-roles': VolunteerRolesBlock,
     form: FormBlock,
     'heading-block': HeadingBlock,
+    'main-team': MainTeamBlock,
     'featured-concerts': FeaturedConcertsBlock,
 };
 
