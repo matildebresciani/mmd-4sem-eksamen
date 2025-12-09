@@ -11,8 +11,10 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
     const { order, image, richText, addLink, link, addBgColor, heading, mode } = block;
 
     return (
-        <BaseBlock className={cn(addBgColor && 'bg-bg-highlight text-white')}>
-            <div className="oakgrid py-[var(--padding-m)] gap-[3rem] md:py-[var(--padding-l)] lg:py-[var(--padding-xl)]">
+        <BaseBlock
+            classNameOuter={cn(addBgColor && 'bg-bg-highlight text-fg-on-color !py-xl mb-section-xs md:mb-section-m')}
+        >
+            <div className="oakgrid">
                 <div
                     className={cn(
                         'col-span-12 relative min-h-[400px] lg:sticky top-6 lg:col-span-6 xl:col-span-5',
