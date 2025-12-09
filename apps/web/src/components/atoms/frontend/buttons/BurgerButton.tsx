@@ -10,7 +10,7 @@ const BurgerButton = (props: Props) => {
         <button
             type="button"
             title="Burger"
-            className="relative flex item-center justify-center w-10 h-10"
+            className="relative flex item-center justify-center w-10 h-10 cursor-pointer"
             onClick={() => {
                 onClick(!isOpen);
             }}

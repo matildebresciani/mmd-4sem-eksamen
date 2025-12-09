@@ -9,7 +9,7 @@ const componentName = ({ onClick, label, active }: Props) => {
         <button
             type="button"
             onClick={onClick}
-            className={`px-m py-s border border-border-base ${active ? 'bg-button-subtle' : 'bg-bg-base'}`}
+            className={`px-s md:px-m py-xs md:py-s border border-border-base ${active ? 'bg-button-subtle' : 'bg-bg-base'}`}
         >
             {label}
         </button>

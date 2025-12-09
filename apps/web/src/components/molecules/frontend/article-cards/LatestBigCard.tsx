@@ -26,14 +26,14 @@ const LatestBigCard = ({ article }: Props) => {
                     )}
                 </div>
                 <div className="relative">
-                    <div className="absolute left-l -top-4 z-10">
+                    <div className="absolute left-m md:left-l -top-4 z-10">
                         <CardLabel label={formatArticleLabel(article)} />
                     </div>
                 </div>
-                <div className="p-l">
-                    <div className="flex justify-between">
+                <div className="p-m md:p-l">
+                    <div className="flex justify-between md:items-center flex-col md:flex-row gap-1 md:gap-xs mb-s">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 font-semibold">
                             {article.genres && (
                                 <span>
                                     {typeof article.genres[0] === 'string'
@@ -45,7 +45,7 @@ const LatestBigCard = ({ article }: Props) => {
                             {article.artistName && <span>{article.artistName}</span>}
                         </div>
                     </div>
-                    <h4 className="line-clamp-4 uppercase">{article.title}</h4>
+                    <h3 className="line-clamp-4 uppercase heading-4">{article.title}</h3>
                 </div>
             </div>
         </Link>

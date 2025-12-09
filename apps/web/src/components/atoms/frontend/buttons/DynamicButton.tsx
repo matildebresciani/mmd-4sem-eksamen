@@ -44,7 +44,7 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }
     if (type === 'reference') {
         return (
             <Link
-                href={formatLink(link, locale ?? 'en')}
+                href={formatLink(link, locale ?? 'da')}
                 className={buttonStyle}
                 target={openNewTab ? '_blank' : '_self'}
                 onClick={() => onClick?.()}

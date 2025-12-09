@@ -11,14 +11,16 @@ const VolunteerRoleCard = ({ thumbnail, title, description }: Props) => {
     return (
         <div className="flex flex-col md:flex-row border border-solid border-base max-w-[590px]">
             {thumbnail && typeof thumbnail !== 'string' && (
-                <ImageMedia
-                    resource={thumbnail}
-                    alt={thumbnail?.alt || 'Volunteer Role Thumbnail'}
-                    size="(min-width: 1281px) 33vw, (min-width: 769px) 50vw, 100vw"
-                    imgClassName="w-full h-full object-cover md:max-w-[285px] lg:w-[50%]"
-                />
+                <div className="w-full md:w-[285px] overflow-hidden">
+                    <ImageMedia
+                        resource={thumbnail}
+                        alt={thumbnail.alt || 'Volunteer role thumbnail'}
+                        size="100vw, (min-width: 769px) 50vw, (min-width: 1280px) 33vw"
+                        imgClassName="object-cover w-full h-full"
+                    />
+                </div>
             )}
-            <div className="flex flex-col p-s gap-s border-l border-solid border-base md:max-w-[305px]">
+            <div className="flex flex-col p-s gap-s md:border-l border-base flex-1">
                 <h4>{title}</h4>
                 <p>{description}</p>
             </div>

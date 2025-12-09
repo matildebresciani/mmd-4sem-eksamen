@@ -19,7 +19,6 @@
         display: block;
         font-family: var(--font-heading);
         font-weight: 600;
-        text-transform: uppercase;
     }
 
     h1,
@@ -178,10 +177,12 @@
     article {
         //Styling til articles generelt
         .payload-richtext {
-        p {
-            margin-bottom: var(--p-m);
+        & > * + * {
+            margin-top: var(--p-m);
         }
         }
+
+
         //Styling af ugens udgivelser article (Kræver opsætning så man kan ramme en bestemt kategori)
         //.article--ugens-udgivelser {
         // .payload-richtext {

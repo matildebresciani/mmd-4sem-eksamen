@@ -12,15 +12,14 @@ type Props = {
 
 const Quote = ({ quoteText, showName, name }: Props) => {
     return (
-        <div className="oakgrid">
-            <div className="col-span-10 col-start-2 relative min-h-[200px]">
-                <Quotation className="absolute top-0 left-0" />
+        <div className="oakgrid relative">
+            <div className="col-start-2 col-span-2 absolute top-0 left-0 z-0">
+                <Quotation />
+            </div>
 
-                <div className="flex flex-col gap-3 absolute left-5 top-5 lg:left-20 lg:top-10 lg:w-[80%]">
-                    {quoteText && <RichText data={quoteText} className="italic" />}
-                    {/* Navn vises kun hvis showName er true */}
-                    {showName && name && <p className="font-bold">-{name}</p>}
-                </div>
+            <div className="col-start-3 col-span-8 z-10 flex flex-col gap-3 pt-10">
+                {quoteText && <RichText data={quoteText} className="italic" />}
+                {showName && name && <p className="font-bold">-{name}</p>}
             </div>
         </div>
     );
