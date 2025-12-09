@@ -16,18 +16,18 @@ const BurgerButton = (props: Props) => {
             }}
         >
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[1px] bg-black transition -translate-x-1/2 ${
-                    isOpen ? '-translate-y-0 rotate-45' : '-translate-y-[5px]'
+                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
+                    isOpen ? '-translate-y-0 rotate-45' : '-translate-y-[8px]'
                 }`}
             />
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[1px] bg-black transition -translate-x-1/2 ${
+                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
                     isOpen ? 'opacity-0' : 'opacity-100'
                 }`}
             />
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[1px] bg-black transition -translate-x-1/2 ${
-                    isOpen ? '-translate-y-0 -rotate-45' : 'translate-y-[5px]'
+                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
+                    isOpen ? '-translate-y-0 -rotate-45' : 'translate-y-[8px]'
                 }`}
             />
         </button>
