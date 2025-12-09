@@ -10,7 +10,7 @@ const AuthorCard = ({ author }: Props) => {
         return null;
     }
     return (
-        <div className="p-m flex gap-s border w-full md:w-fit md:py-spacing-m md:px-section-xs justify-center">
+        <div className="p-m flex gap-s border w-full md:w-fit justify-center">
             {author.profilePicture && (
                 <div className="overflow-hidden aspect-square relative">
                     <ImageMedia
