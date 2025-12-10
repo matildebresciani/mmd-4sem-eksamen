@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { getPayload } from 'payload';
 
 type Props = {
-    params: Promise<{ locale: string }>;
+    params: { locale: string };
     searchParams?: { query?: string | string[] };
 };
 

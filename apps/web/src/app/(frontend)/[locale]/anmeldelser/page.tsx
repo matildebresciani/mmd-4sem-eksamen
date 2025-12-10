@@ -10,11 +10,12 @@ import { setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
 type Props = {
-    params: Promise<{ locale: string }>;
+    // params: Promise<{ locale: string }>;
+    params: { locale: string };
 };
 
 export default async function Page({ params }: Props) {
-    const { locale } = await params;
+    const { locale } = params;
 
     const validatedLocale = locale && isLocale(locale) ? locale : defaultLocale;
 
