@@ -30,7 +30,7 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
         articleType: true,
     },
     admin: {
-        defaultColumns: ['title', 'slug', 'updatedAt', 'publishStatus'],
+        defaultColumns: ['name', 'title', 'slug', 'publishedAt', 'updatedAt', 'publishStatus'],
         group: 'Content',
         livePreview: payloadLivePreview('articles'),
         preview: (data, { req }) =>

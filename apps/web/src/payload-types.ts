@@ -293,8 +293,6 @@ export interface Genre {
     hasNextPage?: boolean;
     totalDocs?: number;
   };
-  slug?: string | null;
-  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1696,8 +1694,6 @@ export interface ArticleCategoriesSelect<T extends boolean = true> {
 export interface GenresSelect<T extends boolean = true> {
   name?: T;
   viewArticlesInGenre?: T;
-  slug?: T;
-  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
