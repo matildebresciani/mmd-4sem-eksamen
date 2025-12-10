@@ -40,6 +40,7 @@ const blocks: Block[] = [
     FeaturedConcerts,
     MainTeam,
     VolunteersTeam,
+    TextCard,
 ];
 
 export const Pages = createRoutedCollection('pages', {
