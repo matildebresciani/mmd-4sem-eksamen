@@ -38,6 +38,8 @@ const blocks: Block[] = [
     HeadingBlock,
     FAQ,
     FeaturedConcerts,
+    MainTeam,
+    VolunteersTeam,
 ];
 
 export const Pages = createRoutedCollection('pages', {
