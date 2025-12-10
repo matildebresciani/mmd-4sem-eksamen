@@ -18,14 +18,6 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
         locale,
     });
 
-    //Caption that used image description as fallback:
-    const caption =
-        articleData?.contentMeta?.featuredImage &&
-        typeof articleData.contentMeta.featuredImage === 'object' &&
-        'caption' in articleData.contentMeta.featuredImage
-            ? articleData.contentMeta.featuredImage.caption
-            : '';
-
     return (
         <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid gap-0">
