@@ -3,7 +3,7 @@ import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import ConcertCard from '@/components/molecules/frontend/ConcertCard';
 import { initPayload } from '@/lib/config';
 import type { BC } from '@/lib/types/block-props';
-import type { Concert, FeaturedConcerts as FeaturedConcertsProps } from '@/payload-types';
+import type { FeaturedConcerts as FeaturedConcertsProps } from '@/payload-types';
 import BaseBlock from '../base-block/BaseBlock';
 
 const FeaturedConcertsBlock: BC<FeaturedConcertsProps> = async ({ block, locale }) => {

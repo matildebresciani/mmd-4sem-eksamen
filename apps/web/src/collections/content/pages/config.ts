@@ -37,6 +37,7 @@ const blocks: Block[] = [
     QuoteSlider,
     HeadingBlock,
     FAQ,
+    FeaturedConcerts,
 ];
 
 export const Pages = createRoutedCollection('pages', {
