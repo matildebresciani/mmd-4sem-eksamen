@@ -49,7 +49,7 @@ const ConcertCard = ({ concert, index }: Props) => {
                 </div>
             )}
 
-            <div className="flex flex-col md:flex-row md:pl-m md:py-m md:items-center justify-between gap-s md:w-full group-hover:bg-black/10">
+            <div className="flex flex-col md:flex-row md:pl-m md:py-m md:items-center justify-between gap-s md:w-full bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10">
                 <div className="flex justify-between items-end border border-base md:border-0 py-m px-s md:py-0 md:px-0">
                     <div className="flex flex-col gap-1 md:gap-s flex-wrap">
                         <p>{formatDateTime(concert.date, 'dot')}</p>
