@@ -1,12 +1,9 @@
 import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
-import NewsBannerClient from '@/components/molecules/frontend/BannerSlider';
 import BannerSlider from '@/components/molecules/frontend/BannerSlider';
-import type { RoutedCollectionSlug } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
 import type { BC } from '@/lib/types/block-props';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
-import { formatLink, formatLinkByCollection } from '@/lib/utilities/format-link';
 import type { FeaturedArticle as FeaturedArticleProps } from '@/payload-types';
 import BaseBlock from '../base-block/BaseBlock';
 
@@ -31,7 +28,7 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
         where: {
             articleType: { equals: articleType },
         },
-        sort: '-publishedDate',
+        sort: '-publishedAt',
         limit: 1,
     });
 

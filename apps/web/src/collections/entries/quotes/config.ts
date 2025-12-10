@@ -1,3 +1,4 @@
+import { anyone } from '@/access/anyone';
 import { createCollection } from '@/lib/collection-templates/collection';
 
 export const Quotes = createCollection('quotes', {
@@ -5,6 +6,9 @@ export const Quotes = createCollection('quotes', {
         useAsTitle: 'quote',
         group: 'Entries',
         defaultColumns: ['quote', 'author'],
+    },
+    access: {
+        read: anyone,
     },
     fields: [
         {

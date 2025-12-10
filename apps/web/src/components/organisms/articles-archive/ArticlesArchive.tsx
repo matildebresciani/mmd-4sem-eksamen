@@ -25,7 +25,7 @@ const ArticlesArchive = ({ articles }: Props) => {
                     <ArticleCard article={articles[0]} variant="featured" />
                 </motion.div>
             )}
-            <div className="grid md:grid-cols-3 gap-4 space-y-section-xs">
+            <div className="grid md:grid-cols-3 gap-4 gap-y-section-xxs md:gap-y-section-xs">
                 <AnimatePresence mode="popLayout">
                     {articles.slice(1).map((article) => (
                         <motion.div

@@ -201,9 +201,7 @@ export interface Page {
         | Form
         | QuoteSlider
         | HeadingBlock
-        | MainTeam
-        | VolunteersTeam
-        | FeaturedConcerts
+        | FAQ
       )[]
     | null;
   meta?: {
@@ -259,7 +257,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery | Form)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -292,8 +290,6 @@ export interface Genre {
     hasNextPage?: boolean;
     totalDocs?: number;
   };
-  slug?: string | null;
-  slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -543,6 +539,7 @@ export interface Quote {
  */
 export interface ArticleHero {
   order: 'image-full-width' | 'image-split';
+  imageCaption?: string | null;
   author?: (string | null) | Volunteer;
   id?: string | null;
   blockName?: string | null;
@@ -570,9 +567,101 @@ export interface Gallery {
   slot_topCenter?: (string | null) | Media;
   slot_topRight?: (string | null) | Media;
   slot_bottom?: (string | null) | Media;
+  galleryDescription?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'gallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form".
+ */
+export interface Form {
+  layout: 'one-column' | 'two-columns';
+  heading?: string | null;
+  description?: string | null;
+  /**
+   * Select the form to display on this page.
+   */
+  form: string | DynamicForm;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dynamic-forms".
+ */
+export interface DynamicForm {
+  id: string;
+  title: string;
+  /**
+   * Add sections to your form. Each section can have a title and multiple input fields.
+   */
+  sections?:
+    | {
+        /**
+         * Optional title for this section
+         */
+        sectionTitle?: string | null;
+        inputs?:
+          | {
+              inputType: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file';
+              /**
+               * Must be lowercase and contain no spaces e.g: firstname. Use only letters, numbers, and underscores, and do not start with a number.
+               */
+              inputName: string;
+              inputLabel: string;
+              inputPlaceholder: string;
+              inputWidth: 'full' | 'half';
+              isRequired?: boolean | null;
+              /**
+               * Custom error message to display if validation fails.
+               */
+              inputErrorMessage?: string | null;
+              /**
+               * Options for dropdown/select field
+               */
+              selectOptions?:
+                | {
+                    label: string;
+                    /**
+                     * Must be lowercase and contain no spaces e.g: option_1. Use only letters, numbers, and underscores, and do not start with a number.
+                     */
+                    value: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              /**
+               * Vælg hvilke filtyper der må uploades
+               */
+              fileType?: ('all' | 'image' | 'pdf' | 'word' | 'excel' | 'ppt' | 'txt' | 'zip')[] | null;
+              /**
+               * Optional label for the upload button
+               */
+              uploadButtonLabel?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Label for the form submit button
+   */
+  submitButtonLabel?: string | null;
+  /**
+   * The form will be sent to this email if provided. Otherwise, the company email will be used.
+   */
+  recipientEmail?: string | null;
+  /**
+   * Subject line for the form submission email
+   */
+  emailSubject?: string | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -703,97 +792,6 @@ export interface VolunteerRoles {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Form".
- */
-export interface Form {
-  layout: 'one-column' | 'two-columns';
-  heading?: string | null;
-  description?: string | null;
-  /**
-   * Select the form to display on this page.
-   */
-  form: string | DynamicForm;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'form';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "dynamic-forms".
- */
-export interface DynamicForm {
-  id: string;
-  title: string;
-  /**
-   * Add sections to your form. Each section can have a title and multiple input fields.
-   */
-  sections?:
-    | {
-        /**
-         * Optional title for this section
-         */
-        sectionTitle?: string | null;
-        inputs?:
-          | {
-              inputType: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file';
-              /**
-               * Must be lowercase and contain no spaces e.g: firstname. Use only letters, numbers, and underscores, and do not start with a number.
-               */
-              inputName: string;
-              inputLabel: string;
-              inputPlaceholder: string;
-              inputWidth: 'full' | 'half';
-              isRequired?: boolean | null;
-              /**
-               * Custom error message to display if validation fails.
-               */
-              inputErrorMessage?: string | null;
-              /**
-               * Options for dropdown/select field
-               */
-              selectOptions?:
-                | {
-                    label: string;
-                    /**
-                     * Must be lowercase and contain no spaces e.g: option_1. Use only letters, numbers, and underscores, and do not start with a number.
-                     */
-                    value: string;
-                    id?: string | null;
-                  }[]
-                | null;
-              /**
-               * Vælg hvilke filtyper der må uploades
-               */
-              fileType?: ('all' | 'image' | 'pdf' | 'word' | 'excel' | 'ppt' | 'txt' | 'zip')[] | null;
-              /**
-               * Optional label for the upload button
-               */
-              uploadButtonLabel?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Label for the form submit button
-   */
-  submitButtonLabel?: string | null;
-  /**
-   * The form will be sent to this email if provided. Otherwise, the company email will be used.
-   */
-  recipientEmail?: string | null;
-  /**
-   * Subject line for the form submission email
-   */
-  emailSubject?: string | null;
-  publishedAt?: string | null;
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "QuoteSlider".
  */
 export interface QuoteSlider {
@@ -840,75 +838,41 @@ export interface HeadingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MainTeam".
+ * via the `definition` "FAQ".
  */
-export interface MainTeam {
+export interface FAQ {
   heading: string;
-  mainVolunteers: (string | Volunteer)[];
+  faqs?: (string | Faq)[] | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'main-team';
+  blockType: 'faq';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "VolunteersTeam".
+ * via the `definition` "faqs".
  */
-export interface VolunteersTeam {
-  volunteersTeam: (string | Volunteer)[];
-  addLink?: boolean | null;
-  footerText?: string | null;
-  link: {
-    type: 'reference' | 'custom';
-    openNewTab?: boolean | null;
-    url?: string | null;
-    relation?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'articles';
-          value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'article-categories';
-          value: string | ArticleCategory;
-        } | null);
-    label: string;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'volunteers-team';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FeaturedConcerts".
- */
-export interface FeaturedConcerts {
-  heading: string;
-  addLink?: boolean | null;
-  link: {
-    type: 'reference' | 'custom';
-    openNewTab?: boolean | null;
-    url?: string | null;
-    relation?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'articles';
-          value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'article-categories';
-          value: string | ArticleCategory;
-        } | null);
-    label: string;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'featured-concerts';
+export interface Faq {
+  id: string;
+  question: string;
+  answer?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -962,33 +926,6 @@ export interface Icon {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  publishedAt?: string | null;
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * Setup menus and navigation globally across your site.
@@ -1257,9 +1194,7 @@ export interface PagesSelect<T extends boolean = true> {
         form?: T | FormSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
-        'main-team'?: T | MainTeamSelect<T>;
-        'volunteers-team'?: T | VolunteersTeamSelect<T>;
-        'featured-concerts'?: T | FeaturedConcertsSelect<T>;
+        faq?: T | FAQSelect<T>;
       };
   meta?:
     | T
@@ -1433,50 +1368,11 @@ export interface HeadingBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MainTeam_select".
+ * via the `definition` "FAQ_select".
  */
-export interface MainTeamSelect<T extends boolean = true> {
+export interface FAQSelect<T extends boolean = true> {
   heading?: T;
-  mainVolunteers?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "VolunteersTeam_select".
- */
-export interface VolunteersTeamSelect<T extends boolean = true> {
-  volunteersTeam?: T;
-  addLink?: T;
-  footerText?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        openNewTab?: T;
-        url?: T;
-        relation?: T;
-        label?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FeaturedConcerts_select".
- */
-export interface FeaturedConcertsSelect<T extends boolean = true> {
-  heading?: T;
-  addLink?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        openNewTab?: T;
-        url?: T;
-        relation?: T;
-        label?: T;
-      };
+  faqs?: T;
   id?: T;
   blockName?: T;
 }
@@ -1503,6 +1399,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         quote?: T | QuoteSelect<T>;
         'article-hero'?: T | ArticleHeroSelect<T>;
         gallery?: T | GallerySelect<T>;
+        form?: T | FormSelect<T>;
       };
   meta?:
     | T
@@ -1559,6 +1456,7 @@ export interface PlaylistSelect<T extends boolean = true> {
  */
 export interface ArticleHeroSelect<T extends boolean = true> {
   order?: T;
+  imageCaption?: T;
   author?: T;
   id?: T;
   blockName?: T;
@@ -1585,6 +1483,7 @@ export interface GallerySelect<T extends boolean = true> {
   slot_topCenter?: T;
   slot_topRight?: T;
   slot_bottom?: T;
+  galleryDescription?: T;
   id?: T;
   blockName?: T;
 }
@@ -1652,8 +1551,6 @@ export interface ArticleCategoriesSelect<T extends boolean = true> {
 export interface GenresSelect<T extends boolean = true> {
   name?: T;
   viewArticlesInGenre?: T;
-  slug?: T;
-  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }

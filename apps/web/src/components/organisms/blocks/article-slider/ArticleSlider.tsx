@@ -13,6 +13,7 @@ const ArticleSliderBlock: BC<ArticleSliderProps> = async ({ block }) => {
 
     const articlesRes = await getCachedCollection({
         collection: 'articles',
+        sort: '-publishedAt',
         whereFields: {
             articleType: { equals: articleType },
         },

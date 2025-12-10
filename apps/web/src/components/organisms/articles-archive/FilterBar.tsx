@@ -49,7 +49,7 @@ export default function FilterBar({ articles, genres }: Props) {
                 <h3 className="heading-lg">Filtrering:</h3>
 
                 {/* TYPE FILTER */}
-                <div className="flex gap-l items-center">
+                <div className="flex flex-col md:flex-row gap-m md:gap-l justify-start md:items-center">
                     <Checkbox
                         label="Koncertanmeldelser"
                         checked={selectedTypes.includes('concert')}
@@ -63,7 +63,7 @@ export default function FilterBar({ articles, genres }: Props) {
                 </div>
 
                 {/* GENRE BUTTONS */}
-                <div className="flex flex-wrap gap-l">
+                <div className="flex flex-wrap gap-s md:gap-m">
                     <FilterButton
                         label="Alle genrer"
                         active={activeGenre === null}
@@ -79,8 +79,6 @@ export default function FilterBar({ articles, genres }: Props) {
                         />
                     ))}
                 </div>
-
-                {/* RESULTATLISTE */}
             </div>
             <ArticlesArchive articles={filteredArticles} />
         </div>

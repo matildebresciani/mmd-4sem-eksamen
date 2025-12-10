@@ -6,7 +6,7 @@ type Props = {
     duration?: number;
 };
 
-const BannerSlider = ({ bannerText, repeatCount = 30, duration = 30 }: Props) => {
+const BannerSlider = ({ bannerText, repeatCount = 30, duration = 40 }: Props) => {
     const items = Array.from({ length: repeatCount }).map((_, i) => (
         <span key={i} className="px-s text-fg-subtle button-text">
             {bannerText}

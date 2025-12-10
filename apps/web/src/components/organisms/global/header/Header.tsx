@@ -20,11 +20,11 @@ export async function Header({ locale }: { locale: Locale }) {
             <div className="base-block flex lg:flex-col items-center justify-between gap-5 py-4 md:py-8">
                 <LogoLink variant="full" className="hidden lg:block" />
 
-                <div className="hidden lg:flex lg:base-block lg:gap-l bg-bg-base p-1 items-center">
+                <div className="hidden lg:flex lg:gap-l bg-bg-base items-center">
                     {main && <MainNavigation data={main} locale={locale} />}
                     <SearchBar />
                 </div>
-                <div className="lg:hidden flex justify-between base-block">
+                <div className="lg:hidden flex justify-between w-full">
                     <LogoLink />
                     <div className="flex gap-base items-center">
                         <SearchBar />

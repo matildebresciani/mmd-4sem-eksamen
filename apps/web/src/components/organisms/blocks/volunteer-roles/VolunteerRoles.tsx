@@ -10,8 +10,8 @@ const VolunteerRolesBlock: BC<VolunteerRolesProps> = ({ block }) => {
         <BaseBlock>
             <div className="oakgrid">
                 <div className="grid col-span-12 justify-items-center gap-section-xxs">
-                    <h2>{heading}</h2>
-                    <div className="grid lg:grid-cols-2 gap-5">
+                    <h2 className="heading-3 uppercase text-center">{heading}</h2>
+                    <div className="grid lg:grid-cols-2 gap-y-l gap-x-m">
                         {roles.map((role) => (
                             <VolunteerRoleCard
                                 key={role.id}

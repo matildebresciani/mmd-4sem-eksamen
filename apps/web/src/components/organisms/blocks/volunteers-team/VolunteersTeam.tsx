@@ -20,7 +20,7 @@ const VolunteersTeamBlock: BC<VolunteersTeamProps> = ({ block, locale }) => {
                 <div className="col-span-12 md:col-start-4 md:col-span-6 mt-l">
                     {addLink && link && (
                         <div className="flex flex-col text-center">
-                            {footerText && <h3 className="uppercase">{footerText}</h3>}
+                            {footerText && <h3 className="uppercase heading-4">{footerText}</h3>}
                             <DynamicButton className="w-fit self-center mt-m" link={link} />
                         </div>
                     )}

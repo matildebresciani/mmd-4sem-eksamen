@@ -7,9 +7,12 @@
 @use '../../lib/styles/helpers';
 @use '../../lib/styles/overlays';
 @use '../../lib/styles/gallery';
+@use '../../lib/styles/slider';
+
  
 :root {
-    --font-heading: var(--font-dela-gothic-one);
+
+    --font-heading: var(--font-dela-gothic-one); 
     --font-body: var(--font-inclusive-sans); 
     --header-height: 104px;
     --header-height-offset: calc(var(--header-height) + 1px);
@@ -22,7 +25,7 @@
     --bg-subtle: #D8D5CD;
     --bg-red: #DF4739;
     --bg-section-2: #BDC9E7;
-
+    
     --fg-base: #33261C;
     --fg-on-color: #FBF8F1;
     --fg-subtle: #BDC9E7;
