@@ -19,6 +19,7 @@ import QuoteSliderBlock from './quote-slider-block/QuoteSlider';
 import QuoteBlock from './quote/QuoteBlock';
 import RecentArticlesBlock from './recent-articles/RecentArticles';
 import RelatedArticlesBlock from './related-articles/RelatedArticles';
+import TextCardBlock from './text-card/TextCard';
 import TextImageBlock from './text-image/TextImage';
 import VolunteerRolesBlock from './volunteer-roles/VolunteerRoles';
 import VolunteersTeamBlock from './volunteers-team/VolunteersTeam';
@@ -44,6 +45,7 @@ const blockComponents = {
     'main-team': MainTeamBlock,
     'volunteers-team': VolunteersTeamBlock,
     'featured-concerts': FeaturedConcertsBlock,
+    'text-card': TextCardBlock,
 };
 
 export const RenderBlocks: React.FC<{

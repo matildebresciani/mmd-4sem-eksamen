@@ -13,7 +13,7 @@ const VolunteerMain = ({ volunteer }: Props) => {
     const role = formatVolunteerRole(volunteer);
 
     return (
-        <div className="flex flex-col border border-solid border-base">
+        <div className="flex flex-col border border-base text-fg-base bg-bg-base">
             {populatedPicture && (
                 <div className="relative overflow-hidden w-full h-full aspect-square max-h-[304px]">
                     <ImageMedia

@@ -1,9 +1,9 @@
 import DynamicButton from '@/components/atoms/frontend/buttons/DynamicButton';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
-import RichText from '@/components/molecules/admin/RichText';
 import type { BC } from '@/lib/types/block-props';
 import { cn } from '@/lib/utilities/ui';
 import type { TextImage as TextImageProps } from '@/payload-types';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 import React from 'react';
 import BaseBlock from '../base-block/BaseBlock';
 

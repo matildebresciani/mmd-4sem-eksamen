@@ -10,6 +10,7 @@ import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
 import { QuoteSlider } from '@/components/organisms/blocks/quote-slider-block/config';
 import { Quote } from '@/components/organisms/blocks/quote/config';
 import { RecentArticles } from '@/components/organisms/blocks/recent-articles/config';
+import { TextCard } from '@/components/organisms/blocks/text-card/config';
 import { TextImage } from '@/components/organisms/blocks/text-image/config';
 import { VolunteerRoles } from '@/components/organisms/blocks/volunteer-roles/config';
 import { VolunteersTeam } from '@/components/organisms/blocks/volunteers-team/config';
@@ -37,6 +38,7 @@ const blocks: Block[] = [
     MainTeam,
     VolunteersTeam,
     FeaturedConcerts,
+    TextCard,
 ];
 
 export const Pages = createRoutedCollection('pages', {
