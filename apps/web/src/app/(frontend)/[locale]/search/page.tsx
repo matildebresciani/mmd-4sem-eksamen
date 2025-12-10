@@ -4,8 +4,17 @@ import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import Link from 'next/link';
 import { getPayload } from 'payload';
 
-export default async function SearchPage({ searchParams }: { searchParams: { query?: string } }) {
-    const q = searchParams.query || '';
+type SearchParams = {
+    query?: string | string[];
+};
+
+export default async function SearchPage({
+    searchParams,
+}: {
+    searchParams?: SearchParams;
+}) {
+    const raw = searchParams?.query;
+    const q = Array.isArray(raw) ? raw[0] : (raw ?? '');
 
     const payload = await initPayload();
 
