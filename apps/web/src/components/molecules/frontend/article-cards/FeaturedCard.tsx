@@ -15,8 +15,8 @@ type Props = {
 
 const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
-        <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
-            <div className="col-span-12 p-[var(--p-m)] md:col-span-5 order-2 md:order-1 ">
+        <Link className={`oakgrid border group ${className}`} href={getArticleUrl(article)}>
+            <div className="col-span-12 p-[var(--p-m)] md:col-span-5 order-2 md:order-1 bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10">
                 <div className="flex justify-between pb-[var(--p-s)] items-center">
                     <div className="flex gap-3">
                         {article.genres && (
@@ -41,7 +41,7 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                         fill
                         alt={article?.title || 'Article Image'}
                         resource={article?.contentMeta?.featuredImage}
-                        imgClassName="object-cover w-full h-full"
+                        imgClassName="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-120"
                     />
                 )}
                 {showLabel && (

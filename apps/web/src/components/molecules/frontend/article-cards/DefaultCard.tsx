@@ -14,15 +14,17 @@ type Props = {
 
 const DefaultCard = ({ article, showLabel, className }: Props) => {
     return (
-        <Link href={getArticleUrl(article)}>
-            <div className={`border h-full flex flex-col ${className}`}>
+        <Link href={getArticleUrl(article)} className="group">
+            <div
+                className={`border h-full flex flex-col bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10 ${className}`}
+            >
                 <div className="relative overflow-hidden w-full aspect-square border-b">
                     {article?.contentMeta?.featuredImage && (
                         <ImageMedia
                             fill
                             alt={article?.title || 'Article Image'}
                             resource={article?.contentMeta?.featuredImage}
-                            imgClassName="object-cover w-full h-full"
+                            imgClassName="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-120"
                             size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
                         />
                     )}
