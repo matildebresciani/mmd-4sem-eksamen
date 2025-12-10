@@ -544,6 +544,7 @@ export interface Quote {
  */
 export interface ArticleHero {
   order: 'image-full-width' | 'image-split';
+  imageCaption?: string | null;
   author?: (string | null) | Volunteer;
   id?: string | null;
   blockName?: string | null;
@@ -571,6 +572,7 @@ export interface Gallery {
   slot_topCenter?: (string | null) | Media;
   slot_topRight?: (string | null) | Media;
   slot_bottom?: (string | null) | Media;
+  galleryDescription?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'gallery';
@@ -1599,6 +1601,7 @@ export interface PlaylistSelect<T extends boolean = true> {
  */
 export interface ArticleHeroSelect<T extends boolean = true> {
   order?: T;
+  imageCaption?: T;
   author?: T;
   id?: T;
   blockName?: T;
@@ -1625,6 +1628,7 @@ export interface GallerySelect<T extends boolean = true> {
   slot_topCenter?: T;
   slot_topRight?: T;
   slot_bottom?: T;
+  galleryDescription?: T;
   id?: T;
   blockName?: T;
 }

@@ -1,5 +1,6 @@
 import CardLabel from '@/components/atoms/frontend/labels/CardLabel';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
+import RichText from '@/components/molecules/admin/RichText';
 import { getCachedEntryById } from '@/lib/data/payload/get-cached-entry-by-id';
 import type { BC } from '@/lib/types/block-props';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
@@ -9,7 +10,7 @@ import type { ArticleHero as ArticleHeroProps } from '@/payload-types';
 import BaseBlock from '../base-block/BaseBlock';
 
 const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId }) => {
-    const { order, author } = block;
+    const { order, author, imageCaption } = block;
 
     const articleData = await getCachedEntryById({
         collection: 'articles',
@@ -17,10 +18,24 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
         locale,
     });
 
+    const image =
+        articleData?.contentMeta?.featuredImage && typeof articleData.contentMeta.featuredImage === 'object'
+            ? articleData.contentMeta.featuredImage
+            : null;
+
+    const altText =
+        (image?.alt && typeof image.alt === 'string'
+            ? image.alt
+            : typeof image?.alt === 'object'
+              ? image?.alt
+              : null) ||
+        articleData?.title ||
+        'Article Image';
+
     return (
         <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid gap-0">
-                <div
+                <figure
                     className={cn(
                         'col-span-12 relative overflow-hidden w-full border border-border-base',
                         order === 'image-split' &&
@@ -28,18 +43,20 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                         order === 'image-full-width' && 'min-h-[400px] border-b-0',
                     )}
                 >
-                    {articleData?.contentMeta?.featuredImage && (
-                        <ImageMedia
-                            fill
-                            alt={articleData?.title || 'Article Image'}
-                            resource={articleData?.contentMeta?.featuredImage}
-                            imgClassName="object-cover w-full h-full"
-                        />
+                    {image && (
+                        <ImageMedia fill alt={altText} resource={image} imgClassName="object-cover w-full h-full" />
                     )}
                     <div className="absolute top-4 left-4 z-10">
                         {articleData?.articleType && <CardLabel label={formatArticleLabel(articleData)} />}
                     </div>
-                </div>
+
+                    {imageCaption && (
+                        <figcaption className="absolute bottom-4 left-4 text-fg-on-color text-sm italic z-10 w-full">
+                            {imageCaption}
+                        </figcaption>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </figure>
                 <div
                     className={cn(
                         'col-span-12',
