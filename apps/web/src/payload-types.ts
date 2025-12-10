@@ -202,10 +202,6 @@ export interface Page {
         | QuoteSlider
         | HeadingBlock
         | FAQ
-        | MainTeam
-        | VolunteersTeam
-        | FeaturedConcerts
-        | TextCard
       )[]
     | null;
   meta?: {
@@ -859,84 +855,6 @@ export interface Faq {
   id: string;
   question: string;
   answer?: {
-  }}
-// via the `definition` "MainTeam".
-
-export interface MainTeam {
-  heading: string;
-  mainVolunteers: (string | Volunteer)[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'main-team';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "VolunteersTeam".
- */
-export interface VolunteersTeam {
-  volunteersTeam: (string | Volunteer)[];
-  addLink?: boolean | null;
-  footerText?: string | null;
-  link: {
-    type: 'reference' | 'custom';
-    openNewTab?: boolean | null;
-    url?: string | null;
-    relation?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'articles';
-          value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'article-categories';
-          value: string | ArticleCategory;
-        } | null);
-    label: string;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'volunteers-team';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FeaturedConcerts".
- */
-export interface FeaturedConcerts {
-  heading: string;
-  addLink?: boolean | null;
-  link: {
-    type: 'reference' | 'custom';
-    openNewTab?: boolean | null;
-    url?: string | null;
-    relation?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'articles';
-          value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'article-categories';
-          value: string | ArticleCategory;
-        } | null);
-    label: string;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'featured-concerts';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextCard".
- */
-export interface TextCard {
-  addBgColor?: boolean | null;
-  richText?: {
     root: {
       type: string;
       children: {
@@ -955,10 +873,6 @@ export interface TextCard {
   publishStatus: 'draft' | 'pendingApproval' | 'public';
   updatedAt: string;
   createdAt: string;
-  volunteer?: (string | null) | Volunteer;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'text-card';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1281,10 +1195,6 @@ export interface PagesSelect<T extends boolean = true> {
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
         faq?: T | FAQSelect<T>;
-        'main-team'?: T | MainTeamSelect<T>;
-        'volunteers-team'?: T | VolunteersTeamSelect<T>;
-        'featured-concerts'?: T | FeaturedConcertsSelect<T>;
-        'text-card'?: T | TextCardSelect<T>;
       };
   meta?:
     | T
@@ -1463,62 +1373,6 @@ export interface HeadingBlockSelect<T extends boolean = true> {
 export interface FAQSelect<T extends boolean = true> {
   heading?: T;
   faqs?: T;
-}
-  // via the `definition` "MainTeam_select".
-
-export interface MainTeamSelect<T extends boolean = true> {
-  heading?: T;
-  mainVolunteers?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "VolunteersTeam_select".
- */
-export interface VolunteersTeamSelect<T extends boolean = true> {
-  volunteersTeam?: T;
-  addLink?: T;
-  footerText?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        openNewTab?: T;
-        url?: T;
-        relation?: T;
-        label?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FeaturedConcerts_select".
- */
-export interface FeaturedConcertsSelect<T extends boolean = true> {
-  heading?: T;
-  addLink?: T;
-  link?:
-    | T
-    | {
-        type?: T;
-        openNewTab?: T;
-        url?: T;
-        relation?: T;
-        label?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextCard_select".
- */
-export interface TextCardSelect<T extends boolean = true> {
-  addBgColor?: T;
-  richText?: T;
-  volunteer?: T;
   id?: T;
   blockName?: T;
 }

@@ -36,14 +36,7 @@ const blocks: Block[] = [
     Form,
     QuoteSlider,
     HeadingBlock,
-<<<<<<< HEAD
     FAQ,
-=======
-    MainTeam,
-    VolunteersTeam,
-    FeaturedConcerts,
-    TextCard,
->>>>>>> main
 ];
 
 export const Pages = createRoutedCollection('pages', {
