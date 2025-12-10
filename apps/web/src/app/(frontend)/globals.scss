@@ -18,7 +18,7 @@
     --header-height-offset: calc(var(--header-height) + 1px);
     --header-height-desktop: 303px;
     --header-height-desktop-offset: calc(var(--header-height-desktop) + 1px);
-
+ 
     //Color variables fra designsystemet i Figma
     --bg-base: #FBF8F1; 
     --bg-highlight: #3D59B0; 
@@ -63,7 +63,7 @@
     --p-l: 32px;
     --p-xl: 100px;
     --p-xxl: 265px;
- 
+  
     //Spacing variables fra designsystemet i Figma
     --space-general: 0;
     --space-xxs: 48px;
@@ -87,10 +87,3 @@ body {
     background-color: var(--bg-base);
     font-family: var(--font-body);
 }
-
-
-
-
-
-
-

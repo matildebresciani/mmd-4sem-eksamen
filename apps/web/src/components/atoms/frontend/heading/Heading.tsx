@@ -43,7 +43,7 @@ export const Heading: FC<HeadingProps> = ({ level = 1, size = 'xl', className, c
             className={cn(
                 styles,
                 className,
-                'relative flex z-0 tracking-wider justify-center text-wrap hyphens-auto uppercase',
+                'relative flex z-0 tracking-wider justify-center text-wrap hyphens-auto uppercase text-center',
             )}
         >
             <span className={cn(styles, 'text-logo-red absolute z-1 translate-x-[-.4%] md:translate-x-[-.45%]')}>

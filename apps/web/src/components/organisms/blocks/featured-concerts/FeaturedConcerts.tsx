@@ -31,8 +31,8 @@ const FeaturedConcertsBlock: BC<FeaturedConcertsProps> = async ({ block, locale 
                         {heading}
                     </Heading>
                     <div className="w-full mb-l">
-                        {concerts.map((concert: Concert) => (
-                            <ConcertCard key={concert.id} concert={concert} />
+                        {concerts.map((concert, i) => (
+                            <ConcertCard key={concert.id} concert={concert} index={i} />
                         ))}
                     </div>
                     <div className="flex justify-center">

@@ -3,9 +3,10 @@ import type { Concert } from '@/payload-types';
 
 type Props = {
     concerts: Concert[];
+    className?: string;
 };
 
-const ConcertsList = ({ concerts }: Props) => {
+const ConcertsList = ({ concerts, className }: Props) => {
     // 1) Filtrer til kun fremtidige koncerter
     // const now = new Date();
     // const upcoming = concerts.filter((c) => new Date(c.date) >= now);
@@ -28,17 +29,23 @@ const ConcertsList = ({ concerts }: Props) => {
         return acc;
     }, {});
 
+    // Global tæller på tværs af grupper
+    let globalIndex = 0;
+
     // 3) Render gruppe for gruppe
     return (
-        <div className="">
+        <div className={className}>
             {Object.entries(groupedByMonth).map(([month, concerts]) => (
                 <div key={month} className="oakgrid">
-                    <h2 className="col-span-3">{month}</h2>
+                    <h3 className="col-span-12 md:col-span-3 text-center uppercase md:text-start mb-section-xs md:mb-0 w-fit">
+                        {month}
+                    </h3>
 
-                    <div className="col-start-4 col-span-9">
-                        {concerts.map((concert) => (
-                            <ConcertCard key={concert.id} concert={concert} />
-                        ))}
+                    <div className="col-span-12 md:col-start-5 md:col-span-8 w-full gap-y-m">
+                        {concerts.map((concert) => {
+                            const idx = globalIndex++;
+                            return <ConcertCard key={concert.id} concert={concert} index={idx} />;
+                        })}
                     </div>
                 </div>
             ))}
