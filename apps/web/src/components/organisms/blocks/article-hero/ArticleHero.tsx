@@ -23,7 +23,8 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                 <div
                     className={cn(
                         'col-span-12 relative overflow-hidden w-full border border-border-base',
-                        order === 'image-split' && 'lg:col-span-6 lg:col-start-1 min-h-[380px] h-full lg:border-r-0',
+                        order === 'image-split' &&
+                            'lg:col-span-6 lg:col-start-1 min-h-[380px] h-full lg:border-r-0 border-b-0 md:border-b',
                         order === 'image-full-width' && 'min-h-[400px] border-b-0',
                     )}
                 >

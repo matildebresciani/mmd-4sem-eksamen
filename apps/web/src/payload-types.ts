@@ -259,7 +259,7 @@ export interface Article {
   artistName?: string | null;
   categories?: (string | ArticleCategory)[] | null;
   relatedArticles?: (string | Article)[] | null;
-  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery)[] | null;
+  layout?: (Paragraph | ArticleAuthor | RelatedArticles | Playlist | Quote | ArticleHero | Gallery | Form)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -576,6 +576,97 @@ export interface Gallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form".
+ */
+export interface Form {
+  layout: 'one-column' | 'two-columns';
+  heading?: string | null;
+  description?: string | null;
+  /**
+   * Select the form to display on this page.
+   */
+  form: string | DynamicForm;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dynamic-forms".
+ */
+export interface DynamicForm {
+  id: string;
+  title: string;
+  /**
+   * Add sections to your form. Each section can have a title and multiple input fields.
+   */
+  sections?:
+    | {
+        /**
+         * Optional title for this section
+         */
+        sectionTitle?: string | null;
+        inputs?:
+          | {
+              inputType: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file';
+              /**
+               * Must be lowercase and contain no spaces e.g: firstname. Use only letters, numbers, and underscores, and do not start with a number.
+               */
+              inputName: string;
+              inputLabel: string;
+              inputPlaceholder: string;
+              inputWidth: 'full' | 'half';
+              isRequired?: boolean | null;
+              /**
+               * Custom error message to display if validation fails.
+               */
+              inputErrorMessage?: string | null;
+              /**
+               * Options for dropdown/select field
+               */
+              selectOptions?:
+                | {
+                    label: string;
+                    /**
+                     * Must be lowercase and contain no spaces e.g: option_1. Use only letters, numbers, and underscores, and do not start with a number.
+                     */
+                    value: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              /**
+               * Vælg hvilke filtyper der må uploades
+               */
+              fileType?: ('all' | 'image' | 'pdf' | 'word' | 'excel' | 'ppt' | 'txt' | 'zip')[] | null;
+              /**
+               * Optional label for the upload button
+               */
+              uploadButtonLabel?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Label for the form submit button
+   */
+  submitButtonLabel?: string | null;
+  /**
+   * The form will be sent to this email if provided. Otherwise, the company email will be used.
+   */
+  recipientEmail?: string | null;
+  /**
+   * Subject line for the form submission email
+   */
+  emailSubject?: string | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TextImage".
  */
 export interface TextImage {
@@ -700,97 +791,6 @@ export interface VolunteerRoles {
   id?: string | null;
   blockName?: string | null;
   blockType: 'volunteer-roles';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Form".
- */
-export interface Form {
-  layout: 'one-column' | 'two-columns';
-  heading?: string | null;
-  description?: string | null;
-  /**
-   * Select the form to display on this page.
-   */
-  form: string | DynamicForm;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'form';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "dynamic-forms".
- */
-export interface DynamicForm {
-  id: string;
-  title: string;
-  /**
-   * Add sections to your form. Each section can have a title and multiple input fields.
-   */
-  sections?:
-    | {
-        /**
-         * Optional title for this section
-         */
-        sectionTitle?: string | null;
-        inputs?:
-          | {
-              inputType: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file';
-              /**
-               * Must be lowercase and contain no spaces e.g: firstname. Use only letters, numbers, and underscores, and do not start with a number.
-               */
-              inputName: string;
-              inputLabel: string;
-              inputPlaceholder: string;
-              inputWidth: 'full' | 'half';
-              isRequired?: boolean | null;
-              /**
-               * Custom error message to display if validation fails.
-               */
-              inputErrorMessage?: string | null;
-              /**
-               * Options for dropdown/select field
-               */
-              selectOptions?:
-                | {
-                    label: string;
-                    /**
-                     * Must be lowercase and contain no spaces e.g: option_1. Use only letters, numbers, and underscores, and do not start with a number.
-                     */
-                    value: string;
-                    id?: string | null;
-                  }[]
-                | null;
-              /**
-               * Vælg hvilke filtyper der må uploades
-               */
-              fileType?: ('all' | 'image' | 'pdf' | 'word' | 'excel' | 'ppt' | 'txt' | 'zip')[] | null;
-              /**
-               * Optional label for the upload button
-               */
-              uploadButtonLabel?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Label for the form submit button
-   */
-  submitButtonLabel?: string | null;
-  /**
-   * The form will be sent to this email if provided. Otherwise, the company email will be used.
-   */
-  recipientEmail?: string | null;
-  /**
-   * Subject line for the form submission email
-   */
-  emailSubject?: string | null;
-  publishedAt?: string | null;
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1503,6 +1503,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         quote?: T | QuoteSelect<T>;
         'article-hero'?: T | ArticleHeroSelect<T>;
         gallery?: T | GallerySelect<T>;
+        form?: T | FormSelect<T>;
       };
   meta?:
     | T

@@ -1,5 +1,6 @@
 import { ArticleAuthor } from '@/components/organisms/blocks/article-author/config';
 import { ArticleHero } from '@/components/organisms/blocks/article-hero/config';
+import { Form } from '@/components/organisms/blocks/form/config';
 import { Gallery } from '@/components/organisms/blocks/gallery/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
 import { Playlist } from '@/components/organisms/blocks/playlist-block/config';
@@ -13,7 +14,7 @@ import { authenticated } from '../../../access/authenticated';
 import { authenticatedOrPublished } from '../../../access/authenticatedOrPublished';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 
-const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles, Playlist, Quote, ArticleHero, Gallery];
+const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles, Playlist, Quote, ArticleHero, Gallery, Form];
 
 export const Articles: CollectionConfig = createRoutedCollection('articles', {
     access: {
