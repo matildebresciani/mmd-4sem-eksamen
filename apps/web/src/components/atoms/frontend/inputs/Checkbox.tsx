@@ -6,7 +6,7 @@ type Props = {
 
 const Checkbox = ({ checked, onChange, label }: Props) => {
     return (
-        <label className="flex items-center gap-2 cursor-pointer select-none">
+        <label className="flex items-center gap-2 cursor-pointer select-none body-md">
             <span className="relative inline-block h-6 w-6">
                 {/* OUTER BOX */}
                 <input

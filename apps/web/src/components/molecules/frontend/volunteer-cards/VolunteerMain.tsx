@@ -26,9 +26,9 @@ const VolunteerMain = ({ volunteer }: Props) => {
                 </div>
             )}
             <div className="p-s flex flex-col hyphens-auto">
-                <h5 className="heading-l uppercase">{volunteer?.displayName || volunteer?.volunteerName}</h5>
-                {role && <span className="italic pt-xs">{role}</span>}
-                {volunteer?.email && <span className="pt-s">{volunteer?.email}</span>}
+                <h5 className="heading-lg uppercase">{volunteer?.displayName || volunteer?.volunteerName}</h5>
+                {role && <span className="italic pt-xs body-md">{role}</span>}
+                {volunteer?.email && <span className="pt-s body-sm">{volunteer?.email}</span>}
             </div>
         </div>
     );

@@ -64,7 +64,7 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                     )}
                 >
                     <div className="border border-border-base space-y-s p-m">
-                        <div className="flex flex-col md:flex-row gap-1 md:gap-m">
+                        <div className="flex flex-col md:flex-row gap-1 md:gap-m body-md">
                             {articleData?.publishedAt && <span>{formatDateTime(articleData.publishedAt, 'long')}</span>}
                             {articleData?.publishedAt && author && <span className="hidden md:block"> | </span>}
                             {author && (

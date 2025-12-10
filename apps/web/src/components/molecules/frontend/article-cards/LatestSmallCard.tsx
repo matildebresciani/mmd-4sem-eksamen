@@ -30,7 +30,7 @@ const LatestSmallCard = ({ article }: Props) => {
                 </div>
 
                 <div className="col-span-3">
-                    <div className="flex justify-between gap-s">
+                    <div className="flex justify-between gap-s body-md">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                         {/* <div className="flex gap-3">
                             {article.genres && (

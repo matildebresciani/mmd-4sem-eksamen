@@ -17,7 +17,7 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
         <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
             <div className="col-span-12 p-m md:col-span-5 order-2 md:order-1 h-full">
-                <div className="flex flex-col md:flex-row justify-between pb-s md:items-center gap-1">
+                <div className="flex flex-col md:flex-row justify-between pb-s md:items-center gap-1 body-md">
                     {article.genres || article.artistName ? (
                         <div className="flex gap-3 font-semibold order-2 md:order-1 text-fg-faded">
                             {article.artistName && <span>{article.artistName}</span>}

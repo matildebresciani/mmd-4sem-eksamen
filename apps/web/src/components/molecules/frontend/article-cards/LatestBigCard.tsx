@@ -31,7 +31,7 @@ const LatestBigCard = ({ article }: Props) => {
                     </div>
                 </div>
                 <div className="p-m md:p-l">
-                    <div className="flex justify-between md:items-center flex-col md:flex-row gap-1 md:gap-xs mb-s">
+                    <div className="flex justify-between md:items-center flex-col md:flex-row gap-1 md:gap-xs mb-s body-md">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                         <div className="flex gap-3 font-semibold text-fg-faded">
                             {article.artistName && <span>{article.artistName}</span>}

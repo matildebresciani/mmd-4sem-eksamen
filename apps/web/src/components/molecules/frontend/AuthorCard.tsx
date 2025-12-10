@@ -28,7 +28,7 @@ const AuthorCard = ({ author }: Props) => {
             )}
             <div className="flex flex-col items-left justify-center gap-xs">
                 <span>{author.volunteerName}</span>
-                {author.email && <span>{author.email}</span>}
+                {author.email && <span className="body-md">{author.email}</span>}
             </div>
         </div>
     );
