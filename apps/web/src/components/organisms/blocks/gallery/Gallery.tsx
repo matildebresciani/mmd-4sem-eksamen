@@ -5,7 +5,8 @@ import type { Gallery as GalleryProps } from '@/payload-types';
 import BaseBlock from '../base-block/BaseBlock';
 
 const GalleryBlock: BC<GalleryProps> = ({ block }) => {
-    const { layout } = block;
+    const { layout, galleryDescription } = block;
+
     const images = {
         slot_fullWidth: block.slot_fullWidth,
         slot_left: block.slot_left,
@@ -28,17 +29,22 @@ const GalleryBlock: BC<GalleryProps> = ({ block }) => {
     return (
         <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid">
-                <div className={cn('col-span-12 md:col-start-2 md:col-span-10 gallery', `gallery--${layout}`)}>
-                    {Object.entries(images).map(([slot, img]) => {
-                        if (!img) return null;
+                <figure className="col-span-12 md:col-start-2 md:col-span-10">
+                    <div className={cn('gallery', `gallery--${layout}`)}>
+                        {Object.entries(images).map(([slot, img]) => {
+                            if (!img) return null;
 
-                        return (
-                            <div key={slot} className={`gallery__item ${slot}`}>
-                                <ImageMedia resource={img} className="gallery__img" />
-                            </div>
-                        );
-                    })}
-                </div>
+                            return (
+                                <div key={slot} className={`gallery__item ${slot}`}>
+                                    <ImageMedia resource={img} className="gallery__img" />
+                                </div>
+                            );
+                        })}
+                    </div>
+                    {galleryDescription && (
+                        <figcaption className="italic font-light body-sm mt-xs">{galleryDescription}</figcaption>
+                    )}
+                </figure>
             </div>
         </BaseBlock>
     );
