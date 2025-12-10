@@ -1,7 +1,10 @@
 import BaseButton from '@/components/atoms/frontend/buttons/BaseButton';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import { formatDateTime } from '@/lib/utilities/format-date-time';
+import { cn } from '@/lib/utilities/ui';
 import type { Concert } from '@/payload-types';
+import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 
 type Props = {
     concert: Concert;
@@ -11,12 +14,17 @@ type Props = {
 const ConcertCard = ({ concert, index }: Props) => {
     // index er 0-baseret: index % 2 === 0 => "even" (her: blå). index % 2 === 1 => "odd" (her: rød)
     const overlayColor =
-        typeof index === 'number' ? (index % 2 === 0 ? 'var(--bg-highlight)' : 'var(--bg-red)') : 'var(--bg-highlight)';
+        typeof index === 'number' ? (index % 2 === 0 ? 'bg-bg-highlight' : 'bg-bg-red') : 'bg-bg-highlight';
 
     return (
-        <div className="flex flex-col md:flex-row md:first:border-t md:first:border-solid md:first:border-base md:first:w-full md:border-b md:border-solid md:border-base w-full">
+        <div
+            className={cn(
+                'flex flex-col md:flex-row md:first:border-t md:border-b md:border-solid md:border-base',
+                'w-full mb-section-xxs md:mb-0 active:bg-black/10 md:active:bg-transparent',
+            )}
+        >
             {concert?.featuredImage && (
-                <div className="relative overflow-hidden aspect-[3/1] w-full border border-solid border-base md:border-none md:aspect-square md:w-[183px] group">
+                <div className="relative overflow-hidden aspect-[4/2] md:aspect-square border border-solid border-base border-b-0 md:border-none md:aspect-square w-full md:w-46 group shrink-0">
                     <ImageMedia
                         fill
                         alt={concert?.artist || 'Concert Image'}
@@ -25,27 +33,35 @@ const ConcertCard = ({ concert, index }: Props) => {
                         size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
                     />
                     {/* Overlay */}
-                    <div
-                        className="absolute inset-0 pointer-events-none"
-                        style={{ backgroundColor: overlayColor, opacity: 0.5 }}
-                    />{' '}
+                    <div className={cn('absolute inset-0 pointer-events-none mix-blend-screen', overlayColor)} />
                 </div>
             )}
 
-            <div className="flex flex-col md:flex-row md:pl-m py-m md:items-center w-full justify-between gap-s">
-                <div className="flex flex-col gap-1 md:gap-s ">
-                    <p>{formatDateTime(concert.date, 'dot')}</p>
-                    <div>
-                        <h4 className="pb-xs uppercase">{concert.artist}</h4>
-                        {concert.support && <p>+ Support: {concert.support}</p>}
+            <div className="flex flex-col md:flex-row md:pl-m md:py-m md:items-center justify-between gap-s md:w-full">
+                <div className="flex justify-between items-end border border-base md:border-0 py-m px-s md:py-0 md:px-0">
+                    <div className="flex flex-col gap-1 md:gap-s flex-wrap">
+                        <p>{formatDateTime(concert.date, 'dot')}</p>
+                        <div>
+                            <h4 className="pb-xs uppercase">{concert.artist}</h4>
+                            {concert.support && <p className="italic font-light">+ Support: {concert.support}</p>}
+                        </div>
+                        <p>
+                            {concert.venue}, {concert.city}
+                        </p>
                     </div>
-                    <p>
-                        {concert.venue}, {concert.city}
-                    </p>
+                    {concert.ticketLink && (
+                        <Link
+                            className="size-[50px] flex justify-center items-center bg-button-secondary text-fg-on-color border border-bg-base md:hidden shrink-0"
+                            href={concert.ticketLink}
+                            target="_blank"
+                        >
+                            <ArrowUpRight />
+                        </Link>
+                    )}
                 </div>
                 {concert.ticketLink && (
                     <BaseButton
-                        className="h-fit text-nowrap self-center mb-m"
+                        className="h-fit hidden md:block shrink-0"
                         variant="secondary"
                         title="SE EVENT"
                         type="link"
