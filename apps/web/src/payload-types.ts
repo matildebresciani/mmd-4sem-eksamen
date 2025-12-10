@@ -204,6 +204,7 @@ export interface Page {
         | MainTeam
         | VolunteersTeam
         | FeaturedConcerts
+        | TextCard
       )[]
     | null;
   meta?: {
@@ -912,6 +913,32 @@ export interface FeaturedConcerts {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextCard".
+ */
+export interface TextCard {
+  addBgColor?: boolean | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  volunteer?: (string | null) | Volunteer;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'text-card';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
 export interface Concert {
@@ -1260,6 +1287,7 @@ export interface PagesSelect<T extends boolean = true> {
         'main-team'?: T | MainTeamSelect<T>;
         'volunteers-team'?: T | VolunteersTeamSelect<T>;
         'featured-concerts'?: T | FeaturedConcertsSelect<T>;
+        'text-card'?: T | TextCardSelect<T>;
       };
   meta?:
     | T
@@ -1477,6 +1505,17 @@ export interface FeaturedConcertsSelect<T extends boolean = true> {
         relation?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextCard_select".
+ */
+export interface TextCardSelect<T extends boolean = true> {
+  addBgColor?: T;
+  richText?: T;
+  volunteer?: T;
   id?: T;
   blockName?: T;
 }
