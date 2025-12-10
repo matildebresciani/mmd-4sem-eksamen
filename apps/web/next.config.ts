@@ -34,6 +34,11 @@ const nextConfig: NextConfig = {
     },
     reactStrictMode: true,
     redirects,
+    experimental: {
+        serverActions: {
+            bodySizeLimit: '5mb',
+        },
+    },
 };
 
 export default withPayload(withNextIntl(nextConfig), { devBundleServerPackages: false });

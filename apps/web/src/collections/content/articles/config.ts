@@ -1,5 +1,6 @@
 import { ArticleAuthor } from '@/components/organisms/blocks/article-author/config';
 import { ArticleHero } from '@/components/organisms/blocks/article-hero/config';
+import { Form } from '@/components/organisms/blocks/form/config';
 import { Gallery } from '@/components/organisms/blocks/gallery/config';
 import { Paragraph } from '@/components/organisms/blocks/paragraph/config';
 import { Playlist } from '@/components/organisms/blocks/playlist-block/config';
@@ -13,7 +14,7 @@ import { authenticated } from '../../../access/authenticated';
 import { authenticatedOrPublished } from '../../../access/authenticatedOrPublished';
 import { generatePreviewPath } from '../../../lib/utilities/generate-preview-path';
 
-const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles, Playlist, Quote, ArticleHero, Gallery];
+const blocks: Block[] = [Paragraph, ArticleAuthor, RelatedArticles, Playlist, Quote, ArticleHero, Gallery, Form];
 
 export const Articles: CollectionConfig = createRoutedCollection('articles', {
     access: {
@@ -29,7 +30,7 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
         articleType: true,
     },
     admin: {
-        defaultColumns: ['title', 'slug', 'updatedAt', 'publishStatus'],
+        defaultColumns: ['name', 'title', 'slug', 'publishedAt', 'updatedAt', 'publishStatus'],
         group: 'Content',
         livePreview: payloadLivePreview('articles'),
         preview: (data, { req }) =>
@@ -64,6 +65,7 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                                 { label: 'Interview', value: 'interview' },
                                 { label: 'Ugens udgivelser', value: 'weekly-releases' },
                             ],
+                            defaultValue: 'review',
                         },
                         // --- REVIEW TYPE (only if review) ---
                         {
@@ -144,11 +146,11 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                             defaultValue: () => [
                                 {
                                     blockType: 'article-hero',
-                                    heading: 'Hero',
+                                    // heading: 'Hero',
                                 },
                                 {
                                     blockType: 'article-author',
-                                    heading: 'Skribent',
+                                    // heading: 'Skribent',
                                 },
                                 //TODO: Spotify felt kun for ugens udgivelser
                                 //TODO: Formular block kun for ugens udgivelser
@@ -161,7 +163,6 @@ export const Articles: CollectionConfig = createRoutedCollection('articles', {
                     ],
                     label: 'Content',
                 },
-
                 payloadSEO,
             ],
         },

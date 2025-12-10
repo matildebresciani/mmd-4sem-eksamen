@@ -1,13 +1,12 @@
 import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import ArticlesArchive from '@/components/organisms/articles-archive/ArticlesArchive';
+import FilterBar from '@/components/organisms/articles-archive/FilterBar';
 import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
+import { initPayload } from '@/lib/config';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
-import type { CollectionPageType } from '@/lib/types/collection-page';
-import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
 import React from 'react';
 
 type Props = {
@@ -30,6 +29,14 @@ export default async function Page({ params }: Props) {
         limit: 50,
     });
 
+    const payload = await initPayload();
+    const genresRes = await payload.find({
+        collection: 'genres',
+        sort: 'name',
+    });
+
+    const genres = genresRes.docs;
+
     return (
         <article className="pt-4 pb-20">
             <BaseBlock>
@@ -37,7 +44,8 @@ export default async function Page({ params }: Props) {
                     <div className="col-span-12 space-y-section-xxs">
                         <Heading>Anmeldelser</Heading>
                         {/* TODO: Filtrering */}
-                        <ArticlesArchive articles={reviews.docs} />
+                        <FilterBar articles={reviews.docs} genres={genres} />
+                        {/* <ArticlesArchive articles={reviews.docs} /> */}
                     </div>
                 </div>
             </BaseBlock>

@@ -10,24 +10,24 @@ const BurgerButton = (props: Props) => {
         <button
             type="button"
             title="Burger"
-            className="relative flex item-center justify-center w-10 h-10"
+            className="relative flex item-center justify-center w-10 h-10 cursor-pointer"
             onClick={() => {
                 onClick(!isOpen);
             }}
         >
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[1px] bg-black transition -translate-x-1/2 ${
-                    isOpen ? '-translate-y-0 rotate-45' : '-translate-y-[5px]'
+                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
+                    isOpen ? '-translate-y-0 rotate-45' : '-translate-y-[8px]'
                 }`}
             />
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[1px] bg-black transition -translate-x-1/2 ${
+                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
                     isOpen ? 'opacity-0' : 'opacity-100'
                 }`}
             />
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[1px] bg-black transition -translate-x-1/2 ${
-                    isOpen ? '-translate-y-0 -rotate-45' : 'translate-y-[5px]'
+                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
+                    isOpen ? '-translate-y-0 -rotate-45' : 'translate-y-[8px]'
                 }`}
             />
         </button>
