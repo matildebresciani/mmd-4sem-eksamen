@@ -37,11 +37,11 @@ const ConcertsList = ({ concerts, className }: Props) => {
         <div className={className}>
             {Object.entries(groupedByMonth).map(([month, concerts]) => (
                 <div key={month} className="oakgrid">
-                    <h3 className="col-span-12 md:col-span-3 text-center uppercase md:text-start mb-section-xs md:mb-0">
+                    <h3 className="col-span-12 md:col-span-3 text-center uppercase md:text-start mb-section-xs md:mb-0 w-fit">
                         {month}
                     </h3>
 
-                    <div className="col-span-12 md:col-start-4 md:col-span-9 w-full gap-y-m">
+                    <div className="col-span-12 md:col-start-5 md:col-span-8 w-full gap-y-m">
                         {concerts.map((concert) => {
                             const idx = globalIndex++;
                             return <ConcertCard key={concert.id} concert={concert} index={idx} />;
