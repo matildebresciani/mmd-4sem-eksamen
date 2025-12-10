@@ -4,17 +4,14 @@ import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import Link from 'next/link';
 import { getPayload } from 'payload';
 
-type SearchParams = {
-    query?: string | string[];
+type Props = {
+    params: Promise<{ locale: string }>;
+    searchParams?: { query?: string | string[] };
 };
 
-export default async function SearchPage({
-    searchParams,
-}: {
-    searchParams?: SearchParams;
-}) {
+export default async function SearchPage({ params, searchParams }: Props) {
     const raw = searchParams?.query;
-    const q = Array.isArray(raw) ? raw[0] : (raw ?? '');
+    const q = typeof searchParams?.query === 'string' ? searchParams.query : (searchParams?.query?.[0] ?? '');
 
     const payload = await initPayload();
 
