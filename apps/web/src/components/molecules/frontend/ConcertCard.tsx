@@ -16,11 +16,18 @@ const ConcertCard = ({ concert, index }: Props) => {
     const overlayColor =
         typeof index === 'number' ? (index % 2 === 0 ? 'bg-bg-highlight' : 'bg-bg-red') : 'bg-bg-highlight';
 
+    const isLink = Boolean(concert.ticketLink);
+
+    const Wrapper: any = isLink ? Link : 'div';
+
     return (
-        <div
+        <Wrapper
+            href={isLink ? concert.ticketLink : undefined}
+            target={isLink ? '_blank' : undefined}
+            rel={isLink ? 'noopener noreferrer' : undefined}
             className={cn(
-                'flex flex-col md:flex-row md:first:border-t md:border-b md:border-solid md:border-base',
-                'w-full mb-section-xxs md:mb-0 active:bg-black/10 md:active:bg-transparent',
+                'group flex flex-col md:flex-row md:first:border-t md:border-b md:border-solid md:border-base',
+                'w-full mb-section-xxs md:mb-0 active:bg-black/10 cursor-pointer',
             )}
         >
             {concert?.featuredImage && (
@@ -29,15 +36,20 @@ const ConcertCard = ({ concert, index }: Props) => {
                         fill
                         alt={concert?.artist || 'Concert Image'}
                         resource={concert?.featuredImage}
-                        imgClassName="object-cover w-full h-full filter grayscale"
+                        imgClassName="object-cover w-full h-full filter grayscale duration-300 group-hover:grayscale-0"
                         size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
                     />
                     {/* Overlay */}
-                    <div className={cn('absolute inset-0 pointer-events-none mix-blend-screen', overlayColor)} />
+                    <div
+                        className={cn(
+                            'absolute inset-0 pointer-events-none mix-blend-screen opacity-100 transition-opacity duration-300 group-hover:opacity-0',
+                            overlayColor,
+                        )}
+                    />
                 </div>
             )}
 
-            <div className="flex flex-col md:flex-row md:pl-m md:py-m md:items-center justify-between gap-s md:w-full">
+            <div className="flex flex-col md:flex-row md:pl-m md:py-m md:items-center justify-between gap-s md:w-full group-hover:bg-black/10">
                 <div className="flex justify-between items-end border border-base md:border-0 py-m px-s md:py-0 md:px-0">
                     <div className="flex flex-col gap-1 md:gap-s flex-wrap">
                         <p>{formatDateTime(concert.date, 'dot')}</p>
@@ -50,13 +62,9 @@ const ConcertCard = ({ concert, index }: Props) => {
                         </p>
                     </div>
                     {concert.ticketLink && (
-                        <Link
-                            className="size-[50px] flex justify-center items-center bg-button-secondary text-fg-on-color border border-bg-base md:hidden shrink-0"
-                            href={concert.ticketLink}
-                            target="_blank"
-                        >
+                        <div className="size-[50px] flex justify-center items-center bg-button-secondary text-fg-on-color border border-bg-base md:hidden shrink-0">
                             <ArrowUpRight />
-                        </Link>
+                        </div>
                     )}
                 </div>
                 {concert.ticketLink && (
@@ -70,7 +78,7 @@ const ConcertCard = ({ concert, index }: Props) => {
                     />
                 )}
             </div>
-        </div>
+        </Wrapper>
     );
 };
 
