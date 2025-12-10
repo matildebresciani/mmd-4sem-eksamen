@@ -18,7 +18,7 @@ const LatestBigCard = ({ article }: Props) => {
                     {article?.contentMeta?.featuredImage && (
                         <ImageMedia
                             fill
-                            alt={article?.title || 'Article Image'}
+                            fallbackAlt={article?.title || 'Article Image'}
                             resource={article?.contentMeta?.featuredImage}
                             imgClassName="object-cover w-full h-full"
                             size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"

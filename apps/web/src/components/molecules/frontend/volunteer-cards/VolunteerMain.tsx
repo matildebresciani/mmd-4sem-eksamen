@@ -18,7 +18,7 @@ const VolunteerMain = ({ volunteer }: Props) => {
                 <div className="relative overflow-hidden w-full h-full aspect-square max-h-[304px]">
                     <ImageMedia
                         fill
-                        alt={volunteer?.volunteerName || 'Author Image'}
+                        fallbackAlt={volunteer?.volunteerName || 'Author Image'}
                         imgClassName="object-cover w-full h-full"
                         resource={populatedPicture}
                         size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
