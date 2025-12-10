@@ -201,6 +201,7 @@ export interface Page {
         | Form
         | QuoteSlider
         | HeadingBlock
+        | FAQ
         | MainTeam
         | VolunteersTeam
         | FeaturedConcerts
@@ -841,8 +842,26 @@ export interface HeadingBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MainTeam".
+ * via the `definition` "FAQ".
  */
+export interface FAQ {
+  heading: string;
+  faqs?: (string | Faq)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer?: {
+  }}
+// via the `definition` "MainTeam".
+
 export interface MainTeam {
   heading: string;
   mainVolunteers: (string | Volunteer)[];
@@ -932,6 +951,10 @@ export interface TextCard {
     };
     [k: string]: unknown;
   } | null;
+  publishedAt?: string | null;
+  publishStatus: 'draft' | 'pendingApproval' | 'public';
+  updatedAt: string;
+  createdAt: string;
   volunteer?: (string | null) | Volunteer;
   id?: string | null;
   blockName?: string | null;
@@ -989,33 +1012,6 @@ export interface Icon {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  publishedAt?: string | null;
-  publishStatus: 'draft' | 'pendingApproval' | 'public';
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * Setup menus and navigation globally across your site.
@@ -1284,6 +1280,7 @@ export interface PagesSelect<T extends boolean = true> {
         form?: T | FormSelect<T>;
         'quote-slider'?: T | QuoteSliderSelect<T>;
         'heading-block'?: T | HeadingBlockSelect<T>;
+        faq?: T | FAQSelect<T>;
         'main-team'?: T | MainTeamSelect<T>;
         'volunteers-team'?: T | VolunteersTeamSelect<T>;
         'featured-concerts'?: T | FeaturedConcertsSelect<T>;
@@ -1461,8 +1458,14 @@ export interface HeadingBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MainTeam_select".
+ * via the `definition` "FAQ_select".
  */
+export interface FAQSelect<T extends boolean = true> {
+  heading?: T;
+  faqs?: T;
+}
+  // via the `definition` "MainTeam_select".
+
 export interface MainTeamSelect<T extends boolean = true> {
   heading?: T;
   mainVolunteers?: T;

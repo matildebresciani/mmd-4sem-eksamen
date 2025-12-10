@@ -63,6 +63,7 @@
     /*font-size range 16-24px, line-height range 1.3-1.3*/
         font-size: clamp(1rem, 0.518vw + 0.879rem, 1.5rem);
         line-height: clamp(1.3rem, 0.673vw + 1.142rem, 1.95rem);
+        font-family: var(--font-body);
     }
     
     span {

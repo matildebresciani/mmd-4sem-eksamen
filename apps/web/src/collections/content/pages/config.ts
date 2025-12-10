@@ -1,5 +1,6 @@
 import { ArticleSlider } from '@/components/organisms/blocks/article-slider/config';
 import { Divider } from '@/components/organisms/blocks/divider/config';
+import { FAQ } from '@/components/organisms/blocks/faq/config';
 import { FeaturedArticle } from '@/components/organisms/blocks/featured-article/config';
 import { FeaturedConcerts } from '@/components/organisms/blocks/featured-concerts/config';
 import { Form } from '@/components/organisms/blocks/form/config';
@@ -35,10 +36,14 @@ const blocks: Block[] = [
     Form,
     QuoteSlider,
     HeadingBlock,
+<<<<<<< HEAD
+    FAQ,
+=======
     MainTeam,
     VolunteersTeam,
     FeaturedConcerts,
     TextCard,
+>>>>>>> main
 ];
 
 export const Pages = createRoutedCollection('pages', {
