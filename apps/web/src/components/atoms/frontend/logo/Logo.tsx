@@ -1,20 +1,21 @@
 import { cn } from '@/lib/utilities/ui';
-import LogoImg from '@public/favicon.svg';
-import Image, { type ImageProps } from 'next/image';
+import Image from 'next/image';
 import type { FC } from 'react';
 
-export type LogoProps = Omit<Partial<ImageProps>, 'src'>;
+type Props = {
+    variant?: 'full' | 'icon';
+    className?: string;
+};
+const Logo = ({ variant = 'icon', className }: Props) => {
+    const src = variant === 'full' ? '/images/svgs/logo-big.svg' : '/images/svgs/logo-small.svg'; // kun B’et
 
-const Logo: FC<LogoProps> = ({ className, ...rest }) => {
-    // TODO: Add brand to logo alt text
     return (
         <Image
-            src={LogoImg}
-            alt={'logo'}
-            height={60}
-            width={78}
-            className={cn('max-w-12 md:max-w-full', className)}
-            {...rest}
+            src={src}
+            alt={variant === 'full' ? 'Bands of Tomorrow logo' : 'Bands of Tomorrow icon'}
+            width={variant === 'full' ? 1620 : 78}
+            height={variant === 'full' ? 242 : 61}
+            className={cn(className)}
         />
     );
 };

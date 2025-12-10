@@ -6,10 +6,13 @@
 @use '../../lib/styles/containers';
 @use '../../lib/styles/helpers';
 @use '../../lib/styles/overlays';
+@use '../../lib/styles/gallery';
+@use '../../lib/styles/slider';
 
+ 
 :root {
 
-    --font-heading: var(--font-dela-gothic-one);
+    --font-heading: var(--font-dela-gothic-one); 
     --font-body: var(--font-inclusive-sans); 
     --header-height: 104px;
     --header-height-offset: calc(var(--header-height) + 1px);
@@ -18,11 +21,11 @@
 
     //Color variables fra designsystemet i Figma
     --bg-base: #FBF8F1; 
-    --bg-highlight: #3D59B0;
+    --bg-highlight: #3D59B0; 
     --bg-subtle: #D8D5CD;
     --bg-red: #DF4739;
     --bg-section-2: #BDC9E7;
- 
+    
     --fg-base: #33261C;
     --fg-on-color: #FBF8F1;
     --fg-subtle: #BDC9E7;
@@ -35,10 +38,12 @@
     --button-primary-hover: #943128;
     --button-secondary-hover: #273972;
     --button-subtle: #C3B393;
+ 
+    --button-subtle: #D8D5CD;
 
     --button-text: #FBF8F1;
     --button-text-on-subtle: #000000;
-
+ 
     --border-base: #33261C;
 
     --input-bg: #FBFAF7;
@@ -58,7 +63,7 @@
     --p-l: 32px;
     --p-xl: 100px;
     --p-xxl: 265px;
-    
+ 
     //Spacing variables fra designsystemet i Figma
     --space-general: 0;
     --space-xxs: 48px;

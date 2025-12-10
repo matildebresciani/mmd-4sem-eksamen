@@ -19,7 +19,7 @@ const AuthorCard = ({ author }: Props) => {
                 <div className="relative overflow-hidden w-full h-full aspect-square">
                     <ImageMedia
                         fill
-                        alt={author?.volunteerName || 'Author Image'}
+                        fallbackAlt={author?.volunteerName || 'Author Image'}
                         imgClassName="object-cover w-full h-full"
                         resource={populatedPicture}
                         size="75px"
