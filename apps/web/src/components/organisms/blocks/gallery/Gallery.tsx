@@ -33,10 +33,13 @@ const GalleryBlock: BC<GalleryProps> = ({ block }) => {
                     <div className={cn('gallery', `gallery--${layout}`)}>
                         {Object.entries(images).map(([slot, img]) => {
                             if (!img) return null;
-
                             return (
                                 <div key={slot} className={`gallery__item ${slot}`}>
-                                    <ImageMedia resource={img} className="gallery__img" />
+                                    <ImageMedia
+                                        resource={img}
+                                        className="gallery__img"
+                                        fallbackAlt="Foto uden beskrivelse"
+                                    />
                                 </div>
                             );
                         })}

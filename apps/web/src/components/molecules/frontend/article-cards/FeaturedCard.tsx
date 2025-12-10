@@ -43,7 +43,7 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                 {article?.contentMeta?.featuredImage && (
                     <ImageMedia
                         fill
-                        alt={article?.title || 'Article Image'}
+                        fallbackAlt={article?.title || 'Article Image'}
                         resource={article?.contentMeta?.featuredImage}
                         imgClassName="object-cover w-full h-full"
                     />

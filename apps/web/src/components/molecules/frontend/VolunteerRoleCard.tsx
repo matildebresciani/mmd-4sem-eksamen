@@ -14,7 +14,7 @@ const VolunteerRoleCard = ({ thumbnail, title, description }: Props) => {
                 <div className="w-full md:w-[285px] overflow-hidden">
                     <ImageMedia
                         resource={thumbnail}
-                        alt={thumbnail.alt || 'Volunteer role thumbnail'}
+                        fallbackAlt={thumbnail.alt || 'Volunteer role thumbnail'}
                         size="100vw, (min-width: 769px) 50vw, (min-width: 1280px) 33vw"
                         imgClassName="object-cover w-full h-full"
                     />
