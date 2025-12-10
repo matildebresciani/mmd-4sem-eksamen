@@ -2,16 +2,19 @@ import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { initPayload } from '@/lib/config';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import Link from 'next/link';
-import { getPayload } from 'payload';
 
 type Props = {
-    params: { locale: string };
-    searchParams?: { query?: string | string[] };
+    params: Promise<{ locale: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export default async function SearchPage({ params, searchParams }: Props) {
-    const raw = searchParams?.query;
-    const q = typeof searchParams?.query === 'string' ? searchParams.query : (searchParams?.query?.[0] ?? '');
+    const { locale } = await params;
+    const resolved = await searchParams;
+
+    const raw = resolved?.query;
+
+    const q = typeof raw === 'string' ? raw : Array.isArray(raw) ? (raw[0] ?? '') : '';
 
     const payload = await initPayload();
 
