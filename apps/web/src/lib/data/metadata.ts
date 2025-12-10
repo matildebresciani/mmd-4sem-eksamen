@@ -17,7 +17,7 @@ import { getImageSlugFromMedia } from './payload/get-image-url';
 
 export const metadataIcons = {
     icon: [{ url: '/favicon.ico' }, { url: '/favicon.svg', type: 'image/svg+xml' }],
-    apple: [{ url: '/favicon.png', sizes: '180x180' }],
+    apple: [{ url: '/favicon-180x180.png', sizes: '180x180' }],
 };
 
 export const getDefaultOgImage = async (locale: Locale) => {
