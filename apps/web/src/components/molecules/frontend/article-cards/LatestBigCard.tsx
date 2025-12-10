@@ -33,7 +33,9 @@ const LatestBigCard = ({ article }: Props) => {
                 <div className="p-m md:p-l">
                     <div className="flex justify-between md:items-center flex-col md:flex-row gap-1 md:gap-xs mb-s">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
-                        <div className="flex gap-3 font-semibold">
+                        <div className="flex gap-3 font-semibold text-fg-faded">
+                            {article.artistName && <span>{article.artistName}</span>}
+                            {article.genres && article.artistName && <span>|</span>}
                             {article.genres && (
                                 <span>
                                     {typeof article.genres[0] === 'string'
@@ -41,8 +43,6 @@ const LatestBigCard = ({ article }: Props) => {
                                         : article.genres[0]?.name}
                                 </span>
                             )}
-                            {article.genres && article.artistName && <span>|</span>}
-                            {article.artistName && <span>{article.artistName}</span>}
                         </div>
                     </div>
                     <h3 className="line-clamp-4 uppercase heading-4">{article.title}</h3>

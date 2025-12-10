@@ -35,7 +35,9 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                 <div className="p-s pb-m flex flex-col gap-s">
                     <div className="flex flex-col gap-1">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
-                        <div className="flex gap-3 font-semibold">
+                        <div className="flex gap-3 font-semibold text-fg-faded items-start justify-start">
+                            {article.artistName && <span>{article.artistName}</span>}
+                            {article.genres && article.artistName && <span>|</span>}
                             {article.genres && (
                                 <span>
                                     {typeof article.genres[0] === 'string'
@@ -43,8 +45,6 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                                         : article.genres[0]?.name}
                                 </span>
                             )}
-                            {article.genres && article.artistName && <span>|</span>}
-                            {article.artistName && <span>{article.artistName}</span>}
                         </div>
                     </div>
                     <h4>{article.title}</h4>

@@ -19,7 +19,9 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
             <div className="col-span-12 p-m md:col-span-5 order-2 md:order-1 h-full">
                 <div className="flex flex-col md:flex-row justify-between pb-s md:items-center gap-1">
                     {article.genres || article.artistName ? (
-                        <div className="flex gap-3 font-semibold order-2 md:order-1">
+                        <div className="flex gap-3 font-semibold order-2 md:order-1 text-fg-faded">
+                            {article.artistName && <span>{article.artistName}</span>}
+                            {article.genres && article.artistName && <span>|</span>}
                             {article.genres && (
                                 <span>
                                     {typeof article.genres[0] === 'string'
@@ -27,8 +29,6 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                                         : article.genres[0]?.name}
                                 </span>
                             )}
-                            {article.genres && article.artistName && <span>|</span>}
-                            {article.artistName && <span>{article.artistName}</span>}
                         </div>
                     ) : null}
                     <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
