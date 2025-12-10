@@ -18,6 +18,20 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
         locale,
     });
 
+    const image =
+        articleData?.contentMeta?.featuredImage && typeof articleData.contentMeta.featuredImage === 'object'
+            ? articleData.contentMeta.featuredImage
+            : null;
+
+    const altText =
+        (image?.alt && typeof image.alt === 'string'
+            ? image.alt
+            : typeof image?.alt === 'object'
+              ? image?.alt
+              : null) ||
+        articleData?.title ||
+        'Article Image';
+
     return (
         <BaseBlock classNameOuter="!pb-section-xxs">
             <div className="oakgrid gap-0">
@@ -29,13 +43,8 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                         order === 'image-full-width' && 'min-h-[400px] border-b-0',
                     )}
                 >
-                    {articleData?.contentMeta?.featuredImage && (
-                        <ImageMedia
-                            fill
-                            alt={articleData?.title || 'Article Image'}
-                            resource={articleData?.contentMeta?.featuredImage}
-                            imgClassName="object-cover w-full h-full"
-                        />
+                    {image && (
+                        <ImageMedia fill alt={altText} resource={image} imgClassName="object-cover w-full h-full" />
                     )}
                     <div className="absolute top-4 left-4 z-10">
                         {articleData?.articleType && <CardLabel label={formatArticleLabel(articleData)} />}
