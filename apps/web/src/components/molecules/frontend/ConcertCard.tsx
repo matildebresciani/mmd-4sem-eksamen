@@ -61,11 +61,11 @@ const ConcertCard = ({ concert, index }: Props) => {
                             {concert.venue}, {concert.city}
                         </p>
                     </div>
-                    {concert.ticketLink && (
+                    {/* {concert.ticketLink && (
                         <div className="size-[50px] flex justify-center items-center bg-button-secondary text-fg-on-color border border-bg-base md:hidden shrink-0">
                             <ArrowUpRight />
                         </div>
-                    )}
+                    )} */}
                 </div>
                 {concert.ticketLink && (
                     <BaseButton
