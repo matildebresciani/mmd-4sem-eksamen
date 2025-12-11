@@ -26,12 +26,12 @@ const ConcertCard = ({ concert, index }: Props) => {
             target={isLink ? '_blank' : undefined}
             rel={isLink ? 'noopener noreferrer' : undefined}
             className={cn(
-                'group flex flex-col md:flex-row md:first:border-t md:border-b md:border-solid md:border-base',
+                'group flex flex-col md:flex-row md:first:border-t md:border-b md:border-base md:border-x-1',
                 'w-full mb-section-xxs md:mb-0 active:bg-black/10 cursor-pointer',
             )}
         >
             {concert?.featuredImage && (
-                <div className="relative overflow-hidden aspect-[4/2] md:aspect-square border border-solid border-base border-b-0 md:border-none md:aspect-square w-full md:w-46 group shrink-0">
+                <div className="relative overflow-hidden aspect-[4/2] md:aspect-square border border-base border-b-0 md:border-none md:border-r md:aspect-square w-full md:w-46 group shrink-0">
                     <ImageMedia
                         fill
                         alt={concert?.artist || 'Concert Image'}
@@ -49,7 +49,7 @@ const ConcertCard = ({ concert, index }: Props) => {
                 </div>
             )}
 
-            <div className="flex flex-col md:flex-row md:pl-m md:py-m md:items-center justify-between gap-s md:w-full bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10">
+            <div className="flex flex-col md:flex-row md:p-m md:items-center justify-between gap-s md:w-full bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10">
                 <div className="flex justify-between items-end border border-base md:border-0 py-m px-s md:py-0 md:px-0">
                     <div className="flex flex-col gap-1 md:gap-s flex-wrap">
                         <p>{formatDateTime(concert.date, 'dot')}</p>
