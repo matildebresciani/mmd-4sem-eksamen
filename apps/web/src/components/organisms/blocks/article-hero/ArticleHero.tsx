@@ -47,7 +47,13 @@ const ArticleHeroBlock: BC<ArticleHeroProps> = async ({ block, locale, pageId })
                         <ImageMedia fill alt={altText} resource={image} imgClassName="object-cover w-full h-full" />
                     )}
                     <div className="absolute top-4 left-4 z-10">
-                        {articleData?.articleType && <CardLabel label={formatArticleLabel(articleData)} />}
+                        {articleData?.articleType && (
+                            <CardLabel
+                                label={formatArticleLabel(articleData)}
+                                type={articleData.articleType}
+                                reviewType={articleData.reviewType}
+                            />
+                        )}
                     </div>
 
                     {imageCaption && (

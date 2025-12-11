@@ -24,10 +24,6 @@
     --bg-highlight: #3D59B0; 
     --bg-subtle: #D8D5CD;
     --bg-section-2: #BDC9E7;
-    --bg-label-red: #DF4739;
-    --bg-label-blue: #3D59B0;
-    --bg-label-lightblue: #BDC9E7;
-    --bg-label-dark: #33261C;
     
     --fg-base: #33261C;
     --fg-on-color: #FBF8F1;
@@ -46,12 +42,20 @@
 
     --button-text: #3D59B0;
     --button-text-on-subtle: #FBF8F1;
+
+    --bg-label-red: #DF4739;
+    --bg-label-blue: #3D59B0;
+    --bg-label-lightblue: #BDC9E7;
+    --bg-label-dark: #33261C;
  
     --border-base: #33261C;
 
     --input-bg: #FBFAF7;
     --input-subtle: #EAEAEA;
     --input-border: var(--border-base);
+
+    --overlay-red: #DF4739;
+    --overlay-blue: #3D59B0;
 
     --logo-blue: rgba(61, 89, 176, 0.77);
     --logo-brown: rgba(60, 30, 5, 0.73);    
