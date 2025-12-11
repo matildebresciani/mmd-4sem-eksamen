@@ -16,7 +16,7 @@ const MainNavigation = ({ data, locale }: Props) => {
     const pathname = usePathname();
 
     return (
-        <nav className="flex gap-5 items-center nav-text">
+        <nav className="flex gap-5 items-center nav-text text-center">
             {data?.map((item, i) => {
                 const itemLink = formatLink(item.link, locale);
                 return (
