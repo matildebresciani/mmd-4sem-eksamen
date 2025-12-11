@@ -30,12 +30,12 @@ export const FooterClient: React.FC<FooterClientProps> = ({ footer1, footer2, fo
                 <div className="flex gap-5 z-23">
                     <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
                         <Link href="https://www.instagram.com/bandsoftomorrow/?hl=en">
-                            <Image alt={'logo'} src={'/images/instagram_bot.svg'} width={47} height={47} />
+                            <Instagram />
                         </Link>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
                         <Link href="https://www.facebook.com/bandsoftomorrow/">
-                            <Image alt={'logo'} src={'/images/facebook_bot.svg'} width={47} height={47} />
+                            <Facebook />
                         </Link>
                     </motion.div>
                 </div>
