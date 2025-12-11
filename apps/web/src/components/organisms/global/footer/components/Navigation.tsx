@@ -1,6 +1,7 @@
 import { formatLink } from '@/lib/utilities/format-link';
 import { cn } from '@/lib/utilities/ui';
 import type { Navigation as NavigationProps } from '@/payload-types';
+import { motion } from 'motion/react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -15,19 +16,19 @@ const Navigation = ({ data }: Props) => {
 
     return (
         <nav>
-            <ul>
+            <ul className="flex flex-col gap-5">
                 {data?.map((item, i) => {
                     const itemLink = formatLink(item.link, locale);
                     return (
-                        <li key={item.id ?? i}>
+                        <motion.li key={item.id ?? i} whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}>
                             <Link
                                 href={itemLink}
-                                className={cn('hover:underline', itemLink === pathname && 'underline')}
+                                className={cn('hover:underline link-text', itemLink === pathname && 'underline')}
                                 target={item.link.openNewTab ? '_blank' : '_self'}
                             >
                                 {item.link.label}
                             </Link>
-                        </li>
+                        </motion.li>
                     );
                 })}
             </ul>

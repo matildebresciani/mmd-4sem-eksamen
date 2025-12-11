@@ -1,6 +1,8 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
+import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
+import ConcertsList from '@/components/organisms/concerts-list/ConcertsList';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { initPayload } from '@/lib/config';
-import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import React from 'react';
@@ -20,24 +22,23 @@ export default async function Page({ params }: Props) {
 
     const concerts = await payload.find({
         collection: 'concerts',
-        sort: '-date',
+        sort: 'date',
         limit: 50,
-        overrideAccess: false,
     });
 
     return (
         <article className="pt-4 pb-20">
-            <section className="base-block-outer">
-                <div className="base-block oakgrid mt-6 lg:mt-10">
-                    <div className="col-span-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-20">
-                        <h1>Koncerter</h1>
-                        {concerts.docs.map((concert) => (
-                            // <Card key={concert.id} concert={concert} />
-                            <div key={concert.id}>{concert.artist}</div>
-                        ))}
-                    </div>
+            <BaseBlock>
+                <div className="oakgrid gap-y-section-xxs">
+                    <Heading className="col-span-12">Koncertkalender</Heading>
+                    <p className="md:text-center col-span-12 md:col-start-3 md:col-span-8">
+                        Udvalgte koncerter anbefalet af Band of Tomorrows skribenter og redaktion. Opdateres løbende.
+                        Vær opmærksom på at titlen på arrangementerne ikke nødvendigvis opdateres efter, at der er sket
+                        eventuelle ændringer ifm. lineups eller venues.
+                    </p>
+                    <ConcertsList concerts={concerts.docs} className="col-span-12" />
                 </div>
-            </section>
+            </BaseBlock>
         </article>
     );
 }

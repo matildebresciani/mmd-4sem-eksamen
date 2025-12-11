@@ -29,6 +29,5 @@ export const Genres: CollectionConfig = {
             collection: 'articles',
             on: 'genres',
         },
-        ...slugField(),
     ],
 };

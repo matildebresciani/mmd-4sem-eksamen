@@ -22,7 +22,7 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                     {article?.contentMeta?.featuredImage && (
                         <ImageMedia
                             fill
-                            alt={article?.title || 'Article Image'}
+                            fallbackAlt={article?.title || 'Article Image'}
                             resource={article?.contentMeta?.featuredImage}
                             imgClassName="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-120"
                             size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
@@ -34,10 +34,12 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                         </div>
                     )}
                 </div>
-                <div className="p-[var(--p-s)] pb-[var(--p-m)] flex flex-col gap-[var(--p-s)]">
-                    <div className="flex justify-between flex-wrap gap-1">
+                <div className="p-s pb-m flex flex-col gap-s">
+                    <div className="flex flex-col gap-1 body-sm">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 font-semibold text-fg-faded items-start justify-start">
+                            {article.artistName && <span>{article.artistName}</span>}
+                            {article.genres && article.artistName && <span>|</span>}
                             {article.genres && (
                                 <span>
                                     {typeof article.genres[0] === 'string'
@@ -45,11 +47,9 @@ const DefaultCard = ({ article, showLabel, className }: Props) => {
                                         : article.genres[0]?.name}
                                 </span>
                             )}
-                            {article.genres && article.artistName && <span>|</span>}
-                            {article.artistName && <span className="font-bold">{article.artistName}</span>}
                         </div>
                     </div>
-                    <h4 className="heading-sm">{article.title}</h4>
+                    <h4>{article.title}</h4>
                 </div>
             </div>
         </Link>

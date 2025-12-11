@@ -20,6 +20,7 @@ const placeholderBlur =
 export const ImageMedia: React.FC<MediaProps> = (props) => {
     const {
         alt: altFromProps,
+        fallbackAlt,
         fill,
         imgClassName,
         priority,
@@ -57,7 +58,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
     return (
         <NextImage
-            alt={alt || ''}
+            alt={alt || fallbackAlt || ''}
             className={cn(imgClassName)}
             fill={fill}
             height={!fill ? height : undefined}

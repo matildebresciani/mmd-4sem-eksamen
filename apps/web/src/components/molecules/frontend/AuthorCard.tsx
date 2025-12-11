@@ -9,22 +9,26 @@ const AuthorCard = ({ author }: Props) => {
     if (!author || typeof author === 'string') {
         return null;
     }
+
+    const picture = author.profilePicture;
+    const populatedPicture = picture && typeof picture !== 'string' ? picture : null;
+
     return (
         <div className="p-m flex gap-s border w-full md:w-fit">
-            {author.profilePicture && (
+            {populatedPicture && (
                 <div className="relative overflow-hidden w-full h-full aspect-square">
                     <ImageMedia
                         fill
-                        alt={author?.name || 'Author Image'}
+                        fallbackAlt={author?.volunteerName || 'Author Image'}
                         imgClassName="object-cover w-full h-full"
-                        resource={author.profilePicture}
-                        size="100px"
+                        resource={populatedPicture}
+                        size="75px"
                     />
                 </div>
             )}
             <div className="flex flex-col items-left justify-center gap-xs">
-                <span>{author.name}</span>
-                {author.email && <span>{author.email}</span>}
+                <span>{author.volunteerName}</span>
+                {author.email && <span className="body-md">{author.email}</span>}
             </div>
         </div>
     );

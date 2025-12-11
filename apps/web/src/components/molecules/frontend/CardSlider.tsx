@@ -12,12 +12,12 @@ type Props = {
     articles: Article[];
 };
 
-const CardSliderClient = ({ articles }: Props) => {
+const CardSlider = ({ articles }: Props) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
         <div>
-            {articles.length > 2 && (
+            {articles.length > 4 && (
                 <div className="hidden md:block absolute left-0 top-1/3 transform -translate-x-1/2 z-10">
                     <PaginationButton action="prev" onClick={() => swiperRef.current?.slidePrev()} />
                 </div>
@@ -47,7 +47,7 @@ const CardSliderClient = ({ articles }: Props) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            {articles.length > 2 && (
+            {articles.length > 4 && (
                 <div className="hidden md:block absolute right-0 top-1/3 transform translate-x-1 lg:translate-x-1/2 z-10">
                     <PaginationButton action="next" onClick={() => swiperRef.current?.slideNext()} />
                 </div>
@@ -56,4 +56,4 @@ const CardSliderClient = ({ articles }: Props) => {
     );
 };
 
-export default CardSliderClient;
+export default CardSlider;
