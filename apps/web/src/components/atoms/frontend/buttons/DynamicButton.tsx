@@ -4,7 +4,7 @@ import { formatLink } from '@/lib/utilities/format-link';
 import { cn } from '@/lib/utilities/ui';
 import type { Option } from '@/payload-types';
 import Link from 'next/link';
-import Arrow from '../icons/Arrow';
+
 
 // TODO: Move to boilerplate
 
@@ -20,10 +20,11 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }
     const { type, label, url, openNewTab } = link;
 
     const buttonStyle = cn(
-        'inline-flex cursor-pointer w-auto button-text',
-        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover p-s justify-center',
+        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
+    
+        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover  justify-center',
         variant === 'secondary' &&
-            'bg-button-secondary text-button-text hover:bg-button-secondary-hover p-s justify-center',
+            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover  justify-center',
         variant === 'tertiary' && 'underline text-fg-highlight-2 transition-transform duration-300 hover:scale-120',
         className,
     );
