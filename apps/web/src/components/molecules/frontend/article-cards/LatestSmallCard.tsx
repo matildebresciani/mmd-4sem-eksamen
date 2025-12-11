@@ -18,7 +18,7 @@ const LatestSmallCard = ({ article }: Props) => {
                     {article?.contentMeta?.featuredImage && (
                         <ImageMedia
                             fill
-                            alt={article?.title || 'Article Image'}
+                            fallbackAlt={article?.title || 'Article Image'}
                             resource={article?.contentMeta?.featuredImage}
                             imgClassName="object-cover w-full h-full"
                             size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
@@ -30,7 +30,7 @@ const LatestSmallCard = ({ article }: Props) => {
                 </div>
 
                 <div className="col-span-3">
-                    <div className="flex justify-between gap-s">
+                    <div className="flex justify-between gap-s body-md">
                         <div>{article.publishedAt && <span>{formatDateTime(article.publishedAt, 'long')}</span>}</div>
                         {/* <div className="flex gap-3">
                             {article.genres && (
@@ -44,7 +44,7 @@ const LatestSmallCard = ({ article }: Props) => {
                             {article.artistName && <span>{article.artistName}</span>}
                         </div> */}
                     </div>
-                    <h5 className="">{article.title}</h5>
+                    <h4>{article.title}</h4>
                 </div>
             </div>
         </Link>

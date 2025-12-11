@@ -1,37 +1,27 @@
+import Quotation from '@/components/atoms/frontend/icons/Quotation';
 import RichText from '@/components/molecules/admin/RichText';
-import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
-import { cn } from '@/lib/utilities/ui';
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import Image from 'next/image';
-// components/molecules/frontend/Quote.tsx
 import type React from 'react';
 
-interface QuoteProps {
-    richText?: SerializedEditorState | null;
+type Props = {
+    quoteText?: SerializedEditorState | null;
     showName?: boolean | null;
     name?: string | null;
-}
+};
 
-const Quote: React.FC<QuoteProps> = ({ richText, showName, name }) => {
+const Quote = ({ quoteText, showName, name }: Props) => {
     return (
-        <BaseBlock>
-            <div className={cn('oakgrid')}>
-                <div className="col-span-full relative min-h-[200px]">
-                    <Image
-                        alt="quoteicon"
-                        src="/images/quote.svg"
-                        width={134}
-                        height={88}
-                        className="absolute top-0 left-0"
-                    />
-                    <div className="absolute left-5 top-5 w-[90%] lg:left-20 lg:top-10 lg:w-[80%]">
-                        {richText && <RichText data={richText} className="italic" />}
-                        {/* Navn vises kun hvis showName er true */}
-                        {showName && name && <p className="font-bold">-{name}</p>}
-                    </div>
-                </div>
+        <div className="oakgrid relative">
+            <div className="col-start-2 col-span-2 absolute top-0 left-0 z-0">
+                <Quotation />
             </div>
-        </BaseBlock>
+
+            <div className="col-start-3 col-span-8 z-10 flex flex-col gap-3 pt-10">
+                {quoteText && <RichText data={quoteText} className="italic" />}
+                {showName && name && <p className="font-bold">-{name}</p>}
+            </div>
+        </div>
     );
 };
 

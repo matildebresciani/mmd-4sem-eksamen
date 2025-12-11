@@ -1,9 +1,9 @@
 import DynamicButton from '@/components/atoms/frontend/buttons/DynamicButton';
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
-import RichText from '@/components/molecules/admin/RichText';
 import type { BC } from '@/lib/types/block-props';
 import { cn } from '@/lib/utilities/ui';
 import type { TextImage as TextImageProps } from '@/payload-types';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 import React from 'react';
 import BaseBlock from '../base-block/BaseBlock';
 
@@ -11,8 +11,10 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
     const { order, image, richText, addLink, link, addBgColor, heading, mode } = block;
 
     return (
-        <BaseBlock className={cn(addBgColor && 'bg-bg-highlight text-white')}>
-            <div className="oakgrid py-[var(--padding-m)] gap-[3rem] md:py-[var(--padding-l)] lg:py-[var(--padding-xl)]">
+        <BaseBlock
+            classNameOuter={cn(addBgColor && 'bg-bg-highlight text-fg-on-color !py-xl mb-section-xs md:mb-section-m')}
+        >
+            <div className="oakgrid">
                 <div
                     className={cn(
                         'col-span-12 relative min-h-[400px] lg:sticky top-6 lg:col-span-6 xl:col-span-5',

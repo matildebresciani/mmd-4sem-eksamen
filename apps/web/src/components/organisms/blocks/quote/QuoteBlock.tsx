@@ -6,8 +6,8 @@ import BaseBlock from '../base-block/BaseBlock';
 const QuoteBlock: BC<QuoteProps> = ({ block }) => {
     const { richText, name, showName } = block;
     return (
-        <BaseBlock>
-            <Quote richText={richText} name={name} showName={showName} />
+        <BaseBlock classNameOuter="!pb-section-xxs">
+            <Quote quoteText={richText} name={name} showName={showName} />
         </BaseBlock>
     );
 };

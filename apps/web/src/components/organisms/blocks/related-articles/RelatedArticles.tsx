@@ -31,7 +31,7 @@ const RelatedArticlesBlock: BC<RelatedArticlesProps> = async ({ block, locale, p
     });
 
     return (
-        <BaseBlock>
+        <BaseBlock classNameOuter="overflow-hidden">
             <div className="oakgrid">
                 <div className="col-span-12">
                     <h3 className="mb-section-xxs">{heading}</h3>

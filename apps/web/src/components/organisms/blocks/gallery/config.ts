@@ -165,5 +165,10 @@ export const Gallery: Block = {
             relationTo: 'media',
             admin: { condition: (data, siblingData) => siblingData.layout === 'threeTopOneUnder' },
         },
+        {
+            type: 'text',
+            name: 'galleryDescription',
+            label: 'Description',
+        },
     ],
 };

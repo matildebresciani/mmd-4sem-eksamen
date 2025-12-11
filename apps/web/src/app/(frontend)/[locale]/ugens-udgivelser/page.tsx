@@ -1,3 +1,4 @@
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import ArticlesArchive from '@/components/organisms/articles-archive/ArticlesArchive';
 import BaseBlock from '@/components/organisms/blocks/base-block/BaseBlock';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
@@ -31,7 +32,7 @@ export default async function Page({ params }: Props) {
             <BaseBlock>
                 <div className="oakgrid">
                     <div className="col-span-12 space-y-section-xxs">
-                        <h1 className="text-center">Ugens udgivelser</h1>
+                        <Heading>Ugens udgivelser</Heading>
                         <ArticlesArchive articles={weeklyReleases.docs} />
                     </div>
                 </div>

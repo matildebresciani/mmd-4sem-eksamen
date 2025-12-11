@@ -28,7 +28,7 @@ const delaGothicOne = Dela_Gothic_One({
 });
 
 const inclusiveSans = Inclusive_Sans({
-    weight: ['400', '700'],
+    weight: ['300', '400', '700'],
     variable: '--font-inclusive-sans',
     style: ['normal'],
     subsets: ['latin'],

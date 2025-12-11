@@ -27,6 +27,11 @@ export const ArticleHero: Block = {
             ],
         },
         {
+            name: 'imageCaption',
+            type: 'text',
+            label: 'Billedbeskrivelse',
+        },
+        {
             type: 'relationship',
             name: 'author',
             label: 'Author',
