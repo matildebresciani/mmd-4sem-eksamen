@@ -15,8 +15,8 @@ type Props = {
 
 const FeaturedCard = ({ article, showLabel, className }: Props) => {
     return (
-        <Link className={`oakgrid border ${className}`} href={getArticleUrl(article)}>
-            <div className="col-span-12 p-m md:col-span-5 order-2 md:order-1 h-full">
+        <Link className={`oakgrid border group ${className}`} href={getArticleUrl(article)}>
+            <div className="col-span-12 p-m md:col-span-5 order-2 md:order-1 h-full bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10">
                 <div className="flex flex-col md:flex-row justify-between pb-s md:items-center gap-1 body-md">
                     {article.genres || article.artistName ? (
                         <div className="flex gap-3 font-semibold order-2 md:order-1 text-fg-faded">
@@ -45,7 +45,7 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                         fill
                         fallbackAlt={article?.title || 'Article Image'}
                         resource={article?.contentMeta?.featuredImage}
-                        imgClassName="object-cover w-full h-full"
+                        imgClassName="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-120"
                     />
                 )}
                 {showLabel && (
