@@ -14,10 +14,10 @@ type Props = {
 
 const BaseButton = ({ type, title, href, openNewTab, className, onClick, variant = 'primary' }: Props) => {
     const style = cn(
-        'inline-flex cursor-pointer w-auto button-text',
+        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
         variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover p-s justify-center',
         variant === 'secondary' &&
-            'bg-button-secondary text-button-text hover:bg-button-secondary-hover p-s justify-center',
+            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover p-s justify-center',
         className,
     );
 
