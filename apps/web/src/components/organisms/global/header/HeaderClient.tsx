@@ -5,6 +5,7 @@ import SearchBar from '@/components/molecules/frontend/SearchBar';
 import type { Navigation } from '@/payload-types';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import BaseBlock from '../../blocks/base-block/BaseBlock';
 import MainNavigation from './components/MainNavigation';
 import MobileNavigation from './components/MobileNavigation';
 
@@ -76,102 +77,103 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
     return (
         // Header baggrund går hele vejen
         <motion.header
-            className="fixed top-0 left-0 right-0 z-50 bg-bg-base overflow-visible base-block"
+            className="fixed top-0 left-0 right-0 z-50 bg-bg-base overflow-visible"
             animate={{ height: headerHeight }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             style={{ willChange: 'height' }}
         >
-            {/* Container max width 1536px */}
-            <div className="w-full">
-                <div
-                    className="max-w-screen-xxl mx-auto px-4 md:px-6 lg:px-8 relative"
-                    style={{ height: headerHeight }}
-                >
-                    {/* =========================
+            <BaseBlock classNameOuter="!pb-0">
+                {/* Container max width 1536px */}
+                <div className="oakgrid">
+                    <div className="col-span-12  relative" style={{ height: headerHeight }}>
+                        {/* =========================
               MOBILE & TABLET ROW (vises på < lg:1024)
               - flex-row, logo venstre, actions til højre
               - small-logo flytter til venstre når scrolled
               ========================= */}
-                    <div className="flex items-center justify-between w-full h-full lg:hidden gap-l">
-                        {/* Venstre: Logo (full når ikke scrolled, small når scrolled) */}
-                        <div className="flex items-center">
-                            <motion.div
-                                animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -6 : 0 }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                className="flex items-center"
-                            >
-                                <LogoLink variant="full" />
-                            </motion.div>
+                        <div className="flex items-center justify-between w-full h-full lg:hidden gap-l">
+                            {/* Venstre: Logo (full når ikke scrolled, small når scrolled) */}
+                            <div className="flex items-center">
+                                <motion.div
+                                    animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -6 : 0 }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                    className="flex items-center"
+                                >
+                                    <LogoLink variant="full" />
+                                </motion.div>
 
-                            {/* small logo (positioneret absolut hvis scrolled, ellers hidden) */}
-                            <motion.div
-                                className="absolute top-xs"
-                                style={{
-                                    left: smallLogoLeft,
-                                }}
-                                animate={{
-                                    opacity: scrolled ? 1 : 0,
-                                    x: 0,
-                                    y: scrolled ? 0 : -8,
-                                    scale: scrolled ? 0.85 : 1,
-                                }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                            >
-                                <LogoLink />
-                            </motion.div>
+                                {/* small logo (positioneret absolut hvis scrolled, ellers hidden) */}
+                                <motion.div
+                                    className="absolute top-xs"
+                                    style={{
+                                        left: smallLogoLeft,
+                                    }}
+                                    animate={{
+                                        opacity: scrolled ? 1 : 0,
+                                        x: 0,
+                                        y: scrolled ? 0 : -8,
+                                        scale: scrolled ? 0.85 : 1,
+                                    }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                >
+                                    <LogoLink />
+                                </motion.div>
+                            </div>
+
+                            {/* Højre: search + burger */}
+                            <div className="flex items-center gap-3 mt-m">
+                                <SearchBar />
+                                {mobile && <MobileNavigation data={mobile} locale={locale} />}
+                            </div>
                         </div>
 
-                        {/* Højre: search + burger */}
-                        <div className="flex items-center gap-3 mt-m">
-                            <SearchBar />
-                            {mobile && <MobileNavigation data={mobile} locale={locale} />}
-                        </div>
-                    </div>
-
-                    {/* =========================
+                        {/* =========================
               DESKTOP LAYOUT (lg and up)
               - logo centered (stack), main navigation absolute under logo
               ========================= */}
-                    <div className="hidden lg:block w-full h-full">
-                        <div className="w-full h-full flex items-start justify-center relative">
-                            {/* Full logo */}
-                            <motion.div
-                                animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -10 : 0 }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                className="z-30"
-                            >
-                                <LogoLink variant="full" />
-                            </motion.div>
+                        <div className="hidden lg:block w-full h-full">
+                            <div className="w-full h-full flex items-start justify-center relative">
+                                {/* Full logo */}
+                                <motion.div
+                                    animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -10 : 0 }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                    className="z-30"
+                                >
+                                    <LogoLink variant="full" />
+                                </motion.div>
 
-                            {/* Small logo (centered on desktop) */}
-                            <motion.div
-                                className="absolute top-s left-[50%] transform -translateX(-50%) z-40"
-                                animate={{
-                                    opacity: scrolled ? 1 : 0,
-                                    y: scrolled ? 0 : -10,
-                                    scale: scrolled ? 0.85 : 1,
+                                {/* Small logo (centered on desktop) */}
+                                <motion.div
+                                    className="absolute top-s left-[50%] transform -translateX(-50%) z-40"
+                                    animate={{
+                                        opacity: scrolled ? 1 : 0,
+                                        y: scrolled ? 0 : -10,
+                                        scale: scrolled ? 0.85 : 1,
+                                    }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                >
+                                    <LogoLink />
+                                </motion.div>
+                            </div>
+                            <div
+                                className="absolute left-0 right-0 z-20 px-0 mx-auto"
+                                style={{
+                                    top: navTop,
                                 }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                             >
-                                <LogoLink />
-                            </motion.div>
-                        </div>
-                        <div
-                            className="absolute left-0 right-0 z-20 px-0 mx-auto"
-                            style={{
-                                top: navTop,
-                            }}
-                        >
-                            <div className="flex items-center justify-between w-full">
-                                <div className="flex-1">{main && <MainNavigation data={main} locale={locale} />}</div>
-                                <div className="flex-shrink-0">
-                                    <SearchBar />
+                                <div className="flex items-center justify-between w-full">
+                                    <div className="flex-1">
+                                        {main && <MainNavigation data={main} locale={locale} />}
+                                    </div>
+                                    <div className="flex-shrink-0">
+                                        <SearchBar />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </BaseBlock>
         </motion.header>
     );
 }

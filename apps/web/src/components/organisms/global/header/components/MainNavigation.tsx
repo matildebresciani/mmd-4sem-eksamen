@@ -24,7 +24,7 @@ const MainNavigation = ({ data, locale }: Props) => {
                         key={item.id ?? i}
                         href={itemLink}
                         className={cn(
-                            'hover:text-bg-highlight nav-text p-1',
+                            'hover:text-bg-highlight nav-text',
                             itemLink === pathname && 'bg-bg-highlight h-fit text-button-text hover:text-button-text',
                         )}
                         target={item.link.openNewTab ? '_blank' : '_self'}
