@@ -3,7 +3,7 @@ type Props = {
 };
 
 const Required = ({ className }: Props) => {
-    return <span className={`text-red-500 ${className}`}>*</span>;
+    return <span className={`text-red-700 ${className}`}>*</span>;
 };
 
 export default Required;

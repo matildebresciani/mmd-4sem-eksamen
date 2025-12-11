@@ -29,12 +29,12 @@ const Select = ({ label, name, options, placeholder, isRequired }: Props) => {
                 <select
                     id={id}
                     {...register(name, { required: isRequired })}
-                    className="appearance-none py-m px-s border border-border-base bg-input-bg w-full pr-10"
+                    className="appearance-none py-xs px-s border border-border-base bg-input-bg w-full pr-10 placeholder-text"
                     defaultValue=""
                     aria-invalid={!!error}
                     aria-errormessage={error ? errorId : undefined}
                 >
-                    <option value="" disabled hidden>
+                    <option value="" disabled hidden className="placeholder-text">
                         {placeholder || 'Vælg en mulighed'}
                     </option>
                     {options.map((opt) => (

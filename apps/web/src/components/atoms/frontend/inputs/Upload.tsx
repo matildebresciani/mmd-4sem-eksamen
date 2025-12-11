@@ -78,7 +78,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                     handleFileChange(e.dataTransfer.files);
                 }}
                 className={cn(
-                    'flex flex-col items-center justify-center space-y-s w-full min-h-[200px]',
+                    'flex flex-col items-center justify-center space-y-s w-full min-h-[200px] bg-input-bg',
                     'py-m px-s text-center',
                     'border border-dashed transition-colors',
                     error ? 'border-red-500' : isDragActive ? 'bg-red-500' : 'border-input-border',
@@ -128,7 +128,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                     </div>
                 ) : (
                     <>
-                        <p className="text-body-sm text-center italic font-light">
+                        <p className="text-body-sm text-center italic font-light placeholder-text">
                             {placeholder || 'Upload filer ved at hive dem ind i dette vindue eller tryk på knappen'}
                         </p>
                         <button
@@ -139,7 +139,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                                 inputRef.current?.click();
                             }}
                             className={cn(
-                                'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer',
+                                'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer hover:bg-button-subtle body-md',
                                 'border-border-base bg-border-subtle',
                             )}
                         >
