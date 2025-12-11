@@ -11,9 +11,9 @@ const Star = ({ fill, className }: Props) => {
             className={className}
             role="img"
             aria-label="star"
-            width="20"
-            height="20"
-            viewBox="0 0 28 27"
+            width="100"
+            height="100"
+            viewBox="0 0 100 100"
             fill={fill ? '#F7B500' : 'transparent'}
             xmlns="http://www.w3.org/2000/svg"
         >
