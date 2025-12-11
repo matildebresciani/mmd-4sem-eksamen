@@ -31,7 +31,7 @@ export default async function Page({ params }: Props) {
             <BaseBlock>
                 <div className="oakgrid gap-y-section-xxs">
                     <Heading className="col-span-12">Koncertkalender</Heading>
-                    <p className="md:text-center col-span-12 md:col-start-3 md:col-span-8">
+                    <p className="md:justify-center col-span-12 md:col-start-3 md:col-span-8">
                         Udvalgte koncerter anbefalet af Band of Tomorrows skribenter og redaktion. Opdateres løbende.
                         Vær opmærksom på at titlen på arrangementerne ikke nødvendigvis opdateres efter, at der er sket
                         eventuelle ændringer ifm. lineups eller venues.
