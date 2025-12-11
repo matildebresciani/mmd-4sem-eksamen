@@ -1,4 +1,5 @@
 import DynamicButton from '@/components/atoms/frontend/buttons/DynamicButton';
+import { Heading } from '@/components/atoms/frontend/heading/Heading';
 import CardSlider from '@/components/molecules/frontend/CardSlider';
 import { getCachedCollection } from '@/lib/data/payload/get-cached-collection';
 import type { BC } from '@/lib/types/block-props';
@@ -12,6 +13,7 @@ const ArticleSliderBlock: BC<ArticleSliderProps> = async ({ block }) => {
 
     const articlesRes = await getCachedCollection({
         collection: 'articles',
+        sort: '-publishedAt',
         whereFields: {
             articleType: { equals: articleType },
         },
@@ -24,13 +26,15 @@ const ArticleSliderBlock: BC<ArticleSliderProps> = async ({ block }) => {
         <BaseBlock classNameOuter="overflow-hidden">
             <div className="oakgrid">
                 <div className="col-span-12">
-                    <h2 className="mb-section-xxs text-center">{heading}</h2>
+                    <Heading level={2} className="mb-section-xxs">
+                        {heading}
+                    </Heading>
                     <div className="relative max-w-full">
                         <CardSlider articles={articles} />
                     </div>
                     {addLink && link && (
                         <div className="mt-l flex justify-center">
-                            <DynamicButton link={link} />
+                            <DynamicButton variant="tertiary" link={link} />
                         </div>
                     )}
                 </div>

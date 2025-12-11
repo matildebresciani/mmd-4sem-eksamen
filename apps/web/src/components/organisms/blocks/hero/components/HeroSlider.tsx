@@ -2,7 +2,7 @@
 
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import type { Article, Hero as HeroProps } from '@/payload-types';
-import { useState } from 'react';
+import { act, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectCreative } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,6 +14,7 @@ import { formatArticleLabel } from '@/lib/utilities/format-label';
 import { getArticleUrl } from '@/lib/utilities/get-article-url';
 import { AnimatePresence, motion } from 'motion/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     featuredArticles: Article[];
@@ -31,6 +32,9 @@ const HeroSlider = ({ featuredArticles }: Props) => {
 
     const swiperSpeed = 1000;
     const swiperAutoplayDelay = 5000;
+
+    const router = useRouter();
+
     return (
         <div className="min-svh-screen-incl-header relative w-full text-fg-on-color flex items-end">
             {/* Background slider */}
@@ -54,7 +58,14 @@ const HeroSlider = ({ featuredArticles }: Props) => {
                         if (!img || typeof img !== 'object') return null;
 
                         return (
-                            <SwiperSlide key={article.id || idx}>
+                            <SwiperSlide
+                                key={article.id || idx}
+                                onClick={() => {
+                                    // Kun navigér hvis brugeren IKKE swipede
+                                    router.push(getArticleUrl(article));
+                                }}
+                                className="cursor-pointer"
+                            >
                                 <ImageMedia resource={img} imgClassName="object-cover w-full h-full" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                             </SwiperSlide>
@@ -77,33 +88,35 @@ const HeroSlider = ({ featuredArticles }: Props) => {
             {/* Hero text overlay */}
             <div className="base-block z-20 pb-m oakgrid relative pointer-events-none">
                 <div className="w-full col-span-12">
-                    <Link href={getArticleUrl(activeHeroSlide)} className="pointer-events-auto block">
-                        <AnimatePresence mode="wait">
-                            {activeHeroSlide && (
-                                <motion.div
-                                    key={activeHeroSlide.id || activeSlide}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                                    className="w-full grid grid-cols-subgrid"
-                                >
-                                    <div className="col-span-12 w-fit mb-m">
-                                        <CardLabel label={formatArticleLabel(activeHeroSlide)} />
-                                    </div>
-                                    {/* TITLE */}
-                                    <h3 className="col-span-12">{activeHeroSlide.title}</h3>
+                    <AnimatePresence mode="wait">
+                        {activeHeroSlide && (
+                            <motion.div
+                                key={activeHeroSlide.id || activeSlide}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                                className="w-full grid grid-cols-subgrid"
+                            >
+                                <div className="col-span-12 w-fit mb-m">
+                                    <CardLabel
+                                        label={formatArticleLabel(activeHeroSlide)}
+                                        type={activeHeroSlide.articleType}
+                                        reviewType={activeHeroSlide.reviewType}
+                                    />
+                                </div>
+                                {/* TITLE */}
+                                <h3 className="col-span-12">{activeHeroSlide.title}</h3>
 
-                                    {/* EXCERPT */}
-                                    {activeHeroSlide.contentMeta?.excerpt && (
-                                        <p className="col-span-12 max-w-[65ch] mt-base italic line-clamp-3">
-                                            {activeHeroSlide.contentMeta.excerpt}
-                                        </p>
-                                    )}
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </Link>
+                                {/* EXCERPT */}
+                                {activeHeroSlide.contentMeta?.excerpt && (
+                                    <p className="col-span-12 max-w-[65ch] mt-base italic line-clamp-3">
+                                        {activeHeroSlide.contentMeta.excerpt}
+                                    </p>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
 
                 {isSlider && (

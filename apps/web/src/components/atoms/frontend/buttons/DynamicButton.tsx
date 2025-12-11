@@ -4,31 +4,27 @@ import { formatLink } from '@/lib/utilities/format-link';
 import { cn } from '@/lib/utilities/ui';
 import type { Option } from '@/payload-types';
 import Link from 'next/link';
-import Arrow from '../icons/Arrow';
 
 // TODO: Move to boilerplate
 
 type Props = {
     link: Option['linkTypeTemplate'];
     className?: string;
-    variant?: 'highlight' | 'primary' | 'secondary' | 'tertiary';
+    variant?: 'primary' | 'secondary' | 'tertiary';
     locale?: Locale;
-    addArrow?: boolean;
     onClick?: () => void;
 };
 
-const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow, onClick }: Props) => {
+const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }: Props) => {
     const { type, label, url, openNewTab } = link;
 
-    // TODO Hover states
     const buttonStyle = cn(
-        'inline-flex cursor-pointer w-auto font-bold',
-        variant === 'primary' && 'bg-fg-base text-text-on-color px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
-        variant === 'highlight' &&
-            'bg-fg-highlight text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
+        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
+
+        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover justify-center',
         variant === 'secondary' &&
-            'bg-transparent border border-border-base text-text-base px-8 py-4 md:px-16 md:py-6 rounded-2xl justify-center',
-        variant === 'tertiary' && 'underline',
+            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover justify-center',
+        variant === 'tertiary' && 'underline text-fg-highlight-2 transition-transform duration-300 hover:scale-120',
         className,
     );
 
@@ -41,7 +37,6 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow,
                 onClick={() => onClick?.()}
             >
                 {label}
-                {addArrow && <Arrow className="h-5 w-5 min-w-5" />}
             </Link>
         );
     }
@@ -49,13 +44,12 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, addArrow,
     if (type === 'reference') {
         return (
             <Link
-                href={formatLink(link, locale ?? 'en')}
+                href={formatLink(link, locale ?? 'da')}
                 className={buttonStyle}
                 target={openNewTab ? '_blank' : '_self'}
                 onClick={() => onClick?.()}
             >
                 {label}
-                {addArrow && <Arrow className="h-5 w-5 min-w-5" />}
             </Link>
         );
     }

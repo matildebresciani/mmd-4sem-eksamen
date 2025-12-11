@@ -1,5 +1,5 @@
 @use 'tailwindcss';
-
+ 
 @theme {
     --font-heading: var(--font-heading);
     --font-body: var(--font-body);
@@ -8,8 +8,11 @@
     --color-bg-base: var(--bg-base);
     --color-bg-highlight: var(--bg-highlight);
     --color-bg-subtle: var(--bg-subtle);
-    --color-bg-red: var(--bg-red);
     --color-bg-section-2: var(--bg-section-2);
+    --color-bg-label-red: var(--bg-label-red);
+    --color-bg-label-blue: var(--bg-label-blue);
+    --color-bg-label-lightblue: var(--bg-label-lightblue);
+    --color-bg-label-dark: var(--bg-label-dark);
 
     --color-fg-base: var(--fg-base);
     --color-fg-on-color: var(--fg-on-color);
@@ -27,11 +30,19 @@
     --color-button-text: var(--button-text);
     --color-button-text-on-subtle: var(--button-text-on-subtle);
 
+    --color-label-red: var(--bg-label-red);
+    --color-label-blue: var(--bg-label-blue);
+    --color-label-lightblue: var(--bg-label-lightblue);
+    --color-label-dark: var(--bg-label-dark);
+
     --color-border-base: var(--border-base);
 
     --color-input-bg: var(--input-bg);
     --color-input-subtle: var(--input-subtle);
     --color-input-border: var(--input-border);
+
+    --color-overlay-red: var(--overlay-red);
+    --color-overlay-blue: var(--overlay-blue);
 
     --color-logo-blue: var(--logo-blue);
     --color-logo-brown: var(--logo-brown);
