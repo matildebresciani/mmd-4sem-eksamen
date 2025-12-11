@@ -12,15 +12,15 @@ type Props = {
 
 const LatestBigCard = ({ article }: Props) => {
     return (
-        <Link href={getArticleUrl(article)}>
-            <div className="border lg:border-r-0 h-full flex flex-col">
+        <Link href={getArticleUrl(article)} className="group">
+            <div className="border lg:border-r-0 h-full flex flex-col bg-transparent transition-colors duration-300 ease-in-out group-hover:bg-black/10">
                 <div className="relative w-full overflow-hidden aspect-4/3 border-b max-h-[400px]">
                     {article?.contentMeta?.featuredImage && (
                         <ImageMedia
                             fill
                             fallbackAlt={article?.title || 'Article Image'}
                             resource={article?.contentMeta?.featuredImage}
-                            imgClassName="object-cover w-full h-full"
+                            imgClassName="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-110"
                             size="100vw, (min-width: 769px) 50vw, (min-width: 1281px) 33vw"
                         />
                     )}
