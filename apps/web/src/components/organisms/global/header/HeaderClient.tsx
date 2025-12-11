@@ -1,128 +1,3 @@
-// // HeaderClient.tsx (Client Component)
-// 'use client';
-
-// import LogoLink from '@/components/atoms/frontend/logo/Link';
-// import SearchBar from '@/components/molecules/frontend/SearchBar';
-// import { motion } from 'framer-motion';
-// import React, { useEffect, useState } from 'react';
-// import MainNavigation from './components/MainNavigation';
-// import MobileNavigation from './components/MobileNavigation';
-// import SecondaryNavigation from './components/SecondaryNavigation';
-
-// export default function HeaderClient({ main, secondary, mobile, locale }: any) {
-//     const [scrolled, setScrolled] = useState(false);
-
-//     useEffect(() => {
-//         const handleScroll = () => setScrolled(window.scrollY > 50);
-//         window.addEventListener('scroll', handleScroll);
-//         return () => window.removeEventListener('scroll', handleScroll);
-//     }, []);
-
-//     return (
-//         <motion.header
-//             className="fixed top-0 left-0 w-full z-50 bg-bg-base overflow-hidden py-4 md:py-8"
-//             animate={{ height: scrolled ? 112 : 303 }}
-//             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-//         >
-//             {secondary && <SecondaryNavigation data={secondary} locale={locale} />}
-//             <div className="base-block flex lg:flex-col items-center justify-between gap-5 relative">
-//                 <motion.div
-//                     className="absolute left-1/2 transform -translate-x-1/2 lg:block"
-//                     animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -20 : 0, scale: 1 }}
-//                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-//                 >
-//                     <LogoLink variant="full" />
-//                 </motion.div>
-
-//                 <motion.div
-//                     className="absolute left-1/2 transform -translate-x-1/2 lg:block"
-//                     animate={{ opacity: scrolled ? 1 : 0, y: scrolled ? 0 : -20, scale: scrolled ? 0.85 : 1 }}
-//                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-//                 >
-//                     <LogoLink />
-//                 </motion.div>
-
-//                 <div className="hidden lg:flex lg:gap-l bg-bg-base items-center">
-//                     {main && <MainNavigation data={main} locale={locale} />}
-//                     <SearchBar />
-//                 </div>
-
-//                 <div className="lg:hidden flex justify-between w-full">
-//                     {/* <LogoLink /> */}
-//                     <div className="flex gap-base items-center">
-//                         <SearchBar />
-//                         {mobile && <MobileNavigation data={mobile} locale={locale} />}
-//                     </div>
-//                 </div>
-//             </div>
-//         </motion.header>
-//     );
-// }
-// 'use client';
-
-// import LogoLink from '@/components/atoms/frontend/logo/Link';
-// import SearchBar from '@/components/molecules/frontend/SearchBar';
-// import { motion } from 'framer-motion';
-// import React, { useEffect, useState } from 'react';
-// import MainNavigation from './components/MainNavigation';
-// import MobileNavigation from './components/MobileNavigation';
-// import SecondaryNavigation from './components/SecondaryNavigation';
-
-// export default function HeaderClient({ main, secondary, mobile, locale }: any) {
-//     const [scrolled, setScrolled] = useState(false);
-
-//     useEffect(() => {
-//         const handleScroll = () => setScrolled(window.scrollY > 50);
-//         window.addEventListener('scroll', handleScroll);
-//         return () => window.removeEventListener('scroll', handleScroll);
-//     }, []);
-
-//     return (
-//         <motion.header
-//             className="fixed top-0 left-0 w-full z-50 bg-bg-base overflow-hidden"
-//             animate={{ height: scrolled ? 140 : 303 }}
-//             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-//         >
-//             {secondary && <SecondaryNavigation data={secondary} locale={locale} />}
-
-//             <div className="base-block flex flex-col justify-between h-full relative gap-xxs">
-//                 {/* Logo øverst */}
-//                 <div className="relative w-full flex justify-center pt-l">
-//                     <motion.div
-//                         className="lg:block"
-//                         animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -20 : 0, scale: 1 }}
-//                         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-//                     >
-//                         <LogoLink variant="full" />
-//                     </motion.div>
-
-//                     <motion.div
-//                         className="lg:block absolute top-2 left-1/2 transform -translate-x-1/2"
-//                         animate={{ opacity: scrolled ? 1 : 0, y: scrolled ? 0 : -20, scale: scrolled ? 0.85 : 1 }}
-//                         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-//                     >
-//                         <LogoLink />
-//                     </motion.div>
-//                 </div>
-
-//                 {/* Navigation nederst */}
-//                 <div className="hidden lg:flex justify-between items-center bg-bg-base w-full mb-0 py-2">
-//                     {main && <MainNavigation data={main} locale={locale} />}
-//                     <SearchBar />
-//                 </div>
-
-//                 {/* Mobile */}
-//                 <div className="lg:hidden flex justify-between w-full mt-auto">
-//                     <div className="flex gap-base items-center">
-//                         <SearchBar />
-//                         {mobile && <MobileNavigation data={mobile} locale={locale} />}
-//                     </div>
-//                 </div>
-//             </div>
-//         </motion.header>
-//     );
-// }
-
 'use client';
 
 import LogoLink from '@/components/atoms/frontend/logo/Link';
@@ -133,59 +8,169 @@ import MainNavigation from './components/MainNavigation';
 import MobileNavigation from './components/MobileNavigation';
 import SecondaryNavigation from './components/SecondaryNavigation';
 
-export default function HeaderClient({ main, secondary, mobile, locale }: any) {
+type Props = {
+    main: any;
+    secondary: any;
+    mobile: any;
+    locale: string;
+};
+
+export default function HeaderClient({ main, secondary, mobile, locale }: Props) {
     const [scrolled, setScrolled] = useState(false);
+    const [vw, setVw] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+    // Tailwind breakpoints: md=768, lg=1024
+    const isMobile = vw < 768;
+    const isTablet = vw >= 768 && vw < 1024;
+    const isDesktop = vw >= 1024;
+
+    // Højder pr. device (juster efter behov)
+    const heights = {
+        desktop: { large: 303, small: 140 },
+        tablet: { large: 220, small: 110 },
+        mobile: { large: 140, small: 72 },
+    };
+
+    const headerHeight = isDesktop
+        ? scrolled
+            ? heights.desktop.small
+            : heights.desktop.large
+        : isTablet
+          ? scrolled
+              ? heights.tablet.small
+              : heights.tablet.large
+          : scrolled
+            ? heights.mobile.small
+            : heights.mobile.large;
+
+    // Nav bar højde (brug præcis højde hvis din MainNavigation har en konkret height)
+    const navBarHeight = isMobile ? 48 : 64;
+    const navOffset = isMobile ? 8 : 12;
+    const navTop = Math.max(headerHeight - navBarHeight - navOffset, 0);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const onScroll = () => setScrolled(window.scrollY > 50);
+        const onResize = () => setVw(window.innerWidth);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onResize);
+        onResize();
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onResize);
+        };
     }, []);
 
-    // Her sætter vi positionen for navigation afhængigt af header-højde
-    const navTop = scrolled ? 100 : 240; // pixels fra toppen
+    // smallLogoLeft: left offset inside container when left-aligned (mobile/tablet)
+    const smallLogoLeft = 16;
 
     return (
+        // Header baggrund går hele vejen
         <motion.header
-            className="fixed top-0 left-0 w-full z-50 bg-bg-base overflow-hidden"
-            animate={{ height: scrolled ? 140 : 303 }}
+            className="fixed top-0 left-0 right-0 z-50 bg-bg-base overflow-visible"
+            animate={{ height: headerHeight }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            style={{ willChange: 'height' }}
         >
+            {/* Secondary nav (fuld bredde) */}
             {secondary && <SecondaryNavigation data={secondary} locale={locale} />}
 
-            {/* Logo container */}
-            <div className="relative w-full flex justify-center pt-l">
-                <motion.div
-                    className="lg:block"
-                    animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -20 : 0, scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            {/* Indhold container — max width 1536px, centreret. BG forbliver fuldbredde */}
+            <div className="w-full">
+                <div
+                    className="max-w-screen-xxl mx-auto px-4 md:px-6 lg:px-8 relative"
+                    style={{ height: headerHeight }}
                 >
-                    <LogoLink variant="full" />
-                </motion.div>
+                    {/* =========================
+              MOBILE & TABLET ROW (vises på < lg:1024)
+              - flex-row, logo venstre, actions til højre
+              - small-logo flytter til venstre når scrolled
+              ========================= */}
+                    <div className="flex items-center justify-between w-full h-full lg:hidden gap-l">
+                        {/* Venstre: Logo (full når ikke scrolled, small når scrolled) */}
+                        <div className="flex items-center">
+                            <motion.div
+                                animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -6 : 0 }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                className="flex items-center"
+                            >
+                                <LogoLink variant="full" />
+                            </motion.div>
 
-                <motion.div
-                    className="lg:block absolute top-2 left-1/2 transform -translate-x-1/2"
-                    animate={{ opacity: scrolled ? 1 : 0, y: scrolled ? 0 : -20, scale: scrolled ? 0.85 : 1 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                >
-                    <LogoLink />
-                </motion.div>
-            </div>
+                            {/* small logo (positioneret absolut hvis scrolled, ellers hidden) */}
+                            <motion.div
+                                style={{
+                                    position: 'absolute',
+                                    left: smallLogoLeft,
+                                    top: 8,
+                                }}
+                                animate={{
+                                    opacity: scrolled ? 1 : 0,
+                                    x: 0,
+                                    y: scrolled ? 0 : -8,
+                                    scale: scrolled ? 0.85 : 1,
+                                }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                            >
+                                <LogoLink />
+                            </motion.div>
+                        </div>
 
-            {/* MainNavigation absolut placeret */}
-            <div
-                className="hidden lg:flex justify-between items-center bg-bg-base w-full px-4"
-                style={{ position: 'absolute', top: navTop }}
-            >
-                {main && <MainNavigation data={main} locale={locale} />}
-                <SearchBar />
-            </div>
+                        {/* Højre: search + burger */}
+                        <div className="flex items-center gap-3 mt-m">
+                            <SearchBar />
+                            {mobile && <MobileNavigation data={mobile} locale={locale} />}
+                        </div>
+                    </div>
 
-            {/* Mobile */}
-            <div className="lg:hidden flex justify-between w-full mt-auto px-4">
-                <div className="flex gap-base items-center">
-                    <SearchBar />
-                    {mobile && <MobileNavigation data={mobile} locale={locale} />}
+                    {/* =========================
+              DESKTOP LAYOUT (lg and up)
+              - logo centered (stack), main navigation absolute under logo
+              ========================= */}
+                    <div className="hidden lg:block w-full h-full">
+                        <div className="w-full h-full flex items-start justify-center relative">
+                            {/* Full logo */}
+                            <motion.div
+                                animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -10 : 0 }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                style={{ zIndex: 30 }}
+                            >
+                                <LogoLink variant="full" />
+                            </motion.div>
+
+                            {/* Small logo (centered on desktop) */}
+                            <motion.div
+                                style={{
+                                    position: 'absolute',
+                                    top: 12,
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    zIndex: 40,
+                                }}
+                                animate={{
+                                    opacity: scrolled ? 1 : 0,
+                                    y: scrolled ? 0 : -10,
+                                    scale: scrolled ? 0.85 : 1,
+                                }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                            >
+                                <LogoLink />
+                            </motion.div>
+                        </div>
+                        <div
+                            className="absolute left-0 right-0"
+                            style={{
+                                top: navTop,
+                                zIndex: 20,
+                            }}
+                        >
+                            <div className="flex items-center justify-between w-full">
+                                <div className="flex-1">{main && <MainNavigation data={main} locale={locale} />}</div>
+                                <div className="flex-shrink-0">
+                                    <SearchBar />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </motion.header>
