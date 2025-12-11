@@ -42,10 +42,10 @@
 }
 
 .base-block-outer {
-    padding-bottom: 2rem;
+    padding-bottom: var(--space-xs);
 
     @include mix.respond-to-min(var.$md) {
-        padding-bottom: 6rem;
+        padding-bottom: var(--space-m);
     }
 
     // &:last-of-type {
