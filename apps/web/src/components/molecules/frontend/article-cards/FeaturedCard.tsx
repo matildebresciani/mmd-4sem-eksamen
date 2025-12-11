@@ -50,7 +50,11 @@ const FeaturedCard = ({ article, showLabel, className }: Props) => {
                 )}
                 {showLabel && (
                     <div className="absolute top-4 left-4 z-10">
-                        <CardLabel label={formatArticleLabel(article)} />
+                        <CardLabel
+                            label={formatArticleLabel(article)}
+                            type={article.articleType}
+                            reviewType={article.reviewType}
+                        />
                     </div>
                 )}
             </div>

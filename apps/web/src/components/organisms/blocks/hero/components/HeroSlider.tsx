@@ -2,7 +2,7 @@
 
 import { ImageMedia } from '@/components/atoms/frontend/media/ImageMedia';
 import type { Article, Hero as HeroProps } from '@/payload-types';
-import { useState } from 'react';
+import { act, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectCreative } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -99,7 +99,11 @@ const HeroSlider = ({ featuredArticles }: Props) => {
                                 className="w-full grid grid-cols-subgrid"
                             >
                                 <div className="col-span-12 w-fit mb-m">
-                                    <CardLabel label={formatArticleLabel(activeHeroSlide)} />
+                                    <CardLabel
+                                        label={formatArticleLabel(activeHeroSlide)}
+                                        type={activeHeroSlide.articleType}
+                                        reviewType={activeHeroSlide.reviewType}
+                                    />
                                 </div>
                                 {/* TITLE */}
                                 <h3 className="col-span-12">{activeHeroSlide.title}</h3>

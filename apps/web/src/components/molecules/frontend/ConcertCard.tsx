@@ -14,7 +14,7 @@ type Props = {
 const ConcertCard = ({ concert, index }: Props) => {
     // index er 0-baseret: index % 2 === 0 => "even" (her: blå). index % 2 === 1 => "odd" (her: rød)
     const overlayColor =
-        typeof index === 'number' ? (index % 2 === 0 ? 'bg-bg-highlight' : 'bg-bg-red') : 'bg-bg-highlight';
+        typeof index === 'number' ? (index % 2 === 0 ? 'bg-overlay-blue' : 'bg-overlay-red') : 'bg-overlay-blue';
 
     const isLink = Boolean(concert.ticketLink);
 

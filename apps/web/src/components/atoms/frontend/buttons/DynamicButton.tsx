@@ -5,7 +5,6 @@ import { cn } from '@/lib/utilities/ui';
 import type { Option } from '@/payload-types';
 import Link from 'next/link';
 
-
 // TODO: Move to boilerplate
 
 type Props = {
@@ -21,10 +20,10 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }
 
     const buttonStyle = cn(
         'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
-    
-        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover  justify-center',
+
+        variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover justify-center',
         variant === 'secondary' &&
-            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover  justify-center',
+            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover justify-center',
         variant === 'tertiary' && 'underline text-fg-highlight-2 transition-transform duration-300 hover:scale-120',
         className,
     );

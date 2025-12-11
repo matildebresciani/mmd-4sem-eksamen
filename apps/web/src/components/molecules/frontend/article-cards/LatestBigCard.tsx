@@ -27,7 +27,11 @@ const LatestBigCard = ({ article }: Props) => {
                 </div>
                 <div className="relative">
                     <div className="absolute left-m md:left-l -top-4 z-10">
-                        <CardLabel label={formatArticleLabel(article)} />
+                        <CardLabel
+                            label={formatArticleLabel(article)}
+                            type={article.articleType}
+                            reviewType={article.reviewType}
+                        />
                     </div>
                 </div>
                 <div className="p-m md:p-l">

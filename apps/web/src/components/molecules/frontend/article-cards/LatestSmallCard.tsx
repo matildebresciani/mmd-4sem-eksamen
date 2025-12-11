@@ -25,7 +25,11 @@ const LatestSmallCard = ({ article }: Props) => {
                         />
                     )}
                     <div className="absolute bottom-0 left-0 z-10 w-full">
-                        <CardLabel label={formatArticleLabel(article)} />
+                        <CardLabel
+                            label={formatArticleLabel(article)}
+                            type={article.articleType}
+                            reviewType={article.reviewType}
+                        />
                     </div>
                 </div>
 
