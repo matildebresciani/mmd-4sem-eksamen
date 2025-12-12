@@ -2,6 +2,7 @@
 
 import LogoLink from '@/components/atoms/frontend/logo/Link';
 import SearchBar from '@/components/molecules/frontend/SearchBar';
+import type { Locale } from '@/i18n/localized-collections';
 import type { Navigation } from '@/payload-types';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
@@ -13,26 +14,23 @@ type Props = {
     main?: Navigation['navItems'] | null;
     secondary?: Navigation['navItems'] | null;
     mobile?: Navigation['navItems'] | null;
-    locale: string;
+    locale: Locale;
 };
 
 export default function HeaderClient({ main, mobile, locale }: Props) {
     const [scrolled, setScrolled] = useState(false);
     const [vw, setVw] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
-    // Tailwind breakpoints: md=768, lg=1024
     const isMobile = vw < 768;
     const isTablet = vw >= 768 && vw < 1024;
     const isDesktop = vw >= 1024;
 
-    // Helper til at læse CSS-variabler
     const getCSSVar = (name: string, fallback = 0) => {
         if (typeof window === 'undefined') return fallback;
         const value = getComputedStyle(document.documentElement).getPropertyValue(name);
         return Number.parseInt(value.replace('px', '').trim()) || fallback;
     };
 
-    // Hent højder fra CSS-variabler
     const heights = {
         desktop: {
             large: getCSSVar('--header-height-desktop', 303),
@@ -54,11 +52,6 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
             ? heights.mobile.small
             : heights.mobile.large;
 
-    // Nav bar højde (brug præcis højde hvis din MainNavigation har en konkret height)
-    const navBarHeight = isMobile ? 48 : 64;
-    const navOffset = isMobile ? 8 : 12;
-    const navTop = Math.max(headerHeight - navBarHeight - navOffset, 0);
-
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 50);
         const onResize = () => setVw(window.innerWidth);
@@ -71,104 +64,106 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
         };
     }, []);
 
-    // smallLogoLeft: left offset inside container when left-aligned (mobile/tablet)
-    const smallLogoLeft = 16;
-
     return (
-        // Header baggrund går hele vejen
         <motion.header
-            className="fixed top-0 left-0 right-0 z-50 bg-bg-base overflow-visible"
+            className="fixed top-0 left-0 right-0 z-50 bg-bg-base"
             animate={{ height: headerHeight }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             style={{ willChange: 'height' }}
         >
             <BaseBlock classNameOuter="!pb-0">
-                {/* Container max width 1536px */}
                 <div className="oakgrid">
-                    <div className="col-span-12  relative" style={{ height: headerHeight }}>
-                        {/* =========================
-              MOBILE & TABLET ROW (vises på < lg:1024)
-              - flex-row, logo venstre, actions til højre
-              - small-logo flytter til venstre når scrolled
-              ========================= */}
-                        <div className="flex items-center justify-between w-full h-full lg:hidden gap-l">
-                            {/* Venstre: Logo (full når ikke scrolled, small når scrolled) */}
-                            <div className="flex items-center">
+                    <div className="col-span-12 relative h-full">
+                        {/* DESKTOP GRID LAYOUT */}
+                        <div
+                            className="
+                                hidden lg:grid 
+                                w-full h-full 
+                                grid-cols-1 
+                                transition-all duration-300
+                            "
+                            style={{
+                                gridTemplateRows: scrolled
+                                    ? '80px 60px' // lille logo-række, kompakt nav-række
+                                    : '220px 80px', // stor logo-række, nav længere nede
+                            }}
+                        >
+                            {/* Række 1 — Logo området */}
+                            <div className="flex items-center justify-center relative">
+                                {/* FULL LOGO */}
                                 <motion.div
-                                    animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -6 : 0 }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                    className="flex items-center"
-                                >
-                                    <LogoLink variant="full" />
-                                </motion.div>
-
-                                {/* small logo (positioneret absolut hvis scrolled, ellers hidden) */}
-                                <motion.div
-                                    className="absolute top-xs"
-                                    style={{
-                                        left: smallLogoLeft,
-                                    }}
+                                    initial={false}
                                     animate={{
-                                        opacity: scrolled ? 1 : 0,
-                                        x: 0,
-                                        y: scrolled ? 0 : -8,
-                                        scale: scrolled ? 0.85 : 1,
+                                        opacity: scrolled ? 0 : 1,
+                                        y: scrolled ? -20 : 0,
+                                        scale: scrolled ? 0.75 : 1,
                                     }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                >
-                                    <LogoLink />
-                                </motion.div>
-                            </div>
-
-                            {/* Højre: search + burger */}
-                            <div className="flex items-center gap-3 mt-m">
-                                <SearchBar />
-                                {mobile && <MobileNavigation data={mobile} locale={locale} />}
-                            </div>
-                        </div>
-
-                        {/* =========================
-              DESKTOP LAYOUT (lg and up)
-              - logo centered (stack), main navigation absolute under logo
-              ========================= */}
-                        <div className="hidden lg:block w-full h-full">
-                            <div className="w-full h-full flex items-start justify-center relative">
-                                {/* Full logo */}
-                                <motion.div
-                                    animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -10 : 0 }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                    transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                                     className="z-30"
                                 >
                                     <LogoLink variant="full" />
                                 </motion.div>
 
-                                {/* Small logo (centered on desktop) */}
-                                <motion.div
-                                    className="absolute top-s left-[50%] transform -translateX(-50%) z-40"
-                                    animate={{
-                                        opacity: scrolled ? 1 : 0,
-                                        y: scrolled ? 0 : -10,
-                                        scale: scrolled ? 0.85 : 1,
-                                    }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                >
-                                    <LogoLink />
-                                </motion.div>
+                                {/* SMALL LOGO */}
+                                {scrolled && (
+                                    <motion.div
+                                        className="absolute left-1/2 -translate-x-1/2 z-40"
+                                        initial={{ opacity: 0, y: -6, scale: 0.9 }}
+                                        animate={{ opacity: 1, y: 0, scale: 0.85 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{
+                                            duration: 0.35,
+                                            ease: [0.25, 0.1, 0.25, 1],
+                                            delay: 0.1,
+                                        }}
+                                        style={{ top: 12 }} // tweak efter smag
+                                    >
+                                        <LogoLink />
+                                    </motion.div>
+                                )}
                             </div>
-                            <div
-                                className="absolute left-0 right-0 z-20 px-0 mx-auto"
-                                style={{
-                                    top: navTop,
-                                }}
-                            >
-                                <div className="flex items-center justify-between w-full">
-                                    <div className="flex-1">
-                                        {main && <MainNavigation data={main} locale={locale} />}
-                                    </div>
-                                    <div className="flex-shrink-0">
-                                        <SearchBar />
-                                    </div>
+
+                            {/* Række 2 — Navigation */}
+                            <div className="flex w-full items-center justify-between">
+                                {/* Navigation – får lov at fylde pladsen, men centreres vertikalt */}
+                                <nav className="flex items-center">
+                                    {main && <MainNavigation data={main} locale={locale} />}
+                                </nav>
+
+                                {/* Search – alignes i midten og får stabil klik-flade */}
+                                <div className="flex items-center justify-center pl-s">
+                                    <SearchBar />
                                 </div>
+                            </div>
+                        </div>
+
+                        {/* MOBILE + TABLET LAYOUT */}
+                        <div className="flex lg:hidden items-center justify-between w-full h-full py-l">
+                            {/* Full logo */}
+                            {/* <motion.div animate={{ opacity: scrolled ? 0 : 1 }} transition={{ duration: 0.25 }}>
+                                <LogoLink variant="full" />
+                            </motion.div> */}
+
+                            {/* Small logo */}
+                            {/* <motion.div
+                                className="absolute left-4"
+                                animate={{
+                                    opacity: scrolled ? 1 : 0,
+                                    scale: scrolled ? 0.85 : 1,
+                                }}
+                                transition={{ duration: 0.25 }}
+                            >
+                                <LogoLink />
+                            </motion.div> */}
+
+                            <div className="flex items-center">
+                                <LogoLink />
+                            </div>
+
+                            {/* Right side */}
+                            <div className="flex items-center gap-3">
+                                <SearchBar />
+                                {mobile && <MobileNavigation data={mobile} locale={locale} />}
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,11 @@ export default function SearchBar() {
                 transition={{ duration: 0.2 }}
                 className="cursor-pointer"
             >
-                <Search />
+                {/* Mobil: 32px */}
+                <Search size={32} strokeWidth={2} className="block lg:hidden" />
+
+                {/* Desktop: 24px */}
+                <Search size={24} strokeWidth={2} className="hidden lg:block" />
             </motion.button>
 
             {/* Overlay */}
