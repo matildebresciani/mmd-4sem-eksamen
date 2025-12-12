@@ -12,12 +12,12 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
 
     const imageColClasses = cn(
         'col-span-12 mb-10 relative',
-        order === 'image-right' ? 'lg:col-start-7 lg:col-span-6' : 'lg:col-start-1 lg:col-span-6',
+        order === 'image-right' ? 'lg:col-start-7 lg:col-span-6 lg:row-start-1' : 'lg:col-start-1 lg:col-span-6',
     );
 
     const textColClasses = cn(
         'col-span-12 space-y-m',
-        order === 'image-right' ? 'lg:col-start-1 lg:col-span-5' : 'lg:col-start-8 lg:col-span-5',
+        order === 'image-right' ? 'lg:col-start-1 lg:col-span-5 lg:row-start-1' : 'lg:col-start-7 lg:col-span-5',
     );
 
     return (
@@ -27,7 +27,7 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
                     'bg-bg-highlight text-fg-on-color py-section-sm relative overflow-hidden mb-section-xs md:mb-section-m',
             )}
         >
-            <div className="oakgrid my-auto">
+            <div className="oakgrid">
                 <div className={imageColClasses}>
                     {/* Single Image */}
                     {mode === 'addImageSingle' && (
