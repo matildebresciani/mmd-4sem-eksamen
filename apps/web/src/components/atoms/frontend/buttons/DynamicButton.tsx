@@ -5,8 +5,6 @@ import { cn } from '@/lib/utilities/ui';
 import type { Option } from '@/payload-types';
 import Link from 'next/link';
 
-// TODO: Move to boilerplate
-
 type Props = {
     link: Option['linkTypeTemplate'];
     className?: string;
