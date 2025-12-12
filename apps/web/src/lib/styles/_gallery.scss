@@ -94,12 +94,14 @@
 
 /* Three in a row */
 .gallery--threeColumn {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas: 
-        "slot_a"
-        "slot_b"
-        "slot_c";
-    height: 100vh;
+        "slot_a slot_b"
+        "slot_c slot_c";
+    gap: var(--p-xs);
+    height: auto;
 
     @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
