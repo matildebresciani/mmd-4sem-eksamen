@@ -8,7 +8,7 @@ type Props = {
 
 const LogoLink = ({ variant = 'icon', className }: Props) => {
     return (
-        <Link href="/">
+        <Link href="/" className="focus:none">
             <Logo variant={variant} className={className} />
         </Link>
     );

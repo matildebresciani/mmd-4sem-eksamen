@@ -33,24 +33,14 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
 
     const heights = {
         desktop: {
-            large: getCSSVar('--header-height-desktop', 303),
+            large: getCSSVar('--header-height-desktop', 220),
             small: getCSSVar('--header-height-desktop-offset', 140),
         },
         tablet: { large: getCSSVar('--header-height', 220), small: getCSSVar('--header-height-offset', 110) },
-        mobile: { large: getCSSVar('--header-height', 140), small: getCSSVar('--header-height-offset', 72) },
+        mobile: { large: getCSSVar('--header-height', 72), small: getCSSVar('--header-height-offset', 72) },
     };
 
-    const headerHeight = isDesktop
-        ? scrolled
-            ? heights.desktop.small
-            : heights.desktop.large
-        : isTablet
-          ? scrolled
-              ? heights.tablet.small
-              : heights.tablet.large
-          : scrolled
-            ? heights.mobile.small
-            : heights.mobile.large;
+    const headerHeight = isDesktop ? (scrolled ? heights.desktop.small : heights.desktop.large) : heights.mobile.large;
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 50);
@@ -84,8 +74,8 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
                             "
                             style={{
                                 gridTemplateRows: scrolled
-                                    ? '80px 60px' // lille logo-række, kompakt nav-række
-                                    : '220px 80px', // stor logo-række, nav længere nede
+                                    ? 'var(--header-rows-desktop-small)'
+                                    : 'var(--header-rows-desktop-large)',
                             }}
                         >
                             {/* Række 1 — Logo området */}
@@ -99,7 +89,7 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
                                         scale: scrolled ? 0.75 : 1,
                                     }}
                                     transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                                    className="z-30"
+                                    className="z-30 max-w-[420px]"
                                 >
                                     <LogoLink variant="full" />
                                 </motion.div>
@@ -138,7 +128,7 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
                         </div>
 
                         {/* MOBILE + TABLET LAYOUT */}
-                        <div className="flex lg:hidden items-center justify-between w-full h-full py-l">
+                        <div className="flex lg:hidden items-center justify-between w-full h-full py-m">
                             {/* Full logo */}
                             {/* <motion.div animate={{ opacity: scrolled ? 0 : 1 }} transition={{ duration: 0.25 }}>
                                 <LogoLink variant="full" />
@@ -161,7 +151,7 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
                             </div>
 
                             {/* Right side */}
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-base">
                                 <SearchBar />
                                 {mobile && <MobileNavigation data={mobile} locale={locale} />}
                             </div>

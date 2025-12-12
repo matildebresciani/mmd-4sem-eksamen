@@ -34,7 +34,7 @@ const MobileNavigation = ({ data, locale }: Props) => {
             <Portal>
                 <div
                     className={cn(
-                        'dvh-screen fixed top-0 left-0 flex flex-col gap-5 p-5 w-screen bg-white z-30 transition bg-bg-base',
+                        'dvh-screen fixed top-0 left-0 flex flex-col gap-s p-m w-screen bg-bg-base z-30 transition bg-bg-base',
                         isMenuOpen ? 'translate-x-0' : 'translate-x-full',
                     )}
                 >

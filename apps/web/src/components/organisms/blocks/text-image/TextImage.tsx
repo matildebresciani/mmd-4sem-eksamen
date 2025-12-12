@@ -10,88 +10,55 @@ import BaseBlock from '../base-block/BaseBlock';
 const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
     const { order, image, richText, addLink, link, addBgColor, heading, mode } = block;
 
+    const imageColClasses = cn(
+        'col-span-12 mb-10 relative',
+        order === 'image-right' ? 'lg:col-start-7 lg:col-span-6 lg:row-start-1' : 'lg:col-start-1 lg:col-span-6',
+    );
+
+    const textColClasses = cn(
+        'col-span-12 space-y-m',
+        order === 'image-right' ? 'lg:col-start-1 lg:col-span-5 lg:row-start-1' : 'lg:col-start-7 lg:col-span-5',
+    );
+
     return (
         <BaseBlock
-            classNameOuter={cn(addBgColor && 'bg-bg-highlight text-fg-on-color !py-xl mb-section-xs md:mb-section-m')}
+            classNameOuter={cn(
+                addBgColor &&
+                    'bg-bg-highlight text-fg-on-color py-section-sm relative overflow-hidden mb-section-xs md:mb-section-m',
+            )}
         >
             <div className="oakgrid">
-                <div
-                    className={cn(
-                        'col-span-12 relative min-h-[400px] lg:sticky top-6 lg:col-span-6 xl:col-span-5',
-                        order === 'image-right' && 'xl:col-start-8',
-                    )}
-                >
+                <div className={imageColClasses}>
+                    {/* Single Image */}
                     {mode === 'addImageSingle' && (
-                        <div className="w-full lg:absolute lg:h-auto">
-                            <div className="relative w-full h-full overflow-hidden">
-                                <span
-                                    className="absolute inset-0 halftone pointer-events-none z-10"
-                                    aria-hidden="true"
-                                />
-                                <span
-                                    className="absolute inset-0 overlay_black pointer-events-none z-20"
-                                    aria-hidden="true"
-                                />
-
-                                <ImageMedia
-                                    resource={image}
-                                    className="absolute inset-0 w-full h-full object-cover z-0"
-                                    imgClassName="w-full h-full object-cover"
-                                />
-                            </div>
+                        <div className="relative w-full aspect-[4/3] overflow-hidden">
+                            <ImageMedia resource={image} imgClassName="w-full h-full object-cover filter grayscale" />
                         </div>
                     )}
-
+                    {/* Duplicate Image */}
                     {mode === 'addImageDuplication' && (
-                        <div>
-                            <div className="absolute bottom-10 top-0 left-0 lg:bottom-[unset] lg:h-auto w-[85%] z-0">
-                                <div className="relative w-full h-full overflow-hidden">
-                                    <span
-                                        className="absolute inset-0 halftone pointer-events-none z-10"
-                                        aria-hidden="true"
-                                    />
-                                    <span
-                                        className="absolute inset-0 overlay_red pointer-events-none z-20"
-                                        aria-hidden="true"
-                                    />
-                                    <ImageMedia
-                                        resource={image}
-                                        className="absolute inset-0 w-full h-full object-cover z-0"
-                                        imgClassName="w-full h-full object-cover"
-                                    />
-                                </div>
+                        <div className="relative w-full max-w-[591px] mx-auto">
+                            {/* bageste boks + billede */}
+                            <div className="absolute top-0 left-0 w-[90%] h-[90%] aspect-[4/3] bg-bg-section-2 overflow-hidden">
+                                <ImageMedia resource={image} imgClassName="w-full h-full object-cover aspect-[4/3]" />
+                                <div className="absolute inset-0 pointer-events-none mix-blend-screen bg-overlay-red" />
                             </div>
 
-                            <div className="absolute bottom-0 top-10 right-0 lg:bottom-[unset] lg:h-auto w-[85%] z-1">
-                                <div className="relative w-full h-full overflow-hidden">
-                                    <span
-                                        className="absolute inset-0 halftone pointer-events-none z-10"
-                                        aria-hidden="true"
-                                    />
-                                    <span
-                                        className="absolute inset-0 overlay_black pointer-events-none z-20"
-                                        aria-hidden="true"
-                                    />
-
+                            {/* forreste billede forskudt med padding for overlap — samme som single */}
+                            <div className="relative z-10 pl-[10%] pt-[10%]">
+                                <div className="relative w-full aspect-[4/3] overflow-hidden">
                                     <ImageMedia
                                         resource={image}
-                                        className="absolute inset-0 w-full h-full object-cover z-0"
-                                        imgClassName="w-full h-full object-cover"
+                                        imgClassName="w-full h-full object-cover filter grayscale"
                                     />
                                 </div>
                             </div>
                         </div>
                     )}
-                    {mode === 'addCard' && <div className="lg:absolute lg:place-self-end">Insert article here</div>}
                 </div>
 
-                <div
-                    className={cn(
-                        'col-span-12 lg:col-span-6 flex flex-col gap-(--spacing-s)',
-                        order === 'image-right' && 'lg:order-first',
-                        order === 'image-left' && 'xl:col-start-7 xl:col-span-5',
-                    )}
-                >
+                {/* Text + Button */}
+                <div className={textColClasses}>
                     {heading && <h3 className="uppercase">{heading}</h3>}
                     {richText && <RichText data={richText} className="mx-0" />}
                     {addLink && (
