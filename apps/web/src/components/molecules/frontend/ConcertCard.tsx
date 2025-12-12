@@ -16,15 +16,13 @@ const ConcertCard = ({ concert, index }: Props) => {
     const overlayColor =
         typeof index === 'number' ? (index % 2 === 0 ? 'bg-overlay-blue' : 'bg-overlay-red') : 'bg-overlay-blue';
 
-    const isLink = Boolean(concert.ticketLink);
-
-    const Wrapper: any = isLink ? Link : 'div';
+    const hasLink = typeof concert.ticketLink === 'string' && concert.ticketLink.length > 0;
 
     return (
-        <Wrapper
-            href={isLink ? concert.ticketLink : undefined}
-            target={isLink ? '_blank' : undefined}
-            rel={isLink ? 'noopener noreferrer' : undefined}
+        <Link
+            href={concert.ticketLink || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
             className={cn(
                 'group flex flex-col md:flex-row md:first:border-t md:border-b md:border-base md:border-x-1',
                 'w-full mb-section-xxs md:mb-0 active:bg-black/10 cursor-pointer',
@@ -72,13 +70,13 @@ const ConcertCard = ({ concert, index }: Props) => {
                         className="h-fit hidden md:block shrink-0"
                         variant="secondary"
                         title="SE EVENT"
-                        type="link"
-                        openNewTab
-                        href={concert.ticketLink}
+                        // type="link"
+                        // openNewTab
+                        // href={concert.ticketLink}
                     />
                 )}
             </div>
-        </Wrapper>
+        </Link>
     );
 };
 
