@@ -34,7 +34,7 @@ const RelatedArticlesBlock: BC<RelatedArticlesProps> = async ({ block, locale, p
         <BaseBlock classNameOuter="overflow-hidden">
             <div className="oakgrid">
                 <div className="col-span-12">
-                    <h3 className="mb-section-xxs">{heading}</h3>
+                    <h3 className="mb-section-xxs uppercase">{heading}</h3>
                     <div className="relative max-w-full">
                         {relatedArticles.length > 0 ? (
                             <CardSlider articles={relatedArticles} />
