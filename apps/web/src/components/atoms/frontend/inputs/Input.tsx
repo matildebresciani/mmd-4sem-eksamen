@@ -24,7 +24,7 @@ const Input = ({ label, name, type, placeholder, isRequired }: Props) => {
                 {...register(name, { required: isRequired })}
                 placeholder={placeholder}
                 id={id}
-                className="py-m px-s border border-border-base bg-input-bg"
+                className="py-xs px-s border border-border-base bg-input-bg placeholder-text"
                 aria-invalid={!!error}
                 aria-errormessage={error ? errorId : undefined}
             />
