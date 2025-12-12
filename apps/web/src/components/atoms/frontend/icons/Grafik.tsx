@@ -3,12 +3,12 @@ import type { FC, SVGProps } from 'react';
 
 type Props = SVGProps<SVGSVGElement> & { className?: string };
 
-const Grafik: FC<Props> = ({ className, ...rest }) => {
+const Grafik: FC<Props> = ({ className, width, height, ...rest }) => {
     return (
         <svg
-            width="183"
-            height="168"
-            viewBox="0 0 183 168"
+            width={width}
+            height={168}
+            viewBox="0 0 182 168"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={cn(className)}

@@ -11,7 +11,7 @@ const DividerBlock: BC<DividerProps> = () => {
             <div className="oakgrid">
                 <div className="col-span-12 flex items-center gap-5">
                     <span className="divider" />
-                    <Grafik />
+                    <Grafik width={500} height={500} />
                     <span className="divider" />
                 </div>
             </div>
