@@ -11,7 +11,7 @@ const VolunteersTeamBlock: BC<VolunteersTeamProps> = ({ block, locale }) => {
     return (
         <BaseBlock>
             <div className="oakgrid">
-                <div className="col-span-12">
+                <div className="col-span-12 md:col-start-3 md:col-span-8">
                     {volunteersTeam?.map((volunteer) => {
                         if (typeof volunteer === 'string') return null;
                         return <VolunteerCard key={volunteer.id} volunteer={volunteer} variant="small" />;

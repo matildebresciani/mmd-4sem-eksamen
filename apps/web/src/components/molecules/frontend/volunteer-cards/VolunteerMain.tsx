@@ -15,7 +15,7 @@ const VolunteerMain = ({ volunteer }: Props) => {
     return (
         <div className="flex flex-col border border-base text-fg-base bg-bg-base">
             {populatedPicture && (
-                <div className="relative overflow-hidden w-full h-full aspect-square max-h-[304px]">
+                <div className="relative overflow-hidden w-full aspect-square max-h-[304px]">
                     <ImageMedia
                         fill
                         fallbackAlt={volunteer?.volunteerName || 'Author Image'}
