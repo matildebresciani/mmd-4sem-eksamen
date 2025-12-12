@@ -31,9 +31,8 @@
     h2,
     .heading-2 {
         /*font-size range 20-42px, line-height range 1.25-1.25*/
-        font-size: clamp(1.25rem, 1.424vw + 0.916rem, 2.625rem);
-        line-height: clamp(1.563rem, 1.78vw + 1.145rem, 3.281rem);
-
+        font-size: clamp(1.625rem, 1.036vw + 1.382rem, 2.625rem);
+        line-height: clamp(2.031rem, 1.294vw + 1.728rem, 3.281rem);
     }
 
     h3,
