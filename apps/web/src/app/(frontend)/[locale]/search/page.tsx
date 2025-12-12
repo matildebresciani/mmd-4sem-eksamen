@@ -29,22 +29,24 @@ export default async function SearchPage({ params, searchParams }: Props) {
         : { docs: [] };
 
     return (
-        <BaseBlock>
-            <div className="oakgrid">
-                <div className="col-span-12">
-                    <h1 className="heading-lg mb-8">Søgeresultater for: “{q}”</h1>
-                    {results.docs.length === 0 && <p>Ingen artikler matchede din søgning.</p>}
-                    <ul className="space-y-4">
-                        {results.docs.map((article) => (
-                            <li key={article.id}>
-                                <Link href={getArticleUrl(article)} className="underline">
-                                    {article.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+        <article className="pt-section-xs md:pt-section-m pb-spacing-l">
+            <BaseBlock>
+                <div className="oakgrid">
+                    <div className="col-span-12">
+                        <h1 className="heading-lg mb-8">Søgeresultater for: “{q}”</h1>
+                        {results.docs.length === 0 && <p>Ingen artikler matchede din søgning.</p>}
+                        <ul className="space-y-4">
+                            {results.docs.map((article) => (
+                                <li key={article.id}>
+                                    <Link href={getArticleUrl(article)} className="underline">
+                                        {article.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </BaseBlock>
+            </BaseBlock>
+        </article>
     );
 }

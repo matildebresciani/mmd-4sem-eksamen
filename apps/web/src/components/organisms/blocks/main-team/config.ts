@@ -10,7 +10,7 @@ export const MainTeam: Block = {
         plural: 'MainTeams',
     },
     fields: [
-        payloadHeading(),
+        payloadHeading({ required: false }),
         {
             type: 'relationship',
             name: 'mainVolunteers',

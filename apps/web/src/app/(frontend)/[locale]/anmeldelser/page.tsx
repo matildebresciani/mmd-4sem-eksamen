@@ -38,7 +38,7 @@ export default async function Page({ params }: Props) {
     const genres = genresRes.docs;
 
     return (
-        <article className="pt-4 pb-20">
+        <article className="pt-section-xs md:pt-section-m pb-spacing-l">
             <BaseBlock>
                 <div className="oakgrid">
                     <div className="col-span-12 space-y-section-xxs">

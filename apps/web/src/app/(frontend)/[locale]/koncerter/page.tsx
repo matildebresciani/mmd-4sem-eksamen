@@ -27,7 +27,7 @@ export default async function Page({ params }: Props) {
     });
 
     return (
-        <article className="pt-4 pb-20">
+        <article className="pt-section-xs md:pt-section-m pb-spacing-l">
             <BaseBlock>
                 <div className="oakgrid gap-y-section-xxs">
                     <Heading className="col-span-12">Koncertkalender</Heading>

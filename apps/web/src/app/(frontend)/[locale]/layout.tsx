@@ -45,17 +45,13 @@ export default async function RootLayout({ children, params }: Props) {
     setRequestLocale(locale);
 
     return (
-        <html
-            className={cn(delaGothicOne.variable, inclusiveSans.variable)}
-            lang={locale}
-            suppressHydrationWarning
-            data-scroll-behavior="smooth"
-        >
+        <html className={cn(delaGothicOne.variable, inclusiveSans.variable)} lang={locale} suppressHydrationWarning>
             <head>
                 <HeadScripts />
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
             </head>
             <body className="pt-(--header-height) md:pt-(--header-height-desktop)">
+                {/* <body className="pt-[calc(var(--header-height)+var(--space-xs))] md:pt-[calc(var(--header-height-desktop)+var(--space-m))]"> */}
                 <Providers>
                     <Header locale={locale} />
                     {children}

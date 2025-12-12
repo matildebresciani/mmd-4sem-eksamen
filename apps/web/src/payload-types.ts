@@ -913,7 +913,7 @@ export interface FeaturedConcerts {
  * via the `definition` "MainTeam".
  */
 export interface MainTeam {
-  heading: string;
+  heading?: string | null;
   mainVolunteers: (string | Volunteer)[];
   id?: string | null;
   blockName?: string | null;

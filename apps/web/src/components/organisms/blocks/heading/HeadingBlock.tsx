@@ -9,13 +9,15 @@ const HeadingBlock: BC<HeadingBlockProps> = ({ block }) => {
     const level = (headingType === '1' ? 1 : 2) as 1 | 2;
 
     return (
-        <BaseBlock>
-            <div className="oakgrid">
-                <div className="col-span-12">
-                    <Heading level={level}>{heading}</Heading>
+        <article className="pt-section-xs md:pt-section-m">
+            <BaseBlock>
+                <div className="oakgrid">
+                    <div className="col-span-12">
+                        <Heading level={level}>{heading}</Heading>
+                    </div>
                 </div>
-            </div>
-        </BaseBlock>
+            </BaseBlock>
+        </article>
     );
 };
 
