@@ -14,10 +14,21 @@
 
     --font-heading: var(--font-dela-gothic-one); 
     --font-body: var(--font-inclusive-sans); 
-    --header-height: 104px;
-    --header-height-offset: calc(var(--header-height) + 1px);
-    --header-height-desktop: 303px;
-    --header-height-desktop-offset: calc(var(--header-height-desktop) + 1px);
+    // --header-height: 104px;
+    // --header-height-offset: calc(var(--header-height) + 1px);
+    // --header-height-desktop: 303px;
+    // --header-height-desktop-offset: calc(var(--header-height-desktop) + 1px);
+        /* MOBILE */
+    --header-height: 140px;
+    --header-height-offset: 72px;
+
+/* DESKTOP */
+--header-height-desktop: 160px;  /* eksempel */
+--header-height-desktop-offset: 120px; /* scroll */
+
+--header-rows-desktop-large: 110px 50px;
+--header-rows-desktop-small: 80px 50px; 
+
  
     //Color variables fra designsystemet i Figma
     --bg-base: #FBF8F1; 
