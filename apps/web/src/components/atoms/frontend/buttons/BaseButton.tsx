@@ -14,7 +14,7 @@ type Props = {
 
 const BaseButton = ({ type, title, href, openNewTab, className, onClick, variant = 'primary' }: Props) => {
     const style = cn(
-        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
+        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s transition-colors duration-200',
         variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover p-s justify-center',
         variant === 'primaryOnColor' &&
             'bg-button-primary-on-color text-button-text-on-subtle hover:bg-button-primary-on-color-hover p-s justify-center',
