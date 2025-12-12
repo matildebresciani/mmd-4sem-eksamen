@@ -13,7 +13,7 @@ const headingStyles = cva('', {
     variants: {
         type: {
             h1: 'heading-1',
-            h2: 'heading-2',
+            h2: 'heading-1',
         },
         size: {
             '4xl': 'heading-4xl',
