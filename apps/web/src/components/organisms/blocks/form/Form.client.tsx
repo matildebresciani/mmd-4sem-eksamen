@@ -77,7 +77,7 @@ const FormClient = ({ form, layout }: Props) => {
             <form
                 onSubmit={methods.handleSubmit(onSubmit)}
                 className={cn(
-                    'grid grid-cols-1 md:grid-cols-subgrid col-span-12',
+                    'grid grid-cols-1 md:grid-cols-subgrid col-span-12 z-10',
                     layout === 'two-columns' && 'md:col-span-6 md:col-start-7',
                     layout === 'one-column' && 'md:col-span-6 md:col-start-4',
                 )}

@@ -20,7 +20,7 @@ const FormBlock: BC<FormProps> = async ({ block, locale }) => {
             <div className={cn('oakgrid', layout === 'one-column' && 'relative')}>
                 {/* Disc kun i one-column: centreret horisontalt, stor fixed størrelse, ligger bagved */}
                 {layout === 'one-column' && (
-                    <Disc className="absolute left-1/2 top-0 z-0 pointer-events-none -translate-x-1/2 w-[1000px] max-w-none h-[1000px] opacity-30" />
+                    <Disc className="hidden md:block absolute left-1/2 top-0 z-0 pointer-events-none -translate-x-1/2 col-start-2 col-span-10 h-full opacity-40" />
                 )}
                 <div
                     className={cn(

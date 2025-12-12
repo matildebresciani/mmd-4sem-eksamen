@@ -81,7 +81,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                     'flex flex-col items-center justify-center space-y-s w-full min-h-[200px] bg-input-bg',
                     'py-m px-s text-center',
                     'border border-dashed transition-colors',
-                    error ? 'border-red-500' : isDragActive ? 'bg-red-500' : 'border-input-border',
+                    error ? 'border-red-500' : isDragActive ? 'bg-input-subtle' : 'bg-input-bg border-input-border',
                     hasFiles && !error ? 'bg-input-bg' : '',
                 )}
             >
@@ -106,8 +106,8 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                                     inputRef.current?.click();
                                 }}
                                 className={cn(
-                                    'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer',
-                                    'border-border-base bg-border-subtle',
+                                    'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer hover:bg-button-subtle body-md',
+                                    'border-border-base bg-button-subtle hover:bg-button-subtle/80',
                                 )}
                             >
                                 {buttonLabel || 'Tilføj flere'}
@@ -140,7 +140,7 @@ const UploadField = ({ label, name, isRequired, buttonLabel, placeholder, maxFil
                             }}
                             className={cn(
                                 'flex items-center justify-center gap-4 border p-s transition-colors duration-200 cursor-pointer hover:bg-button-subtle body-md',
-                                'border-border-base bg-border-subtle',
+                                'border-border-base bg-button-subtle hover:bg-button-subtle/80',
                             )}
                         >
                             {buttonLabel || 'Upload filer'}
