@@ -8,7 +8,7 @@ type Props = {
     href?: string;
     openNewTab?: boolean | null;
     className?: string;
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'primaryOnColor' | 'secondary';
     onClick?: () => void;
 };
 
@@ -16,8 +16,10 @@ const BaseButton = ({ type, title, href, openNewTab, className, onClick, variant
     const style = cn(
         'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
         variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover p-s justify-center',
+        variant === 'primaryOnColor' &&
+            'bg-button-primary-on-color text-button-text-on-subtle hover:bg-button-primary-on-color-hover p-s justify-center',
         variant === 'secondary' &&
-            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover p-s justify-center',
+            'bg-button-secondary text-button-text hover:bg-button-secondary-hover p-s justify-center',
         className,
     );
 

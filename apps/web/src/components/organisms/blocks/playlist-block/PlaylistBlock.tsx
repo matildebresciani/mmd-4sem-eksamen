@@ -9,7 +9,7 @@ const PlaylistBlock: BC<PlaylistProps> = ({ block }) => {
         <BaseBlock>
             <div className="oakgrid">
                 <div className="col-span-12 lg:col-start-2 lg:col-span-10">
-                    <h4 className="mb-l">{title}</h4>
+                    <h4 className="mb-l uppercase">{title}</h4>
                     {playlistScript && <div dangerouslySetInnerHTML={{ __html: playlistScript }} />}
                 </div>
             </div>
