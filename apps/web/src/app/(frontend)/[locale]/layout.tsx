@@ -1,6 +1,6 @@
 import { AdminBar } from '@/components/molecules/admin/AdminBar';
 import HeadScripts from '@/components/organisms/global/head/HeadScripts';
-import { Header } from '@/components/organisms/global/header/Header';
+import Header from '@/components/organisms/global/header/Header';
 import { defaultLocale, isLocale } from '@/i18n/localized-collections';
 import { getDefaultOgImage, metadataIcons } from '@/lib/data/metadata';
 import { Providers } from '@/lib/providers/Providers';

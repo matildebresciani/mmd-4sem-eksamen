@@ -3,32 +3,49 @@ type Props = {
     onClick: (isOpen: boolean) => void;
 };
 
-const BurgerButton = (props: Props) => {
-    const { isOpen, onClick } = props;
-
+const BurgerButton = ({ isOpen, onClick }: Props) => {
     return (
         <button
             type="button"
-            title="Burger"
-            className="relative flex item-center justify-center w-10 h-10 cursor-pointer"
-            onClick={() => {
-                onClick(!isOpen);
-            }}
+            title="Menu"
+            className="
+                relative flex items-center justify-center
+                w-12 h-12   // 48x48px — bedre for finger tap
+                cursor-pointer
+            "
+            onClick={() => onClick(!isOpen)}
         >
+            {/* Top line */}
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
-                    isOpen ? '-translate-y-0 rotate-45' : '-translate-y-[8px]'
-                }`}
+                className={`
+                    absolute top-1/2 left-1/2
+                    w-8 h-[3px] rounded
+                    bg-black transition-all duration-300
+                    -translate-x-1/2
+                    ${isOpen ? '-translate-y-0 rotate-45' : '-translate-y-[10px]'}
+                `}
             />
+
+            {/* Middle line */}
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
-                    isOpen ? 'opacity-0' : 'opacity-100'
-                }`}
+                className={`
+                    absolute top-1/2 left-1/2
+                    w-8 h-[3px] rounded
+                    bg-black transition-all duration-300
+                    -translate-x-1/2
+                    ${isOpen ? 'opacity-0' : 'opacity-100'}
+                `}
             />
+
+            {/* Bottom line */}
             <span
-                className={`absolute top-1/2 left-1/2 w-5 h-[2px] bg-black transition -translate-x-1/2 rounded ${
-                    isOpen ? '-translate-y-0 -rotate-45' : 'translate-y-[8px]'
-                }`}
+                className={`
+                    absolute top-1/2 left-1/2
+                    w-8 h-[3px] rounded
+                    bg-black transition-all duration-300
+                    -translate-x-1/2
+                    ${isOpen ? '-translate-y-0 -rotate-45' : 'translate-y-[10px]'}
+                `}
             />
         </button>
     );

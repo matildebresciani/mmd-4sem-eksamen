@@ -62,8 +62,8 @@
     padding-left: 1.25rem;
 
     @include mix.respond-to-min(var.$xl) {
-        padding-right: 4rem;
-        padding-left: 4rem;
+        padding-right: 3rem;
+        padding-left: 3rem;
     }
 
     @include mix.respond-to-min(var.$xxl) {
