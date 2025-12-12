@@ -43,14 +43,16 @@
     --fg-highlight: #3D59B0;
     --fg-highlight-2: #DF4739;
 
-    --button-primary: #FBF8F1;
-    --button-secondary: #DF4739;
-    --button-primary-hover: #BDC9E7;
-    --button-secondary-hover: #943128;
+    --button-primary:#DF4739;
+    --button-primary-on-color: #FBF8F1;
+    --button-secondary: #3D59B0; 
+    --button-primary-hover: #943128;
+    --button-primary-on-color-hover: #BDC9E7;
+    --button-secondary-hover: #344571;
     --button-subtle: #D8D5CD;
 
-    --button-text: #3D59B0;
-    --button-text-on-subtle: #FBF8F1;
+    --button-text: #FBF8F1;
+    --button-text-on-subtle: #3D59B0;
 
     --bg-label-red: #DF4739;
     --bg-label-blue: #3D59B0;

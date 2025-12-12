@@ -82,6 +82,7 @@ const FeaturedArticleBlock: BC<FeaturedArticleProps> = async ({ block, locale })
                         type="link"
                         href={`/${locale}/${frontendRouteMap[articleType]}/${article.slug}`}
                         title="Læs artikel"
+                        variant="primaryOnColor"
                     />
                 </div>
             </div>
