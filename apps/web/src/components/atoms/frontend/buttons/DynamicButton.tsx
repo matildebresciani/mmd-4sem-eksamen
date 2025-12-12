@@ -19,7 +19,7 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }
     const { type, label, url, openNewTab } = link;
 
     const buttonStyle = cn(
-        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
+        'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s transition-colors duration-200',
 
         variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover justify-center',
         variant === 'primaryOnColor' &&
