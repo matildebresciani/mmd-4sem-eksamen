@@ -37,7 +37,7 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
             small: getCSSVar('--header-height-desktop-offset', 140),
         },
         tablet: { large: getCSSVar('--header-height', 220), small: getCSSVar('--header-height-offset', 110) },
-        mobile: { large: getCSSVar('--header-height', 140), small: getCSSVar('--header-height-offset', 72) },
+        mobile: { large: getCSSVar('--header-height', 72), small: getCSSVar('--header-height-offset', 72) },
     };
 
     const headerHeight = isDesktop ? (scrolled ? heights.desktop.small : heights.desktop.large) : heights.mobile.large;
@@ -128,7 +128,7 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
                         </div>
 
                         {/* MOBILE + TABLET LAYOUT */}
-                        <div className="flex lg:hidden items-center justify-between w-full h-full py-l">
+                        <div className="flex lg:hidden items-center justify-between w-full h-full py-m">
                             {/* Full logo */}
                             {/* <motion.div animate={{ opacity: scrolled ? 0 : 1 }} transition={{ duration: 0.25 }}>
                                 <LogoLink variant="full" />
@@ -151,7 +151,7 @@ export default function HeaderClient({ main, mobile, locale }: Props) {
                             </div>
 
                             {/* Right side */}
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-base">
                                 <SearchBar />
                                 {mobile && <MobileNavigation data={mobile} locale={locale} />}
                             </div>
