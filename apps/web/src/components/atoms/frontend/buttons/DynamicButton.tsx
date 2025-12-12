@@ -10,7 +10,7 @@ import Link from 'next/link';
 type Props = {
     link: Option['linkTypeTemplate'];
     className?: string;
-    variant?: 'primary' | 'secondary' | 'tertiary';
+    variant?: 'primary' | 'primaryOnColor' | 'secondary' | 'tertiary';
     locale?: Locale;
     onClick?: () => void;
 };
@@ -22,8 +22,10 @@ const DynamicButton = ({ link, className, variant = 'primary', locale, onClick }
         'inline-flex cursor-pointer w-auto button-text p-xs sm:p-s',
 
         variant === 'primary' && 'bg-button-primary text-button-text hover:bg-button-primary-hover justify-center',
+        variant === 'primaryOnColor' &&
+            'bg-button-primary-on-color text-button-text-on-subtle hover:bg-button-primary-on-color-hover p-s justify-center',
         variant === 'secondary' &&
-            'bg-button-secondary text-button-text-on-subtle hover:bg-button-secondary-hover justify-center',
+            'bg-button-secondary text-button-text hover:bg-button-secondary-hover justify-center',
         variant === 'tertiary' && 'underline text-fg-highlight-2 transition-transform duration-300 hover:scale-120',
         className,
     );

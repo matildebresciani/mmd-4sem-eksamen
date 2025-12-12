@@ -82,7 +82,6 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
                             </div>
                         </div>
                     )}
-
                     {mode === 'addCard' && <div className="lg:absolute lg:place-self-end">Insert article here</div>}
                 </div>
 
@@ -95,7 +94,14 @@ const TextImageBlock: BC<TextImageProps> = ({ block, locale }) => {
                 >
                     {heading && <h3 className="uppercase">{heading}</h3>}
                     {richText && <RichText data={richText} className="mx-0" />}
-                    {addLink && <DynamicButton link={link} locale={locale} className="w-fit" />}
+                    {addLink && (
+                        <DynamicButton
+                            link={link}
+                            locale={locale}
+                            className="w-fit"
+                            variant={addBgColor ? 'primaryOnColor' : 'primary'}
+                        />
+                    )}
                 </div>
             </div>
         </BaseBlock>
