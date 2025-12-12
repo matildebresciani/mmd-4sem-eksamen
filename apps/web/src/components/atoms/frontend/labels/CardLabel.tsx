@@ -9,7 +9,7 @@ type Props = {
 const typeColors: Record<string, string> = {
     review: 'bg-label-red text-fg-on-color',
     interview: 'bg-label-dark text-fg-on-color',
-    'weekly-releases': 'bg-label-lightblue text-fg-highlight',
+    'weekly-releases': 'bg-label-lightblue text-fg-base',
 };
 
 const reviewTypeColors: Record<string, string> = {
