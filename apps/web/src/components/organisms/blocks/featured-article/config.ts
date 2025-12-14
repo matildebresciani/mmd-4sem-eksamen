@@ -1,10 +1,9 @@
-import { payloadLink } from '@/lib/field-templates/links';
 import type { Block } from 'payload';
 
 export const FeaturedArticle: Block = {
     slug: 'featured-article',
     interfaceName: 'FeaturedArticle',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/featured-article.png',
     labels: {
         singular: 'FeaturedArticle',
         plural: 'FeaturedArticles',

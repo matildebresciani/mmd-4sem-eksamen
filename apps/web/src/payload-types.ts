@@ -195,7 +195,6 @@ export interface Page {
         | ArticleSlider
         | RecentArticles
         | Divider
-        | Quote
         | FeaturedArticle
         | VolunteerRoles
         | Form
@@ -1290,7 +1289,6 @@ export interface PagesSelect<T extends boolean = true> {
         'article-slider'?: T | ArticleSliderSelect<T>;
         'recent-articles'?: T | RecentArticlesSelect<T>;
         divider?: T | DividerSelect<T>;
-        quote?: T | QuoteSelect<T>;
         'featured-article'?: T | FeaturedArticleSelect<T>;
         'volunteer-roles'?: T | VolunteerRolesSelect<T>;
         form?: T | FormSelect<T>;
@@ -1399,17 +1397,6 @@ export interface RecentArticlesSelect<T extends boolean = true> {
  * via the `definition` "Divider_select".
  */
 export interface DividerSelect<T extends boolean = true> {
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Quote_select".
- */
-export interface QuoteSelect<T extends boolean = true> {
-  richText?: T;
-  showName?: T;
-  name?: T;
   id?: T;
   blockName?: T;
 }
@@ -1613,6 +1600,17 @@ export interface RelatedArticlesSelect<T extends boolean = true> {
 export interface PlaylistSelect<T extends boolean = true> {
   title?: T;
   playlistScript?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Quote_select".
+ */
+export interface QuoteSelect<T extends boolean = true> {
+  richText?: T;
+  showName?: T;
+  name?: T;
   id?: T;
   blockName?: T;
 }

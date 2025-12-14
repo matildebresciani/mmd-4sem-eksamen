@@ -1,12 +1,9 @@
-import { payloadHeading } from '@/lib/field-templates/headings';
-import { payloadRichText } from '@/lib/field-templates/rich-text';
 import type { Block } from 'payload';
-import { richText } from 'payload/shared';
 
 export const Form: Block = {
     slug: 'form',
     interfaceName: 'Form',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/form.png',
     labels: {
         singular: 'Form',
         plural: 'Forms',

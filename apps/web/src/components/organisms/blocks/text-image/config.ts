@@ -6,7 +6,7 @@ import type { Block } from 'payload';
 export const TextImage: Block = {
     slug: 'text-image',
     interfaceName: 'TextImage',
-    imageURL: '/images/block-thumbnails/text-image.jpg',
+    imageURL: '/images/block-thumbnails/text-image.png',
     labels: {
         singular: 'TextImage',
         plural: 'TextImages',

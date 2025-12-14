@@ -5,7 +5,7 @@ import type { Block } from 'payload';
 export const ArticleSlider: Block = {
     slug: 'article-slider',
     interfaceName: 'ArticleSlider',
-    imageURL: '/images/block-thumbnails/card-slider-block.png',
+    imageURL: '/images/block-thumbnails/article-slider.png',
     labels: {
         singular: 'ArticleSlider',
         plural: 'ArticleSliders',

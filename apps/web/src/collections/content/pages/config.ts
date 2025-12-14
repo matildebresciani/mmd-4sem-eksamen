@@ -30,7 +30,6 @@ const blocks: Block[] = [
     ArticleSlider,
     RecentArticles,
     Divider,
-    Quote,
     FeaturedArticle,
     VolunteerRoles,
     Form,
