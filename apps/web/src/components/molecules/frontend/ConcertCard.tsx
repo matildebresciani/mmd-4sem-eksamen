@@ -16,8 +16,6 @@ const ConcertCard = ({ concert, index }: Props) => {
     const overlayColor =
         typeof index === 'number' ? (index % 2 === 0 ? 'bg-overlay-blue' : 'bg-overlay-red') : 'bg-overlay-blue';
 
-    const hasLink = typeof concert.ticketLink === 'string' && concert.ticketLink.length > 0;
-
     return (
         <Link
             href={concert.ticketLink || '#'}
