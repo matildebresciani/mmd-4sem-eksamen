@@ -3,7 +3,7 @@ import type { Block } from 'payload';
 export const ArticleHero: Block = {
     slug: 'article-hero',
     interfaceName: 'ArticleHero',
-    // imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/article-hero.png',
     labels: {
         singular: 'ArticleHero',
         plural: 'ArticleHeros',

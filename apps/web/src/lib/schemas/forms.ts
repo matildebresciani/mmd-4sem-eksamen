@@ -82,7 +82,6 @@ export function getFileFieldSchema(input: FormInput): ZodTypeAny {
                   }),
               );
 
-    // 🟢 FIX: GØR FELTET OPTIONAL HVIS IKKE REQUIRED
     return input.isRequired ? SafeFileList : SafeFileList.optional();
 }
 

@@ -4,7 +4,7 @@ import type { Block } from 'payload';
 export const FAQ: Block = {
     slug: 'faq',
     interfaceName: 'FAQ',
-    // imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/faq.png',
     labels: {
         singular: 'FAQ',
         plural: 'FAQs',

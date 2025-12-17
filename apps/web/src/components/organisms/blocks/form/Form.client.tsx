@@ -64,6 +64,7 @@ const FormClient = ({ form, layout }: Props) => {
             try {
                 await submitForm(formData, form.id);
                 toast.success('Din formular er blevet sendt!');
+
                 methods.reset();
                 console.log('Formen blev sendt!');
             } catch (error) {

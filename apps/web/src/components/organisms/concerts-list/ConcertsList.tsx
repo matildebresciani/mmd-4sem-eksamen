@@ -7,14 +7,14 @@ type Props = {
 };
 
 const ConcertsList = ({ concerts, className }: Props) => {
-    // 1) Filtrer til kun fremtidige koncerter
+    // Filtrer til kun fremtidige koncerter
     // const now = new Date();
     // const upcoming = concerts.filter((c) => new Date(c.date) >= now);
 
-    // MIDlertidig: inkluder ALLE koncerter
+    // Midlertidig: inkluder ALLE koncerter
     const upcoming = concerts;
 
-    // 2) Gruppér efter måned
+    // Gruppér efter måned
     const groupedByMonth = upcoming.reduce((acc: Record<string, Concert[]>, concert) => {
         const date = new Date(concert.date);
 
@@ -32,7 +32,6 @@ const ConcertsList = ({ concerts, className }: Props) => {
     // Global tæller på tværs af grupper
     let globalIndex = 0;
 
-    // 3) Render gruppe for gruppe
     return (
         <div className={className}>
             {Object.entries(groupedByMonth).map(([month, concerts]) => (

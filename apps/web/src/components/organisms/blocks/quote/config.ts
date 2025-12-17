@@ -4,6 +4,7 @@ import type { Block } from 'payload';
 export const Quote: Block = {
     slug: 'quote',
     interfaceName: 'Quote',
+    imageURL: '/images/block-thumbnails/quote.png',
     labels: {
         singular: 'Quote',
         plural: 'Quotes',
