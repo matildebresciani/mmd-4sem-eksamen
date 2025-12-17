@@ -5,7 +5,7 @@ import type { Block } from 'payload';
 export const FeaturedConcerts: Block = {
     slug: 'featured-concerts',
     interfaceName: 'FeaturedConcerts',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/featured-concerts.png',
     labels: {
         singular: 'FeaturedConcerts',
         plural: 'FeaturedConcertss',

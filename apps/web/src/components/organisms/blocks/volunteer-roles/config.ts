@@ -3,7 +3,7 @@ import type { Block } from 'payload';
 export const VolunteerRoles: Block = {
     slug: 'volunteer-roles',
     interfaceName: 'VolunteerRoles',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/volunteer-roles.png',
     labels: {
         singular: 'VolunteerRoles',
         plural: 'VolunteerRoles',

@@ -4,7 +4,7 @@ import type { Block } from 'payload';
 export const HeadingBlock: Block = {
     slug: 'heading-block',
     interfaceName: 'HeadingBlock',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/heading.png',
     labels: {
         singular: 'HeadingBlock',
         plural: 'HeadingBlocks',

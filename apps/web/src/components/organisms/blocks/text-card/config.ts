@@ -4,7 +4,7 @@ import type { Block } from 'payload';
 export const TextCard: Block = {
     slug: 'text-card',
     interfaceName: 'TextCard',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/text-card.png',
     labels: {
         singular: 'TextCard',
         plural: 'TextCards',

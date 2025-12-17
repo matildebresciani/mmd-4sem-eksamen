@@ -4,7 +4,7 @@ import type { Block } from 'payload';
 export const VolunteersTeam: Block = {
     slug: 'volunteers-team',
     interfaceName: 'VolunteersTeam',
-    imageURL: '/images/block-thumbnails/.jpg',
+    imageURL: '/images/block-thumbnails/volunteers-list.png',
     labels: {
         singular: 'VolunteersTeam',
         plural: 'VolunteersTeams',
