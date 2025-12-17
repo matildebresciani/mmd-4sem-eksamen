@@ -34,6 +34,7 @@ const RelatedArticlesBlock: BC<RelatedArticlesProps> = async ({ block, locale, p
         relatedArticles = docs;
     }
 
+    //Fallback logik
     if (relatedArticles.length === 0) {
         const currentType = articleData?.articleType;
 
