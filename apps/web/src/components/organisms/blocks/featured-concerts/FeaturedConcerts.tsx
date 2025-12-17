@@ -21,7 +21,6 @@ const FeaturedConcertsBlock: BC<FeaturedConcertsProps> = async ({ block, locale 
         sort: 'date',
         limit: 4,
     });
-
     const concerts = concertsRes.docs;
     return (
         <BaseBlock>
